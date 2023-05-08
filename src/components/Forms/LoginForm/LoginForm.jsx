@@ -17,7 +17,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string()
     .min(
       6,
-      'the passport must contain Latin letters: at least 1 lowercase, 1 uppercase, 1 number and be at least 6 and no more than 12 characters'
+      'the password must contain Latin letters: at least 1 lowercase, 1 uppercase, 1 number and be at least 6 and no more than 12 characters'
     )
     .required("Обов'язкове поле"),
 });
