@@ -1,0 +1,24 @@
+.logout_button {
+  background-color: #3e85f3;
+  width: 141px;
+  height: 56;
+  padding: 16px 23px;
+  font-family: 'Coolvetica';
+  box-shadow: 4px 2px 16px 0px #88a5bf7a;
+  border: none;
+  border-radius: 16px;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: -0.02em;
+
+  display: flex;
+  gap: 11px;
+  align-items: center;
+
+  &:hover {
+    background-color: #2b78ef;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+}
