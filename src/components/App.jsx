@@ -3,7 +3,7 @@ import { LoginForm } from './Forms/LoginForm/LoginForm';
 
 export const App = () => {
   return (
-    <div style={{ marginTop: '30%', marginBottom: 'auto' }}>
+    <div>
       <LoginForm />
     </div>
   );
