@@ -166,7 +166,7 @@ const StyledWrapper = styled.div`
   width: 335px;
   height: 376px;
 
-  margin-top: 30%;
+  margin-top: 15%;
   margin-bottom: auto;
   margin-left: auto;
   margin-right: auto;
