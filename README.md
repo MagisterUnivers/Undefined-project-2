@@ -1,7 +1,7 @@
 ![logo](https://user-images.githubusercontent.com/36455862/236773111-da6d0d50-ed00-4d34-9306-10b47be76841.png)
 
 
-Hello everbody! Undefuned responding. This is our first team project in JavaScript way, dont hesitate to watch it and create an issue if you find something isnt working.
+Hello everbody! Undefined responding. This is our second team project in REACT | JavaScript, dont hesitate to watch it and create an issue if you find something that isn`t working.
 
 Right now we are developing in the next ways:
 
