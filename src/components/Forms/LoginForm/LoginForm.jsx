@@ -17,7 +17,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string()
     .min(
       6,
-      'the passport must contain Latin letters: at least 1 lowercase, 1 uppercase, 1 number and be at least 6 and no more than 12 characters'
+      'the password must contain Latin letters: at least 1 lowercase, 1 uppercase, 1 number and be at least 6 and no more than 12 characters'
     )
     .required("Обов'язкове поле"),
 });
@@ -163,13 +163,16 @@ const StyledBtn = styled.button`
 `;
 
 const StyledWrapper = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
   width: 335px;
   height: 376px;
-
-  margin-top: 15%;
-  margin-bottom: auto;
-  margin-left: auto;
-  margin-right: auto;
+  transform: translate(-50%, -50%);
+  /* margin-top: 15%;
+  margin-bottom: auto; */
+  /* margin-left: auto;
+  margin-right: auto; */
 
   border: transparent;
   background: #ffffff;
