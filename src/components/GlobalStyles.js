@@ -18,12 +18,12 @@ const GlobalStyles = createGlobalStyle`
   font-style: normal;
 }
 
-@font-face {
+/* @font-face {
   font-family: 'Inter';
   src: url('../fonts/Inter-SemiBoldItalic.woff2') format('woff2');
   font-weight: 600;
   font-style: italic;
-}
+} */
 
 
 
