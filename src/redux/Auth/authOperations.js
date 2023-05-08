@@ -8,7 +8,7 @@ axios.defaults.baseURL = 'https://goose-tracker-backend.p.goit.global/';
 // axios.defaults.baseURL = 'https://goit-task-manager.herokuapp.com/';
 
 const setToken = token => {
-  axios.defaults.headers.common.Authorization = `Bearer ${selectAuthAccessToken}`;
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 const clearToken = () => {
   axios.defaults.headers.common.Authorization = ``;
