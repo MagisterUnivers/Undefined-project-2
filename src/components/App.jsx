@@ -1,10 +1,11 @@
 // import { RegisterForm } from './Forms/RegisterForm/RegisterForm';
-import { LoginForm } from './Forms/LoginForm/LoginForm';
+import LoginPage from 'pages/LoginPage/LoginPage';
+import { Route, Routes } from 'react-router';
 
 export const App = () => {
   return (
-    <div>
-      <LoginForm />
-    </div>
+    <Routes>
+      <Route path="/login" element={<LoginPage />} />
+    </Routes>
   );
 };

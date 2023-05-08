@@ -163,13 +163,16 @@ const StyledBtn = styled.button`
 `;
 
 const StyledWrapper = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
   width: 335px;
   height: 376px;
-
-  margin-top: 15%;
-  margin-bottom: auto;
-  margin-left: auto;
-  margin-right: auto;
+  transform: translate(-50%, -50%);
+  /* margin-top: 15%;
+  margin-bottom: auto; */
+  /* margin-left: auto;
+  margin-right: auto; */
 
   border: transparent;
   background: #ffffff;
