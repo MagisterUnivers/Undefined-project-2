@@ -15,6 +15,10 @@ const AuthNavigate = ({ isLoginForm }) => {
 export default AuthNavigate;
 
 const StyledText = styled.p`
+  position: absolute;
+  bottom: 124px;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
