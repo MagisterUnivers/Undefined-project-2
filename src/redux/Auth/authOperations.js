@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { selectAuthAccessToken } from 'redux/selectors';
 
 //defaultURL
 axios.defaults.baseURL = 'https://goose-tracker-backend.p.goit.global/';
