@@ -4,14 +4,30 @@ const GlobalStyles = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@1,600&family=Inter:wght@400;500;600;700&display=swap');
 
 
-  /* Используйте @font-face, если хотите подключить шрифт из локального файла */
-  /* @font-face {
-    font-family: 'Font1';
-    src: url('/fonts/Font1.ttf');
-  } */
+@font-face {
+  font-family: 'Coolvetica';
+  src: url('../fonts/CoolveticaRg-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Coolvetica';
+  src: url('../fonts/CoolveticaRg-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter-SemiBoldItalic.woff2') format('woff2');
+  font-weight: 600;
+  font-style: italic;
+}
+
+
 
   body {
-    /* Используйте шрифты в вашем стиле */
     font-family: 'Inter', sans-serif;
   }
 `;
