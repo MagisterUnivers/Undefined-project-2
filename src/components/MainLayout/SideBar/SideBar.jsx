@@ -35,7 +35,7 @@ export const SideBar = ({ toggleSidebar, isOpenSidebarMobile }) => {
   );
 };
 
-SideBar.propTypes = {
-  toggleSidebar: PropTypes.func.isRequired,
-  isOpenSidebarMobile: PropTypes.func.isRequired,
-};
+// SideBar.propTypes = {
+//   toggleSidebar: PropTypes.func.isRequired,
+//   isOpenSidebarMobile: PropTypes.func.isRequired,
+// };

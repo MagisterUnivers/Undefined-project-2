@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import { fetchUserDataThunk } from 'redux/UserInfo/userInfoOperations';
 import { selectUser } from 'redux/selectors';
-// import { SideBar } from './SideBar/SideBar';
-// import { useState } from 'react';
+import { SideBar } from './SideBar/SideBar';
+import { useState } from 'react';
 
 export const MainLayout = () => {
   const { email } = useSelector(selectUser);
@@ -16,24 +16,24 @@ export const MainLayout = () => {
     }
   }, [dispatch, email]);
 
-  // const [isOpenSidebarMobile, setIsOpenSidebarMobile] = useState(false);
+  const [isOpenSidebarMobile, setIsOpenSidebarMobile] = useState(false);
 
-  // const toggleSidebar = () => {
-  //   setIsOpenSidebarMobile(!isOpenSidebarMobile);
-  // };
+  const toggleSidebar = () => {
+    setIsOpenSidebarMobile(!isOpenSidebarMobile);
+  };
 
   return (
     <>
       {' '}
       {/* <Header />
-      <SideBar /> */}
-      {/* <SideBar
+      <SideBar /> */}{' '}
+      <SideBar
         toggleSidebar={toggleSidebar}
         isOpenSidebarMobile={isOpenSidebarMobile}
       />
       <button type="button" onClick={toggleSidebar}>
         burger-btn
-      </button> */}
+      </button>
       <main>
         <Outlet />
       </main>
