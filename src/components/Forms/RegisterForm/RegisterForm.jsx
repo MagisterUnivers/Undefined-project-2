@@ -5,6 +5,7 @@ import { registrationThunk } from 'redux/Auth/authOperations';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAuthAccessToken } from 'redux/selectors';
 import styled from 'styled-components';
+import AuthNavigate from 'components/AuthNavigate/AuthNavigate';
 // import { useHistory } from 'react-router-dom';
 
 const validationSchema = Yup.object().shape({
@@ -110,6 +111,7 @@ export const RegisterForm = () => {
           </StyledForm>
         </Formik>
       </StyledWrapper>
+      <AuthNavigate isLoginForm={false} />
     </>
   );
 };
@@ -118,16 +120,15 @@ const StyledForm = styled(Form)`
   display: flex;
   align-content: center;
   flex-wrap: wrap;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   /* gap: 20px; */
 `;
 
 const StyledTitle = styled.h2`
-  text-align: center;
+  margin-left: 40px;
   margin-top: 40px;
-  margin-bottom: 32px;
+  margin-bottom: 40px;
 
   font-family: 'Inter';
   font-style: normal;
@@ -150,8 +151,10 @@ const StyledLabel = styled.label`
 `;
 
 const StyledHolder = styled.div`
-  width: 287px;
-  height: 69px;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 79px;
   margin-bottom: 24px;
 
   &:last-of-type {
@@ -160,8 +163,8 @@ const StyledHolder = styled.div`
 `;
 
 const StyledBtn = styled.button`
-  width: 287px;
-  height: 46px;
+  width: 400px;
+  height: 56px;
 
   font-family: 'Inter';
   font-style: normal;
@@ -183,24 +186,22 @@ const StyledWrapper = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 335px;
-  height: 376px;
+  width: 480px;
+  height: 521px;
   border: transparent;
   background: #ffffff;
-  border: 1px solid black;
   border-radius: 8px;
 `;
 
 const StyledField = styled(Field)`
+  display: block;
+  width: auto;
+  height: 54px;
   margin-top: 8px;
-  /* margin-bottom: 32px; */
   padding: 14px;
   box-sizing: border-box;
-
-  width: 287px;
-  height: 46px;
-
   background: #ffffff;
   border: 1px solid rgba(220, 227, 229, 0.6);
   border-radius: 8px;
+  outline: transparent;
 `;
