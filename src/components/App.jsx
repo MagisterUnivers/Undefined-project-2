@@ -2,13 +2,14 @@
 import { Route, Routes } from 'react-router';
 import { MainLayout } from './MainLayout/MainLayout';
 import LoginPage from 'pages/LoginPage/LoginPage';
+import RegisterPage from 'pages/RegisterPage/RegisterPage';
 
 export const App = () => {
   return (
     <>
       <Routes>
         <Route path="/about" /> {/*TODO: About page element*/}
-        <Route path="/register" /> {/*TODO: Register page element*/}
+        <Route path="/register" element={<RegisterPage />} />{' '}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<MainLayout />}>
           <Route path="/calendar" /> {/*TODO: Calendar page element*/}
