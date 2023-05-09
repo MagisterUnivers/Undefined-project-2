@@ -318,10 +318,7 @@ export const UserForm = () => {
           </StyledHolder>
         </StyledTaker>
 
-        <StyledBtn
-          type="submit"
-          style={{ display: isFormValid ? 'block' : 'none' }}
-        >
+        <StyledBtn type="submit" disabled={!isFormValid}>
           Save changes
         </StyledBtn>
       </StyledForm>
@@ -481,6 +478,7 @@ const StyledBtn = styled.button`
   font-size: 14px;
   line-height: calc(18 / 14);
 
+  cursor: pointer;
   color: #ffffff;
   letter-spacing: -0.02em;
   border: transparent;
@@ -488,6 +486,12 @@ const StyledBtn = styled.button`
   background: #3e85f3;
   box-shadow: 4px 2px 16px rgba(136, 165, 191, 0.48);
   border-radius: 16px;
+
+  &:disabled {
+    background: #ccc;
+    box-shadow: none;
+    cursor: not-allowed;
+  }
 
   @media screen and (min-width: 768px) {
     width: 262px;
