@@ -17,7 +17,7 @@ const persistConfig = {
   key: 'data',
   version: 1,
   storage,
-  whitelist: ['data'],
+  whitelist: ['data', 'userInfo', 'user'],
 };
 
 export const store = configureStore({

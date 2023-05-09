@@ -212,7 +212,8 @@ export const UserForm = () => {
           />
         </>
       )}
-      <StyledUser>User</StyledUser>
+      <StyledUserH2>{formData.name}</StyledUserH2>
+      <StyledUserH3>User</StyledUserH3>
 
       <StyledForm onSubmit={handleSubmit}>
         <StyledTaker>
@@ -354,9 +355,13 @@ const StyledTaker = styled.div`
   }
 `;
 
-const StyledUser = styled.h3`
-  margin-top: 14px;
+const StyledUserH3 = styled.h3`
   margin-bottom: 40px;
+  text-align: center;
+`;
+
+const StyledUserH2 = styled.h2`
+  margin-top: 14px;
   text-align: center;
 `;
 
@@ -370,12 +375,12 @@ const StyledImg = styled.img`
   @media screen and (min-width: 768px) {
     width: 124px;
     height: 130px;
-    margin-top: 10%;
+    margin-top: 3%;
   }
   @media screen and (min-width: 1440px) {
     width: 124px;
     height: 130px;
-    margin-top: 10%;
+    margin-top: 5%;
   }
 `;
 

@@ -175,10 +175,18 @@ const StyledHolder = styled.div`
   @media screen and (min-width: 768px) {
     width: 400px;
     height: 79px;
+
+    &:last-of-type {
+      margin-bottom: 48px;
+    }
   }
   @media screen and (min-width: 1440px) {
     width: 400px;
     height: 79px;
+
+    &:last-of-type {
+      margin-bottom: 48px;
+    }
   }
 `;
 

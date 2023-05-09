@@ -9,6 +9,7 @@ import AuthNavigate from 'components/AuthNavigate/AuthNavigate';
 import LogOut from 'components/Btn/LogoutBtn/LogOut';
 // import { UserForm } from '../UserForm/UserForm';
 // import { useHistory } from 'react-router-dom';
+import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -95,7 +96,9 @@ export const LoginForm = () => {
               </StyledHolder>
             </StyledTaker>
 
-            <StyledBtn type="submit">Log in</StyledBtn>
+            <StyledBtn type="submit">
+              Log in <StyledIcon />
+            </StyledBtn>
           </StyledForm>
         </Formik>
       </StyledWrapper>
@@ -113,6 +116,29 @@ const StyledForm = styled(Form)`
   justify-content: center;
   align-items: center;
   /* gap: 20px; */
+`;
+
+const StyledIcon = styled(LoginRoundedIcon)`
+  && {
+    width: 18px;
+    height: 18px;
+    margin-left: 11px;
+  }
+
+  @media screen and (min-width: 768px) {
+    && {
+      width: 20px;
+      height: 20px;
+      margin-left: 11px;
+    }
+  }
+  @media screen and (min-width: 1440px) {
+    && {
+      width: 20px;
+      height: 20px;
+      margin-left: 11px;
+    }
+  }
 `;
 
 const StyledTitle = styled.h2`
@@ -203,6 +229,9 @@ const StyledTaker = styled.div`
 `;
 
 const StyledBtn = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 287px;
   height: 46px;
 

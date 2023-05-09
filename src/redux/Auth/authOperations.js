@@ -58,7 +58,7 @@ export const logoutThunk = createAsyncThunk('@@auth/logout', async _ => {
 export const refreshThunk = createAsyncThunk(
   '@@auth/refresh',
   async (_, thunkAPI) => {
-    const savedToken = thunkAPI.getState().auth.token;
+    const savedToken = thunkAPI.getState().auth.data.accessToken;
     if (savedToken === null) {
       return thunkAPI.rejectWithValue('Token is not find');
     }
