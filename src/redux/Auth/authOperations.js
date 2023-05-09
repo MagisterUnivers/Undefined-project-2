@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import Notiflix from 'notiflix';
 
 //defaultURL
 axios.defaults.baseURL = 'https://goose-tracker-backend.p.goit.global/';
@@ -15,27 +16,31 @@ const clearToken = () => {
 
 export const registrationThunk = createAsyncThunk(
   '@@auth/registration',
-  async (credentials, thunkAPI) => {
+  async credentials => {
     try {
       console.log(credentials);
       const res = await axios.post('user/register', credentials);
       // setToken(res.data);
       return res.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      const errorMessage = error.response.data.message;
+      Notiflix.Notify.failure('Respond from server is ' + errorMessage);
+      // return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 export const loginThunk = createAsyncThunk(
   '@@auth/login',
-  async (credentials, thunkAPI) => {
+  async credentials => {
     try {
       const res = await axios.post('user/login', credentials);
       setToken(res.data.data.accessToken);
       console.log(res);
       return res.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      const errorMessage = error.response.data.message;
+      Notiflix.Notify.failure('Respond from server is ' + errorMessage);
+      // return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
