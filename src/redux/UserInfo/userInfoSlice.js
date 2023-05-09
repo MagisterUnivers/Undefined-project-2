@@ -6,13 +6,12 @@ const {
 
 const initialState = {
   _id: '',
-  name: 'Serhii',
+  name: '',
   email: '',
   birthday: '',
   phone: '',
   skype: '',
-  userImgUrl:
-    'https://lh3.googleusercontent.com/a/AGNmyxajlg1m9Ch9H6GVi0od7Qpi51V85SXWY1KkOIse0w=s360',
+  userImgUrl: '',
 };
 
 const userSlice = createSlice({

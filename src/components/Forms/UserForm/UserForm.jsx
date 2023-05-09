@@ -98,7 +98,7 @@
 //   );
 // };
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { updateUserDataThunk } from 'redux/UserInfo/userInfoOperations';
@@ -112,10 +112,12 @@ export const UserForm = () => {
     birthday: '',
     phone: '',
     skype: '',
-    userImgUrl: '',
+    userImgUrl:
+      'https://lh3.googleusercontent.com/a/AGNmyxajlg1m9Ch9H6GVi0od7Qpi51V85SXWY1KkOIse0w=s360',
   });
   const [isFormValid, setIsFormValid] = useState(false);
   const dispatch = useDispatch();
+  const fileInputRef = useRef(null);
 
   useEffect(() => {
     if (user) {
@@ -169,6 +171,12 @@ export const UserForm = () => {
     );
   };
 
+  const handleAvatarClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
   useEffect(() => {
     setIsFormValid(validateForm()); //eslint-disable-next-line
   }, [formData]);
@@ -177,14 +185,22 @@ export const UserForm = () => {
     <StyledWrapper>
       {formData.userImgUrl ? (
         <>
-          <img
-            src={formData.userImgUrl}
-            alt="Avatar"
-            width="72px"
-            height="72px"
-            onClick={e => handleImageUpload(e)}
+          <StyledLabel htmlFor="avatar" onClick={handleAvatarClick}>
+            <StyledImg
+              src={formData.userImgUrl}
+              alt="Avatar"
+              width="72px"
+              height="72px"
+            />
+          </StyledLabel>
+          <input
+            type="file"
+            id="avatar"
+            // ref={fileInputRef}
+            style={{ display: 'none' }}
+            accept="image/*"
+            onChange={handleImageUpload}
           />
-          <StyledTitle>{formData.name}</StyledTitle>
         </>
       ) : (
         <>
@@ -197,43 +213,70 @@ export const UserForm = () => {
           />
         </>
       )}
-      <h3>User</h3>
+      <StyledUser>User</StyledUser>
+
       <StyledForm onSubmit={handleSubmit}>
-        <StyledField
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleInputChange}
-          placeholder="Enter your name"
-        />
-        <StyledField
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleInputChange}
-          placeholder="Enter your email"
-        />
-        <StyledField
-          type="date"
-          name="birthday"
-          value={formData.birthday || ''}
-          onChange={handleInputChange}
-          placeholder="Enter your birthday"
-        />
-        <StyledField
-          type="tel"
-          name="phone"
-          value={formData.phone || ''}
-          onChange={handleInputChange}
-          placeholder="Enter your phone number"
-        />
-        <StyledField
-          type="text"
-          name="skype"
-          value={formData.skype}
-          onChange={handleInputChange}
-          placeholder="Enter your Skype ID"
-        />
+        <StyledHolder>
+          {' '}
+          <StyledLabel htmlFor="name">Name:</StyledLabel>
+          <br />
+          <StyledField
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleInputChange}
+            placeholder="Enter your name"
+          />
+        </StyledHolder>
+        <StyledHolder>
+          {' '}
+          <StyledLabel htmlFor="email">Email:</StyledLabel>
+          <br />
+          <StyledField
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
+            placeholder="Enter your email"
+          />
+        </StyledHolder>
+        <StyledHolder>
+          {' '}
+          <StyledLabel htmlFor="birthday">Birthday:</StyledLabel>
+          <br />
+          <StyledField
+            type="date"
+            name="birthday"
+            value={formData.birthday || ''}
+            onChange={handleInputChange}
+            placeholder="Enter your birthday"
+          />
+        </StyledHolder>
+        <StyledHolder>
+          {' '}
+          <StyledLabel htmlFor="phone">Phone:</StyledLabel>
+          <br />
+          <StyledField
+            type="tel"
+            name="phone"
+            value={formData.phone || ''}
+            onChange={handleInputChange}
+            placeholder="Enter your phone number"
+          />
+        </StyledHolder>
+        <StyledHolder>
+          {' '}
+          <StyledLabel htmlFor="skype">Skype:</StyledLabel>
+          <br />
+          <StyledField
+            type="text"
+            name="skype"
+            value={formData.skype}
+            onChange={handleInputChange}
+            placeholder="Enter your Skype ID"
+          />
+        </StyledHolder>
+
         <StyledBtn type="submit" disabled={!isFormValid}>
           Save changes
         </StyledBtn>
@@ -249,6 +292,8 @@ const StyledForm = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
   /* gap: 20px; */
 `;
 
@@ -278,18 +323,33 @@ const StyledLabel = styled.label`
 `;
 
 const StyledHolder = styled.div`
-  width: 287px;
-  height: 69px;
-  margin-bottom: 24px;
+  /* width: 299px;
+  height: 392px; */
+  margin-bottom: 18px;
 
   &:last-of-type {
-    margin-bottom: 32px;
+    /* margin-bottom: 40px; */
   }
 `;
 
+const StyledUser = styled.h3`
+  margin-top: 14px;
+  margin-bottom: 40px;
+  text-align: center;
+`;
+
+const StyledImg = styled.img`
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -10%;
+  border-radius: 50%;
+`;
+
 const StyledBtn = styled.button`
-  width: 287px;
+  width: 195px;
   height: 46px;
+  /* margin-top: 40px; */
 
   font-family: 'Inter';
   font-style: normal;
