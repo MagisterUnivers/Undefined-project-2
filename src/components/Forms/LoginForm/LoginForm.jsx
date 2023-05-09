@@ -7,7 +7,7 @@ import { selectAuthAccessToken } from 'redux/selectors';
 import styled from 'styled-components';
 import AuthNavigate from 'components/AuthNavigate/AuthNavigate';
 import LogOut from 'components/Btn/LogoutBtn/LogOut';
-import { UserForm } from '../UserForm/UserForm';
+// import { UserForm } from '../UserForm/UserForm';
 // import { useHistory } from 'react-router-dom';
 
 const validationSchema = Yup.object().shape({
@@ -97,7 +97,7 @@ export const LoginForm = () => {
         </Formik>
       </StyledWrapper>
       <AuthNavigate isLoginForm={true} />
-      <UserForm />
+      {/* <UserForm /> */}
     </>
   );
 };

@@ -4,6 +4,7 @@ import { MainLayout } from './MainLayout/MainLayout';
 import LoginPage from 'pages/LoginPage/LoginPage';
 import RegisterPage from 'pages/RegisterPage/RegisterPage';
 import { UserForm } from './Forms/UserForm/UserForm';
+import AccountPage from 'pages/AccountPage/AccountPage';
 
 export const App = () => {
   return (
@@ -14,6 +15,7 @@ export const App = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/test" element={<UserForm />} />
         <Route path="/" element={<MainLayout />}>
+          <Route path="/account" element={<AccountPage />} />
           <Route path="/calendar" /> {/*TODO: Calendar page element*/}
           <Route path="/calendar/day/:currentDay" />{' '}
           {/*TODO: Calendar day page element*/}
