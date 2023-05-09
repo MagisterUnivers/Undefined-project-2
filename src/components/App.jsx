@@ -5,7 +5,7 @@ import LoginPage from 'pages/LoginPage/LoginPage';
 import RegisterPage from 'pages/RegisterPage/RegisterPage';
 import { UserForm } from './Forms/UserForm/UserForm';
 import AccountPage from 'pages/AccountPage/AccountPage';
-import { Header } from './Header/Header';
+// import { Header } from './Header/Header';
 
 export const App = () => {
   return (
