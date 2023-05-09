@@ -368,11 +368,45 @@ const StyledTaker = styled.div`
 const StyledUserP2 = styled.p`
   margin-bottom: 40px;
   text-align: center;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: calc(14 / 12);
+
+  color: #616161;
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+    line-height: calc(18 / 14);
+  }
+  @media screen and (min-width: 1440px) {
+    font-size: 14px;
+    line-height: calc(18 / 14);
+  }
 `;
 
 const StyledUserP1 = styled.p`
   margin-top: 14px;
   text-align: center;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: calc(18 / 14);
+
+  color: #343434;
+
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
+    line-height: calc(18 / 18);
+  }
+  @media screen and (min-width: 1440px) {
+    font-size: 18px;
+    line-height: calc(18 / 18);
+  }
 `;
 
 const StyledImg = styled.img`
