@@ -28,7 +28,7 @@ const userSlice = createSlice({
       state.birthday = payload.birthday;
       state.phone = payload.phone;
       state.skype = payload.skype;
-      // state.userImgUrl = payload.userImgUrl;
+      state.userImgUrl = payload.userImgUrl;
       state.loading = false;
     },
     [fetchUserDataThunk.rejected]: (state, { payload }) => {

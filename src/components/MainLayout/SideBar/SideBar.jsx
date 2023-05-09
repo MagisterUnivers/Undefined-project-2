@@ -1,7 +1,7 @@
 import styles from './SideBar.module.css';
 import { ReactComponent as GooseLogo } from './icons/goose.svg';
 import { ReactComponent as IconClose } from './icons/cross_btn.svg';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 export const SideBar = ({ toggleSidebar, isOpenSidebarMobile }) => {
   const className = isOpenSidebarMobile
