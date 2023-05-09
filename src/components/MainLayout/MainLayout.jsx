@@ -1,3 +1,4 @@
+// import { Header } from 'components/Header/Header';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
@@ -34,6 +35,8 @@ export const MainLayout = () => {
       <button type="button" onClick={toggleSidebar}>
         burger-btn
       </button>
+      {/* <Header /> */}
+      {/*  <SideBar /> */}
       <main>
         <Outlet />
       </main>
