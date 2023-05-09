@@ -7,8 +7,9 @@ import { selectAuthAccessToken } from 'redux/selectors';
 import styled from 'styled-components';
 import AuthNavigate from 'components/AuthNavigate/AuthNavigate';
 import LogOut from 'components/Btn/LogoutBtn/LogOut';
-import { UserForm } from '../UserForm/UserForm';
+// import { UserForm } from '../UserForm/UserForm';
 // import { useHistory } from 'react-router-dom';
+import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -62,42 +63,47 @@ export const LoginForm = () => {
         <Field type="text" id="name" name="name" />
         <ErrorMessage name="name" component="div" className="error-message" />
       </div> */}
-            <StyledHolder>
-              <StyledLabel htmlFor="email">Email</StyledLabel>
-              <br />
-              <StyledField
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Email..."
-              />
-              <ErrorMessage
-                name="email"
-                component="div"
-                className="error-message"
-              />
-            </StyledHolder>
-            <StyledHolder>
-              <StyledLabel htmlFor="password">Password</StyledLabel>
-              <br />
-              <StyledField
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Password..."
-              />
-              <ErrorMessage
-                name="password"
-                component="div"
-                className="error-message"
-              />
-            </StyledHolder>
-            <StyledBtn type="submit">Log in</StyledBtn>
+            <StyledTaker>
+              <StyledHolder>
+                <StyledLabel htmlFor="email">Email</StyledLabel>
+                <br />
+                <StyledField
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="Email..."
+                />
+                <ErrorMessage
+                  name="email"
+                  component="div"
+                  className="error-message"
+                />
+              </StyledHolder>
+              <StyledHolder>
+                <StyledLabel htmlFor="password">Password</StyledLabel>
+                <br />
+                <StyledField
+                  type="password"
+                  id="password"
+                  name="password"
+                  placeholder="Password..."
+                />
+                <ErrorMessage
+                  name="password"
+                  component="div"
+                  className="error-message"
+                />
+              </StyledHolder>
+            </StyledTaker>
+
+            <StyledBtn type="submit">
+              Log in <StyledIcon />
+            </StyledBtn>
           </StyledForm>
         </Formik>
       </StyledWrapper>
       <AuthNavigate isLoginForm={true} />
-      <UserForm />
+      {/* <UserForm /> */}
     </>
   );
 };
@@ -110,6 +116,29 @@ const StyledForm = styled(Form)`
   justify-content: center;
   align-items: center;
   /* gap: 20px; */
+`;
+
+const StyledIcon = styled(LoginRoundedIcon)`
+  && {
+    width: 18px;
+    height: 18px;
+    margin-left: 11px;
+  }
+
+  @media screen and (min-width: 768px) {
+    && {
+      width: 20px;
+      height: 20px;
+      margin-left: 11px;
+    }
+  }
+  @media screen and (min-width: 1440px) {
+    && {
+      width: 20px;
+      height: 20px;
+      margin-left: 11px;
+    }
+  }
 `;
 
 const StyledTitle = styled.h2`
@@ -127,6 +156,17 @@ const StyledTitle = styled.h2`
 
   text-shadow: 0px 47px 355px rgba(0, 0, 0, 0.07),
     0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
+
+  @media screen and (min-width: 768px) {
+    font-size: 24px;
+    line-height: calc(24 / 24);
+    margin-bottom: 40px;
+  }
+  @media screen and (min-width: 1440px) {
+    font-size: 24px;
+    line-height: calc(24 / 24);
+    margin-bottom: 40px;
+  }
 `;
 
 const StyledLabel = styled.label`
@@ -135,6 +175,15 @@ const StyledLabel = styled.label`
   font-weight: 600;
   font-size: 12px;
   line-height: calc(15 / 12);
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+    line-height: calc(17 / 14);
+  }
+  @media screen and (min-width: 1440px) {
+    font-size: 14px;
+    line-height: calc(17 / 14);
+  }
 `;
 
 const StyledHolder = styled.div`
@@ -145,9 +194,44 @@ const StyledHolder = styled.div`
   &:last-of-type {
     margin-bottom: 32px;
   }
+
+  @media screen and (min-width: 768px) {
+    /* width: 0px;
+    height: 0px; */
+    /* max-width: 400px; */
+    width: 400px;
+    height: auto;
+
+    &:last-of-type {
+      margin-bottom: 48px;
+    }
+  }
+  @media screen and (min-width: 1440px) {
+    /* width: 0px;
+    height: 0px; */
+    /* max-width: 400px; */
+    width: 400px;
+    height: auto;
+
+    &:last-of-type {
+      margin-bottom: 48px;
+    }
+  }
+`;
+
+const StyledTaker = styled.div`
+  @media screen and (min-width: 768px) {
+    max-width: 400px;
+  }
+  @media screen and (min-width: 1440px) {
+    max-width: 400px;
+  }
 `;
 
 const StyledBtn = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 287px;
   height: 46px;
 
@@ -164,6 +248,15 @@ const StyledBtn = styled.button`
   background: #3e85f3;
   box-shadow: 4px 2px 16px rgba(136, 165, 191, 0.48);
   border-radius: 16px;
+
+  @media screen and (min-width: 768px) {
+    width: 400px;
+    height: 56px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 400px;
+    height: 56px;
+  }
 `;
 
 const StyledWrapper = styled.div`
@@ -177,6 +270,15 @@ const StyledWrapper = styled.div`
   background: #ffffff;
   border: 1px solid black;
   border-radius: 8px;
+
+  @media screen and (min-width: 768px) {
+    width: 480px;
+    height: 424px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 480px;
+    height: 424px;
+  }
 `;
 
 const StyledField = styled(Field)`
@@ -191,4 +293,13 @@ const StyledField = styled(Field)`
   background: #ffffff;
   border: 1px solid rgba(220, 227, 229, 0.6);
   border-radius: 8px;
+
+  @media screen and (min-width: 768px) {
+    width: 400px;
+    height: 54px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 400px;
+    height: 54px;
+  }
 `;

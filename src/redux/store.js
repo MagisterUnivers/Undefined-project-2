@@ -17,13 +17,13 @@ const persistConfig = {
   key: 'data',
   version: 1,
   storage,
-  whitelist: ['data'],
+  whitelist: ['data', 'userInfo', 'user', 'theme'],
 };
 
 export const store = configureStore({
   reducer: {
     auth: persistReducer(persistConfig, authReducer),
-    userInfo: userInfoReducer,
+    userInfo: persistReducer(persistConfig, userInfoReducer),
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

@@ -15,3 +15,5 @@ export const StyledIcon = styled(SignUpIcon)`
     left: 49px;
     bottom: 0;
 `
+
+

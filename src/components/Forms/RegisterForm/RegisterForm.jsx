@@ -5,6 +5,7 @@ import { registrationThunk } from 'redux/Auth/authOperations';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAuthAccessToken } from 'redux/selectors';
 import styled from 'styled-components';
+import AuthNavigate from 'components/AuthNavigate/AuthNavigate';
 // import { useHistory } from 'react-router-dom';
 
 const validationSchema = Yup.object().shape({
@@ -110,6 +111,7 @@ export const RegisterForm = () => {
           </StyledForm>
         </Formik>
       </StyledWrapper>
+      <AuthNavigate isLoginForm={false} />
     </>
   );
 };
@@ -118,14 +120,13 @@ const StyledForm = styled(Form)`
   display: flex;
   align-content: center;
   flex-wrap: wrap;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   /* gap: 20px; */
 `;
 
 const StyledTitle = styled.h2`
-  text-align: center;
+  margin-left: 40px;
   margin-top: 40px;
   margin-bottom: 32px;
 
@@ -139,6 +140,17 @@ const StyledTitle = styled.h2`
 
   text-shadow: 0px 47px 355px rgba(0, 0, 0, 0.07),
     0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
+
+  @media screen and (min-width: 768px) {
+    font-size: 24px;
+    line-height: calc(24 / 24);
+    margin-bottom: 40px;
+  }
+  @media screen and (min-width: 1440px) {
+    font-size: 24px;
+    margin-bottom: 40px;
+    line-height: calc(24 / 24);
+  }
 `;
 
 const StyledLabel = styled.label`
@@ -150,12 +162,31 @@ const StyledLabel = styled.label`
 `;
 
 const StyledHolder = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 287px;
   height: 69px;
   margin-bottom: 24px;
 
   &:last-of-type {
     margin-bottom: 32px;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 400px;
+    height: 79px;
+
+    &:last-of-type {
+      margin-bottom: 48px;
+    }
+  }
+  @media screen and (min-width: 1440px) {
+    width: 400px;
+    height: 79px;
+
+    &:last-of-type {
+      margin-bottom: 48px;
+    }
   }
 `;
 
@@ -176,6 +207,15 @@ const StyledBtn = styled.button`
   background: #3e85f3;
   box-shadow: 4px 2px 16px rgba(136, 165, 191, 0.48);
   border-radius: 16px;
+
+  @media screen and (min-width: 768px) {
+    width: 400px;
+    height: 56px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 400px;
+    height: 56px;
+  }
 `;
 
 const StyledWrapper = styled.div`
@@ -184,23 +224,30 @@ const StyledWrapper = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 335px;
-  height: 376px;
+  height: 469px;
   border: transparent;
   background: #ffffff;
-  border: 1px solid black;
   border-radius: 8px;
+
+  @media screen and (min-width: 768px) {
+    width: 480px;
+    height: 521px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 480px;
+    height: 521px;
+  }
 `;
 
 const StyledField = styled(Field)`
+  display: block;
+  width: auto;
+  height: 54px;
   margin-top: 8px;
-  /* margin-bottom: 32px; */
   padding: 14px;
   box-sizing: border-box;
-
-  width: 287px;
-  height: 46px;
-
   background: #ffffff;
   border: 1px solid rgba(220, 227, 229, 0.6);
   border-radius: 8px;
+  outline: transparent;
 `;

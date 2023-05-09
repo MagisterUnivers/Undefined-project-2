@@ -112,8 +112,7 @@ export const UserForm = () => {
     birthday: '',
     phone: '',
     skype: '',
-    userImgUrl:
-      'https://lh3.googleusercontent.com/a/AGNmyxajlg1m9Ch9H6GVi0od7Qpi51V85SXWY1KkOIse0w=s360',
+    userImgUrl: '',
   });
   const [isFormValid, setIsFormValid] = useState(false);
   const dispatch = useDispatch();
@@ -171,6 +170,25 @@ export const UserForm = () => {
     );
   };
 
+  // const validateForm = () => {
+  //   const isNameValid =
+  //     /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/.test(
+  //       formData.name
+  //     );
+  //   const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
+  //   const isDateValid = /^\d{4}-\d{2}-\d{2}$/.test(formData.birthday);
+  //   const isPhoneValid = /^[0-9()+-]+$/.test(formData.phone);
+  //   const isSkypeValid = /^[A-Za-z0-9.-_]+$/.test(formData.skype);
+
+  //   return (
+  //     isNameValid && isEmailValid && isDateValid && isPhoneValid && isSkypeValid
+  //   );
+  // };
+
+  const handleBlur = () => {
+    setIsFormValid(validateForm());
+  };
+
   const handleAvatarClick = () => {
     if (fileInputRef.current) {
       fileInputRef.current.click();
@@ -213,69 +231,92 @@ export const UserForm = () => {
           />
         </>
       )}
-      <StyledUser>User</StyledUser>
+      <StyledUserP1>{formData.name}</StyledUserP1>
+      <StyledUserP2>User</StyledUserP2>
 
       <StyledForm onSubmit={handleSubmit}>
-        <StyledHolder>
-          {' '}
-          <StyledLabel htmlFor="name">Name:</StyledLabel>
-          <br />
-          <StyledField
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            placeholder="Enter your name"
-          />
-        </StyledHolder>
-        <StyledHolder>
-          {' '}
-          <StyledLabel htmlFor="email">Email:</StyledLabel>
-          <br />
-          <StyledField
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            placeholder="Enter your email"
-          />
-        </StyledHolder>
-        <StyledHolder>
-          {' '}
-          <StyledLabel htmlFor="birthday">Birthday:</StyledLabel>
-          <br />
-          <StyledField
-            type="date"
-            name="birthday"
-            value={formData.birthday || ''}
-            onChange={handleInputChange}
-            placeholder="Enter your birthday"
-          />
-        </StyledHolder>
-        <StyledHolder>
-          {' '}
-          <StyledLabel htmlFor="phone">Phone:</StyledLabel>
-          <br />
-          <StyledField
-            type="tel"
-            name="phone"
-            value={formData.phone || ''}
-            onChange={handleInputChange}
-            placeholder="Enter your phone number"
-          />
-        </StyledHolder>
-        <StyledHolder>
-          {' '}
-          <StyledLabel htmlFor="skype">Skype:</StyledLabel>
-          <br />
-          <StyledField
-            type="text"
-            name="skype"
-            value={formData.skype}
-            onChange={handleInputChange}
-            placeholder="Enter your Skype ID"
-          />
-        </StyledHolder>
+        <StyledTaker>
+          <StyledHolder>
+            {' '}
+            <StyledLabel htmlFor="name">Name:</StyledLabel>
+            <br />
+            <StyledField
+              type="text"
+              name="name"
+              value={formData.name}
+              onBlur={handleBlur}
+              onChange={handleInputChange}
+              placeholder="Enter your name"
+              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+              required
+            />
+          </StyledHolder>
+          <StyledHolder>
+            {' '}
+            <StyledLabel htmlFor="email">Email:</StyledLabel>
+            <br />
+            <StyledField
+              type="email"
+              name="email"
+              value={formData.email}
+              onBlur={handleBlur}
+              onChange={handleInputChange}
+              placeholder="Enter your email"
+              pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+              title="Please enter a valid email address. Example - john@example.com"
+              required
+            />
+          </StyledHolder>
+          <StyledHolder>
+            {' '}
+            <StyledLabel htmlFor="birthday">Birthday:</StyledLabel>
+            <br />
+            <StyledField
+              type="date"
+              name="birthday"
+              value={formData.birthday || ''}
+              onBlur={handleBlur}
+              onChange={handleInputChange}
+              placeholder="Enter your birthday"
+              pattern="^\d{4}-\d{2}-\d{2}$"
+              title="Please enter a valid date in the format YYYY-MM-DD"
+              required
+            />
+          </StyledHolder>
+          <StyledHolder>
+            {' '}
+            <StyledLabel htmlFor="phone">Phone:</StyledLabel>
+            <br />
+            <StyledField
+              type="tel"
+              name="phone"
+              value={formData.phone || ''}
+              onBlur={handleBlur}
+              onChange={handleInputChange}
+              placeholder="Enter your phone number"
+              pattern="^[0-9()+-]+$"
+              title="Please enter a valid phone number. Only numbers, parentheses, plus sign (+), and dashes are allowed. For example: +1 (123) 456-7890"
+              required
+            />
+          </StyledHolder>
+          <StyledHolder>
+            {' '}
+            <StyledLabel htmlFor="skype">Skype:</StyledLabel>
+            <br />
+            <StyledField
+              type="text"
+              name="skype"
+              value={formData.skype}
+              onBlur={handleBlur}
+              onChange={handleInputChange}
+              placeholder="Enter your Skype ID"
+              pattern="^[A-Za-z0-9.-_]+$"
+              title="Please enter a valid Skype ID. Only letters, numbers, dots, dashes, and underscores are allowed. For example: john.doe_123"
+              required
+            />
+          </StyledHolder>
+        </StyledTaker>
 
         <StyledBtn type="submit" disabled={!isFormValid}>
           Save changes
@@ -293,7 +334,7 @@ const StyledForm = styled.form`
   justify-content: center;
   align-items: center;
   margin-top: 40px;
-  margin-bottom: 40px;
+  /* margin-bottom: 40px; */
   /* gap: 20px; */
 `;
 
@@ -328,14 +369,83 @@ const StyledHolder = styled.div`
   margin-bottom: 18px;
 
   &:last-of-type {
-    /* margin-bottom: 40px; */
+    margin-bottom: 0px;
+  }
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 24px;
+
+    &:last-of-type {
+      margin-bottom: 0px;
+    }
+  }
+  @media screen and (min-width: 1440px) {
+    margin-bottom: 24px;
+
+    &:last-of-type {
+      margin-bottom: 0px;
+    }
   }
 `;
 
-const StyledUser = styled.h3`
-  margin-top: 14px;
+const StyledTaker = styled.div`
+  margin-bottom: 15px;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 40px;
+  }
+  @media screen and (min-width: 1440px) {
+    display: flex;
+    flex-flow: row wrap;
+    place-content: center flex-start;
+    gap: 24px;
+    align-items: center;
+    max-width: 768px;
+  }
+`;
+
+const StyledUserP2 = styled.p`
   margin-bottom: 40px;
   text-align: center;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: calc(14 / 12);
+
+  color: #616161;
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+    line-height: calc(18 / 14);
+  }
+  @media screen and (min-width: 1440px) {
+    font-size: 14px;
+    line-height: calc(18 / 14);
+  }
+`;
+
+const StyledUserP1 = styled.p`
+  margin-top: 14px;
+  text-align: center;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: calc(18 / 14);
+
+  color: #343434;
+
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
+    line-height: calc(18 / 18);
+  }
+  @media screen and (min-width: 1440px) {
+    font-size: 18px;
+    line-height: calc(18 / 18);
+  }
 `;
 
 const StyledImg = styled.img`
@@ -344,6 +454,17 @@ const StyledImg = styled.img`
   margin-right: auto;
   margin-top: -10%;
   border-radius: 50%;
+
+  @media screen and (min-width: 768px) {
+    width: 124px;
+    height: 130px;
+    margin-top: 3%;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 124px;
+    height: 130px;
+    margin-top: 5%;
+  }
 `;
 
 const StyledBtn = styled.button`
@@ -357,6 +478,7 @@ const StyledBtn = styled.button`
   font-size: 14px;
   line-height: calc(18 / 14);
 
+  cursor: pointer;
   color: #ffffff;
   letter-spacing: -0.02em;
   border: transparent;
@@ -364,6 +486,21 @@ const StyledBtn = styled.button`
   background: #3e85f3;
   box-shadow: 4px 2px 16px rgba(136, 165, 191, 0.48);
   border-radius: 16px;
+
+  &:disabled {
+    background: #ccc;
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 262px;
+    height: 48px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 262px;
+    height: 48px;
+  }
 `;
 
 const StyledWrapper = styled.div`
@@ -382,6 +519,15 @@ const StyledWrapper = styled.div`
   background: #ffffff;
   border: 1px solid black;
   border-radius: 8px;
+
+  @media screen and (min-width: 768px) {
+    width: 704px;
+    height: 854px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 1087px;
+    height: 752px;
+  }
 `;
 
 const StyledField = styled.input`
@@ -390,10 +536,19 @@ const StyledField = styled.input`
   padding: 14px;
   box-sizing: border-box;
 
-  width: 287px;
-  height: 46px;
+  width: 299px;
+  height: 42px;
 
   background: #ffffff;
   border: 1px solid rgba(220, 227, 229, 0.6);
   border-radius: 8px;
+
+  @media screen and (min-width: 768px) {
+    width: 354px;
+    height: 46px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 354px;
+    height: 46px;
+  }
 `;
