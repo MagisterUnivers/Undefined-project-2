@@ -36,7 +36,7 @@ export const RegisterForm = () => {
 
   const handleSubmit = values => {
     // e.preventDefault();
-    console.log('Hi');
+    console.log('user is Registered');
     console.log(values);
     dispatch(registrationThunk(values));
     console.log(token1);

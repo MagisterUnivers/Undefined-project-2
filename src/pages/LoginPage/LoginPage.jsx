@@ -1,5 +1,6 @@
 import { LoginForm } from 'components/Forms/LoginForm/LoginForm';
 import { StyledIcon, StyledIconWrapper } from './StyledLoginPage';
+import { MainLayout } from 'components/MainLayout/MainLayout';
 
 const LoginPage = () => {
   const wrapper = document.querySelector('body');
@@ -7,6 +8,7 @@ const LoginPage = () => {
 
   return (
     <>
+      <MainLayout />
       <LoginForm />
       <StyledIconWrapper>
         <StyledIcon />

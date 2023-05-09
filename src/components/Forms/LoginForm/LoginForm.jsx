@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectAuthAccessToken } from 'redux/selectors';
 import styled from 'styled-components';
 import AuthNavigate from 'components/AuthNavigate/AuthNavigate';
+import LogOut from 'components/Btn/LogoutBtn/LogOut';
+import { UserForm } from '../UserForm/UserForm';
 // import { useHistory } from 'react-router-dom';
 
 const validationSchema = Yup.object().shape({
@@ -35,7 +37,7 @@ export const LoginForm = () => {
 
   const handleSubmit = values => {
     // e.preventDefault();
-    console.log('Hi');
+    console.log('user is Logged In');
     console.log(values);
     dispatch(loginThunk(values));
     console.log(token1);
@@ -44,6 +46,7 @@ export const LoginForm = () => {
   return (
     <>
       {' '}
+      <LogOut />
       <StyledWrapper>
         <StyledTitle>Log In</StyledTitle>
         <Formik
@@ -94,6 +97,7 @@ export const LoginForm = () => {
         </Formik>
       </StyledWrapper>
       <AuthNavigate isLoginForm={true} />
+      <UserForm />
     </>
   );
 };

@@ -1,12 +1,15 @@
 const { createSlice } = require('@reduxjs/toolkit');
-const { fetchUserDataThunk } = require('./userInfoOperations');
+const {
+  fetchUserDataThunk,
+  updateUserDataThunk,
+} = require('./userInfoOperations');
 
 const initialState = {
   _id: '',
   name: '',
   email: '',
-  birthday: null,
-  phone: null,
+  birthday: '',
+  phone: '',
   skype: '',
   userImgUrl: '',
 };
@@ -29,6 +32,30 @@ const userSlice = createSlice({
       state.loading = false;
     },
     [fetchUserDataThunk.rejected]: (state, { payload }) => {
+      state.error = payload;
+      state.loading = false;
+    },
+    [updateUserDataThunk.pending]: state => {
+      state.loading = true;
+    },
+    [updateUserDataThunk.fulfilled]: (state, { payload }) => {
+      // payload._id = state._id;
+      // payload.name = state.name;
+      // payload.email = state.email;
+      // payload.birthday = state.birthday;
+      // payload.phone = state.phone;
+      // payload.skype = state.skype;
+      // payload.userImgUrl = state.userImgUrl;
+      state._id = payload._id;
+      state.name = payload.name;
+      state.email = payload.email;
+      state.birthday = payload.birthday;
+      state.phone = payload.phone;
+      state.skype = payload.skype;
+      state.userImgUrl = payload.userImgUrl;
+      state.loading = false;
+    },
+    [updateUserDataThunk.rejected]: (state, { payload }) => {
       state.error = payload;
       state.loading = false;
     },

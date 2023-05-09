@@ -13,3 +13,16 @@ export const fetchUserDataThunk = createAsyncThunk(
     }
   }
 );
+export const updateUserDataThunk = createAsyncThunk(
+  '@@auth/updateUserData',
+  async (credentials, thunkAPI) => {
+    try {
+      console.log(axios.defaults.headers.common.Authorization);
+      const res = await axios.patch('user/update', credentials);
+      thunkAPI.dispatch(fetchUserDataThunk());
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
