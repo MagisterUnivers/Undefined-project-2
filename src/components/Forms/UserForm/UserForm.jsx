@@ -264,7 +264,7 @@ export const UserForm = () => {
               onChange={handleInputChange}
               placeholder="Enter your email"
               pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
-              title="Please enter a valid email address"
+              title="Please enter a valid email address. Example - john@example.com"
               required
             />
           </StyledHolder>
