@@ -3,12 +3,13 @@ const { fetchUserDataThunk } = require('./userInfoOperations');
 
 const initialState = {
   _id: '',
-  name: '',
+  name: 'Serhii',
   email: '',
   birthday: null,
   phone: null,
   skype: '',
-  userImgUrl: '',
+  userImgUrl:
+    'https://lh3.googleusercontent.com/a/AGNmyxajlg1m9Ch9H6GVi0od7Qpi51V85SXWY1KkOIse0w=s360',
 };
 
 const userSlice = createSlice({
@@ -25,7 +26,7 @@ const userSlice = createSlice({
       state.birthday = payload.birthday;
       state.phone = payload.phone;
       state.skype = payload.skype;
-      state.userImgUrl = payload.userImgUrl;
+      // state.userImgUrl = payload.userImgUrl;
       state.loading = false;
     },
     [fetchUserDataThunk.rejected]: (state, { payload }) => {
