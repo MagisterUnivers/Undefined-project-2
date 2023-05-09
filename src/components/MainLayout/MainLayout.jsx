@@ -1,3 +1,4 @@
+import { Header } from 'components/Header/Header';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
@@ -16,8 +17,8 @@ export const MainLayout = () => {
   return (
     <>
       {' '}
-      {/* <Header />
-      <SideBar /> */}
+      <Header />
+      {/*  <SideBar /> */}
       <main>
         <Outlet />
       </main>

@@ -6,17 +6,24 @@ const {
 
 const initialState = {
   _id: '',
-  name: '',
+  name: 'Serhii',
   email: '',
   birthday: '',
   phone: '',
   skype: '',
-  userImgUrl: '',
+  userImgUrl:
+    'https://lh3.googleusercontent.com/a/AGNmyxajlg1m9Ch9H6GVi0od7Qpi51V85SXWY1KkOIse0w=s288',
+  theme: 'light',
 };
 
 const userSlice = createSlice({
   name: '@@userInfo',
   initialState,
+  reducers: {
+    setTheme: state => {
+      state.theme = state.theme === 'light' ? 'dark' : 'light';
+    },
+  },
   extraReducers: {
     [fetchUserDataThunk.pending]: state => {
       state.loading = true;
@@ -63,3 +70,4 @@ const userSlice = createSlice({
 });
 
 export const userInfoReducer = userSlice.reducer;
+export const { setTheme } = userSlice.actions;
