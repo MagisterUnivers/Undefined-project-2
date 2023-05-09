@@ -45,17 +45,15 @@ export const loginThunk = createAsyncThunk(
   }
 );
 
-export const logoutThunk = createAsyncThunk(
-  '@@auth/logout',
-  async (_, thunkAPI) => {
-    try {
-      await axios.post('users/logout');
-      clearToken();
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
+export const logoutThunk = createAsyncThunk('@@auth/logout', async _ => {
+  try {
+    await axios.get('user/logout');
+    clearToken();
+  } catch (error) {
+    const errorMessage = error.response.data.message;
+    Notiflix.Notify.failure('Respond from server is ' + errorMessage);
   }
-);
+});
 
 export const refreshThunk = createAsyncThunk(
   '@@auth/refresh',
