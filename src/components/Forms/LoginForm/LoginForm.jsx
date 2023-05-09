@@ -169,11 +169,6 @@ const StyledWrapper = styled.div`
   width: 335px;
   height: 376px;
   transform: translate(-50%, -50%);
-  /* margin-top: 15%;
-  margin-bottom: auto; */
-  /* margin-left: auto;
-  margin-right: auto; */
-
   border: transparent;
   background: #ffffff;
   border: 1px solid black;

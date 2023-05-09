@@ -179,14 +179,12 @@ const StyledBtn = styled.button`
 `;
 
 const StyledWrapper = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 335px;
   height: 376px;
-
-  margin-top: 30%;
-  margin-bottom: auto;
-  margin-left: auto;
-  margin-right: auto;
-
   border: transparent;
   background: #ffffff;
   border: 1px solid black;
