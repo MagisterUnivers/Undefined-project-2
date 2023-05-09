@@ -15,6 +15,7 @@ const initialState = {
   online: false,
   loading: false,
 };
+
 const authSlice = createSlice({
   name: '@@auth',
   initialState,
