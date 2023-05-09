@@ -7,11 +7,13 @@ import { UserForm } from './Forms/UserForm/UserForm';
 import AccountPage from 'pages/AccountPage/AccountPage';
 // import { Header } from './Header/Header';
 
+import AboutPage from 'pages/AboutPage/AboutPage';
 export const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/about" /> {/*TODO: About page element*/}
+        <Route path="/about" element={<AboutPage />} />{' '}
+        {/*TODO: About page element*/}
         <Route path="/register" element={<RegisterPage />} />{' '}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/test" element={<UserForm />} />
