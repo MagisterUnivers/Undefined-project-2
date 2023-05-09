@@ -215,66 +215,68 @@ export const UserForm = () => {
       <StyledUser>User</StyledUser>
 
       <StyledForm onSubmit={handleSubmit}>
-        <StyledHolder>
-          {' '}
-          <StyledLabel htmlFor="name">Name:</StyledLabel>
-          <br />
-          <StyledField
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            placeholder="Enter your name"
-          />
-        </StyledHolder>
-        <StyledHolder>
-          {' '}
-          <StyledLabel htmlFor="email">Email:</StyledLabel>
-          <br />
-          <StyledField
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            placeholder="Enter your email"
-          />
-        </StyledHolder>
-        <StyledHolder>
-          {' '}
-          <StyledLabel htmlFor="birthday">Birthday:</StyledLabel>
-          <br />
-          <StyledField
-            type="date"
-            name="birthday"
-            value={formData.birthday || ''}
-            onChange={handleInputChange}
-            placeholder="Enter your birthday"
-          />
-        </StyledHolder>
-        <StyledHolder>
-          {' '}
-          <StyledLabel htmlFor="phone">Phone:</StyledLabel>
-          <br />
-          <StyledField
-            type="tel"
-            name="phone"
-            value={formData.phone || ''}
-            onChange={handleInputChange}
-            placeholder="Enter your phone number"
-          />
-        </StyledHolder>
-        <StyledHolder>
-          {' '}
-          <StyledLabel htmlFor="skype">Skype:</StyledLabel>
-          <br />
-          <StyledField
-            type="text"
-            name="skype"
-            value={formData.skype}
-            onChange={handleInputChange}
-            placeholder="Enter your Skype ID"
-          />
-        </StyledHolder>
+        <StyledTaker>
+          <StyledHolder>
+            {' '}
+            <StyledLabel htmlFor="name">Name:</StyledLabel>
+            <br />
+            <StyledField
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              placeholder="Enter your name"
+            />
+          </StyledHolder>
+          <StyledHolder>
+            {' '}
+            <StyledLabel htmlFor="email">Email:</StyledLabel>
+            <br />
+            <StyledField
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              placeholder="Enter your email"
+            />
+          </StyledHolder>
+          <StyledHolder>
+            {' '}
+            <StyledLabel htmlFor="birthday">Birthday:</StyledLabel>
+            <br />
+            <StyledField
+              type="date"
+              name="birthday"
+              value={formData.birthday || ''}
+              onChange={handleInputChange}
+              placeholder="Enter your birthday"
+            />
+          </StyledHolder>
+          <StyledHolder>
+            {' '}
+            <StyledLabel htmlFor="phone">Phone:</StyledLabel>
+            <br />
+            <StyledField
+              type="tel"
+              name="phone"
+              value={formData.phone || ''}
+              onChange={handleInputChange}
+              placeholder="Enter your phone number"
+            />
+          </StyledHolder>
+          <StyledHolder>
+            {' '}
+            <StyledLabel htmlFor="skype">Skype:</StyledLabel>
+            <br />
+            <StyledField
+              type="text"
+              name="skype"
+              value={formData.skype}
+              onChange={handleInputChange}
+              placeholder="Enter your Skype ID"
+            />
+          </StyledHolder>
+        </StyledTaker>
 
         <StyledBtn type="submit" disabled={!isFormValid}>
           Save changes
@@ -329,6 +331,27 @@ const StyledHolder = styled.div`
   &:last-of-type {
     /* margin-bottom: 40px; */
   }
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 24px;
+  }
+  @media screen and (min-width: 1440px) {
+    margin-bottom: 24px;
+  }
+`;
+
+const StyledTaker = styled.div`
+  @media screen and (min-width: 768px) {
+    margin-bottom: 24px;
+  }
+  @media screen and (min-width: 1440px) {
+    display: flex;
+    flex-flow: row wrap;
+    place-content: center flex-start;
+    gap: 24px;
+    align-items: center;
+    max-width: 768px;
+  }
 `;
 
 const StyledUser = styled.h3`
@@ -343,6 +366,17 @@ const StyledImg = styled.img`
   margin-right: auto;
   margin-top: -10%;
   border-radius: 50%;
+
+  @media screen and (min-width: 768px) {
+    width: 124px;
+    height: 130px;
+    margin-top: 10%;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 124px;
+    height: 130px;
+    margin-top: 10%;
+  }
 `;
 
 const StyledBtn = styled.button`
@@ -363,6 +397,15 @@ const StyledBtn = styled.button`
   background: #3e85f3;
   box-shadow: 4px 2px 16px rgba(136, 165, 191, 0.48);
   border-radius: 16px;
+
+  @media screen and (min-width: 768px) {
+    width: 262px;
+    height: 48px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 262px;
+    height: 48px;
+  }
 `;
 
 const StyledWrapper = styled.div`
@@ -381,6 +424,15 @@ const StyledWrapper = styled.div`
   background: #ffffff;
   border: 1px solid black;
   border-radius: 8px;
+
+  @media screen and (min-width: 768px) {
+    width: 704px;
+    height: 854px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 1087px;
+    height: 752px;
+  }
 `;
 
 const StyledField = styled.input`
@@ -395,4 +447,13 @@ const StyledField = styled.input`
   background: #ffffff;
   border: 1px solid rgba(220, 227, 229, 0.6);
   border-radius: 8px;
+
+  @media screen and (min-width: 768px) {
+    width: 354px;
+    height: 46px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 354px;
+    height: 46px;
+  }
 `;

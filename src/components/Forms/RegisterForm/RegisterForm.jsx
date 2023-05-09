@@ -128,7 +128,7 @@ const StyledForm = styled(Form)`
 const StyledTitle = styled.h2`
   margin-left: 40px;
   margin-top: 40px;
-  margin-bottom: 40px;
+  margin-bottom: 32px;
 
   font-family: 'Inter';
   font-style: normal;
@@ -140,6 +140,17 @@ const StyledTitle = styled.h2`
 
   text-shadow: 0px 47px 355px rgba(0, 0, 0, 0.07),
     0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
+
+  @media screen and (min-width: 768px) {
+    font-size: 24px;
+    line-height: calc(24 / 24);
+    margin-bottom: 40px;
+  }
+  @media screen and (min-width: 1440px) {
+    font-size: 24px;
+    margin-bottom: 40px;
+    line-height: calc(24 / 24);
+  }
 `;
 
 const StyledLabel = styled.label`
@@ -153,18 +164,27 @@ const StyledLabel = styled.label`
 const StyledHolder = styled.div`
   display: flex;
   flex-direction: column;
-  width: 400px;
-  height: 79px;
+  width: 287px;
+  height: 69px;
   margin-bottom: 24px;
 
   &:last-of-type {
     margin-bottom: 32px;
   }
+
+  @media screen and (min-width: 768px) {
+    width: 400px;
+    height: 79px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 400px;
+    height: 79px;
+  }
 `;
 
 const StyledBtn = styled.button`
-  width: 400px;
-  height: 56px;
+  width: 287px;
+  height: 46px;
 
   font-family: 'Inter';
   font-style: normal;
@@ -179,6 +199,15 @@ const StyledBtn = styled.button`
   background: #3e85f3;
   box-shadow: 4px 2px 16px rgba(136, 165, 191, 0.48);
   border-radius: 16px;
+
+  @media screen and (min-width: 768px) {
+    width: 400px;
+    height: 56px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 400px;
+    height: 56px;
+  }
 `;
 
 const StyledWrapper = styled.div`
@@ -186,11 +215,20 @@ const StyledWrapper = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 480px;
-  height: 521px;
+  width: 335px;
+  height: 469px;
   border: transparent;
   background: #ffffff;
   border-radius: 8px;
+
+  @media screen and (min-width: 768px) {
+    width: 480px;
+    height: 521px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 480px;
+    height: 521px;
+  }
 `;
 
 const StyledField = styled(Field)`
