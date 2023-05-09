@@ -212,8 +212,8 @@ export const UserForm = () => {
           />
         </>
       )}
-      <StyledUserH2>{formData.name}</StyledUserH2>
-      <StyledUserH3>User</StyledUserH3>
+      <StyledUserP1>{formData.name}</StyledUserP1>
+      <StyledUserP2>User</StyledUserP2>
 
       <StyledForm onSubmit={handleSubmit}>
         <StyledTaker>
@@ -295,7 +295,7 @@ const StyledForm = styled.form`
   justify-content: center;
   align-items: center;
   margin-top: 40px;
-  margin-bottom: 40px;
+  /* margin-bottom: 40px; */
   /* gap: 20px; */
 `;
 
@@ -330,20 +330,30 @@ const StyledHolder = styled.div`
   margin-bottom: 18px;
 
   &:last-of-type {
-    /* margin-bottom: 40px; */
+    margin-bottom: 0px;
   }
 
   @media screen and (min-width: 768px) {
     margin-bottom: 24px;
+
+    &:last-of-type {
+      margin-bottom: 0px;
+    }
   }
   @media screen and (min-width: 1440px) {
     margin-bottom: 24px;
+
+    &:last-of-type {
+      margin-bottom: 0px;
+    }
   }
 `;
 
 const StyledTaker = styled.div`
+  margin-bottom: 15px;
+
   @media screen and (min-width: 768px) {
-    margin-bottom: 24px;
+    margin-bottom: 40px;
   }
   @media screen and (min-width: 1440px) {
     display: flex;
@@ -355,12 +365,12 @@ const StyledTaker = styled.div`
   }
 `;
 
-const StyledUserH3 = styled.h3`
+const StyledUserP2 = styled.p`
   margin-bottom: 40px;
   text-align: center;
 `;
 
-const StyledUserH2 = styled.h2`
+const StyledUserP1 = styled.p`
   margin-top: 14px;
   text-align: center;
 `;
@@ -446,8 +456,8 @@ const StyledField = styled.input`
   padding: 14px;
   box-sizing: border-box;
 
-  width: 287px;
-  height: 46px;
+  width: 299px;
+  height: 42px;
 
   background: #ffffff;
   border: 1px solid rgba(220, 227, 229, 0.6);
