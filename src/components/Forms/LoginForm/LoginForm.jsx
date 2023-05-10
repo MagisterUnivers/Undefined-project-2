@@ -2,8 +2,7 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage, useField } from 'formik';
 import * as Yup from 'yup';
 import { loginThunk } from 'redux/Auth/authOperations';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectAuthAccessToken } from 'redux/selectors';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import AuthNavigate from 'components/AuthNavigate/AuthNavigate';
 import LogOut from 'components/Btn/LogoutBtn/LogOut';
@@ -20,7 +19,7 @@ const validationSchema = Yup.object({
 });
 export const LoginForm = () => {
   // const history = useHistory();
-  const token1 = useSelector(selectAuthAccessToken);
+  // const token1 = useSelector(selectAuthAccessToken);
   const dispatch = useDispatch();
   const initialValues = {
     email: '',

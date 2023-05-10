@@ -102,6 +102,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { updateUserDataThunk } from 'redux/UserInfo/userInfoOperations';
+import { Avatar, Badge } from '@mui/material';
 
 export const UserForm = () => {
   const user = useSelector(state => state.userInfo);
@@ -204,18 +205,42 @@ export const UserForm = () => {
       <StyledWrapper>
         {formData.userImgUrl ? (
           <>
-            <StyledLabel htmlFor="avatar" onClick={handleAvatarClick}>
-              <StyledImg
-                src={formData.userImgUrl}
-                alt="Avatar"
-                width="72px"
-                height="72px"
-              />
-            </StyledLabel>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                padding: '20px',
+              }}
+            >
+              <Badge
+                badgeContent={'+'}
+                // onClick={() => {
+                //   handleAvatarClick();
+                // }}
+                overlap="circular"
+                color="primary"
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'right',
+                }}
+              >
+                <BorderedAvatar
+                  onClick={() => {
+                    handleAvatarClick();
+                  }}
+                  sx={{
+                    width: { mobile: 72, tablet: 124 },
+                    height: { mobile: 72, tablet: 124 },
+                  }}
+                  src={formData.userImgUrl}
+                  alt="Serhii Parfentiev"
+                />
+              </Badge>
+            </div>
             <input
               type="file"
               id="avatar"
-              // ref={fileInputRef}
+              ref={fileInputRef}
               style={{ display: 'none' }}
               accept="image/*"
               onChange={handleImageUpload}
@@ -327,6 +352,10 @@ export const UserForm = () => {
     </>
   );
 };
+
+const BorderedAvatar = styled(Avatar)`
+  border: 2px solid #3e85f3;
+`;
 
 const StyledForm = styled.form`
   display: flex;
@@ -450,24 +479,24 @@ const StyledUserP1 = styled.p`
   }
 `;
 
-const StyledImg = styled.img`
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: -10%;
-  border-radius: 50%;
+// const StyledImg = styled.img`
+//   display: block;
+//   margin-left: auto;
+//   margin-right: auto;
+//   margin-top: -10%;
+//   border-radius: 50%;
 
-  @media screen and (min-width: 768px) {
-    width: 124px;
-    height: 130px;
-    margin-top: 3%;
-  }
-  @media screen and (min-width: 1440px) {
-    width: 124px;
-    height: 130px;
-    margin-top: 5%;
-  }
-`;
+//   @media screen and (min-width: 768px) {
+//     width: 124px;
+//     height: 130px;
+//     margin-top: 3%;
+//   }
+//   @media screen and (min-width: 1440px) {
+//     width: 124px;
+//     height: 130px;
+//     margin-top: 5%;
+//   }
+// `;
 
 const StyledBtn = styled.button`
   width: 195px;
