@@ -1,4 +1,9 @@
 @import-normalize;
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* bring in normalize.css styles */
 
 /* body {
