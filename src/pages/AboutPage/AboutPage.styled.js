@@ -1,7 +1,10 @@
 import styled from 'styled-components';
-export const Section = styled.div``;
-export const Img = styled.img`
-  margin: 0 auto;
+
+export const Section = styled.div`
+background-color: #FFFFFF;`;
+export const Logo = styled.div`
+  display: flex;
+  justify-content: center;
   padding-top: 232px;
   @media screen and (min-width: 768px) {
     padding-top: 321px;
@@ -41,6 +44,7 @@ export const Div = styled.div`
 export const DivButton = styled.div`
   display: flex;
   flex-direction: column;
+  flex-direction: column-reverse;
   gap: 208px;
   justify-content: center;
   margin-left: auto;
@@ -65,9 +69,9 @@ export const ButtonSign = styled.button`
   &::after {
     position: absolute;
     bottom: -1px;
-    left: 6px;
+    left: 1px;
     content: '';
-    width: 80%;
+    width: 94%;
     height: 1px;
     background-color: #ffffff;
     border-radius: 1px;
@@ -94,8 +98,10 @@ width: 131px;
   gap: 8px;
 `;
 export const List = styled.ul`
-margin: 64px 20px;
+@media screen and (max-width: 767px) {
+  margin: 64px 20px;
 justify-content: center;
+}
 @media screen and (min-width: 768px) {
   margin: 64px 32px;
 }
@@ -125,19 +131,23 @@ display: flex;
   align-content: flex-end;
   width: 275px;
 `;
-export const TextDiv = styled.div`
-display: flex;
-  flex-direction: column;
-  align-content: flex-end;
-  width: 275px;
-  @media screen and (min-width: 678px) and (max-width: 1439px) {
-  margin-left: 400px;}
- `
+
 export const Item = styled.li`
+display: flex;
+align-items: center;
+flex-direction: column;
 justify-content: center;
+margin-left: auto;
+margin-right: auto;
   margin-bottom: 64px;
+  @media screen and (min-width: 678px) {
+    align-items: flex-start;
+    &:nth-child(2) {
+      align-items: flex-end;
+    }}
+  }
 @media screen and (min-width: 1440px) {
-  display: flex;
+  flex-direction: row;
   gap: 228px;
   align-items: center;
   margin-left: 77px;
@@ -232,14 +242,14 @@ flex-direction: column;
     }
 `;
 export const ReviewsList = styled.div`
- 
   justify-content: center;
   margin-bottom: 32px;
-  max-height: 300px;
-  overflow-y: auto;
   @media screen and (min-width: 1440px) {
-    display: flex;
-    gap: 24px;
+    width: 1184px;
+    height: 280px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
   }
 `;
 export const ReviewsItem = styled.div`
@@ -252,6 +262,11 @@ margin: 0 auto;
   @media screen and (min-width: 767px) {
     padding: 32px;
     width: 580px;
+   
+  }
+  @media screen and (min-width: 1440px) {
+    height: 187px;
+    overflow: hidden;
   }
 `;
 export const ReviewsName = styled.strong`
@@ -280,9 +295,9 @@ export const ButtonIconDiv = styled.div`
   display: flex;
   gap: 25px;
   justify-content: center;
-  margin-bottom: 64px;
+  padding-bottom: 64px;
   @media screen and (min-width: 767px) {
-    margin-bottom: 118px;
+    padding-bottom: 118px;
   }
 `;
 export const IconButton = styled.button`
