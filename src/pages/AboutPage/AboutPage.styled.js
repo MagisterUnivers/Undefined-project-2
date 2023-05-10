@@ -1,7 +1,11 @@
 import styled from 'styled-components';
-export const Section = styled.div``;
-export const Img = styled.img`
-  margin: 0 auto;
+
+export const Section = styled.div`
+  background-color: #ffffff;
+`;
+export const Logo = styled.div`
+  display: flex;
+  justify-content: center;
   padding-top: 232px;
   @media screen and (min-width: 768px) {
     padding-top: 321px;
@@ -41,6 +45,7 @@ export const Div = styled.div`
 export const DivButton = styled.div`
   display: flex;
   flex-direction: column;
+  flex-direction: column-reverse;
   gap: 208px;
   justify-content: center;
   margin-left: auto;
@@ -48,8 +53,8 @@ export const DivButton = styled.div`
   margin-top: 40px;
   align-items: center;
   @media screen and (min-width: 768px) {
-   flex-direction: row;
-   gap: 25px;
+    flex-direction: row;
+    gap: 25px;
   }
 `;
 export const ButtonSign = styled.button`
@@ -65,16 +70,16 @@ export const ButtonSign = styled.button`
   &::after {
     position: absolute;
     bottom: -1px;
-    left: 6px;
+    left: 1px;
     content: '';
-    width: 80%;
+    width: 94%;
     height: 1px;
     background-color: #ffffff;
     border-radius: 1px;
   }
 `;
 export const ButtonLog = styled.button`
-width: 131px;
+  width: 131px;
   background-color: #ffffff;
   color: #3e85f3;
   padding: 14px 22px;
@@ -94,50 +99,56 @@ width: 131px;
   gap: 8px;
 `;
 export const List = styled.ul`
-margin: 64px 20px;
-justify-content: center;
-@media screen and (min-width: 768px) {
-  margin: 64px 32px;
-}
-@media screen and (min-width: 1440px) {
-  margin: 64px 128px;
-}
+  @media screen and (max-width: 767px) {
+    margin: 64px 20px;
+    justify-content: center;
+  }
+  @media screen and (min-width: 768px) {
+    margin: 64px 32px;
+  }
+  @media screen and (min-width: 1440px) {
+    margin: 64px 128px;
+  }
 `;
 export const ImgBlock = styled.img`
-width: 335px;
-height: 457px;
-margin-top: 40px;
-@media screen and (min-width: 768px) {
-  width: 704px;
-height: 700px;
-margin-top: 48px;
-}
+  width: 335px;
+  height: 457px;
+  margin-top: 40px;
+  @media screen and (min-width: 768px) {
+    width: 704px;
+    height: 700px;
+    margin-top: 48px;
+  }
 
-@media screen and (min-width: 1440px) {
-  width: 604px;
-  height: 700px;
-  margin-top: 0px;
-}
-`
+  @media screen and (min-width: 1440px) {
+    width: 604px;
+    height: 700px;
+    margin-top: 0px;
+  }
+`;
 export const BlockDiv = styled.div`
-display: flex;
+  display: flex;
   flex-direction: column;
   align-content: flex-end;
   width: 275px;
 `;
-export const TextDiv = styled.div`
-display: flex;
-  flex-direction: column;
-  align-content: flex-end;
-  width: 275px;
-  @media screen and (min-width: 678px) and (max-width: 1439px) {
-  margin-left: 400px;}
- `
+
 export const Item = styled.li`
+display: flex;
+align-items: center;
+flex-direction: column;
 justify-content: center;
+margin-left: auto;
+margin-right: auto;
   margin-bottom: 64px;
+  @media screen and (min-width: 678px) {
+    align-items: flex-start;
+    &:nth-child(2) {
+      align-items: flex-end;
+    }}
+  }
 @media screen and (min-width: 1440px) {
-  display: flex;
+  flex-direction: row;
   gap: 228px;
   align-items: center;
   margin-left: 77px;
@@ -188,7 +199,7 @@ export const UpperTitle = styled.strong`
 export const Text = styled.p`
   font-family: 'Inter';
   font-style: normal;
-font-weight: 500;
+  font-weight: 500;
   font-size: 14px;
   line-height: 18/14;
   color: rgba(17, 17, 17, 0.9);
@@ -215,35 +226,36 @@ export const ReviewsTitle = styled.h2`
   }
 `;
 export const MobileDiv = styled.div`
-display: flex;
-gap: 18px;`
+  display: flex;
+  gap: 18px;
+`;
 export const GroupDiv = styled.div`
-    @media screen and (min-width: 767px) {
-      display: flex;
+  @media screen and (min-width: 767px) {
+    display: flex;
     gap: 18px;
-    }
+  }
 `;
 export const AvatarDiv = styled.div`
-display: flex;
-flex-direction: column;
-    @media screen and (min-width: 767px) {
-      display: flex;
-      flex-direction: column;
-    }
+  display: flex;
+  flex-direction: column;
+  @media screen and (min-width: 767px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 export const ReviewsList = styled.div`
- 
   justify-content: center;
   margin-bottom: 32px;
-  max-height: 300px;
-  overflow-y: auto;
   @media screen and (min-width: 1440px) {
-    display: flex;
-    gap: 24px;
+    width: 1184px;
+    height: 280px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
   }
 `;
 export const ReviewsItem = styled.div`
-margin: 0 auto;
+  margin: 0 auto;
   padding: 24px;
   height: auto;
   width: 287px;
@@ -252,6 +264,10 @@ margin: 0 auto;
   @media screen and (min-width: 767px) {
     padding: 32px;
     width: 580px;
+  }
+  @media screen and (min-width: 1440px) {
+    height: 187px;
+    overflow: hidden;
   }
 `;
 export const ReviewsName = styled.strong`
@@ -280,9 +296,9 @@ export const ButtonIconDiv = styled.div`
   display: flex;
   gap: 25px;
   justify-content: center;
-  margin-bottom: 64px;
+  padding-bottom: 64px;
   @media screen and (min-width: 767px) {
-    margin-bottom: 118px;
+    padding-bottom: 118px;
   }
 `;
 export const IconButton = styled.button`
