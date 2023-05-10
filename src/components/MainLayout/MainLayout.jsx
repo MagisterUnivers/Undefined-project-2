@@ -7,6 +7,8 @@ import { selectUser } from 'redux/selectors';
 import { SideBar } from './SideBar/SideBar';
 import { useState } from 'react';
 import { Header } from 'components/Header/Header';
+import { Box } from '@mui/material';
+import { SideBarTest } from 'components/SideBarTest/SideBarTest';
 
 export const MainLayout = () => {
   const { email } = useSelector(selectUser);
@@ -25,22 +27,41 @@ export const MainLayout = () => {
   };
 
   return (
-    <>
-      {' '}
-      {/* <Header />
-      <SideBar /> */}{' '}
-      <SideBar
+    <Box sx={{ display: 'flex', border: '5px solid red', height: '100vh' }}>
+      {/* <SideBar
         toggleSidebar={toggleSidebar}
         isOpenSidebarMobile={isOpenSidebarMobile}
-      />
-      <button type="button" onClick={toggleSidebar}>
-        burger-btn
-      </button>
-      <Header />
-      {/* <SideBar /> */}
-      <main>
-        <Outlet />
-      </main>
-    </>
+      /> */}
+      <SideBarTest />
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          border: '3px solid blue',
+          width: '100%',
+          padding: {
+            mobile: '24px 20px 20px 20px',
+            tablet: '24px 32px 18px 32px',
+            desktop: '40px 32px 32px 32px',
+          },
+        }}
+      >
+        <Box
+          sx={{
+            border: '1px solid teal',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: { mobile: '64px', desktop: '32px' },
+          }}
+        >
+          <Header />
+          <main
+            style={{ border: '1px solid teal', width: '100%', height: '100%' }}
+          >
+            <Outlet />
+          </main>
+        </Box>
+      </Box>
+    </Box>
   );
 };

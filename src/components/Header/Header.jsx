@@ -19,6 +19,7 @@ export const Header = () => {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
+        border: '1px solid black',
       }}
     >
       {isTabletOrMobile ? (

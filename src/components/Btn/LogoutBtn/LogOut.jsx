@@ -13,9 +13,9 @@ const LogOut = () => {
     console.log('User is Logged Out');
   };
 
-  if (!isLoggedIn) {
-    return null;
-  }
+  // if (!isLoggedIn) {
+  //   return null;
+  // }
 
   return (
     <>

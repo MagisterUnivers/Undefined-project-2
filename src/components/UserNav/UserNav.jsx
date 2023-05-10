@@ -6,9 +6,9 @@ import { selectIsOnline } from '../../redux/selectors';
 export const UserNav = () => {
   const isLoggedIn = useSelector(selectIsOnline);
 
-  if (!isLoggedIn) {
-    return null;
-  }
+  // if (!isLoggedIn) {
+  //   return null;
+  // }
 
   return (
     <nav
@@ -20,7 +20,7 @@ export const UserNav = () => {
       <NavLink
         className={({ isActive }) => {
           return [
-            'font-coolvetica flex items-center gap-2 rounded-lg py-2 px-3 ',
+            'font-inter flex items-center gap-2 rounded-lg py-2 px-3',
             !isActive ? 'text-gray-1 bg-white' : '',
             isActive ? 'text-blue-1 bg-blue-2' : '',
           ].join(' ');
@@ -53,7 +53,7 @@ export const UserNav = () => {
       <NavLink
         className={({ isActive }) => {
           return [
-            'font-coolvetica flex items-center gap-2 rounded-lg py-2 px-3',
+            'font-inter flex items-center gap-2 rounded-lg py-2 px-3',
             !isActive ? 'text-gray-1 bg-white' : '',
             isActive ? 'text-blue-1 bg-blue-2' : '',
           ].join(' ');
