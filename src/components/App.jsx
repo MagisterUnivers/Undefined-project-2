@@ -21,6 +21,7 @@ export const App = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/test" element={<DemoApp />} />
         <Route path="/" element={<MainLayout />}>
+          <Route path="/layouttest" element={<div></div>} />
           <Route path="/account" element={<AccountPage />} />
           <Route path="/calendar" /> {/*TODO: Calendar page element*/}
           <Route path="/calendar/day/:currentDay" />{' '}

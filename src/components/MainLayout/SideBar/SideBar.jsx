@@ -9,29 +9,27 @@ export const SideBar = ({ toggleSidebar, isOpenSidebarMobile }) => {
     : styles.container_2;
 
   return (
-    <>
-      <div className={className}>
-        <div>
-          <div className={styles.header}>
-            <div className={styles.logoContainer}>
-              <GooseLogo className={styles.logo} />
-              <h1 className={styles.heading}>
-                G<span className={styles.headingSpecial}>oo</span>seTrack
-              </h1>
-            </div>
-            <button
-              className={styles.button}
-              type="button"
-              onClick={toggleSidebar}
-            >
-              <IconClose className={styles.close} />
-            </button>
+    <aside className={className}>
+      <div>
+        <div className={styles.header}>
+          <div className={styles.logoContainer}>
+            <GooseLogo className={styles.logo} />
+            <h1 className={styles.heading}>
+              G<span className={styles.headingSpecial}>oo</span>seTrack
+            </h1>
           </div>
-          {/* put navbar here */}
+          <button
+            className={styles.button}
+            type="button"
+            onClick={toggleSidebar}
+          >
+            <IconClose className={styles.close} />
+          </button>
         </div>
-        {/* put logout button here */}
+        {/* put navbar here */}
       </div>
-    </>
+      {/* put logout button here */}
+    </aside>
   );
 };
 
