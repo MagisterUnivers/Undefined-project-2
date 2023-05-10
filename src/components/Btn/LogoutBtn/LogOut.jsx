@@ -1,12 +1,12 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectIsOnline } from '../../../redux/selectors';
+import { useDispatch } from 'react-redux';
+// import { selectIsOnline } from '../../../redux/selectors';
 import styles from './LogOut.module.scss';
 import { logoutThunk } from '../../../redux/Auth/authOperations';
 
 const LogOut = () => {
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector(selectIsOnline);
+  // const isLoggedIn = useSelector(selectIsOnline);
 
   const handleLogout = () => {
     dispatch(logoutThunk());
