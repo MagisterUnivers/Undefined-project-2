@@ -8,6 +8,7 @@ import AccountPage from 'pages/AccountPage/AccountPage';
 // import { Header } from './Header/Header';
 
 import AboutPage from 'pages/AboutPage/AboutPage';
+import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
 export const App = () => {
   return (
     <>
@@ -25,7 +26,7 @@ export const App = () => {
           <Route path="/calendar/month/:currentDate" />{' '}
           {/*TODO: Calendar month page element*/}
         </Route>
-        <Route path="*" element={<div>Page not found...</div>} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
   );
