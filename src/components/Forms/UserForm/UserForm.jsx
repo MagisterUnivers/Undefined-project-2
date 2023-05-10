@@ -200,129 +200,131 @@ export const UserForm = () => {
   }, [formData]);
 
   return (
-    <StyledWrapper>
-      {formData.userImgUrl ? (
-        <>
-          <StyledLabel htmlFor="avatar" onClick={handleAvatarClick}>
-            <StyledImg
-              src={formData.userImgUrl}
-              alt="Avatar"
-              width="72px"
-              height="72px"
+    <>
+      <StyledWrapper>
+        {formData.userImgUrl ? (
+          <>
+            <StyledLabel htmlFor="avatar" onClick={handleAvatarClick}>
+              <StyledImg
+                src={formData.userImgUrl}
+                alt="Avatar"
+                width="72px"
+                height="72px"
+              />
+            </StyledLabel>
+            <input
+              type="file"
+              id="avatar"
+              // ref={fileInputRef}
+              style={{ display: 'none' }}
+              accept="image/*"
+              onChange={handleImageUpload}
             />
-          </StyledLabel>
-          <input
-            type="file"
-            id="avatar"
-            // ref={fileInputRef}
-            style={{ display: 'none' }}
-            accept="image/*"
-            onChange={handleImageUpload}
-          />
-        </>
-      ) : (
-        <>
-          {' '}
-          <div>No image selected</div>
-          <StyledField
-            type="file"
-            accept="image/*"
-            onChange={handleImageUpload}
-          />
-        </>
-      )}
-      <StyledUserP1>{formData.name}</StyledUserP1>
-      <StyledUserP2>User</StyledUserP2>
+          </>
+        ) : (
+          <>
+            {' '}
+            <div>No image selected</div>
+            <StyledField
+              type="file"
+              accept="image/*"
+              onChange={handleImageUpload}
+            />
+          </>
+        )}
+        <StyledUserP1>{formData.name}</StyledUserP1>
+        <StyledUserP2>User</StyledUserP2>
 
-      <StyledForm onSubmit={handleSubmit}>
-        <StyledTaker>
-          <StyledHolder>
-            {' '}
-            <StyledLabel htmlFor="name">Name:</StyledLabel>
-            <br />
-            <StyledField
-              type="text"
-              name="name"
-              value={formData.name}
-              onBlur={handleBlur}
-              onChange={handleInputChange}
-              placeholder="Enter your name"
-              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-              required
-            />
-          </StyledHolder>
-          <StyledHolder>
-            {' '}
-            <StyledLabel htmlFor="email">Email:</StyledLabel>
-            <br />
-            <StyledField
-              type="email"
-              name="email"
-              value={formData.email}
-              onBlur={handleBlur}
-              onChange={handleInputChange}
-              placeholder="Enter your email"
-              pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
-              title="Please enter a valid email address. Example - john@example.com"
-              required
-            />
-          </StyledHolder>
-          <StyledHolder>
-            {' '}
-            <StyledLabel htmlFor="birthday">Birthday:</StyledLabel>
-            <br />
-            <StyledField
-              type="date"
-              name="birthday"
-              value={formData.birthday || ''}
-              onBlur={handleBlur}
-              onChange={handleInputChange}
-              placeholder="Enter your birthday"
-              pattern="^\d{4}-\d{2}-\d{2}$"
-              title="Please enter a valid date in the format YYYY-MM-DD"
-              required
-            />
-          </StyledHolder>
-          <StyledHolder>
-            {' '}
-            <StyledLabel htmlFor="phone">Phone:</StyledLabel>
-            <br />
-            <StyledField
-              type="tel"
-              name="phone"
-              value={formData.phone || ''}
-              onBlur={handleBlur}
-              onChange={handleInputChange}
-              placeholder="Enter your phone number"
-              pattern="^[0-9()+-]+$"
-              title="Please enter a valid phone number. Only numbers, parentheses, plus sign (+), and dashes are allowed. For example: +1 (123) 456-7890"
-              required
-            />
-          </StyledHolder>
-          <StyledHolder>
-            {' '}
-            <StyledLabel htmlFor="skype">Skype:</StyledLabel>
-            <br />
-            <StyledField
-              type="text"
-              name="skype"
-              value={formData.skype}
-              onBlur={handleBlur}
-              onChange={handleInputChange}
-              placeholder="Enter your Skype ID"
-              pattern="^[A-Za-z0-9.-_]+$"
-              title="Please enter a valid Skype ID. Only letters, numbers, dots, dashes, and underscores are allowed. For example: john.doe_123"
-              required
-            />
-          </StyledHolder>
-        </StyledTaker>
+        <StyledForm onSubmit={handleSubmit}>
+          <StyledTaker>
+            <StyledHolder>
+              {' '}
+              <StyledLabel htmlFor="name">Name:</StyledLabel>
+              <br />
+              <StyledField
+                type="text"
+                name="name"
+                value={formData.name}
+                onBlur={handleBlur}
+                onChange={handleInputChange}
+                placeholder="Enter your name"
+                pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+                required
+              />
+            </StyledHolder>
+            <StyledHolder>
+              {' '}
+              <StyledLabel htmlFor="email">Email:</StyledLabel>
+              <br />
+              <StyledField
+                type="email"
+                name="email"
+                value={formData.email}
+                onBlur={handleBlur}
+                onChange={handleInputChange}
+                placeholder="Enter your email"
+                pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+                title="Please enter a valid email address. Example - john@example.com"
+                required
+              />
+            </StyledHolder>
+            <StyledHolder>
+              {' '}
+              <StyledLabel htmlFor="birthday">Birthday:</StyledLabel>
+              <br />
+              <StyledField
+                type="date"
+                name="birthday"
+                value={formData.birthday || ''}
+                onBlur={handleBlur}
+                onChange={handleInputChange}
+                placeholder="Enter your birthday"
+                pattern="^\d{4}-\d{2}-\d{2}$"
+                title="Please enter a valid date in the format YYYY-MM-DD"
+                required
+              />
+            </StyledHolder>
+            <StyledHolder>
+              {' '}
+              <StyledLabel htmlFor="phone">Phone:</StyledLabel>
+              <br />
+              <StyledField
+                type="tel"
+                name="phone"
+                value={formData.phone || ''}
+                onBlur={handleBlur}
+                onChange={handleInputChange}
+                placeholder="Enter your phone number"
+                pattern="^[0-9()+-]+$"
+                title="Please enter a valid phone number. Only numbers, parentheses, plus sign (+), and dashes are allowed. For example: +1 (123) 456-7890"
+                required
+              />
+            </StyledHolder>
+            <StyledHolder>
+              {' '}
+              <StyledLabel htmlFor="skype">Skype:</StyledLabel>
+              <br />
+              <StyledField
+                type="text"
+                name="skype"
+                value={formData.skype}
+                onBlur={handleBlur}
+                onChange={handleInputChange}
+                placeholder="Enter your Skype ID"
+                pattern="^[A-Za-z0-9.-_]+$"
+                title="Please enter a valid Skype ID. Only letters, numbers, dots, dashes, and underscores are allowed. For example: john.doe_123"
+                required
+              />
+            </StyledHolder>
+          </StyledTaker>
 
-        <StyledBtn type="submit" disabled={!isFormValid}>
-          Save changes
-        </StyledBtn>
-      </StyledForm>
-    </StyledWrapper>
+          <StyledBtn type="submit" disabled={!isFormValid}>
+            Save changes
+          </StyledBtn>
+        </StyledForm>
+      </StyledWrapper>
+    </>
   );
 };
 

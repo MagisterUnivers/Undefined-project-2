@@ -1,5 +1,5 @@
 // import { RegisterForm } from './Forms/RegisterForm/RegisterForm';
-import { Route, Routes } from 'react-router';
+import { Route, Routes, Navigate } from 'react-router';
 import { MainLayout } from './MainLayout/MainLayout';
 import LoginPage from 'pages/LoginPage/LoginPage';
 import RegisterPage from 'pages/RegisterPage/RegisterPage';
@@ -13,6 +13,7 @@ export const App = () => {
   return (
     <>
       <Routes>
+        <Route path="/" element={<Navigate to="/about" replace />} />
         <Route path="/about" element={<AboutPage />} />{' '}
         {/*TODO: About page element*/}
         <Route path="/register" element={<RegisterPage />} />{' '}

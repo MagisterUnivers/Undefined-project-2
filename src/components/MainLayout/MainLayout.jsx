@@ -6,6 +6,7 @@ import { fetchUserDataThunk } from 'redux/UserInfo/userInfoOperations';
 import { selectUser } from 'redux/selectors';
 import { SideBar } from './SideBar/SideBar';
 import { useState } from 'react';
+import { Header } from 'components/Header/Header';
 
 export const MainLayout = () => {
   const { email } = useSelector(selectUser);
@@ -35,8 +36,8 @@ export const MainLayout = () => {
       <button type="button" onClick={toggleSidebar}>
         burger-btn
       </button>
-      {/* <Header /> */}
-      {/*  <SideBar /> */}
+      <Header />
+      {/* <SideBar /> */}
       <main>
         <Outlet />
       </main>
