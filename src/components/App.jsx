@@ -3,12 +3,13 @@ import { Route, Routes, Navigate } from 'react-router';
 import { MainLayout } from './MainLayout/MainLayout';
 import LoginPage from 'pages/LoginPage/LoginPage';
 import RegisterPage from 'pages/RegisterPage/RegisterPage';
-import { UserForm } from './Forms/UserForm/UserForm';
+// import { UserForm } from './Forms/UserForm/UserForm';
 import AccountPage from 'pages/AccountPage/AccountPage';
 // import { Header } from './Header/Header';
 
 import AboutPage from 'pages/AboutPage/AboutPage';
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
+import DemoApp from 'test/DemoApp';
 export const App = () => {
   return (
     <>
@@ -18,7 +19,7 @@ export const App = () => {
         {/*TODO: About page element*/}
         <Route path="/register" element={<RegisterPage />} />{' '}
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/test" element={<UserForm />} />
+        <Route path="/test" element={<DemoApp />} />
         <Route path="/" element={<MainLayout />}>
           <Route path="/account" element={<AccountPage />} />
           <Route path="/calendar" /> {/*TODO: Calendar page element*/}
