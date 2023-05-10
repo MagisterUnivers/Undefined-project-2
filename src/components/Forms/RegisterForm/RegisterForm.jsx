@@ -67,33 +67,33 @@ export const RegisterForm = () => {
         >
           Email
         </StyledLabel>
-        <StyledField
-          type="text"
-          id={name}
-          name={name}
-          placeholder={placeholder}
-          className={className}
-          {...field}
-        />
-        {showError ? (
-          <StyledErrorLogo showerror={'true'} />
-        ) : (
-          <StyledDoneLogo showerror={'false'} />
-        )}
-        {showError ? (
-          <ErrorMessage name={name} component="p" className="error-message" />
-        ) : (
-          <p
-            style={{
-              fontSize: '12px',
-              lineHeight: 'calc(14/12)',
-              marginTop: '8px',
-              color: 'green',
-            }}
-          >
-            This is a CORRECT {name}
-          </p>
-        )}
+        <Rel>
+          <StyledField
+            type="text"
+            id={name}
+            name={name}
+            placeholder={placeholder}
+            className={className}
+            {...field}
+          />
+          {showError && meta.touched && <StyledErrorLogo show={'true'} />}
+          {!showError && meta.touched && <StyledDoneLogo showerror={''} />}
+          {showError && meta.touched && (
+            <ErrorMessage name={name} component="p" className="error-message" />
+          )}
+          {!showError && meta.touched && (
+            <p
+              style={{
+                fontSize: '12px',
+                lineHeight: 'calc(14/12)',
+                marginTop: '8px',
+                color: 'green',
+              }}
+            >
+              This is a CORRECT {name}
+            </p>
+          )}
+        </Rel>
       </>
     );
   };
@@ -172,39 +172,26 @@ const StyledForm = styled(Form)`
 `;
 
 const StyledErrorLogo = styled(ErrorLogo)`
-  display: ${props => (props.showError ? 'none' : 'block')};
-
+  display: ${props => (props.show ? 'block' : 'none')};
   width: 24px;
   height: 24px;
   position: absolute;
   right: 50px;
-  top: 50%;
+  top: 39%;
   transform: translateY(-50%);
   width: 20px;
   height: 20px;
-
-  @media screen and (min-width: 768px) {
-    right: 59px;
-    top: 29%;
-  }
 `;
-
 const StyledDoneLogo = styled(DoneLogo)`
-  display: ${props => (props.showError ? 'none' : 'block')};
-
+  display: ${props => (props.showerror ? 'none' : 'block')};
   width: 24px;
   height: 24px;
   position: absolute;
   right: 50px;
-  top: 31%;
+  top: 39%;
   transform: translateY(-50%);
   width: 20px;
   height: 20px;
-
-  @media screen and (min-width: 768px) {
-    right: 59px;
-    top: 29%;
-  }
 `;
 
 const StyledTitle = styled.h2`
@@ -272,6 +259,10 @@ const StyledHolder = styled.div`
   }
 `;
 
+const Rel = styled.div`
+  position: relative;
+`;
+
 const StyledBtn = styled.button`
   width: 287px;
   height: 46px;
@@ -323,8 +314,8 @@ const StyledWrapper = styled.div`
 
 const StyledField = styled(Field)`
   display: block;
-  width: auto;
-  height: 54px;
+  width: 287px;
+  height: 45px;
   margin-top: 8px;
   padding: 14px;
   box-sizing: border-box;
@@ -332,6 +323,11 @@ const StyledField = styled(Field)`
   border: 1px solid rgba(220, 227, 229, 0.6);
   border-radius: 8px;
   outline: transparent;
+
+  @media screen and (min-width: 768px) {
+    width: 400px;
+    height: 54px;
+  }
 
   &.error {
     border-color: red;
