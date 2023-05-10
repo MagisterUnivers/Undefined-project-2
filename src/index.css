@@ -181,3 +181,30 @@ b {
 }
 
 /* #3E85F3 */
+
+
+/**
+  |============================
+  | Login
+  |============================
+*/
+
+.error-message {
+  font-size: 12px;
+  line-height: calc(14/12);
+
+  margin-top: 8px;
+  color: red;
+}
+
+/* .svg-icon {
+
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  right: 50px;
+  top: 39%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+} */
