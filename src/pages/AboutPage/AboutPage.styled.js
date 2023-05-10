@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const Section = styled.div`
-background-color: #FFFFFF;`;
+  background-color: #ffffff;
+`;
 export const Logo = styled.div`
   display: flex;
   justify-content: center;
@@ -52,8 +53,8 @@ export const DivButton = styled.div`
   margin-top: 40px;
   align-items: center;
   @media screen and (min-width: 768px) {
-   flex-direction: row;
-   gap: 25px;
+    flex-direction: row;
+    gap: 25px;
   }
 `;
 export const ButtonSign = styled.button`
@@ -78,7 +79,7 @@ export const ButtonSign = styled.button`
   }
 `;
 export const ButtonLog = styled.button`
-width: 131px;
+  width: 131px;
   background-color: #ffffff;
   color: #3e85f3;
   padding: 14px 22px;
@@ -98,35 +99,35 @@ width: 131px;
   gap: 8px;
 `;
 export const List = styled.ul`
-@media screen and (max-width: 767px) {
-  margin: 64px 20px;
-justify-content: center;
-}
-@media screen and (min-width: 768px) {
-  margin: 64px 32px;
-}
-@media screen and (min-width: 1440px) {
-  margin: 64px 128px;
-}
+  @media screen and (max-width: 767px) {
+    margin: 64px 20px;
+    justify-content: center;
+  }
+  @media screen and (min-width: 768px) {
+    margin: 64px 32px;
+  }
+  @media screen and (min-width: 1440px) {
+    margin: 64px 128px;
+  }
 `;
 export const ImgBlock = styled.img`
-width: 335px;
-height: 457px;
-margin-top: 40px;
-@media screen and (min-width: 768px) {
-  width: 704px;
-height: 700px;
-margin-top: 48px;
-}
+  width: 335px;
+  height: 457px;
+  margin-top: 40px;
+  @media screen and (min-width: 768px) {
+    width: 704px;
+    height: 700px;
+    margin-top: 48px;
+  }
 
-@media screen and (min-width: 1440px) {
-  width: 604px;
-  height: 700px;
-  margin-top: 0px;
-}
-`
+  @media screen and (min-width: 1440px) {
+    width: 604px;
+    height: 700px;
+    margin-top: 0px;
+  }
+`;
 export const BlockDiv = styled.div`
-display: flex;
+  display: flex;
   flex-direction: column;
   align-content: flex-end;
   width: 275px;
@@ -198,7 +199,7 @@ export const UpperTitle = styled.strong`
 export const Text = styled.p`
   font-family: 'Inter';
   font-style: normal;
-font-weight: 500;
+  font-weight: 500;
   font-size: 14px;
   line-height: 18/14;
   color: rgba(17, 17, 17, 0.9);
@@ -225,21 +226,22 @@ export const ReviewsTitle = styled.h2`
   }
 `;
 export const MobileDiv = styled.div`
-display: flex;
-gap: 18px;`
+  display: flex;
+  gap: 18px;
+`;
 export const GroupDiv = styled.div`
-    @media screen and (min-width: 767px) {
-      display: flex;
+  @media screen and (min-width: 767px) {
+    display: flex;
     gap: 18px;
-    }
+  }
 `;
 export const AvatarDiv = styled.div`
-display: flex;
-flex-direction: column;
-    @media screen and (min-width: 767px) {
-      display: flex;
-      flex-direction: column;
-    }
+  display: flex;
+  flex-direction: column;
+  @media screen and (min-width: 767px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 export const ReviewsList = styled.div`
   justify-content: center;
@@ -253,7 +255,7 @@ export const ReviewsList = styled.div`
   }
 `;
 export const ReviewsItem = styled.div`
-margin: 0 auto;
+  margin: 0 auto;
   padding: 24px;
   height: auto;
   width: 287px;
@@ -262,7 +264,6 @@ margin: 0 auto;
   @media screen and (min-width: 767px) {
     padding: 32px;
     width: 580px;
-   
   }
   @media screen and (min-width: 1440px) {
     height: 187px;
