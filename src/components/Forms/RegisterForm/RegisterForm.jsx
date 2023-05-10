@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field, ErrorMessage, useField } from 'formik';
 import * as Yup from 'yup';
 import { registrationThunk } from 'redux/Auth/authOperations';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,20 +7,17 @@ import { selectAuthAccessToken } from 'redux/selectors';
 import styled from 'styled-components';
 import AuthNavigate from 'components/AuthNavigate/AuthNavigate';
 // import { useHistory } from 'react-router-dom';
+import { ReactComponent as DoneLogo } from './Done.svg';
+import { ReactComponent as ErrorLogo } from './Error.svg';
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string().required("Обов'язкове поле"),
+  name: Yup.string().required('Required Field'),
   email: Yup.string()
-    .email(
-      'enter valid email: min 6, max 63 characters, except .ru, .su, .рус, .рф,.москва etc'
-    )
-    .required("Обов'язкове поле"),
+    .email('This is an ERROR password')
+    .required('Required Field'),
   password: Yup.string()
-    .min(
-      6,
-      'the password must contain Latin letters: at least 1 lowercase, 1 uppercase, 1 number and be at least 6 and no more than 12 characters'
-    )
-    .required("Обов'язкове поле"),
+    .min(6, 'This is an ERROR password')
+    .required('Required Field'),
 });
 
 export const RegisterForm = () => {
@@ -55,6 +52,52 @@ export const RegisterForm = () => {
     //   });
   };
 
+  const InputField = ({ name, placeholder }) => {
+    const [field, meta] = useField(name);
+    const showError = meta.touched && meta.error;
+    const className = showError ? 'error' : 'success';
+
+    return (
+      <>
+        <StyledLabel
+          htmlFor={name}
+          style={{
+            color: showError ? 'red' : 'green',
+          }}
+        >
+          Email
+        </StyledLabel>
+        <StyledField
+          type="text"
+          id={name}
+          name={name}
+          placeholder={placeholder}
+          className={className}
+          {...field}
+        />
+        {showError ? (
+          <StyledErrorLogo showerror={'true'} />
+        ) : (
+          <StyledDoneLogo showerror={'false'} />
+        )}
+        {showError ? (
+          <ErrorMessage name={name} component="p" className="error-message" />
+        ) : (
+          <p
+            style={{
+              fontSize: '12px',
+              lineHeight: 'calc(14/12)',
+              marginTop: '8px',
+              color: 'green',
+            }}
+          >
+            This is a CORRECT {name}
+          </p>
+        )}
+      </>
+    );
+  };
+
   return (
     <>
       <StyledWrapper>
@@ -66,7 +109,7 @@ export const RegisterForm = () => {
         >
           <StyledForm>
             <StyledHolder>
-              <StyledLabel htmlFor="name">Name:</StyledLabel>
+              {/* <StyledLabel htmlFor="name">Name:</StyledLabel>
               <StyledField
                 type="text"
                 id="name"
@@ -77,10 +120,11 @@ export const RegisterForm = () => {
                 name="name"
                 component="div"
                 className="error-message"
-              />
+              /> */}
+              <InputField name="name" placeholder="Name..." />
             </StyledHolder>
             <StyledHolder>
-              <StyledLabel htmlFor="email">Email:</StyledLabel>
+              {/* <StyledLabel htmlFor="email">Email:</StyledLabel>
               <StyledField
                 type="email"
                 id="email"
@@ -91,10 +135,11 @@ export const RegisterForm = () => {
                 name="email"
                 component="div"
                 className="error-message"
-              />
+              /> */}
+              <InputField name="email" placeholder="Email..." />
             </StyledHolder>
             <StyledHolder>
-              <StyledLabel htmlFor="password">Password:</StyledLabel>
+              {/* <StyledLabel htmlFor="password">Password:</StyledLabel>
               <StyledField
                 type="password"
                 id="password"
@@ -105,7 +150,8 @@ export const RegisterForm = () => {
                 name="password"
                 component="div"
                 className="error-message"
-              />
+              /> */}
+              <InputField name="password" placeholder="Password..." />
             </StyledHolder>
             <StyledBtn type="submit">Sign up</StyledBtn>
           </StyledForm>
@@ -123,6 +169,42 @@ const StyledForm = styled(Form)`
   justify-content: center;
   align-items: center;
   /* gap: 20px; */
+`;
+
+const StyledErrorLogo = styled(ErrorLogo)`
+  display: ${props => (props.showError ? 'none' : 'block')};
+
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  right: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+
+  @media screen and (min-width: 768px) {
+    right: 59px;
+    top: 29%;
+  }
+`;
+
+const StyledDoneLogo = styled(DoneLogo)`
+  display: ${props => (props.showError ? 'none' : 'block')};
+
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  right: 50px;
+  top: 31%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+
+  @media screen and (min-width: 768px) {
+    right: 59px;
+    top: 29%;
+  }
 `;
 
 const StyledTitle = styled.h2`
@@ -250,4 +332,11 @@ const StyledField = styled(Field)`
   border: 1px solid rgba(220, 227, 229, 0.6);
   border-radius: 8px;
   outline: transparent;
+
+  &.error {
+    border-color: red;
+  }
+  &.success {
+    border-color: green;
+  }
 `;
