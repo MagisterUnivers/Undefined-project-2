@@ -28,11 +28,20 @@ module.exports = {
         19: '19px',
       },
       fontFamily: {
-        coolvetica: ['Coolvetica', 'sans-serif'],
+        Inter: ['Inter', 'sans-serif'],
       },
       padding: {
         2: '10px',
         3: '14px',
+      },
+      width: {
+        10: '185px',
+        11: '225px',
+        12: '241px',
+      },
+      height: {
+        10: '40px',
+        11: '56px',
       },
     },
   },
