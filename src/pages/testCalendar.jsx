@@ -60,6 +60,7 @@ const fillFirstDays = (dates) => {
 
 function CalendarCell({ state, date }) {
   let ref = React.useRef(null);
+
   let {
     cellProps,
     buttonProps,
@@ -76,9 +77,9 @@ function CalendarCell({ state, date }) {
       ref={ref}
       className={`
         h-20 border-l border-b border-gray-1 
-        cell ${isSelected ? ' bg-blue-300' : ''} ${
-        isDisabled ? 'disabled' : ''
-      } ${isUnavailable ? 'unavailable' : ''}`}
+      ${isSelected ? ' bg-blue-300' : ''} 
+      ${isDisabled ? 'disabled' : ''} 
+      ${isUnavailable ? 'unavailable' : ''}`}
     >
       <button
         className={`relative w-full h-full ${
@@ -213,19 +214,11 @@ export function Calendar(props) {
       <div className="header">
         <h2>{title}</h2>
 
-        <button
-          {...prevButtonProps}
-          disable={isDisabled1}
-          onClick={prevOnClick}
-        >
+        <button {...prevButtonProps} onClick={prevOnClick}>
           &lt;
         </button>
 
-        <button
-          {...nextButtonProps}
-          disable={isDisabled2}
-          onClick={nextOnClick}
-        >
+        <button {...nextButtonProps} onClick={nextOnClick}>
           &gt;
         </button>
       </div>

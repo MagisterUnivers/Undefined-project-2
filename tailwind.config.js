@@ -30,7 +30,7 @@ module.exports = {
         16: '16px',
       },
       lineHeight: {
-        17: '17px',
+        17: '18px',
         19: '19px',
       },
       fontFamily: {
@@ -41,13 +41,16 @@ module.exports = {
         3: '14px',
       },
       width: {
-        10: '185px',
+        10: '131px',
         11: '225px',
         12: '241px',
       },
       height: {
-        10: '40px',
+        10: '46px',
         11: '56px',
+      },
+      minHeight: {
+        '50px': '50px',
       },
     },
   },

@@ -5,9 +5,8 @@ import LoginPage from 'pages/LoginPage/LoginPage';
 import RegisterPage from 'pages/RegisterPage/RegisterPage';
 // import { UserForm } from './Forms/UserForm/UserForm';
 import AccountPage from 'pages/AccountPage/AccountPage';
-// import { Header } from './Header/Header';
-
-import { Calendar } from '../pages/testCalendar';
+import { CalendarPage } from '../pages/CalendarPage/CalendarPage';
+import { ChoosedMonth } from '../components/ChoosedMonth/ChoosedMonth';
 
 import AboutPage from 'pages/AboutPage/AboutPage';
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
@@ -22,15 +21,15 @@ export const App = () => {
         <Route path="/register" element={<RegisterPage />} />{' '}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/test" element={<DemoApp />} />
-        <Route path="/testCalendar" element={<Calendar />} />
         <Route path="/" element={<MainLayout />}>
           <Route path="/layouttest" element={<div></div>} />
           <Route path="/account" element={<AccountPage />} />
-          <Route path="/calendar" /> {/*TODO: Calendar page element*/}
+          <Route path="/calendar" element={<CalendarPage />} />
           <Route path="/calendar/day/:currentDay" />{' '}
-          {/*TODO: Calendar day page element*/}
-          <Route path="/calendar/month/:currentDate" />{' '}
-          {/*TODO: Calendar month page element*/}
+          <Route
+            path="/calendar/month/:currentDate"
+            element={<ChoosedMonth />}
+          />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
