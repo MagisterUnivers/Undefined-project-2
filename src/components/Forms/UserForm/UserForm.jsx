@@ -105,6 +105,9 @@ import { updateUserDataThunk } from 'redux/UserInfo/userInfoOperations';
 import { Avatar, Badge } from '@mui/material';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import { useMediaQuery } from 'react-responsive';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { enUS } from 'date-fns/locale';
 
 export const UserForm = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 767.98px)' });
@@ -166,10 +169,10 @@ export const UserForm = () => {
     // validation
     // just a thing
     return (
-      formData.name !== '' &&
-      formData.email !== '' &&
-      formData.birthday !== '' &&
-      formData.phone !== '' &&
+      formData.name !== '' ||
+      formData.email !== '' ||
+      formData.birthday !== '' ||
+      formData.phone !== '' ||
       formData.skype !== ''
     );
   };
@@ -202,6 +205,22 @@ export const UserForm = () => {
   useEffect(() => {
     setIsFormValid(validateForm()); //eslint-disable-next-line
   }, [formData]);
+
+  // const formatWeekDay = nameOfDay => {
+  //   return nameOfDay.charAt(0);
+  // };
+
+  const customLocale = {
+    ...enUS,
+    localize: {
+      ...enUS.localize,
+      day: (dayOfWeek, width) => {
+        const days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+        const dayIndex = dayOfWeek % 7;
+        return width > 2 ? days[dayIndex] : days[dayIndex].charAt(0);
+      },
+    },
+  };
 
   return (
     <>
@@ -303,16 +322,23 @@ export const UserForm = () => {
               {' '}
               <StyledLabel htmlFor="birthday">Birthday:</StyledLabel>
               <br />
-              <StyledField
+              <StyledDatePicker
                 type="date"
                 name="birthday"
-                value={formData.birthday || ''}
+                value={formData.birthday}
                 onBlur={handleBlur}
-                onChange={handleInputChange}
-                placeholder="Enter your birthday"
-                pattern="^\d{4}-\d{2}-\d{2}$"
-                title="Please enter a valid date in the format YYYY-MM-DD"
+                selected={formData.birthday || null}
+                onSelect={date =>
+                  handleInputChange({
+                    target: { name: 'birthday', value: date },
+                  })
+                }
+                placeholderText="Enter your birthday"
+                dateFormat="yyyy-MM-dd"
+                // dayClassName={date => 'custom-day'}
+                // formatWeekDay={formatWeekDay}
                 required
+                locale={customLocale}
               />
             </StyledHolder>
             <StyledHolder>

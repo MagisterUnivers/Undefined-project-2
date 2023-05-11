@@ -14,7 +14,7 @@ export const SideBarTest = () => {
         justifyContent: 'space-between',
         padding: '32px 24px 24px 24px',
       }}
-      className="dark:bg-black transition-colors delay-200"
+      className=" bg-white dark:bg-black transition-colors delay-200"
     >
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
         <Box sx={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
