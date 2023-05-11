@@ -7,6 +7,7 @@ import { selectTheme } from 'redux/selectors';
 export const ThemeToggler = () => {
   const dispatch = useDispatch();
   const theme = useSelector(selectTheme);
+
   return (
     <IconButton onClick={() => dispatch(setTheme())}>
       {theme === 'light' ? (

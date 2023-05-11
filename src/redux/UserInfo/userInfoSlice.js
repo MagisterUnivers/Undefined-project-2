@@ -21,7 +21,13 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setTheme: state => {
+      // remove current
+      document.body.classList.remove('light', 'dark');
+
       state.theme = state.theme === 'light' ? 'dark' : 'light';
+
+      // add new
+      document.body.classList.add(state.theme);
     },
   },
   extraReducers: {
@@ -37,6 +43,9 @@ const userSlice = createSlice({
       state.skype = payload.skype;
       state.userImgUrl = payload.userImgUrl;
       state.loading = false;
+      state.theme = payload.theme;
+
+      document.body.classList.add(state.theme);
     },
     [fetchUserDataThunk.rejected]: (state, { payload }) => {
       state.error = payload;
