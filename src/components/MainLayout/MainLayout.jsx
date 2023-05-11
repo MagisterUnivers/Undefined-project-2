@@ -1,5 +1,5 @@
 // import { Header } from 'components/Header/Header';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import { fetchUserDataThunk } from 'redux/UserInfo/userInfoOperations';
@@ -22,11 +22,12 @@ export const MainLayout = () => {
     }
   }, [dispatch, email]);
 
-  // const [isOpenSidebarMobile, setIsOpenSidebarMobile] = useState(false);
+  const [isOpenSidebarMobile, setIsOpenSidebarMobile] = useState(false);
 
-  // const toggleSidebar = () => {
-  //   setIsOpenSidebarMobile(!isOpenSidebarMobile);
-  // };
+  const toggleSidebar = () => {
+    setIsOpenSidebarMobile(!isOpenSidebarMobile);
+    console.log('toggle!');
+  };
 
   return (
     <Box
@@ -40,8 +41,13 @@ export const MainLayout = () => {
         toggleSidebar={toggleSidebar}
         isOpenSidebarMobile={isOpenSidebarMobile}
       /> */}
-      {!isTabletOrMobile && <SideBarTest />}
-
+      {/* {!isTabletOrMobile && (
+        <SideBarTest isOpenSidebarMobile={isOpenSidebarMobile} />
+      )} */}
+      <SideBarTest
+        isOpenSidebarMobile={isOpenSidebarMobile}
+        toggleSidebar={toggleSidebar}
+      />
       <Box
         sx={{
           display: 'flex',
@@ -63,7 +69,7 @@ export const MainLayout = () => {
             gap: { mobile: '64px', desktop: '32px' },
           }}
         >
-          <Header />
+          <Header toggleSidebar={toggleSidebar} />
           <main
             style={{
               // border: '1px solid teal',
