@@ -16,6 +16,10 @@ module.exports = {
       colors: {
         // stroke inactive icons
         'gray-1': '#84828A',
+        'gray-2': ' #616161',
+        'gray-2-dark': 'rgba(250, 250, 250, 0.3)',
+        'gray-bg': ' #21222C',
+        'black-text': '#343434',
 
         'blue-1': '#3e85f3',
         'blue-2': '#e3f3ff',
