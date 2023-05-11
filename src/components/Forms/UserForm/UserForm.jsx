@@ -163,10 +163,10 @@ export const UserForm = () => {
     // validation
     // just a thing
     return (
-      formData.name !== '' &&
-      formData.email !== '' &&
-      formData.birthday !== '' &&
-      formData.phone !== '' &&
+      formData.name !== '' ||
+      formData.email !== '' ||
+      formData.birthday !== '' ||
+      formData.phone !== '' ||
       formData.skype !== ''
     );
   };
