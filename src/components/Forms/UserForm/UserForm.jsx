@@ -249,9 +249,6 @@ export const UserForm = () => {
                 }}
               >
                 <BorderedAvatar
-                  onClick={() => {
-                    handleAvatarClick();
-                  }}
                   sx={{
                     width: { mobile: 72, tablet: 124 },
                     height: { mobile: 72, tablet: 124 },
@@ -635,7 +632,7 @@ const StyledWrapper = styled.div`
   margin-right: auto; */
 
   border: transparent;
-  background: #a96c6c;
+  background: #ffffff;
   border: 1px solid black;
   border-radius: 8px;
   padding-bottom: 40px;
