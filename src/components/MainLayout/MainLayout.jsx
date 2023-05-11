@@ -12,6 +12,7 @@ import { SideBarTest } from 'components/SideBarTest/SideBarTest';
 import { useMediaQuery } from 'react-responsive';
 
 export const MainLayout = () => {
+  document.body.style.backgroundColor = '#F7F6F9';
   const { email } = useSelector(selectUser);
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1439.98px)' });
 
@@ -61,6 +62,7 @@ export const MainLayout = () => {
             display: 'flex',
             flexDirection: 'column',
             gap: { mobile: '64px', desktop: '32px' },
+            margin: '0 auto',
           }}
         >
           <Header />

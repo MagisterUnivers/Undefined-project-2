@@ -225,59 +225,45 @@ export const UserForm = () => {
   return (
     <>
       <StyledWrapper>
-        {formData.userImgUrl ? (
-          <>
-            <StyledDiv>
-              <Badge
-                sx={isMobile ? badgeStyleMobile : badgeStyleTablet}
-                onClick={() => {
-                  handleAvatarClick();
+        <StyledDiv>
+          <Badge
+            sx={isMobile ? badgeStyleMobile : badgeStyleTablet}
+            onClick={() => {
+              handleAvatarClick();
+            }}
+            badgeContent={
+              <AddRoundedIcon
+                sx={{
+                  width: { mobile: '8px', tablet: '18px' },
+                  height: { mobile: '8px', tablet: '18px' },
                 }}
-                badgeContent={
-                  <AddRoundedIcon
-                    sx={{
-                      width: { mobile: '8px', tablet: '18px' },
-                      height: { mobile: '8px', tablet: '18px' },
-                    }}
-                  />
-                }
-                overlap="circular"
-                color="primary"
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'right',
-                }}
-              >
-                <BorderedAvatar
-                  sx={{
-                    width: { mobile: 72, tablet: 124 },
-                    height: { mobile: 72, tablet: 124 },
-                  }}
-                  src={formData.userImgUrl}
-                  alt="Avatar"
-                />
-              </Badge>
-            </StyledDiv>
-            <input
-              type="file"
-              id="avatar"
-              ref={fileInputRef}
-              style={{ display: 'none' }}
-              accept="image/*"
-              onChange={handleImageUpload}
+              />
+            }
+            overlap="circular"
+            color="primary"
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'right',
+            }}
+          >
+            <BorderedAvatar
+              sx={{
+                width: { mobile: 72, tablet: 124 },
+                height: { mobile: 72, tablet: 124 },
+              }}
+              src={formData.userImgUrl}
+              alt={`${formData.name} avatar`}
             />
-          </>
-        ) : (
-          <>
-            {' '}
-            <div>No image selected</div>
-            <StyledField
-              type="file"
-              accept="image/*"
-              onChange={handleImageUpload}
-            />
-          </>
-        )}
+          </Badge>
+        </StyledDiv>
+        <input
+          type="file"
+          id="avatar"
+          ref={fileInputRef}
+          style={{ display: 'none' }}
+          accept="image/*"
+          onChange={handleImageUpload}
+        />
         <StyledUserP1>{formData.name}</StyledUserP1>
         <StyledUserP2>User</StyledUserP2>
 
@@ -285,7 +271,7 @@ export const UserForm = () => {
           <StyledTaker>
             <StyledHolder>
               {' '}
-              <StyledLabel htmlFor="name">Name:</StyledLabel>
+              <StyledLabel htmlFor="name">User Name</StyledLabel>
               <br />
               <StyledField
                 type="text"
@@ -301,23 +287,7 @@ export const UserForm = () => {
             </StyledHolder>
             <StyledHolder>
               {' '}
-              <StyledLabel htmlFor="email">Email:</StyledLabel>
-              <br />
-              <StyledField
-                type="email"
-                name="email"
-                value={formData.email}
-                onBlur={handleBlur}
-                onChange={handleInputChange}
-                placeholder="Enter your email"
-                pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
-                title="Please enter a valid email address. Example - john@example.com"
-                required
-              />
-            </StyledHolder>
-            <StyledHolder>
-              {' '}
-              <StyledLabel htmlFor="birthday">Birthday:</StyledLabel>
+              <StyledLabel htmlFor="birthday">Birthday</StyledLabel>
               <br />
               <StyledDatePicker
                 type="date"
@@ -337,10 +307,25 @@ export const UserForm = () => {
                 required
                 locale={customLocale}
               />
+            </StyledHolder>{' '}
+            <StyledHolder>
+              <StyledLabel htmlFor="email">Email</StyledLabel>
+              <br />
+              <StyledField
+                type="email"
+                name="email"
+                value={formData.email}
+                onBlur={handleBlur}
+                onChange={handleInputChange}
+                placeholder="Enter your email"
+                pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+                title="Please enter a valid email address. Example - john@example.com"
+                required
+              />
             </StyledHolder>
             <StyledHolder>
               {' '}
-              <StyledLabel htmlFor="phone">Phone:</StyledLabel>
+              <StyledLabel htmlFor="phone">Phone</StyledLabel>
               <br />
               <StyledField
                 type="tel"
@@ -356,7 +341,7 @@ export const UserForm = () => {
             </StyledHolder>
             <StyledHolder>
               {' '}
-              <StyledLabel htmlFor="skype">Skype:</StyledLabel>
+              <StyledLabel htmlFor="skype">Skype</StyledLabel>
               <br />
               <StyledField
                 type="text"
@@ -364,7 +349,7 @@ export const UserForm = () => {
                 value={formData.skype}
                 onBlur={handleBlur}
                 onChange={handleInputChange}
-                placeholder="Enter your Skype ID"
+                placeholder="Add a skype number"
                 pattern="^[A-Za-z0-9.-_]+$"
                 title="Please enter a valid Skype ID. Only letters, numbers, dots, dashes, and underscores are allowed. For example: john.doe_123"
                 required
@@ -398,6 +383,9 @@ const badgeStyleTablet = {
   },
 };
 const StyledDatePicker = styled(DatePicker)`
+  font-weight: 600;
+  font-size: 16px;
+  line-height: calc(18 / 16);
   margin-top: 8px;
   /* margin-bottom: 32px; */
   padding: 14px;
@@ -471,9 +459,13 @@ const StyledForm = styled.form`
 const StyledLabel = styled.label`
   font-family: 'Inter';
   font-style: normal;
-  font-weight: 600;
+  font-weight: 400;
   font-size: 12px;
-  line-height: calc(15 / 12);
+  line-height: calc(14 / 12);
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+    line-height: calc(18 / 14);
+  }
 `;
 
 const StyledHolder = styled.div`
@@ -502,11 +494,7 @@ const StyledHolder = styled.div`
 `;
 
 const StyledTaker = styled.div`
-  margin-bottom: 15px;
-
-  @media screen and (min-width: 768px) {
-    margin-bottom: 40px;
-  }
+  margin-bottom: 40px;
   @media screen and (min-width: 1440px) {
     display: flex;
     flex-flow: row wrap;
@@ -514,6 +502,7 @@ const StyledTaker = styled.div`
     gap: 24px;
     align-items: center;
     max-width: 768px;
+    margin-bottom: 88px;
   }
 `;
 
@@ -534,16 +523,19 @@ const StyledUserP2 = styled.p`
     line-height: calc(18 / 14);
   }
   @media screen and (min-width: 1440px) {
+    margin-bottom: 44px;
     font-size: 14px;
     line-height: calc(18 / 14);
   }
 `;
 
 const StyledUserP1 = styled.p`
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767.8px) {
     margin-top: 59px;
+    margin-bottom: 4px;
   }
-  margin-top: 14px;
+  margin-bottom: 8px;
+  margin-top: 18px;
   text-align: center;
 
   font-family: 'Inter';
@@ -559,29 +551,11 @@ const StyledUserP1 = styled.p`
     line-height: calc(18 / 18);
   }
   @media screen and (min-width: 1440px) {
+    margin-top: 20px;
     font-size: 18px;
     line-height: calc(18 / 18);
   }
 `;
-
-// const StyledImg = styled.img`
-//   display: block;
-//   margin-left: auto;
-//   margin-right: auto;
-//   margin-top: -10%;
-//   border-radius: 50%;
-
-//   @media screen and (min-width: 768px) {
-//     width: 124px;
-//     height: 130px;
-//     margin-top: 3%;
-//   }
-//   @media screen and (min-width: 1440px) {
-//     width: 124px;
-//     height: 130px;
-//     margin-top: 5%;
-//   }
-// `;
 
 const StyledBtn = styled.button`
   width: 195px;
@@ -631,26 +605,27 @@ const StyledWrapper = styled.div`
   /* margin-left: auto;
   margin-right: auto; */
 
-  border: transparent;
   background: #ffffff;
-  border: 1px solid black;
+  border: 1px solid transparent;
   border-radius: 8px;
   padding-bottom: 40px;
+  width: 335px;
   @media screen and (max-width: 767.98px) {
     position: relative;
   }
 
   @media screen and (min-width: 768px) {
     padding-top: 40px;
+    padding-bottom: 40px;
 
     width: 704px;
-    height: 854px;
+    /* height: 854px; */
   }
   @media screen and (min-width: 1440px) {
     padding-bottom: 60px;
     padding-top: 60px;
     width: 1087px;
-    height: 752px;
+    /* height: 752px; */
   }
 `;
 
@@ -666,10 +641,14 @@ const StyledField = styled.input`
   background: #ffffff;
   border: 1px solid rgba(220, 227, 229, 0.6);
   border-radius: 8px;
-
+  font-weight: 600;
+  font-size: 14px;
+  line-height: calc(18 / 14);
   @media screen and (min-width: 768px) {
     width: 354px;
     height: 46px;
+    font-size: 16px;
+    line-height: calc(18 / 16);
   }
   @media screen and (min-width: 1440px) {
     width: 354px;
