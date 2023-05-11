@@ -488,7 +488,7 @@ const StyledHolder = styled.div`
     }
   }
   @media screen and (min-width: 1440px) {
-    margin-bottom: 24px;
+    margin-bottom: 0px;
 
     &:last-of-type {
       margin-bottom: 0px;
