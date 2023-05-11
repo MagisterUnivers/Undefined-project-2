@@ -2,61 +2,11 @@ import React from 'react';
 import { useCalendarState } from 'react-stately';
 import { useCalendar, useLocale, useCalendarCell } from 'react-aria';
 import { getWeeksInMonth, createCalendar } from '@internationalized/date';
-
-const previousDate = (date) => {
-  const previousDate = new Date(date);
-  previousDate.setDate(date.getDate() - 1);
-
-  return previousDate;
-};
-
-/**
- * Get the days of the week starting on monday
- * {firstDay}  default 1 => Monday
- */
-const getDaysOfWeekLabels = ({ dateFormatter, firstDay = 1 }) => {
-  const daysOfWeekLabels = [];
-
-  for (let day = firstDay; day <= 7; day++) {
-    const date = new Date(0, 0, day);
-    const dayLabel = dateFormatter.format(date);
-
-    daysOfWeekLabels.push(dayLabel);
-  }
-
-  return { daysOfWeekLabels };
-};
-
-const splitArrayIntoChunks = (arr, chunkSize) => {
-  const chucks = [];
-  let current = [];
-
-  arr.forEach((element) => {
-    if (current.length === chunkSize) {
-      chucks.push(current);
-      current = [];
-    }
-
-    current.push(element);
-  });
-
-  chucks.push(current);
-
-  return chucks;
-};
-
-const fillFirstDays = (dates) => {
-  const first = dates[0].toDate();
-  const isMonday = first.getDay() === 1;
-
-  if (isMonday) return dates;
-
-  let previous = previousDate(first);
-
-  dates.unshift({ toDate: () => previous, notIncluded: true });
-
-  return fillFirstDays(dates);
-};
+import {
+  splitArrayIntoChunks,
+  getDaysOfWeekLabels,
+  fillFirstDays,
+} from '../utils';
 
 function CalendarCell({ state, date }) {
   let ref = React.useRef(null);

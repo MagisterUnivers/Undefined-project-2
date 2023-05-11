@@ -6,7 +6,7 @@ export const MonthCalendarHead = ({ className, daysOfWeekLabels }) => {
       className={`grid grid-cols-7  border-r border-t border-gray-1 
       ${className}`}
     >
-      {daysOfWeekLabels.map((dayLabel) => {
+      {daysOfWeekLabels?.map((dayLabel) => {
         const shortLabel = dayLabel.substring(0, 3).toUpperCase();
 
         return (
