@@ -5,7 +5,8 @@ import { ThemeToggler } from 'components/ThemeToggler/ThemeToggler';
 import { useMediaQuery } from 'react-responsive';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-export const Header = () => {
+
+export const Header = ({ toggleSidebar }) => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1439.98px)' });
   const location = useLocation();
   const pageTitle =
@@ -24,7 +25,7 @@ export const Header = () => {
       }}
     >
       {isTabletOrMobile ? (
-        <IconButton>
+        <IconButton onClick={toggleSidebar}>
           <MenuRoundedIcon
             sx={{
               width: { mobile: 24, tablet: 34 },

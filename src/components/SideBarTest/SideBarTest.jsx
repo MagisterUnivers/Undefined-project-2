@@ -1,11 +1,35 @@
 import { Box } from '@mui/material';
+import styles from './SideBarTest.module.css';
+
 import { ReactComponent as GooseLogo } from './icons/goose.svg';
 import styled from 'styled-components';
 import { UserNav } from 'components/UserNav/UserNav';
 import LogOut from 'components/Btn/LogoutBtn/LogOut';
+import { useMediaQuery } from 'react-responsive';
 
-export const SideBarTest = () => {
-  return (
+export const SideBarTest = ({ isOpenSidebarMobile }) => {
+  const className = isOpenSidebarMobile
+    ? styles.container_1
+    : styles.container_2;
+  console.log(isOpenSidebarMobile);
+  const isMobileOrTablet = useMediaQuery({ query: '(max-width: 1439.98px)' });
+  return isMobileOrTablet ? (
+    <aside className={className}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+        <Box sx={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+          <StyledGooseLogo />
+          <StyledH2>
+            G<StyledSpan>oo</StyledSpan>seTrack
+          </StyledH2>
+        </Box>
+        <Box>
+          <StyledH3>User Panel</StyledH3>
+          <UserNav />
+        </Box>
+      </Box>
+      <LogOut />
+    </aside>
+  ) : (
     <Box
       component="aside"
       sx={{
