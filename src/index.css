@@ -216,8 +216,9 @@ b {
 */
 
 .react-datepicker__header {
-  background-color: none;
+  background-color: transparent;
 }
+
 
 .react-datepicker__current-month,
 .react-datepicker-time__header,
