@@ -9,11 +9,11 @@ import { selectUser } from 'redux/selectors';
 import { Header } from 'components/Header/Header';
 import { Box } from '@mui/material';
 import { SideBarTest } from 'components/SideBarTest/SideBarTest';
-import { useMediaQuery } from 'react-responsive';
+// import { useMediaQuery } from 'react-responsive';
 
 export const MainLayout = () => {
   const { email } = useSelector(selectUser);
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1439.98px)' });
+  // const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1439.98px)' });
 
   const dispatch = useDispatch();
   useEffect(() => {
