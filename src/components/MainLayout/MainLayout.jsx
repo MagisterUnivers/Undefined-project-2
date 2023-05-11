@@ -44,7 +44,10 @@ export const MainLayout = () => {
       {/* {!isTabletOrMobile && (
         <SideBarTest isOpenSidebarMobile={isOpenSidebarMobile} />
       )} */}
-      <SideBarTest isOpenSidebarMobile={isOpenSidebarMobile} />
+      <SideBarTest
+        isOpenSidebarMobile={isOpenSidebarMobile}
+        toggleSidebar={toggleSidebar}
+      />
       <Box
         sx={{
           display: 'flex',

@@ -6,8 +6,9 @@ import styled from 'styled-components';
 import { UserNav } from 'components/UserNav/UserNav';
 import LogOut from 'components/Btn/LogoutBtn/LogOut';
 import { useMediaQuery } from 'react-responsive';
+import { ReactComponent as IconClose } from './icons/cross_btn.svg';
 
-export const SideBarTest = ({ isOpenSidebarMobile }) => {
+export const SideBarTest = ({ isOpenSidebarMobile, toggleSidebar }) => {
   const className = isOpenSidebarMobile
     ? styles.container_1
     : styles.container_2;
@@ -21,6 +22,13 @@ export const SideBarTest = ({ isOpenSidebarMobile }) => {
           <StyledH2>
             G<StyledSpan>oo</StyledSpan>seTrack
           </StyledH2>
+          <button
+            className={styles.button}
+            type="button"
+            onClick={toggleSidebar}
+          >
+            <IconClose className={styles.close} />
+          </button>
         </Box>
         <Box>
           <StyledH3>User Panel</StyledH3>
@@ -58,18 +66,36 @@ export const SideBarTest = ({ isOpenSidebarMobile }) => {
 };
 
 const StyledGooseLogo = styled(GooseLogo)`
-  width: 71px;
-  height: 68px;
+  width: 36px;
+  height: 35px;
+  @media screen and (min-width: 768px) {
+    width: 60px;
+    height: 58px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 71px;
+    height: 68px;
+  }
 `;
 const StyledH2 = styled.h2`
   font-family: inherit;
   font-weight: 700;
-  font-size: 24px;
-  line-height: calc(24 / 24);
+  font-size: 16px;
+  line-height: calc(16 / 22);
   color: #3e85f3;
+  padding-right: 29px;
 
   text-shadow: 0px 47px 355px rgba(0, 0, 0, 0.07),
     0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
+    line-height: calc(18 / 24);
+    padding-right: 26px;
+  }
+  @media screen and (min-width: 1440px) {
+    font-size: 24px;
+    line-height: 1;
+  }
 `;
 const StyledSpan = styled.span`
   font-style: italic;
