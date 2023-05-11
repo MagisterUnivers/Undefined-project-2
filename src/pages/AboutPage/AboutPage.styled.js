@@ -15,10 +15,8 @@ export const Logo = styled.div`
   }
 `;
 export const Title = styled.h1`
-  font-family: 'Coolvetica';
-  font-style: normal;
-  font-weight: 400;
-  font-weight: 400;
+  font-family: 'Inter';
+  font-weight: 600;
   font-size: 44px;
   line-height: 48/44;
   color: #ffffff;
@@ -30,6 +28,9 @@ export const Title = styled.h1`
     font-size: 120px;
     line-height: 150/120;
   }
+`;
+export const StyledSpan = styled.span`
+  font-style: italic;
 `;
 export const Div = styled.div`
   background-color: #3e85f3;

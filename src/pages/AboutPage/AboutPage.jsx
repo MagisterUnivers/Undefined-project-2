@@ -34,6 +34,7 @@ import {
   ButtonIconDiv,
   IconButton,
   MobileDiv,
+  StyledSpan,
 } from './AboutPage.styled.js';
 const AboutPage = () => {
   const navigate = useNavigate();
@@ -63,7 +64,9 @@ const AboutPage = () => {
             <GooseLogo width={150} height={149} />
           </Logo>
         )}
-        <Title>GooseTrack</Title>
+        <Title>
+          G<StyledSpan>oo</StyledSpan>seTrack
+        </Title>
         <DivButton>
           <ButtonSign type="button" onClick={() => navigate(`/register`)}>
             Sign up
@@ -215,7 +218,7 @@ const AboutPage = () => {
           className="mySwiper"
         >
           <ReviewsList>
-            {reviews.map(review => (
+            {reviews.map((review) => (
               <SwiperSlide key={review.id}>
                 <ReviewsItem>
                   <GroupDiv>
@@ -253,7 +256,7 @@ const AboutPage = () => {
           className="mySwiper"
         >
           <ReviewsList>
-            {reviews.map(review => (
+            {reviews.map((review) => (
               <SwiperSlide key={review.id}>
                 <ReviewsItem>
                   <GroupDiv>
