@@ -106,6 +106,7 @@ import { Avatar, Badge } from '@mui/material';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import en from 'date-fns/locale/en-US';
+import { enUS } from 'date-fns/locale';
 
 export const UserForm = () => {
   const user = useSelector(state => state.userInfo);
@@ -202,6 +203,22 @@ export const UserForm = () => {
   useEffect(() => {
     setIsFormValid(validateForm()); //eslint-disable-next-line
   }, [formData]);
+
+  // const formatWeekDay = nameOfDay => {
+  //   return nameOfDay.charAt(0);
+  // };
+
+  const customLocale = {
+    ...enUS,
+    localize: {
+      ...enUS.localize,
+      day: (dayOfWeek, width) => {
+        const days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+        const dayIndex = dayOfWeek % 7;
+        return width > 2 ? days[dayIndex] : days[dayIndex].charAt(0);
+      },
+    },
+  };
 
   return (
     <>
@@ -314,8 +331,10 @@ export const UserForm = () => {
                 }
                 placeholderText="Enter your birthday"
                 dateFormat="yyyy-MM-dd"
+                // dayClassName={date => 'custom-day'}
+                // formatWeekDay={formatWeekDay}
                 required
-                locale={en}
+                locale={customLocale}
               />
             </StyledHolder>
             <StyledHolder>
