@@ -20,6 +20,7 @@ module.exports = {
         'gray-2-dark': 'rgba(250, 250, 250, 0.3)',
         'gray-bg': ' #21222C',
         'black-text': '#343434',
+        'gray-10': '#EAEAEA',
 
         'blue-1': '#3e85f3',
         'blue-2': '#e3f3ff',

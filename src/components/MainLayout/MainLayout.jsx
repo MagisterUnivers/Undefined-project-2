@@ -27,7 +27,10 @@ export const MainLayout = () => {
   // };
 
   return (
-    <Box sx={{ display: 'flex', border: '5px solid red', height: '100vh' }}>
+    <Box
+      className=" bg-gray-10 dark:bg-black"
+      sx={{ display: 'flex', border: '5px solid red', height: '100vh' }}
+    >
       {/* <SideBar
         toggleSidebar={toggleSidebar}
         isOpenSidebarMobile={isOpenSidebarMobile}
