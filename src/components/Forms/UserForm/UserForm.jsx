@@ -254,7 +254,7 @@ export const UserForm = () => {
                     height: { mobile: 72, tablet: 124 },
                   }}
                   src={formData.userImgUrl}
-                  alt="Serhii Parfentiev"
+                  alt="Avatar"
                 />
               </Badge>
             </StyledDiv>
