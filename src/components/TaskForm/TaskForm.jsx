@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { StyledForm, StyledInput, StyledLabel } from './StyledTaskForm';
 import CircleIcon from '@mui/icons-material/Circle';
 import CircleTwoToneIcon from '@mui/icons-material/CircleTwoTone';
+import { pink } from '@mui/material/colors';
 
 const TaskForm = () => {
   const [isTaskCreated, setIsTaskCreated] = useState(false);
@@ -34,28 +35,59 @@ const TaskForm = () => {
             control={
               <Radio
                 icon={
-                  <CircleTwoToneIcon
-                    sx={{
-                      width: '12px',
-                      height: '12px',
-                      filter:
-                        'invert(78%) sepia(10%) saturate(4219%) hue-rotate(175deg) brightness(99%) contrast(96%)',
-                    }}
+                  <CircleIcon
+                    htmlColor="#72C2F8"
+                    sx={{ width: '12px', height: '12px', padding: '2px' }}
                   />
                 }
-                checkedIcon={<CircleTwoToneIcon />}
+                checkedIcon={
+                  <CircleTwoToneIcon
+                    htmlColor="#72C2F8"
+                    sx={{ width: '12px', height: '12px' }}
+                  />
+                }
               />
             }
             label="Low"
           />
           <FormControlLabel
             value="medium"
-            control={<Radio icon={<CircleIcon htmlColor="#F3B249" />} />}
+            control={
+              <Radio
+                icon={
+                  <CircleIcon
+                    htmlColor="#F3B249"
+                    sx={{ width: '12px', height: '12px', padding: '2px' }}
+                  />
+                }
+                checkedIcon={
+                  <CircleTwoToneIcon
+                    htmlColor="#F3B249"
+                    sx={{ width: '12px', height: '12px' }}
+                  />
+                }
+              />
+            }
             label="Medium"
           />
           <FormControlLabel
             value="high"
-            control={<Radio icon={<CircleIcon htmlColor="#EA3D65" />} />}
+            control={
+              <Radio
+                icon={
+                  <CircleIcon
+                    htmlColor="#EA3D65"
+                    sx={{ width: '12px', height: '12px', padding: '2px' }}
+                  />
+                }
+                checkedIcon={
+                  <CircleTwoToneIcon
+                    htmlColor="#EA3D65"
+                    sx={{ width: '12px', height: '12px' }}
+                  />
+                }
+              />
+            }
             label="High"
           />
         </RadioGroup>
