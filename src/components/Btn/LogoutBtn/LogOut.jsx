@@ -3,13 +3,17 @@ import { useDispatch } from 'react-redux';
 // import { selectIsOnline } from '../../../redux/selectors';
 import styles from './LogOut.module.scss';
 import { logoutThunk } from '../../../redux/Auth/authOperations';
+import { useNavigate } from 'react-router';
 
 const LogOut = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   // const isLoggedIn = useSelector(selectIsOnline);
 
   const handleLogout = () => {
-    dispatch(logoutThunk());
+    dispatch(logoutThunk()).then(() => {
+      navigate('/');
+    });
     console.log('User is Logged Out');
   };
 

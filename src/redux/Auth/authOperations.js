@@ -1,13 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import Notiflix from 'notiflix';
+import { Navigate, useNavigate } from 'react-router';
 
 //defaultURL
 axios.defaults.baseURL = 'https://goose-tracker-backend.p.goit.global/';
 
 // axios.defaults.baseURL = 'https://goit-task-manager.herokuapp.com/';
 
-const setToken = token => {
+const setToken = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 const clearToken = () => {
@@ -16,7 +17,7 @@ const clearToken = () => {
 
 export const registrationThunk = createAsyncThunk(
   '@@auth/registration',
-  async credentials => {
+  async (credentials) => {
     try {
       console.log(credentials);
       const res = await axios.post('user/register', credentials);
@@ -31,11 +32,10 @@ export const registrationThunk = createAsyncThunk(
 );
 export const loginThunk = createAsyncThunk(
   '@@auth/login',
-  async credentials => {
+  async (credentials) => {
     try {
       const res = await axios.post('user/login', credentials);
       setToken(res.data.data.accessToken);
-      console.log(res);
       return res.data;
     } catch (error) {
       const errorMessage = error.response.data.message;
@@ -45,7 +45,7 @@ export const loginThunk = createAsyncThunk(
   }
 );
 
-export const logoutThunk = createAsyncThunk('@@auth/logout', async _ => {
+export const logoutThunk = createAsyncThunk('@@auth/logout', async (_) => {
   try {
     await axios.get('user/logout');
     clearToken();

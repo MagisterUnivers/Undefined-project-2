@@ -17,7 +17,7 @@ const persistConfig = {
   key: 'data',
   version: 1,
   storage,
-  whitelist: ['data', 'userInfo', 'user', 'theme'],
+  whitelist: ['data', 'userInfo', 'user', 'theme', 'online'],
 };
 
 export const store = configureStore({
@@ -25,7 +25,7 @@ export const store = configureStore({
     auth: persistReducer(persistConfig, authReducer),
     userInfo: persistReducer(persistConfig, userInfoReducer),
   },
-  middleware: getDefaultMiddleware =>
+  middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],

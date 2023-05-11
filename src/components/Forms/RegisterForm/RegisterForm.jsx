@@ -9,6 +9,7 @@ import AuthNavigate from 'components/AuthNavigate/AuthNavigate';
 // import { useHistory } from 'react-router-dom';
 import { ReactComponent as DoneLogo } from './Done.svg';
 import { ReactComponent as ErrorLogo } from './Error.svg';
+import { useNavigate } from 'react-router';
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required('Required Field'),
@@ -22,6 +23,7 @@ const validationSchema = Yup.object().shape({
 
 export const RegisterForm = () => {
   // const history = useHistory();
+  const navigate = useNavigate();
   const token1 = useSelector(selectAuthAccessToken);
 
   const dispatch = useDispatch();
@@ -32,11 +34,13 @@ export const RegisterForm = () => {
     password: '',
   };
 
-  const handleSubmit = values => {
+  const handleSubmit = (values) => {
     // e.preventDefault();
     console.log('user is Registered');
     console.log(values);
-    dispatch(registrationThunk(values));
+    dispatch(registrationThunk(values)).then(() => {
+      navigate('/account');
+    });
     console.log(token1);
 
     // validationSchema
@@ -172,7 +176,7 @@ const StyledForm = styled(Form)`
 `;
 
 const StyledErrorLogo = styled(ErrorLogo)`
-  display: ${props => (props.show ? 'block' : 'none')};
+  display: ${(props) => (props.show ? 'block' : 'none')};
   width: 24px;
   height: 24px;
   position: absolute;
@@ -183,7 +187,7 @@ const StyledErrorLogo = styled(ErrorLogo)`
   height: 20px;
 `;
 const StyledDoneLogo = styled(DoneLogo)`
-  display: ${props => (props.showerror ? 'none' : 'block')};
+  display: ${(props) => (props.showerror ? 'none' : 'block')};
   width: 24px;
   height: 24px;
   position: absolute;
