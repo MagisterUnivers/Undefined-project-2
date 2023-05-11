@@ -105,7 +105,6 @@ import { updateUserDataThunk } from 'redux/UserInfo/userInfoOperations';
 import { Avatar, Badge } from '@mui/material';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import en from 'date-fns/locale/en-US';
 import { enUS } from 'date-fns/locale';
 
 export const UserForm = () => {
