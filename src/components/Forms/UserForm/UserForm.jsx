@@ -526,7 +526,6 @@ const StyledUserP2 = styled.p`
   font-weight: 600;
   font-size: 12px;
   line-height: calc(14 / 12);
-
   color: #616161;
 
   @media screen and (min-width: 768px) {
