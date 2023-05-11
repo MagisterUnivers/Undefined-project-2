@@ -103,6 +103,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { updateUserDataThunk } from 'redux/UserInfo/userInfoOperations';
 import { Avatar, Badge } from '@mui/material';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import en from 'date-fns/locale/en-US';
 
 export const UserForm = () => {
   const user = useSelector(state => state.userInfo);
@@ -298,16 +301,21 @@ export const UserForm = () => {
               {' '}
               <StyledLabel htmlFor="birthday">Birthday:</StyledLabel>
               <br />
-              <StyledField
+              <StyledDatePicker
                 type="date"
                 name="birthday"
-                value={formData.birthday || ''}
+                value={formData.birthday}
                 onBlur={handleBlur}
-                onChange={handleInputChange}
-                placeholder="Enter your birthday"
-                pattern="^\d{4}-\d{2}-\d{2}$"
-                title="Please enter a valid date in the format YYYY-MM-DD"
+                selected={formData.birthday || null}
+                onSelect={date =>
+                  handleInputChange({
+                    target: { name: 'birthday', value: date },
+                  })
+                }
+                placeholderText="Enter your birthday"
+                dateFormat="yyyy-MM-dd"
                 required
+                locale={en}
               />
             </StyledHolder>
             <StyledHolder>
@@ -352,6 +360,29 @@ export const UserForm = () => {
     </>
   );
 };
+
+const StyledDatePicker = styled(DatePicker)`
+  margin-top: 8px;
+  /* margin-bottom: 32px; */
+  padding: 14px;
+  box-sizing: border-box;
+
+  width: 299px;
+  height: 42px;
+
+  background: #ffffff;
+  border: 1px solid rgba(220, 227, 229, 0.6);
+  border-radius: 8px;
+
+  @media screen and (min-width: 768px) {
+    width: 354px;
+    height: 46px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 354px;
+    height: 46px;
+  }
+`;
 
 const BorderedAvatar = styled(Avatar)`
   border: 2px solid #3e85f3;
