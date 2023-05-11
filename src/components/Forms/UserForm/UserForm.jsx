@@ -221,7 +221,7 @@ export const UserForm = () => {
 
   return (
     <>
-      <StyledWrapper className=" bg-white dark:bg-gray-bg">
+      <StyledWrapper>
         {formData.userImgUrl ? (
           <>
             <div
@@ -276,26 +276,16 @@ export const UserForm = () => {
             />
           </>
         )}
-        <StyledUserP1 className=" text-black-text  dark:text-white">
-          {formData.name}
-        </StyledUserP1>
-        <StyledUserP2 className=" text-gray-2 dark:text-gray-2-dark">
-          User
-        </StyledUserP2>
+        <StyledUserP1>{formData.name}</StyledUserP1>
+        <StyledUserP2>User</StyledUserP2>
 
         <StyledForm onSubmit={handleSubmit}>
           <StyledTaker>
             <StyledHolder>
               {' '}
-              <StyledLabel
-                className=" text-black  dark:text-gray-2-dark"
-                htmlFor="name"
-              >
-                Name:
-              </StyledLabel>
+              <StyledLabel htmlFor="name">Name:</StyledLabel>
               <br />
               <StyledField
-                className=" text-black dark:text-white"
                 type="text"
                 name="name"
                 value={formData.name}
@@ -309,15 +299,9 @@ export const UserForm = () => {
             </StyledHolder>
             <StyledHolder>
               {' '}
-              <StyledLabel
-                className=" text-black  dark:text-gray-2-dark"
-                htmlFor="email"
-              >
-                Email:
-              </StyledLabel>
+              <StyledLabel htmlFor="email">Email:</StyledLabel>
               <br />
               <StyledField
-                className=" text-black dark:text-white"
                 type="email"
                 name="email"
                 value={formData.email}
@@ -331,15 +315,9 @@ export const UserForm = () => {
             </StyledHolder>
             <StyledHolder>
               {' '}
-              <StyledLabel
-                className=" text-black  dark:text-gray-2-dark"
-                htmlFor="birthday"
-              >
-                Birthday:
-              </StyledLabel>
+              <StyledLabel htmlFor="birthday">Birthday:</StyledLabel>
               <br />
-              <StyledField
-                className=" text-black dark:text-white"
+              <StyledDatePicker
                 type="date"
                 name="birthday"
                 value={formData.birthday}
@@ -360,15 +338,9 @@ export const UserForm = () => {
             </StyledHolder>
             <StyledHolder>
               {' '}
-              <StyledLabel
-                className=" text-black  dark:text-gray-2-dark"
-                htmlFor="phone"
-              >
-                Phone:
-              </StyledLabel>
+              <StyledLabel htmlFor="phone">Phone:</StyledLabel>
               <br />
               <StyledField
-                className=" text-black dark:text-white"
                 type="tel"
                 name="phone"
                 value={formData.phone || ''}
@@ -376,21 +348,15 @@ export const UserForm = () => {
                 onChange={handleInputChange}
                 placeholder="Enter your phone number"
                 pattern="^[0-9()+-]+$"
-                title="Please enter a valid phone number. Only numbers, parentheses, pStyledFieldlus sign (+), and dashes are allowed. For example: +1 (123) 456-7890"
+                title="Please enter a valid phone number. Only numbers, parentheses, plus sign (+), and dashes are allowed. For example: +1 (123) 456-7890"
                 required
               />
             </StyledHolder>
             <StyledHolder>
               {' '}
-              <StyledLabel
-                className=" text-black  dark:text-gray-2-dark"
-                htmlFor="skype"
-              >
-                Skype:
-              </StyledLabel>
+              <StyledLabel htmlFor="skype">Skype:</StyledLabel>
               <br />
               <StyledField
-                className=" text-black dark:text-white"
                 type="text"
                 name="skype"
                 value={formData.skype}
@@ -528,6 +494,8 @@ const StyledUserP2 = styled.p`
   font-size: 12px;
   line-height: calc(14 / 12);
 
+  color: #616161;
+
   @media screen and (min-width: 768px) {
     font-size: 14px;
     line-height: calc(18 / 14);
@@ -547,6 +515,8 @@ const StyledUserP1 = styled.p`
   font-weight: 700;
   font-size: 14px;
   line-height: calc(18 / 14);
+
+  color: #343434;
 
   @media screen and (min-width: 768px) {
     font-size: 18px;
@@ -645,11 +615,11 @@ const StyledField = styled.input`
   /* margin-bottom: 32px; */
   padding: 14px;
   box-sizing: border-box;
-  background: transparent;
 
   width: 299px;
   height: 42px;
 
+  background: #ffffff;
   border: 1px solid rgba(220, 227, 229, 0.6);
   border-radius: 8px;
 
