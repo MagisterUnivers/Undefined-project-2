@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 // import { useSelector } from 'react-redux';
 // import { selectIsOnline } from '../../redux/selectors';
 
-export const UserNav = () => {
+export const UserNav = ({ toggleSidebar }) => {
   // const isLoggedIn = useSelector(selectIsOnline);
 
   // if (!isLoggedIn) {
@@ -18,6 +18,7 @@ export const UserNav = () => {
       tablet:leading-19 desktop:leading-19`}
     >
       <NavLink
+        onClick={toggleSidebar}
         className={({ isActive }) => {
           return [
             'font-inter flex items-center gap-2 rounded-lg py-2 px-3  w-10 tablet:w-11 desktop:w-12 h-10 tablet:h-11 desktop:h-11',
@@ -53,6 +54,7 @@ export const UserNav = () => {
       </NavLink>
 
       <NavLink
+        onClick={toggleSidebar}
         className={({ isActive }) => {
           return [
             'font-inter flex items-center gap-2 rounded-lg py-2 px-3  w-10 tablet:w-11 desktop:w-12 h-10 tablet:h-11 desktop:h-11',
