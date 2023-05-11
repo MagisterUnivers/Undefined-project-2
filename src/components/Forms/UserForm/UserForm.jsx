@@ -230,6 +230,9 @@ export const UserForm = () => {
             <StyledDiv>
               <Badge
                 sx={isMobile ? badgeStyleMobile : badgeStyleTablet}
+                onClick={() => {
+                  handleAvatarClick();
+                }}
                 badgeContent={
                   <AddRoundedIcon
                     sx={{
@@ -238,9 +241,6 @@ export const UserForm = () => {
                     }}
                   />
                 }
-                onClick={() => {
-                  handleAvatarClick();
-                }}
                 overlap="circular"
                 color="primary"
                 anchorOrigin={{
@@ -400,6 +400,28 @@ const badgeStyleTablet = {
     borderRadius: '50%',
   },
 };
+const StyledDatePicker = styled(DatePicker)`
+  margin-top: 8px;
+  /* margin-bottom: 32px; */
+  padding: 14px;
+  box-sizing: border-box;
+
+  width: 299px;
+  height: 42px;
+
+  background: #ffffff;
+  border: 1px solid rgba(220, 227, 229, 0.6);
+  border-radius: 8px;
+
+  @media screen and (min-width: 768px) {
+    width: 354px;
+    height: 46px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 354px;
+    height: 46px;
+  }
+`;
 const StyledDiv = styled.div`
   @media screen and (max-width: 767.98px) {
     position: absolute;
