@@ -1,10 +1,62 @@
 import React from 'react';
-import { useCalendarCell } from 'react-aria';
-
-import { useCalendar, useLocale } from 'react-aria';
 import { useCalendarState } from 'react-stately';
-import { createCalendar } from '@internationalized/date';
-import { getWeeksInMonth } from '@internationalized/date';
+import { useCalendar, useLocale, useCalendarCell } from 'react-aria';
+import { getWeeksInMonth, createCalendar } from '@internationalized/date';
+
+const previousDate = (date) => {
+  const previousDate = new Date(date);
+  previousDate.setDate(date.getDate() - 1);
+
+  return previousDate;
+};
+
+/**
+ * Get the days of the week starting on monday
+ * {firstDay}  default 1 => Monday
+ */
+const getDaysOfWeekLabels = ({ dateFormatter, firstDay = 1 }) => {
+  const daysOfWeekLabels = [];
+
+  for (let day = firstDay; day <= 7; day++) {
+    const date = new Date(0, 0, day);
+    const dayLabel = dateFormatter.format(date);
+
+    daysOfWeekLabels.push(dayLabel);
+  }
+
+  return { daysOfWeekLabels };
+};
+
+const splitArrayIntoChunks = (arr, chunkSize) => {
+  const chucks = [];
+  let current = [];
+
+  arr.forEach((element) => {
+    if (current.length === chunkSize) {
+      chucks.push(current);
+      current = [];
+    }
+
+    current.push(element);
+  });
+
+  chucks.push(current);
+
+  return chucks;
+};
+
+const fillFirstDays = (dates) => {
+  const first = dates[0].toDate();
+  const isMonday = first.getDay() === 1;
+
+  if (isMonday) return dates;
+
+  let previous = previousDate(first);
+
+  dates.unshift({ toDate: () => previous, notIncluded: true });
+
+  return fillFirstDays(dates);
+};
 
 function CalendarCell({ state, date }) {
   let ref = React.useRef(null);
@@ -62,63 +114,37 @@ const CalendarHeader = ({ className, daysOfWeekLabels }) => {
   );
 };
 
-const getDaysOfWeekLabels = (locale = 'en-US') => {
-  const daysOfWeekLabels = [];
-  const dateFormatter = new Intl.DateTimeFormat(locale, { weekday: 'long' });
-
-  const monday = 1;
-
-  for (let day = monday; day <= 7; day++) {
-    const date = new Date(0, 0, day);
-    const dayLabel = dateFormatter.format(date);
-
-    daysOfWeekLabels.push(dayLabel);
-  }
-
-  return { daysOfWeekLabels, dateFormatter };
-};
-
-const splitArrayIntoChunks = (arr, chunkSize) =>
-  arr.reduce((chunks, _, index) => {
-    if (index % chunkSize === 0) {
-      chunks.push(arr.slice(index, index + chunkSize));
-    }
-    return chunks;
-  }, []);
-
 const CalendarGrid = ({ state, ...props }) => {
   const { locale } = useLocale();
-  const { daysOfWeekLabels, dateFormatter } = getDaysOfWeekLabels(locale);
 
-  //   let { gridProps, headerProps, weekDays } = useCalendarGrid(
-  //     {
-  //       ...props,
-  //       weekStart,
-  //       dayFormatter,
-  //     },
-  //     state
-  //   );
+  const dateFormatter = new Intl.DateTimeFormat(locale, { weekday: 'long' });
+
+  const { daysOfWeekLabels } = getDaysOfWeekLabels({ dateFormatter });
 
   // Get the number of weeks in the month so we can render the proper number of rows.
-  let weeksInMonth = getWeeksInMonth(state.visibleRange.start, locale);
+  const weeksInMonth = getWeeksInMonth(state.visibleRange.start, locale);
 
-  const { start, end } = state.visibleRange;
+  const { start: startDate, end: endDate } = state.visibleRange;
 
   const isBetweenVisibleRange = (date) => {
-    return date >= start && date <= end;
+    return date >= startDate && date <= endDate;
   };
 
-  const allDays = [...new Array(weeksInMonth).keys()]
-    .reduce((days, weekIndex) => {
-      const visibleDays = state
-        .getDatesInWeek(weekIndex)
-        .filter(isBetweenVisibleRange);
+  const allDays = [...new Array(weeksInMonth).keys()].reduce(
+    (accumulator, weekIndex) => {
+      const days = state.getDatesInWeek(weekIndex);
 
-      return [...days, ...visibleDays];
-    }, [])
-    .sort((a, b) => a - b);
+      const visibleDays = days.filter(isBetweenVisibleRange);
 
-  const weeks = splitArrayIntoChunks(allDays, 7);
+      return [...accumulator, ...visibleDays];
+    },
+    []
+  );
+
+  // add the days before monday
+  const sanitizedDays = fillFirstDays(allDays);
+
+  const weeks = splitArrayIntoChunks(sanitizedDays, 7);
 
   return (
     <>
@@ -126,6 +152,7 @@ const CalendarGrid = ({ state, ...props }) => {
 
       <div className="grid grid-cols-7  border-r border-t border-gray-1">
         {weeks.map((daysInWeek) => {
+          // { monday, tuesday }
           const datesOfWeekByDayLabel = daysInWeek.reduce((map, item) => {
             const date = item.toDate();
             const dayLabel = dateFormatter.format(date);
@@ -135,11 +162,18 @@ const CalendarGrid = ({ state, ...props }) => {
             return map;
           }, new Map());
 
+          // to start in monday
           return daysOfWeekLabels.map((label, index) => {
+            // get the day sorted by days the days of the week order
             const date = datesOfWeekByDayLabel.get(label);
 
-            if (!date) {
-              return <span className="border-l border-b border-gray-1 "></span>;
+            if (!date || date.notIncluded) {
+              return (
+                <span
+                  key={index}
+                  className="border-l border-b border-gray-1 "
+                ></span>
+              );
             }
 
             return <CalendarCell key={index} state={state} date={date} />;
@@ -159,7 +193,7 @@ export function Calendar(props) {
   });
 
   let {
-    calendarProps: { title, ...calendarProps },
+    calendarProps,
     prevButtonProps: {
       isDisabled: isDisabled1,
       onPress: prevOnClick,
@@ -172,21 +206,31 @@ export function Calendar(props) {
     },
   } = useCalendar(props, state);
 
+  const title = calendarProps['aria-label'];
+
   return (
     <div {...calendarProps} className=" w-3/4 m-auto mt-52">
-      <CalendarGrid state={state} />
-
       <div className="header">
         <h2>{title}</h2>
 
-        <button type="button" {...prevButtonProps} onClick={prevOnClick}>
+        <button
+          {...prevButtonProps}
+          disable={isDisabled1}
+          onClick={prevOnClick}
+        >
           &lt;
         </button>
 
-        <button type="button" {...nextButtonProps} onClick={nextOnClick}>
+        <button
+          {...nextButtonProps}
+          disable={isDisabled2}
+          onClick={nextOnClick}
+        >
           &gt;
         </button>
       </div>
+
+      <CalendarGrid state={state} />
     </div>
   );
 }
