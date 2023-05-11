@@ -29,7 +29,7 @@ module.exports = {
         19: '19px',
       },
       fontFamily: {
-        Inter: ['Inter', 'sans-serif'],
+        inter: ['Inter', 'sans-serif'],
       },
       padding: {
         2: '10px',

@@ -20,7 +20,7 @@ export const UserNav = () => {
       <NavLink
         className={({ isActive }) => {
           return [
-            'font-inter flex items-center gap-2 rounded-lg py-2 px-3',
+            'font-inter flex items-center gap-2 rounded-lg py-2 px-3  w-10 tablet:w-11 desktop:w-12 h-10 tablet:h-11 desktop:h-11',
             !isActive ? 'text-gray-1 dark:text-white' : '',
             isActive ? 'text-blue-1 bg-blue-2' : '',
           ].join(' ');
@@ -55,7 +55,7 @@ export const UserNav = () => {
       <NavLink
         className={({ isActive }) => {
           return [
-            'font-inter flex items-center gap-2 rounded-lg py-2 px-3',
+            'font-inter flex items-center gap-2 rounded-lg py-2 px-3  w-10 tablet:w-11 desktop:w-12 h-10 tablet:h-11 desktop:h-11',
             !isActive ? 'text-gray-1 dark:text-white' : '',
             isActive ? 'text-blue-1 bg-blue-2' : '',
           ].join(' ');
