@@ -7,6 +7,8 @@ import RegisterPage from 'pages/RegisterPage/RegisterPage';
 import AccountPage from 'pages/AccountPage/AccountPage';
 // import { Header } from './Header/Header';
 
+import { Calendar } from '../pages/testCalendar';
+
 import AboutPage from 'pages/AboutPage/AboutPage';
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
 import DemoApp from 'test/DemoApp';
@@ -20,6 +22,7 @@ export const App = () => {
         <Route path="/register" element={<RegisterPage />} />{' '}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/test" element={<DemoApp />} />
+        <Route path="/testCalendar" element={<Calendar />} />
         <Route path="/" element={<MainLayout />}>
           <Route path="/layouttest" element={<div></div>} />
           <Route path="/account" element={<AccountPage />} />
