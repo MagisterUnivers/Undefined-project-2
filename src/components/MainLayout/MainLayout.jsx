@@ -9,10 +9,12 @@ import { selectUser } from 'redux/selectors';
 import { Header } from 'components/Header/Header';
 import { Box } from '@mui/material';
 import { SideBarTest } from 'components/SideBarTest/SideBarTest';
+import { useMediaQuery } from 'react-responsive';
 
 export const MainLayout = () => {
   const { email } = useSelector(selectUser);
-  console.log(email);
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1439.98px)' });
+
   const dispatch = useDispatch();
   useEffect(() => {
     if (email) {
@@ -27,17 +29,24 @@ export const MainLayout = () => {
   // };
 
   return (
-    <Box sx={{ display: 'flex', border: '5px solid red', height: '100vh' }}>
+    <Box
+      sx={{
+        display: 'flex',
+        // border: '5px solid red',
+        height: '100vh',
+      }}
+    >
       {/* <SideBar
         toggleSidebar={toggleSidebar}
         isOpenSidebarMobile={isOpenSidebarMobile}
       /> */}
-      <SideBarTest />
+      {!isTabletOrMobile && <SideBarTest />}
+
       <Box
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          border: '3px solid blue',
+          // border: '3px solid blue',
           width: '100%',
           padding: {
             mobile: '24px 20px 20px 20px',
@@ -48,7 +57,7 @@ export const MainLayout = () => {
       >
         <Box
           sx={{
-            border: '1px solid teal',
+            // border: '1px solid teal',
             display: 'flex',
             flexDirection: 'column',
             gap: { mobile: '64px', desktop: '32px' },
@@ -56,7 +65,11 @@ export const MainLayout = () => {
         >
           <Header />
           <main
-            style={{ border: '1px solid teal', width: '100%', height: '100%' }}
+            style={{
+              // border: '1px solid teal',
+              width: '100%',
+              height: '100%',
+            }}
           >
             <Outlet />
           </main>

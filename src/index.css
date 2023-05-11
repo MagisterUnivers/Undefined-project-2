@@ -1,6 +1,5 @@
 @import-normalize;
 
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -21,16 +20,15 @@ code {
     monospace;
 } */
 
-:before,
+*,
+*:before,
 *:after {
   box-sizing: border-box;
 }
-
 body {
   font-family: sans-serif;
   line-height: 1.5;
 }
-
 h1,
 h2,
 h3,
@@ -40,35 +38,16 @@ h6,
 p {
   margin: 0;
 }
-
 ul,
 ol {
   margin: 0;
   padding: 0;
 }
-
-a {
-  text-decoration: none;
-  color: currentColor;
-}
-
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-button {
-  font-family: inherit;
-  cursor: pointer;
-}
-
 img {
   display: block;
   max-width: 100%;
   height: auto;
 }
-
 
 b {
   /* used for event dates/times */
@@ -107,7 +86,7 @@ b {
 /* .fc-toolbar-title {
   text-transform: uppercase;
 } */
-.fc .fc-button-group>.fc-button {
+.fc .fc-button-group > .fc-button {
   flex: 1 1 auto;
   position: relative;
   text-transform: uppercase;
@@ -119,49 +98,46 @@ b {
 
 .fc-button.fc-button-primary {
   border-radius: 1.078em;
-  background-color: #DCE3E5;
+  background-color: #dce3e5;
   border: 1px solid rgba(220, 227, 229, 0.8);
   border-radius: 8px;
-
 }
 
 .fc-dayGridMonth-button.fc-button.fc-button-primary.fc-button-active {
-  background-color: #DCE3E5;
+  background-color: #dce3e5;
   border: 1px solid rgba(220, 227, 229, 0.8);
   border-radius: 8px;
 }
 
 .fc .fc-toolbar-title {
   font-size: 16px;
-  line-height: calc(18/16);
+  line-height: calc(18 / 16);
   margin: 0;
   border-radius: 8px;
   /* border: 1px solid black; */
-  background-color: #3E85F3;
-  color: #FFFFFF;
+  background-color: #3e85f3;
+  color: #ffffff;
   padding: 8px;
 }
 
 .fc-timeGridDay-button.fc-button.fc-button-primary {
-  background-color: #E3F3FF;
+  background-color: #e3f3ff;
   font-size: 16px;
-  line-height: calc(18/16);
+  line-height: calc(18 / 16);
   border-radius: 8px;
 }
 
 .fc-dayGridMonth-button.fc-button.fc-button-primary.fc-button-active {
-  background-color: #E3F3FF;
+  background-color: #e3f3ff;
   font-size: 16px;
-  line-height: calc(18/16);
+  line-height: calc(18 / 16);
 }
 
-
-.fc-direction-ltr .fc-button-group>.fc-button:not(:first-child),
-.fc-direction-ltr .fc-button-group>.fc-button:not(:last-child) {
+.fc-direction-ltr .fc-button-group > .fc-button:not(:first-child),
+.fc-direction-ltr .fc-button-group > .fc-button:not(:last-child) {
   border-radius: 8px;
   margin-left: 0px;
 }
-
 
 .fc-today-button.fc-button.fc-button-primary:disabled {
   background-color: var(--fc-button-bg-color);
@@ -170,18 +146,17 @@ b {
 }
 
 .fc-today-button.fc-button.fc-button-primary:not(:disabled) {
-  background-color: #3E85F3;
+  background-color: #3e85f3;
 }
 
 .fc-dayGridMonth-button.fc-button.fc-button-primary.fc-button-active:hover,
 .fc-timeGridDay-button.fc-button.fc-button-primary:hover {
-  background-color: #CAE8FF;
-  color: #3E85F3;
+  background-color: #cae8ff;
+  color: #3e85f3;
   border-color: transparent;
 }
 
 /* #3E85F3 */
-
 
 /**
   |============================
@@ -191,7 +166,7 @@ b {
 
 .error-message {
   font-size: 12px;
-  line-height: calc(14/12);
+  line-height: calc(14 / 12);
 
   margin-top: 8px;
   color: red;

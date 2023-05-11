@@ -103,8 +103,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { updateUserDataThunk } from 'redux/UserInfo/userInfoOperations';
 import { Avatar, Badge } from '@mui/material';
+import AddRoundedIcon from '@mui/icons-material/AddRounded';
+import { useMediaQuery } from 'react-responsive';
 
 export const UserForm = () => {
+  const isMobile = useMediaQuery({ query: '(max-width: 767.98px)' });
   const user = useSelector(state => state.userInfo);
   const [formData, setFormData] = useState({
     _id: '',
@@ -205,18 +208,20 @@ export const UserForm = () => {
       <StyledWrapper>
         {formData.userImgUrl ? (
           <>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                padding: '20px',
-              }}
-            >
+            <StyledDiv>
               <Badge
-                badgeContent={'+'}
-                // onClick={() => {
-                //   handleAvatarClick();
-                // }}
+                sx={isMobile ? badgeStyleMobile : badgeStyleTablet}
+                badgeContent={
+                  <AddRoundedIcon
+                    sx={{
+                      width: { mobile: '8px', tablet: '18px' },
+                      height: { mobile: '8px', tablet: '18px' },
+                    }}
+                  />
+                }
+                onClick={() => {
+                  handleAvatarClick();
+                }}
                 overlap="circular"
                 color="primary"
                 anchorOrigin={{
@@ -236,7 +241,7 @@ export const UserForm = () => {
                   alt="Serhii Parfentiev"
                 />
               </Badge>
-            </div>
+            </StyledDiv>
             <input
               type="file"
               id="avatar"
@@ -353,6 +358,38 @@ export const UserForm = () => {
   );
 };
 
+const badgeStyleMobile = {
+  '& .MuiBadge-badge': {
+    minWidth: '14px',
+    height: '14px',
+    padding: 0,
+    borderRadius: '50%',
+  },
+};
+const badgeStyleTablet = {
+  '& .MuiBadge-badge': {
+    minWidth: '24px',
+    height: '24px',
+    padding: 0,
+    borderRadius: '50%',
+  },
+};
+const StyledDiv = styled.div`
+  @media screen and (max-width: 767.98px) {
+    position: absolute;
+    top: 1px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+
+    position: static;
+  }
+`;
 const BorderedAvatar = styled(Avatar)`
   border: 2px solid #3e85f3;
 `;
@@ -458,6 +495,9 @@ const StyledUserP2 = styled.p`
 `;
 
 const StyledUserP1 = styled.p`
+  @media screen and (max-width: 768px) {
+    margin-top: 59px;
+  }
   margin-top: 14px;
   text-align: center;
 
@@ -535,27 +575,35 @@ const StyledBtn = styled.button`
 `;
 
 const StyledWrapper = styled.div`
-  position: absolute;
+  /* position: absolute;
   top: 50%;
   left: 50%;
   width: 335px;
   height: 653px;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
   /* margin-top: 15%;
   margin-bottom: auto; */
   /* margin-left: auto;
   margin-right: auto; */
 
   border: transparent;
-  background: #ffffff;
+  background: #a96c6c;
   border: 1px solid black;
   border-radius: 8px;
+  padding-bottom: 40px;
+  @media screen and (max-width: 767.98px) {
+    position: relative;
+  }
 
   @media screen and (min-width: 768px) {
+    padding-top: 40px;
+
     width: 704px;
     height: 854px;
   }
   @media screen and (min-width: 1440px) {
+    padding-bottom: 60px;
+    padding-top: 60px;
     width: 1087px;
     height: 752px;
   }

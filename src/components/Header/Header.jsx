@@ -20,6 +20,7 @@ export const Header = () => {
         justifyContent: 'space-between',
         alignItems: 'center',
         border: '1px solid black',
+        maxWidth: { tablet: '704px', desktop: '1087px' },
       }}
     >
       {isTabletOrMobile ? (

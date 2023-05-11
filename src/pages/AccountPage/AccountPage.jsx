@@ -1,8 +1,8 @@
 import { UserForm } from 'components/Forms/UserForm/UserForm';
 
 const AccountPage = () => {
-  const wrapper = document.querySelector('body');
-  wrapper.style.backgroundColor = '#DCEBF7';
+  // const wrapper = document.querySelector('body');
+  // wrapper.style.backgroundColor = '#DCEBF7';
 
   return (
     <>
