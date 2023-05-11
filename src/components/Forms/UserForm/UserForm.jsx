@@ -439,7 +439,7 @@ const StyledDiv = styled.div`
   }
 `;
 const BorderedAvatar = styled(Avatar)`
-  border: 2px solid #ffffff;
+  border: 2px solid #3e85f3;
 `;
 
 const StyledForm = styled.form`
