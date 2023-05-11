@@ -65,7 +65,7 @@ export const RegisterForm = () => {
             color: showError ? 'red' : 'green',
           }}
         >
-          Email
+          {name}
         </StyledLabel>
         <Rel>
           <StyledField

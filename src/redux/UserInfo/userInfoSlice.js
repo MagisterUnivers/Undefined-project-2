@@ -1,3 +1,5 @@
+import { parseISO } from 'date-fns';
+
 const { createSlice } = require('@reduxjs/toolkit');
 const {
   fetchUserDataThunk,
@@ -38,7 +40,11 @@ const userSlice = createSlice({
       state._id = payload._id;
       state.name = payload.name;
       state.email = payload.email;
-      state.birthday = payload.birthday;
+      if (payload.birthday === null) {
+        state.birthday = new Date(); // Устанавливаем текущую дату как базовую
+      } else {
+        state.birthday = parseISO(payload.birthday);
+      }
       state.phone = payload.phone;
       state.skype = payload.skype;
       state.userImgUrl = payload.userImgUrl;
@@ -65,7 +71,7 @@ const userSlice = createSlice({
       state._id = payload._id;
       state.name = payload.name;
       state.email = payload.email;
-      state.birthday = payload.birthday;
+      state.birthday = parseISO(payload.birthday);
       state.phone = payload.phone;
       state.skype = payload.skype;
       state.userImgUrl = payload.userImgUrl;

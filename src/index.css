@@ -25,10 +25,12 @@ code {
 *:after {
   box-sizing: border-box;
 }
+
 body {
   font-family: sans-serif;
   line-height: 1.5;
 }
+
 h1,
 h2,
 h3,
@@ -38,11 +40,13 @@ h6,
 p {
   margin: 0;
 }
+
 ul,
 ol {
   margin: 0;
   padding: 0;
 }
+
 img {
   display: block;
   max-width: 100%;
@@ -86,7 +90,7 @@ b {
 /* .fc-toolbar-title {
   text-transform: uppercase;
 } */
-.fc .fc-button-group > .fc-button {
+.fc .fc-button-group>.fc-button {
   flex: 1 1 auto;
   position: relative;
   text-transform: uppercase;
@@ -133,8 +137,8 @@ b {
   line-height: calc(18 / 16);
 }
 
-.fc-direction-ltr .fc-button-group > .fc-button:not(:first-child),
-.fc-direction-ltr .fc-button-group > .fc-button:not(:last-child) {
+.fc-direction-ltr .fc-button-group>.fc-button:not(:first-child),
+.fc-direction-ltr .fc-button-group>.fc-button:not(:last-child) {
   border-radius: 8px;
   margin-left: 0px;
 }
@@ -252,4 +256,9 @@ b {
 
   background: #3e85f3;
   border-radius: 16px;
+}
+
+
+.react-datepicker__navigation {
+  top: 42px;
 }

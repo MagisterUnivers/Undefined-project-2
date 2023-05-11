@@ -327,7 +327,10 @@ export const UserForm = () => {
                 selected={formData.birthday || null}
                 onSelect={date =>
                   handleInputChange({
-                    target: { name: 'birthday', value: date },
+                    target: {
+                      name: 'birthday',
+                      value: date,
+                    },
                   })
                 }
                 placeholderText="Enter your birthday"
