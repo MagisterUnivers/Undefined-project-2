@@ -1,6 +1,5 @@
 import React from 'react';
 import { PeriodPaginator } from './PeriodPaginator';
-import { PeriodTypeSelect } from './PeriodTypeSelect';
 
 export const CalendarToolbar = ({
   title,
@@ -17,7 +16,6 @@ export const CalendarToolbar = ({
           nextButtonProps,
         }}
       />
-      <PeriodTypeSelect />
     </div>
   );
 };
