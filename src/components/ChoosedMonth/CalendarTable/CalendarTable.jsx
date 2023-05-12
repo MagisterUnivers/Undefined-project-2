@@ -6,7 +6,12 @@ import { CalendarCell } from '../CalendarTable/CalendarCell';
 
 import { fillFirstDays, splitArrayIntoChunks } from '../../../utils';
 
-export const CalendarTable = ({ state, dateFormatter, daysOfWeekLabels }) => {
+export const CalendarTable = ({
+  state,
+  dateFormatter,
+  daysOfWeekLabels,
+  className,
+}) => {
   const { locale } = useLocale();
 
   // Get the number of weeks in the month so we can render the proper number of rows.
@@ -38,10 +43,10 @@ export const CalendarTable = ({ state, dateFormatter, daysOfWeekLabels }) => {
 
   return (
     <table
-      className=" w-full rounded-lg border border-gray-3 
+      className={`w-full rounded-lg border border-gray-3 
     dark:border-gray-4 bg-white dark:bg-gray-bg 
     text-black-text  dark:text-white 
-    overflow-hidden shadow-sm"
+    overflow-hidden shadow-sm ${className}`}
     >
       <tbody>
         {weeks.map((daysInWeek, weekIndex) => {

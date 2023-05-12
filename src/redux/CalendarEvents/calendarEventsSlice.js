@@ -19,7 +19,7 @@ const mocks = [
         title: 'toDo',
         start: '9-00',
         end: '14-00',
-        priority: 'medium',
+        priority: 'hight',
         category: 'to-do',
         owner: '64303c5f82dc6fccdee4f8dc',
         date: '2023-03-17T00:00:00.000Z',
@@ -37,7 +37,7 @@ const mocks = [
         title: 'toDo',
         start: '9-00',
         end: '14-00',
-        priority: 'medium',
+        priority: 'low',
         category: 'to-do',
         owner: '64303c5f82dc6fccdee4f8dc',
         date: '2023-03-17T00:00:00.000Z',
@@ -61,17 +61,56 @@ const mocks = [
     ],
     date: '2023-05-28',
   },
+  {
+    tasks: [
+      {
+        _id: '64303c8582d26fccdee4f8d2',
+        title: 'toDo',
+        start: '9-00',
+        end: '14-00',
+        priority: 'low',
+        category: 'to-do',
+        owner: '64303c5f82dc6fccdee4f8dc',
+        date: '2023-03-17T00:00:00.000Z',
+        createdAt: '2023-04-07T15:53:41.088Z',
+        updatedAt: '2023-04-07T15:53:41.088Z',
+        __v: 0,
+      },
+      {
+        _id: '64303c1582dc6fccdee4f8d3',
+        title:
+          'So w also have to have super big titles here to test the ellipsis',
+        start: '9-00',
+        end: '14-00',
+        priority: 'medium',
+        category: 'to-do',
+        owner: '64303c5f82dc6fccdee4f8dc',
+        date: '2023-03-17T00:00:00.000Z',
+        createdAt: '2023-04-07T15:53:41.088Z',
+        updatedAt: '2023-04-07T15:53:41.088Z',
+        __v: 0,
+      },
+      {
+        _id: '62303c1582dc6fccdee4f8d3',
+        title: 'toDo 2',
+        start: '9-00',
+        end: '14-00',
+        priority: 'medium',
+        category: 'to-do',
+        owner: '64303c5f82dc6fccdee4f8dc',
+        date: '2023-03-17T00:00:00.000Z',
+        createdAt: '2023-04-07T15:53:41.088Z',
+        updatedAt: '2023-04-07T15:53:41.088Z',
+        __v: 0,
+      },
+    ],
+    date: '2023-05-12',
+  },
 ];
 
 const computeTaskMap = (items) => {
   const datesMap = items.reduce((datesMap, { tasks, date }) => {
-    const taskMap = tasks.reduce((taskMap, task) => {
-      taskMap[task._id] = task;
-
-      return taskMap;
-    }, {});
-
-    datesMap[date] = taskMap;
+    datesMap[date] = tasks;
 
     return datesMap;
   }, {});
@@ -84,6 +123,8 @@ const initialState = {
   tasks: mocks,
   taskMap: computeTaskMap(mocks),
 };
+
+console.log(initialState.taskMap);
 
 const calendarEventsSlice = createSlice({
   name: '@@calendarEvents',
@@ -182,9 +223,9 @@ export const useEventTasks = ({ date }) => {
   const date_key = moment(date).format('yyyy-MM-DD');
 
   return useSelector(({ calendar }) => {
-    const tasks = calendar.taskMap[date_key] ?? {};
+    const tasks = calendar.taskMap[date_key] ?? [];
 
-    return Object.values(tasks);
+    return tasks;
   }, shallowCompare);
 };
 
