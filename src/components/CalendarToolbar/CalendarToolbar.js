@@ -1,11 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { PeriodPaginator } from './PeriodPaginator';
 import { PeriodTypeSelect } from './PeriodTypeSelect';
 
-export const CalendarToolbar = ({}) => {
+export const CalendarToolbar = ({
+  title,
+  prevButtonProps,
+  nextButtonProps,
+  className,
+}) => {
   return (
-    <div className="flex justify-between">
-      <PeriodPaginator /> <PeriodTypeSelect />
+    <div className={`${className} flex justify-between`}>
+      <PeriodPaginator
+        {...{
+          title,
+          prevButtonProps,
+          nextButtonProps,
+        }}
+      />
+      <PeriodTypeSelect />
     </div>
   );
 };

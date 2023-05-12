@@ -69,6 +69,7 @@ export const MainLayout = () => {
             flexDirection: 'column',
             gap: { mobile: '64px', desktop: '32px' },
             margin: '0 auto',
+            width: '100%',
           }}
         >
           <Header toggleSidebar={toggleSidebar} />

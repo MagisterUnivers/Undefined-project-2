@@ -1,5 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-export const PeriodPaginator = () => {
-  return <div>PeriodPaginator</div>;
+export const PeriodPaginator = ({
+  title,
+  prevButtonProps,
+  nextButtonProps,
+}) => {
+  return (
+    <div className="header">
+      <h2>{title}</h2>
+
+      <button {...prevButtonProps}>&lt;</button>
+
+      <button {...nextButtonProps}>&gt;</button>
+    </div>
+  );
 };

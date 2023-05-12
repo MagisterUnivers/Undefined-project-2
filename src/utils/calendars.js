@@ -40,6 +40,8 @@ export const splitArrayIntoChunks = (arr, chunkSize) => {
 };
 
 export const fillFirstDays = (dates) => {
+  if (!dates.length) return dates;
+
   const first = dates[0].toDate();
   const isMonday = first.getDay() === 1;
 
