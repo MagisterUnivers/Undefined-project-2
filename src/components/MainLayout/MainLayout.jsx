@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Outlet } from 'react-router-dom';
 import { fetchUserDataThunk } from 'redux/UserInfo/userInfoOperations';
 import { Header } from 'components/Header/Header';
 import { Box } from '@mui/material';
 import { SideBarTest } from 'components/SideBarTest/SideBarTest';
-import { selectIsOnline } from 'redux/selectors';
-import { Notify } from 'notiflix';
+// import { selectIsOnline } from 'redux/selectors';
+// import { Notify } from 'notiflix';
 
 export const MainLayout = () => {
-  const isOnline = useSelector(selectIsOnline);
-  const navigate = useNavigate();
+  // const isOnline = useSelector(selectIsOnline);
+  // const navigate = useNavigate();
   document.body.style.backgroundColor = '#F7F6F9';
 
   const dispatch = useDispatch();

@@ -17,9 +17,9 @@ const FormComponent = () => {
 
   const handleSubmitTasks = (e) => {
     e.preventDefault();
-    const year = 0; // Значение по умолчанию или фиктивное значение
-    const month = 0; // Значение по умолчанию или фиктивное значение
-    dispatch(getUserTaskThunk(year, month));
+    // const year = 0; // Значение по умолчанию или фиктивное значение
+    // const month = 0; // Значение по умолчанию или фиктивное значение
+    dispatch(getUserTaskThunk());
   };
 
   const handleSubmit = (event) => {
