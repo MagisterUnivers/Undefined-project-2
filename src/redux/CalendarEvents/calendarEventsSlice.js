@@ -1,4 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSelector, createSlice } from '@reduxjs/toolkit';
+import moment from 'moment';
+import { useMemo } from 'react';
+import { shallowCompare } from 'react-global-state-hooks';
+import { useSelector } from 'react-redux';
+
 import {
   createUserTaskThunk,
   deleteUserTaskThunk,
@@ -58,18 +63,27 @@ const mocks = [
   },
 ];
 
-const initialState = {
-  events: mocks,
-  isLoading: false,
-  tasks: [],
+const computeTaskMap = (items) => {
+  const datesMap = items.reduce((datesMap, { tasks, date }) => {
+    const taskMap = tasks.reduce((taskMap, task) => {
+      taskMap[task._id] = task;
+
+      return taskMap;
+    }, {});
+
+    datesMap[date] = taskMap;
+
+    return datesMap;
+  }, {});
+
+  return datesMap;
 };
-//   title: '',
-//   start: '',
-//   end: '',
-//   priority: '',
-//   category: '',
-//   date: '2023-03-17',
-// };
+
+const initialState = {
+  isLoading: false,
+  tasks: mocks,
+  taskMap: computeTaskMap(mocks),
+};
 
 const calendarEventsSlice = createSlice({
   name: '@@calendarEvents',
@@ -80,40 +94,51 @@ const calendarEventsSlice = createSlice({
     update: (state) => {},
     removeEvent: (state) => {},
   },
-  extraReducers: {
-    [createUserTaskThunk.pending]: (state) => {
-      state.IsLoading = true;
-    },
-    [createUserTaskThunk.fulfilled]: (state, { payload }) => {
-      // state.tasks.title = payload.title;
-      // state.tasks.start = payload.start;
-      // state.tasks.end = payload.end;
-      // // if (payload.birthday === null) {
-      // //   state.birthday = new Date(); // Устанавливаем текущую дату как базовую
-      // // } else {
-      // //   state.birthday = parseISO(payload.birthday);
-      // // }
-      // state.tasks.priority = payload.priority;
-      // state.tasks.date = parseISO(payload.date);
-      // state.tasks._id = payload._id;
-      state.tasks.push(payload);
-      state.IsLoading = false;
-    },
-    [createUserTaskThunk.rejected]: (state, { payload }) => {
-      state.error = payload;
-      state.IsLoading = false;
-    },
-    [deleteUserTaskThunk.pending]: (state, { payload }) => {
-      state.IsLoading = true;
-    },
-    [deleteUserTaskThunk.fulfilled](state, action) {
-      state.IsLoading = false;
-      state.error = null;
-      const index = state.tasks.findIndex(
-        (task) => task.id === action.payload.id
+  extraReducers: (builder) => {
+    builder
+      .addCase(createUserTaskThunk.pending, (state) => {
+        state.IsLoading = true;
+      })
+      .addCase(createUserTaskThunk.fulfilled, (state, { payload }) => {
+        // state.tasks.title = payload.title;
+        // state.tasks.start = payload.start;
+        // state.tasks.end = payload.end;
+        // // if (payload.birthday === null) {
+        // //   state.birthday = new Date(); // Устанавливаем текущую дату как базовую
+        // // } else {
+        // //   state.birthday = parseISO(payload.birthday);
+        // // }
+        // state.tasks.priority = payload.priority;
+        // state.tasks.date = parseISO(payload.date);
+        // state.tasks._id = payload._id;
+        state.tasks.push(payload);
+        state.IsLoading = false;
+      })
+      .addCase(createUserTaskThunk.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.IsLoading = false;
+      })
+      .addCase(deleteUserTaskThunk.pending, (state) => {
+        state.IsLoading = true;
+      })
+      .addCase(deleteUserTaskThunk.fulfilled, (state, action) => {
+        state.IsLoading = false;
+        state.error = null;
+        const index = state.tasks.findIndex(
+          (task) => task.id === action.payload.id
+        );
+        state.tasks.splice(index, 1);
+      })
+      .addMatcher(
+        (action) => {
+          const { type } = action;
+
+          return type.includes('calendar');
+        },
+        (state, action) => {
+          state.taskMap = computeTaskMap(state.tasks);
+        }
       );
-      state.tasks.splice(index, 1);
-    },
   },
   [deleteUserTaskThunk.rejected]: (state, { payload }) => {
     state.IsLoading = true;
@@ -152,6 +177,16 @@ const calendarEventsSlice = createSlice({
     state.error = payload;
   },
 });
+
+export const useEventTasks = ({ date }) => {
+  const date_key = moment(date).format('yyyy-MM-DD');
+
+  return useSelector(({ calendar }) => {
+    const tasks = calendar.taskMap[date_key] ?? {};
+
+    return Object.values(tasks);
+  }, shallowCompare);
+};
 
 export const calendarEventsReducer = calendarEventsSlice.reducer;
 export const { addEvent, partialUpdate, removeEvent, update } =

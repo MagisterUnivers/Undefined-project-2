@@ -1,13 +1,16 @@
 import { useRef } from 'react';
 import { useCalendarCell } from 'react-aria';
+import { useEventTasks } from '../../../redux';
 
 /**
  * Cell of the month calendar
  */
 export const CalendarCell = ({ state, date }) => {
-  let ref = useRef(null);
+  const monthTasks = useEventTasks({ date: date.toDate() });
 
-  let {
+  const ref = useRef(null);
+
+  const {
     cellProps,
     buttonProps,
     isSelected,
@@ -22,7 +25,7 @@ export const CalendarCell = ({ state, date }) => {
       {...cellProps}
       ref={ref}
       className={`
-        h-20 border-r last:border-r-0  border-gray-3  dark:border-gray-4
+       h-20 border-r last:border-r-0  border-gray-3  dark:border-gray-4
      
       ${isDisabled ? 'disabled' : ''} 
       ${isUnavailable ? 'unavailable' : ''}`}
@@ -44,6 +47,8 @@ export const CalendarCell = ({ state, date }) => {
         >
           {formattedDate}
         </span>
+
+        {JSON.stringify(monthTasks.length)}
       </button>
     </td>
   );

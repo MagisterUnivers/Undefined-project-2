@@ -31,7 +31,7 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(persistConfig, authReducer),
     userInfo: persistReducer(persistConfigForTheme, userInfoReducer),
-    calendar: persistReducer(persistConfig, calendarEventsReducer),
+    calendar: calendarEventsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

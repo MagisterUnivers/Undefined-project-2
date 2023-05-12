@@ -43,38 +43,45 @@ export const CalendarTable = ({ state, dateFormatter, daysOfWeekLabels }) => {
     text-black-text  dark:text-white 
     overflow-hidden shadow-sm"
     >
-      {weeks.map((daysInWeek) => {
-        // { monday, tuesday }
-        const datesOfWeekByDayLabel = daysInWeek.reduce((map, item) => {
-          const date = item.toDate();
-          const dayLabel = dateFormatter.format(date);
+      <tbody>
+        {weeks.map((daysInWeek, weekIndex) => {
+          // { monday, tuesday }
+          const datesOfWeekByDayLabel = daysInWeek.reduce((map, item) => {
+            const date = item.toDate();
+            const dayLabel = dateFormatter.format(date);
 
-          map.set(dayLabel, item);
+            map.set(dayLabel, item);
 
-          return map;
-        }, new Map());
+            return map;
+          }, new Map());
 
-        return (
-          <tr className="border-gray-3 dark:border-gray-4 border-b last:border-b-0">
-            {daysOfWeekLabels.map((label, index) => {
-              // get the day sorted by days the days of the week order
-              const date = datesOfWeekByDayLabel.get(label);
+          return (
+            <tr
+              key={weekIndex}
+              className="border-gray-3 dark:border-gray-4 border-b last:border-b-0"
+            >
+              {daysOfWeekLabels.map((label, index) => {
+                // get the day sorted by days the days of the week order
+                const date = datesOfWeekByDayLabel.get(label);
 
-              if (!date || date.notIncluded) {
+                if (!date || date.notIncluded) {
+                  return (
+                    <td
+                      key={index}
+                      data-meta="placeholder-cell"
+                      className=" border-gray-3 dark:border-gray-4 border-r last:border-r-0  "
+                    ></td>
+                  );
+                }
+
                 return (
-                  <td
-                    key={index}
-                    data-meta="placeholder-cell"
-                    className=" border-gray-3 dark:border-gray-4 border-r last:border-r-0  "
-                  ></td>
+                  <CalendarCell key={index} {...{ state, date, locale }} />
                 );
-              }
-
-              return <CalendarCell key={index} state={state} date={date} />;
-            })}
-          </tr>
-        );
-      })}
+              })}
+            </tr>
+          );
+        })}
+      </tbody>
     </table>
   );
 };
