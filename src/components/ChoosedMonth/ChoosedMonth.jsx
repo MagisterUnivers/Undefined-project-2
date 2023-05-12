@@ -12,7 +12,7 @@ export const ChoosedMonth = ({
     <div>
       <MonthCalendarHead
         {...{ daysOfWeekLabels, dateFormatter, className: headerClassName }}
-        className="mb-3"
+        className=" mb-4"
       />
 
       <CalendarTable {...{ daysOfWeekLabels, dateFormatter, state }} />

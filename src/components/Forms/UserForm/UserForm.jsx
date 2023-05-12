@@ -111,7 +111,7 @@ import { enUS } from 'date-fns/locale';
 
 export const UserForm = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 767.98px)' });
-  const user = useSelector(state => state.userInfo);
+  const user = useSelector((state) => state.userInfo);
   const [formData, setFormData] = useState({
     _id: '',
     name: '',
@@ -131,21 +131,21 @@ export const UserForm = () => {
     }
   }, [user]);
 
-  const handleInputChange = e => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevFormData => ({
+    setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: value,
     }));
     console.log(formData);
   };
 
-  const handleImageUpload = e => {
+  const handleImageUpload = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
 
     reader.onloadend = () => {
-      setFormData(prevFormData => ({
+      setFormData((prevFormData) => ({
         ...prevFormData,
         userImgUrl: reader.result,
       }));
@@ -156,7 +156,7 @@ export const UserForm = () => {
     }
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (isFormValid) {
       // send
@@ -224,7 +224,7 @@ export const UserForm = () => {
 
   return (
     <>
-      <StyledWrapper>
+      <StyledWrapper className=" bg-white dark:bg-gray-bg">
         <StyledDiv>
           <Badge
             sx={isMobile ? badgeStyleMobile : badgeStyleTablet}
@@ -264,16 +264,26 @@ export const UserForm = () => {
           accept="image/*"
           onChange={handleImageUpload}
         />
-        <StyledUserP1>{formData.name}</StyledUserP1>
-        <StyledUserP2>User</StyledUserP2>
+        <StyledUserP1 className=" text-gray-2 dark:text-gray-2-dark">
+          {formData.name}
+        </StyledUserP1>
+        <StyledUserP2 className=" text-black-text  dark:text-white">
+          User
+        </StyledUserP2>
 
         <StyledForm onSubmit={handleSubmit}>
           <StyledTaker>
             <StyledHolder>
               {' '}
-              <StyledLabel htmlFor="name">User Name</StyledLabel>
+              <StyledLabel
+                className=" text-black  dark:text-gray-2-dark"
+                htmlFor="name"
+              >
+                User Name
+              </StyledLabel>
               <br />
               <StyledField
+                className=" text-black dark:text-white"
                 type="text"
                 name="name"
                 value={formData.name}
@@ -287,7 +297,12 @@ export const UserForm = () => {
             </StyledHolder>
             <StyledHolder>
               {' '}
-              <StyledLabel htmlFor="birthday">Birthday</StyledLabel>
+              <StyledLabel
+                className=" text-black  dark:text-gray-2-dark"
+                htmlFor="birthday"
+              >
+                Birthday
+              </StyledLabel>
               <br />
               <StyledDatePicker
                 type="date"
@@ -295,7 +310,7 @@ export const UserForm = () => {
                 value={formData.birthday}
                 onBlur={handleBlur}
                 selected={formData.birthday || null}
-                onSelect={date =>
+                onSelect={(date) =>
                   handleInputChange({
                     target: {
                       name: 'birthday',
@@ -312,9 +327,15 @@ export const UserForm = () => {
               />
             </StyledHolder>{' '}
             <StyledHolder>
-              <StyledLabel htmlFor="email">Email</StyledLabel>
+              <StyledLabel
+                className=" text-black  dark:text-gray-2-dark"
+                htmlFor="email"
+              >
+                Email
+              </StyledLabel>
               <br />
               <StyledField
+                className=" text-black dark:text-white"
                 type="email"
                 name="email"
                 value={formData.email}
@@ -328,9 +349,15 @@ export const UserForm = () => {
             </StyledHolder>
             <StyledHolder>
               {' '}
-              <StyledLabel htmlFor="phone">Phone</StyledLabel>
+              <StyledLabel
+                className=" text-black  dark:text-gray-2-dark"
+                htmlFor="phone"
+              >
+                Phone
+              </StyledLabel>
               <br />
               <StyledField
+                className=" text-black dark:text-white"
                 type="tel"
                 name="phone"
                 value={formData.phone || ''}
@@ -344,9 +371,15 @@ export const UserForm = () => {
             </StyledHolder>
             <StyledHolder>
               {' '}
-              <StyledLabel htmlFor="skype">Skype</StyledLabel>
+              <StyledLabel
+                className=" text-black  dark:text-gray-2-dark"
+                htmlFor="skype"
+              >
+                Skype
+              </StyledLabel>
               <br />
               <StyledField
+                className=" text-black dark:text-white"
                 type="text"
                 name="skype"
                 value={formData.skype}
@@ -397,7 +430,7 @@ const StyledDatePicker = styled(DatePicker)`
   width: 299px;
   height: 42px;
 
-  background: #ffffff;
+  background: transparent;
   border: 1px solid rgba(220, 227, 229, 0.6);
   border-radius: 8px;
 
@@ -518,7 +551,6 @@ const StyledUserP2 = styled.p`
   font-weight: 600;
   font-size: 12px;
   line-height: calc(14 / 12);
-  color: #616161;
 
   @media screen and (min-width: 768px) {
     font-size: 14px;
@@ -545,8 +577,6 @@ const StyledUserP1 = styled.p`
   font-weight: 700;
   font-size: 14px;
   line-height: calc(18 / 14);
-
-  color: #343434;
 
   @media screen and (min-width: 768px) {
     font-size: 18px;
@@ -636,11 +666,11 @@ const StyledField = styled.input`
   /* margin-bottom: 32px; */
   padding: 14px;
   box-sizing: border-box;
+  background: transparent;
 
   width: 299px;
   height: 42px;
 
-  background: #ffffff;
   border: 1px solid rgba(220, 227, 229, 0.6);
   border-radius: 8px;
   font-weight: 600;
