@@ -5,6 +5,7 @@ import { fetchUserDataThunk } from 'redux/UserInfo/userInfoOperations';
 import { Header } from 'components/Header/Header';
 import { Box } from '@mui/material';
 import { SideBarTest } from 'components/SideBarTest/SideBarTest';
+import { refreshThunk } from 'redux/Auth/authOperations';
 // import { selectIsOnline } from 'redux/selectors';
 // import { Notify } from 'notiflix';
 
@@ -15,7 +16,7 @@ export const MainLayout = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchUserDataThunk());
+    dispatch(refreshThunk()).then(() => dispatch(fetchUserDataThunk()));
   }, [dispatch]);
 
   const [isOpenSidebarMobile, setIsOpenSidebarMobile] = useState(false);

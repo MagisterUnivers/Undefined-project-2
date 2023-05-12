@@ -20,7 +20,14 @@ export const fetchUserDataThunk = createAsyncThunk(
       // };
       return res.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      // console.log(error.response.data.message);
+      // if (error.response.data.message === 'Token is expired') {
+      //   thunkAPI
+      //     .dispatch(refreshThunk())
+      //     .then(() => thunkAPI.dispatch(loginThunk()));
+      // }
+
+      return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
 );
