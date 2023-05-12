@@ -1,0 +1,29 @@
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 48px;
+  gap: 8px;
+  font-family: 'Inter';
+  font-weight: 600;
+  font-size: 14px;
+  line-height: calc(14 / 18);
+  text-align: center;
+  color: #13151a;
+  background-color: #e3f3ff;
+  border: 1px dashed #3e85f3;
+  border-radius: 8px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .button {
+    height: 52px;
+  }
+}
+
+.plus_icon {
+  stroke: #13151a;
+}
