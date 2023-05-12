@@ -16,7 +16,7 @@ export default AuthNavigate;
 
 const StyledText = styled.p`
   position: absolute;
-  bottom: 25%;
+  bottom: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: 'Inter';
@@ -34,10 +34,13 @@ const StyledText = styled.p`
     0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
 
   @media screen and (min-width: 768px) {
-    bottom: 20%;
+    font-size: 18px;
+    line-height: calc(24 / 18);
+
+    bottom: 15%;
   }
   @media screen and (min-width: 1440px) {
-    bottom: 23%;
+    bottom: 18%;
   }
 `;
 
