@@ -9,6 +9,7 @@ import LogOut from 'components/Btn/LogoutBtn/LogOut';
 import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
 import { ReactComponent as DoneLogo } from './Done.svg';
 import { ReactComponent as ErrorLogo } from './Error.svg';
+import { useNavigate } from 'react-router';
 const validationSchema = Yup.object({
   email: Yup.string()
     .email('This is an ERROR email')
@@ -18,6 +19,7 @@ const validationSchema = Yup.object({
     .required('Required field'),
 });
 export const LoginForm = () => {
+  const navigate = useNavigate();
   // const history = useHistory();
   // const token1 = useSelector(selectAuthAccessToken);
   const dispatch = useDispatch();
@@ -69,14 +71,14 @@ export const LoginForm = () => {
       </>
     );
   };
-  const handleSubmit = values => {
+  const handleSubmit = (values) => {
     // e.preventDefault();
-    dispatch(loginThunk(values));
+    dispatch(loginThunk(values)).then(() => navigate('/main/account'));
   };
   return (
     <>
       {' '}
-      <LogOut />
+      {/* <LogOut /> */}
       <StyledWrapper>
         <StyledTitle>Log In</StyledTitle>
         <Formik
@@ -129,7 +131,7 @@ const StyledForm = styled(Form)`
 //   margin-left: 5px;
 // `;
 const StyledErrorLogo = styled(ErrorLogo)`
-  display: ${props => (props.show ? 'block' : 'none')};
+  display: ${(props) => (props.show ? 'block' : 'none')};
   width: 24px;
   height: 24px;
   position: absolute;
@@ -140,7 +142,7 @@ const StyledErrorLogo = styled(ErrorLogo)`
   height: 20px;
 `;
 const StyledDoneLogo = styled(DoneLogo)`
-  display: ${props => (props.showerror ? 'none' : 'block')};
+  display: ${(props) => (props.showerror ? 'none' : 'block')};
   width: 24px;
   height: 24px;
   position: absolute;

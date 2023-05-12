@@ -18,10 +18,8 @@ export const MainLayout = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    if (email) {
-      dispatch(fetchUserDataThunk());
-    }
-  }, [dispatch, email]);
+    dispatch(fetchUserDataThunk());
+  }, [dispatch]);
 
   const [isOpenSidebarMobile, setIsOpenSidebarMobile] = useState(false);
 
