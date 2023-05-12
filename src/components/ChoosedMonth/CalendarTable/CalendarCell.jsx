@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { useCalendarCell } from 'react-aria';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 /**
  * Cell of the month calendar
  */
@@ -16,10 +16,10 @@ export const CalendarCell = ({ state, date }) => {
     isUnavailable,
     formattedDate,
   } = useCalendarCell({ date }, state, ref);
-  const navigate = useNavigate(); 
-  const handelClick = () =>{ 
-    navigate(`calendar/day/${formattedDate}`); 
-  } 
+  const navigate = useNavigate();
+  const handelClick = () => {
+    navigate(`/main/calendar/day/${formattedDate}`);
+  };
   return (
     <td
       {...cellProps}
@@ -34,7 +34,8 @@ export const CalendarCell = ({ state, date }) => {
         className={`relative w-full h-full ${
           isOutsideVisibleRange ? 'text-gray-200 ' : ''
         }`}
-        {...buttonProps} onClick={handelClick} 
+        {...buttonProps}
+        onClick={handelClick}
       >
         <span
           className={`font-inter font-bold text-xs 

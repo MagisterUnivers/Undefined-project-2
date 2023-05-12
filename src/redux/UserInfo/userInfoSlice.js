@@ -21,7 +21,7 @@ const userSlice = createSlice({
   name: '@@userInfo',
   initialState,
   reducers: {
-    setTheme: state => {
+    setTheme: (state) => {
       // remove current
       document.body.classList.remove('light', 'dark');
 
@@ -32,7 +32,7 @@ const userSlice = createSlice({
     },
   },
   extraReducers: {
-    [fetchUserDataThunk.pending]: state => {
+    [fetchUserDataThunk.pending]: (state) => {
       state.loading = true;
     },
     [fetchUserDataThunk.fulfilled]: (state, { payload }) => {
@@ -48,7 +48,7 @@ const userSlice = createSlice({
       state.skype = payload.skype;
       state.userImgUrl = payload.userImgUrl;
       state.loading = false;
-      state.theme = payload.theme;
+      // state.theme = payload.theme;
 
       document.body.classList.add(state.theme);
     },
@@ -56,7 +56,7 @@ const userSlice = createSlice({
       state.error = payload;
       state.loading = false;
     },
-    [updateUserDataThunk.pending]: state => {
+    [updateUserDataThunk.pending]: (state) => {
       state.loading = true;
     },
     [updateUserDataThunk.fulfilled]: (state, { payload }) => {
