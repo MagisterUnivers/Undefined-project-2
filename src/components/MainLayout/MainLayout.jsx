@@ -1,9 +1,9 @@
 // import { Header } from 'components/Header/Header';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import { fetchUserDataThunk } from 'redux/UserInfo/userInfoOperations';
-import { selectUser } from 'redux/selectors';
+// import { selectUser } from 'redux/selectors';
 // import { SideBar } from './SideBar/SideBar';
 // import { useState } from 'react';
 import { Header } from 'components/Header/Header';
@@ -13,7 +13,7 @@ import { SideBarTest } from 'components/SideBarTest/SideBarTest';
 
 export const MainLayout = () => {
   document.body.style.backgroundColor = '#F7F6F9';
-  const { email } = useSelector(selectUser);
+  // const { email } = useSelector(selectUser);
   // const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1439.98px)' });
 
   const dispatch = useDispatch();

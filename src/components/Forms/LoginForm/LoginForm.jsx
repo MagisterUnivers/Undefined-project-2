@@ -5,7 +5,7 @@ import { loginThunk } from 'redux/Auth/authOperations';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import AuthNavigate from 'components/AuthNavigate/AuthNavigate';
-import LogOut from 'components/Btn/LogoutBtn/LogOut';
+// import LogOut from 'components/Btn/LogoutBtn/LogOut';
 import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
 import { ReactComponent as DoneLogo } from './Done.svg';
 import { ReactComponent as ErrorLogo } from './Error.svg';
