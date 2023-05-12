@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocale } from 'react-aria';
 import { getWeeksInMonth } from '@internationalized/date';
-import { MonthCalendarHead } from '../MonthCalendarHead';
+// import { MonthCalendarHead } from '../MonthCalendarHead';
 import { CalendarCell } from '../CalendarTable/CalendarCell';
 
 import { fillFirstDays, splitArrayIntoChunks } from '../../../utils';
