@@ -27,6 +27,12 @@ module.exports = {
         'blue-1': '#3e85f3',
         'blue-2': '#e3f3ff',
       },
+
+      inset: {
+        '10px': '10px',
+        '12px': '12px',
+      },
+
       fontSize: {
         14: '14px',
         16: '16px',
@@ -46,13 +52,19 @@ module.exports = {
         10: '131px',
         11: '225px',
         12: '241px',
+        7: '27px',
       },
       height: {
         10: '46px',
         11: '56px',
+        6: '22px',
+        7: '26px',
       },
       minHeight: {
         '50px': '50px',
+      },
+      borderRadius: {
+        8: '8px',
       },
     },
   },

@@ -37,7 +37,12 @@ export const CalendarTable = ({ state, dateFormatter, daysOfWeekLabels }) => {
   const weeks = splitArrayIntoChunks(sanitizedDays, 7);
 
   return (
-    <table className="w-full rounded-lg border border-gray-3 dark:border-gray-4 bg-white dark:bg-gray-bg text-black-text  dark:text-white">
+    <table
+      className=" w-full rounded-lg border border-gray-3 
+    dark:border-gray-4 bg-white dark:bg-gray-bg 
+    text-black-text  dark:text-white 
+    overflow-hidden shadow-sm"
+    >
       {weeks.map((daysInWeek) => {
         // { monday, tuesday }
         const datesOfWeekByDayLabel = daysInWeek.reduce((map, item) => {
