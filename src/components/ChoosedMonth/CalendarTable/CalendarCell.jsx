@@ -39,9 +39,7 @@ export const CalendarCell = ({ state, date }) => {
     <td
       {...cellProps}
       ref={ref}
-      className={`
-      w-1/7 overflow-hidden 
-      border-r last:border-r-0  border-gray-3  dark:border-gray-4 
+      className={`w-1/7 border-r last:border-r-0  border-gray-3  dark:border-gray-4 
       ${isDisabled ? 'disabled' : ''} 
       ${isUnavailable ? 'unavailable' : ''}`}
     >

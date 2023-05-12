@@ -43,7 +43,7 @@ export const CalendarTable = ({
 
   return (
     <table
-      className={`w-full rounded-lg border border-gray-3 
+      className={`w-full rounded-lg border border-gray-3 table-fixed  
     dark:border-gray-4 bg-white dark:bg-gray-bg 
     text-black-text  dark:text-white 
     overflow-hidden shadow-sm ${className}`}
