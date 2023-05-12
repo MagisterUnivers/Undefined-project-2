@@ -40,7 +40,7 @@ export const CalendarCell = ({ state, date }) => {
 
   const navigate = useNavigate();
   const handelClick = () => {
-    navigate(`calendar/day/${formattedDate}`);
+    navigate(`/main/calendar/day/${formattedDate}`);
   };
 
   return (

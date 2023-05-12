@@ -5,7 +5,7 @@ export const PeriodTypeSelect = () => {
     <>
       <ButtonGroup>
         <Button to="calendar">Month</Button>
-        <Button to="/day/:currentDay">Day</Button>
+        <Button to="/main/calendar/day/:currentDay">Day</Button>
       </ButtonGroup>
     </>
   );
