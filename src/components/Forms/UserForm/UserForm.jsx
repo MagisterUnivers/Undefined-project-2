@@ -108,7 +108,6 @@ import { useMediaQuery } from 'react-responsive';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { enUS } from 'date-fns/locale';
-import { selectUserInfo } from 'redux/selectors';
 
 export const UserForm = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 767.98px)' });
@@ -477,9 +476,6 @@ const StyledDiv = styled.div`
 
     position: static;
   }
-`;
-const BorderedAvatar = styled(Avatar)`
-  border: 2px solid #3e85f3;
 `;
 
 const StyledForm = styled.form`
