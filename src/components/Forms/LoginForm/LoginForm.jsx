@@ -36,7 +36,7 @@ export const LoginForm = () => {
     email: '',
     password: '',
   };
-  const InputField1 = ({ name, placeholder }) => {
+  const InputField1 = ({ name, placeholder, type }) => {
     const [field, meta] = useField(name);
     const showError = meta.touched && meta.error;
     const className = showError ? 'error' : 'success';
@@ -52,7 +52,7 @@ export const LoginForm = () => {
         </StyledLabel>
         <Rel>
           <StyledField
-            type="text"
+            type={type ?? 'text'}
             id={name}
             name={name}
             placeholder={placeholder}
@@ -102,6 +102,7 @@ export const LoginForm = () => {
                 <StyledHolder>
                   <InputField1
                     name="password"
+                    type="password"
                     placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
                   />
                 </StyledHolder>
