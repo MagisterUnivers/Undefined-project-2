@@ -86,7 +86,7 @@ export const UserForm = () => {
   };
 
   useEffect(() => {
-    setIsFormValid(validateForm());
+    setIsFormValid(validateForm()); //eslint-disable-next-line
   }, [formData]);
 
   const customLocale = {
