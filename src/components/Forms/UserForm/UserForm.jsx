@@ -322,7 +322,7 @@ export const UserForm = () => {
                 dateFormat="yyyy-MM-dd"
                 // dayClassName={date => 'custom-day'}
                 // formatWeekDay={formatWeekDay}
-                required
+                // required
                 locale={customLocale}
               />
             </StyledHolder>{' '}
@@ -344,7 +344,7 @@ export const UserForm = () => {
                 placeholder="Enter your email"
                 pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
                 title="Please enter a valid email address. Example - john@example.com"
-                required
+                // required
               />
             </StyledHolder>
             <StyledHolder>
@@ -366,7 +366,7 @@ export const UserForm = () => {
                 placeholder="Enter your phone number"
                 pattern="^[0-9()+-]+$"
                 title="Please enter a valid phone number. Only numbers, parentheses, plus sign (+), and dashes are allowed. For example: +1 (123) 456-7890"
-                required
+                // required
               />
             </StyledHolder>
             <StyledHolder>
@@ -388,7 +388,7 @@ export const UserForm = () => {
                 placeholder="Add a skype number"
                 pattern="^[A-Za-z0-9.-_]+$"
                 title="Please enter a valid Skype ID. Only letters, numbers, dots, dashes, and underscores are allowed. For example: john.doe_123"
-                required
+                // required
               />
             </StyledHolder>
           </StyledTaker>
