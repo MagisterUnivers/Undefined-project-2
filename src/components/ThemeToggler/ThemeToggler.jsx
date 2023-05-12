@@ -9,7 +9,13 @@ export const ThemeToggler = () => {
   const theme = useSelector(selectTheme);
 
   return (
-    <IconButton onClick={() => dispatch(setTheme())}>
+    <IconButton
+      // sx={{
+      //   width: { mobile: '32px', tablet: '44px' },
+      //   height: { mobile: '32px', tablet: '44px' },
+      // }}
+      onClick={() => dispatch(setTheme())}
+    >
       {theme === 'light' ? (
         <DarkModeOutlinedIcon
           htmlColor="#3E85F3"
