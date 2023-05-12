@@ -144,7 +144,6 @@ export const StyledWrapper = styled.div`
   transform: translate(-50%, -50%);
   border: transparent;
   background: #ffffff;
-  border: 1px solid black;
   border-radius: 8px;
   @media screen and (min-width: 768px) {
     padding: 40px 40px;
