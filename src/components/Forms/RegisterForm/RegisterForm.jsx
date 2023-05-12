@@ -103,7 +103,7 @@ export const RegisterForm = () => {
   return (
     <>
       <StyledWrapper>
-        <StyledTitle>Sign up</StyledTitle>
+        <StyledLink>Sign up</StyledLink>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -196,7 +196,7 @@ const StyledDoneLogo = styled(DoneLogo)`
   height: 20px;
 `;
 
-const StyledTitle = styled.h2`
+const StyledLink = styled.h2`
   margin-left: 40px;
   margin-top: 40px;
   margin-bottom: 32px;

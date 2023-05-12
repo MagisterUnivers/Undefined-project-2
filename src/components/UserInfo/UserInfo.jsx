@@ -38,6 +38,7 @@ export const UserInfo = () => {
             width: { mobile: 32, tablet: 44 },
             height: { mobile: 32, tablet: 44 },
           }}
+          alt={`${name} avatar`}
         >
           {name[0]}
         </Avatar>

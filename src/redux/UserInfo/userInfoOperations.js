@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { loginThunk, refreshThunk } from 'redux/Auth/authOperations';
 
 const setToken = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -20,7 +21,14 @@ export const fetchUserDataThunk = createAsyncThunk(
       // };
       return res.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      // console.log(error.response.data.message);
+      // if (error.response.data.message === 'Token is expired') {
+      //   thunkAPI
+      //     .dispatch(refreshThunk())
+      //     .then(() => thunkAPI.dispatch(loginThunk()));
+      // }
+
+      return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
 );

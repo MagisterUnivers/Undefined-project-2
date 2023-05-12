@@ -108,9 +108,12 @@ import { useMediaQuery } from 'react-responsive';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { enUS } from 'date-fns/locale';
+import { selectUserInfo } from 'redux/selectors';
 
 export const UserForm = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 767.98px)' });
+  // const { name, userImgUrl } = useSelector(selectUserInfo);
+
   const user = useSelector((state) => state.userInfo);
   const [formData, setFormData] = useState({
     _id: '',
@@ -246,14 +249,29 @@ export const UserForm = () => {
               horizontal: 'right',
             }}
           >
-            <BorderedAvatar
-              sx={{
-                width: { mobile: 72, tablet: 124 },
-                height: { mobile: 72, tablet: 124 },
-              }}
-              src={formData.userImgUrl}
-              alt={`${formData.name} avatar`}
-            />
+            {formData.userImgUrl ? (
+              <Avatar
+                src={formData.userImgUrl}
+                alt={`${formData.name} avatar`}
+                sx={{
+                  width: { mobile: 72, tablet: 124 },
+                  height: { mobile: 72, tablet: 124 },
+                  border: '2px solid #3e85f3',
+                }}
+              />
+            ) : (
+              <Avatar
+                alt={`${formData.name} avatar`}
+                sx={{
+                  fontSize: '50px',
+                  width: { mobile: 72, tablet: 124 },
+                  height: { mobile: 72, tablet: 124 },
+                  border: '2px solid #3e85f3',
+                }}
+              >
+                {formData.name[0]}
+              </Avatar>
+            )}
           </Badge>
         </StyledDiv>
         <input
