@@ -12,7 +12,6 @@ export const SideBarTest = ({ isOpenSidebarMobile, toggleSidebar }) => {
   const className = isOpenSidebarMobile
     ? styles.container_1
     : styles.container_2;
-  console.log(isOpenSidebarMobile);
   const isMobileOrTablet = useMediaQuery({ query: '(max-width: 1439.98px)' });
   return isMobileOrTablet ? (
     <>

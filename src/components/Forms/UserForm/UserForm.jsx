@@ -61,7 +61,7 @@
 //       </div> */}
 //             <StyledHolder>
 //               <StyledLabel htmlFor="email">Email</StyledLabel>
-//               <br />
+// <br />
 //               <StyledField
 //                 type="email"
 //                 id="email"
@@ -281,7 +281,7 @@ export const UserForm = () => {
               >
                 User Name
               </StyledLabel>
-              <br />
+              {/* <br /> */}
               <StyledField
                 className=" text-black dark:text-white"
                 type="text"
@@ -303,7 +303,7 @@ export const UserForm = () => {
               >
                 Birthday
               </StyledLabel>
-              <br />
+              {/* <br /> */}
               <StyledDatePicker
                 type="date"
                 name="birthday"
@@ -333,7 +333,7 @@ export const UserForm = () => {
               >
                 Email
               </StyledLabel>
-              <br />
+              {/* <br /> */}
               <StyledField
                 className=" text-black dark:text-white"
                 type="email"
@@ -355,7 +355,7 @@ export const UserForm = () => {
               >
                 Phone
               </StyledLabel>
-              <br />
+              {/* <br /> */}
               <StyledField
                 className=" text-black dark:text-white"
                 type="tel"
@@ -377,7 +377,7 @@ export const UserForm = () => {
               >
                 Skype
               </StyledLabel>
-              <br />
+              {/* <br /> */}
               <StyledField
                 className=" text-black dark:text-white"
                 type="text"
@@ -419,6 +419,7 @@ const badgeStyleTablet = {
   },
 };
 const StyledDatePicker = styled(DatePicker)`
+  display: block;
   font-weight: 600;
   font-size: 16px;
   line-height: calc(18 / 16);
@@ -493,6 +494,7 @@ const StyledForm = styled.form`
 // `;
 
 const StyledLabel = styled.label`
+  display: block;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
@@ -662,6 +664,7 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledField = styled.input`
+  /* display: block; */
   margin-top: 8px;
   /* margin-bottom: 32px; */
   padding: 14px;

@@ -10,9 +10,7 @@ export const Header = ({ toggleSidebar }) => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1439.98px)' });
   const location = useLocation();
   const pageTitle =
-    location.pathname.slice(1, 2).toUpperCase() + location.pathname.slice(2);
-  console.log(location);
-  console.log(typeof pageTitle);
+    location.pathname.slice(6, 7).toUpperCase() + location.pathname.slice(7);
   return (
     <Box
       component="header"
@@ -20,7 +18,6 @@ export const Header = ({ toggleSidebar }) => {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        border: '1px solid black',
         maxWidth: { tablet: '704px', desktop: '1087px' },
       }}
     >
@@ -37,7 +34,7 @@ export const Header = ({ toggleSidebar }) => {
         <StyledTypography component="h1">{pageTitle}</StyledTypography>
       )}
 
-      <Box sx={{ display: 'flex' }}>
+      <Box sx={{ display: 'flex', gap: { mobile: '6px', tablet: '2px' } }}>
         <ThemeToggler />
         <UserInfo />
       </Box>
@@ -46,6 +43,7 @@ export const Header = ({ toggleSidebar }) => {
 };
 
 const StyledTypography = styled.h1`
+  /* display: block; */
   font-family: 'Inter';
   font-weight: 700;
   font-size: 32px;

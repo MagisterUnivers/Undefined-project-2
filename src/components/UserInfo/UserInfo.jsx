@@ -5,7 +5,6 @@ import { Box } from '@mui/system';
 
 export const UserInfo = () => {
   const { name, userImgUrl } = useSelector(selectUserInfo);
-  console.log(userImgUrl);
   return (
     <Box display={'flex'} alignItems={'center'} gap={'14px'}>
       <Typography

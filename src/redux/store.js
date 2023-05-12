@@ -23,7 +23,7 @@ const persistConfig = {
 
 const persistConfigForTheme = {
   key: 'theme',
-  version: 1,
+  version: 2,
   storage,
   whitelist: ['theme'],
 };
