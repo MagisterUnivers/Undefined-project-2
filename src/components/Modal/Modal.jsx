@@ -9,13 +9,13 @@ import { useEffect } from 'react';
 
 const Modal = ({ children, handleModalClose }) => {
   useEffect(() => {
-    const handleEscBtnClick = ev => {
+    const handleEscBtnClick = (ev) => {
       if (ev.code === 'Escape') {
         handleModalClose();
       }
     };
 
-    const handleBackdropClick = ev => {
+    const handleBackdropClick = (ev) => {
       if (ev.target.classList.contains('backdrop')) {
         handleModalClose();
       }
@@ -46,3 +46,17 @@ const Modal = ({ children, handleModalClose }) => {
 };
 
 export default Modal;
+
+/**
+  |============================
+  | Outside Modal logic
+  |============================
+*/
+
+// const [isModalShown, setIsModalShown] = useState(true);
+// const handleModalClose = () => {
+//   setIsModalShown(false);
+// };
+//  {isModalShown && (
+//   <Modal handleModalClose={handleModalClose}>{<TaskForm />}</Modal>
+// )}

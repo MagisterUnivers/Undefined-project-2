@@ -13,11 +13,19 @@ export const StyledModal = styled.div`
   width: 303px;
   height: 336px;
   padding-top: 48px;
-  padding-right: 14px;
+  padding-right: 18px;
   padding-left: 18px;
   padding-bottom: 40px;
   background-color: #fff;
   transform: translate(-50%, -50%);
+
+  @media screen and (min-width: 768px) {
+    width: 396px;
+    height: 360px;
+    padding-top: 40px;
+    padding-right: 28px;
+    padding-left: 28px;
+  }
 `;
 
 export const StyledBtn = styled.button`

@@ -1,10 +1,22 @@
 import { FormControl } from '@mui/base';
-import { FormControlLabel, Radio, RadioGroup } from '@mui/material';
+import { Radio } from '@mui/material';
 import { useState } from 'react';
-import { StyledForm, StyledInput, StyledLabel } from './StyledTaskForm';
+import {
+  StyledAddBtn,
+  StyledButtonsWrapper,
+  StyledCancelBtn,
+  StyledEditBtn,
+  StyledForm,
+  StyledFormControlLabel,
+  StyledInput,
+  StyledInputWrapper,
+  StyledLabel,
+  StyledPencilIcon,
+  StyledPlusIcon,
+  StyledRadioGroup,
+} from './StyledTaskForm';
 import CircleIcon from '@mui/icons-material/Circle';
 import CircleTwoToneIcon from '@mui/icons-material/CircleTwoTone';
-import { pink } from '@mui/material/colors';
 
 const TaskForm = () => {
   const [isTaskCreated, setIsTaskCreated] = useState(false);
@@ -14,23 +26,23 @@ const TaskForm = () => {
         Title
         <StyledInput type="text" placeholder="Enter text" />
       </StyledLabel>
-      <div>
+      <StyledInputWrapper>
         <StyledLabel>
-          start
-          <StyledInput type="text" />
+          Start
+          <StyledInput type="text" placeholder="9:00" />
         </StyledLabel>
         <StyledLabel>
-          end
-          <StyledInput type="text" />
+          End
+          <StyledInput type="text" placeholder="14:00" />
         </StyledLabel>
-      </div>
+      </StyledInputWrapper>
       <FormControl>
-        <RadioGroup
+        <StyledRadioGroup
           row
           aria-labelledby="demo-row-radio-buttons-group-label"
           name="row-radio-buttons-group"
         >
-          <FormControlLabel
+          <StyledFormControlLabel
             value="low"
             control={
               <Radio
@@ -50,7 +62,7 @@ const TaskForm = () => {
             }
             label="Low"
           />
-          <FormControlLabel
+          <StyledFormControlLabel
             value="medium"
             control={
               <Radio
@@ -70,7 +82,7 @@ const TaskForm = () => {
             }
             label="Medium"
           />
-          <FormControlLabel
+          <StyledFormControlLabel
             value="high"
             control={
               <Radio
@@ -90,15 +102,21 @@ const TaskForm = () => {
             }
             label="High"
           />
-        </RadioGroup>
+        </StyledRadioGroup>
       </FormControl>
       {isTaskCreated ? (
-        <button type="submit">Edit</button>
+        <StyledEditBtn type="submit">
+          <StyledPencilIcon />
+          Edit
+        </StyledEditBtn>
       ) : (
-        <div>
-          <button type="submit">Add</button>
-          <button type="button">Cancel</button>
-        </div>
+        <StyledButtonsWrapper>
+          <StyledAddBtn type="submit">
+            <StyledPlusIcon />
+            Add
+          </StyledAddBtn>
+          <StyledCancelBtn type="button">Cancel</StyledCancelBtn>
+        </StyledButtonsWrapper>
       )}
     </StyledForm>
   );
