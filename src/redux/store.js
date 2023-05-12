@@ -18,13 +18,19 @@ const persistConfig = {
   key: 'data',
   version: 1,
   storage,
-  whitelist: ['data', 'userInfo', 'user', 'theme'],
+  whitelist: ['data', 'userInfo', 'user', 'online'],
 };
 
+const persistConfigForTheme = {
+  key: 'theme',
+  version: 1,
+  storage,
+  whitelist: ['theme'],
+};
 export const store = configureStore({
   reducer: {
     auth: persistReducer(persistConfig, authReducer),
-    userInfo: persistReducer(persistConfig, userInfoReducer),
+    userInfo: persistReducer(persistConfigForTheme, userInfoReducer),
     calendar: persistReducer(persistConfig, calendarEventsReducer),
   },
   middleware: (getDefaultMiddleware) =>

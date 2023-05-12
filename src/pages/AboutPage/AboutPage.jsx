@@ -34,9 +34,15 @@ import {
   ButtonIconDiv,
   IconButton,
   MobileDiv,
+  StyledSpan,
+  H2,
 } from './AboutPage.styled.js';
+import { useSelector } from 'react-redux';
+import { selectIsOnline, selectUser } from 'redux/selectors';
 const AboutPage = () => {
   const navigate = useNavigate();
+  const isOnline = useSelector(selectIsOnline);
+  const { name } = useSelector(selectUser);
 
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const isMobileorTable = useMediaQuery({ query: '(max-width: 1439px)' });
@@ -63,15 +69,32 @@ const AboutPage = () => {
             <GooseLogo width={150} height={149} />
           </Logo>
         )}
-        <Title>GooseTrack</Title>
-        <DivButton>
-          <ButtonSign type="button" onClick={() => navigate(`/register`)}>
-            Sign up
-          </ButtonSign>
-          <ButtonLog type="button" onClick={() => navigate(`/login`)}>
-            Log in <Login />
-          </ButtonLog>
-        </DivButton>
+        <Title>
+          G<StyledSpan>oo</StyledSpan>seTrack
+        </Title>
+
+        {isOnline ? (
+          <DivButton $logged>
+            <H2>Welcome back, {name}</H2>
+            <ButtonLog
+              $logged
+              type="button"
+              onClick={() => navigate(`/main/calendar`)}
+            >
+              Go to Calendar <Login />
+            </ButtonLog>
+          </DivButton>
+        ) : (
+          <DivButton>
+            {' '}
+            <ButtonSign type="button" onClick={() => navigate(`/register`)}>
+              Sign up
+            </ButtonSign>
+            <ButtonLog type="button" onClick={() => navigate(`/login`)}>
+              Log in <Login />
+            </ButtonLog>
+          </DivButton>
+        )}
       </Div>
       <List>
         <Item>
@@ -215,7 +238,7 @@ const AboutPage = () => {
           className="mySwiper"
         >
           <ReviewsList>
-            {reviews.map(review => (
+            {reviews.map((review) => (
               <SwiperSlide key={review.id}>
                 <ReviewsItem>
                   <GroupDiv>
@@ -253,7 +276,7 @@ const AboutPage = () => {
           className="mySwiper"
         >
           <ReviewsList>
-            {reviews.map(review => (
+            {reviews.map((review) => (
               <SwiperSlide key={review.id}>
                 <ReviewsItem>
                   <GroupDiv>
