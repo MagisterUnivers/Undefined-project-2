@@ -1,3 +1,5 @@
+import { parseISO } from 'date-fns';
+
 const { createSlice } = require('@reduxjs/toolkit');
 const {
   fetchUserDataThunk,
@@ -6,13 +8,12 @@ const {
 
 const initialState = {
   _id: '',
-  name: 'Serhii',
+  name: '',
   email: '',
   birthday: '',
   phone: '',
   skype: '',
-  userImgUrl:
-    'https://lh3.googleusercontent.com/a/AGNmyxajlg1m9Ch9H6GVi0od7Qpi51V85SXWY1KkOIse0w=s288',
+  userImgUrl: '',
   theme: 'light',
 };
 
@@ -20,7 +21,7 @@ const userSlice = createSlice({
   name: '@@userInfo',
   initialState,
   reducers: {
-    setTheme: state => {
+    setTheme: (state) => {
       // remove current
       document.body.classList.remove('light', 'dark');
 
@@ -31,27 +32,31 @@ const userSlice = createSlice({
     },
   },
   extraReducers: {
-    [fetchUserDataThunk.pending]: state => {
+    [fetchUserDataThunk.pending]: (state) => {
       state.loading = true;
     },
     [fetchUserDataThunk.fulfilled]: (state, { payload }) => {
       state._id = payload._id;
       state.name = payload.name;
       state.email = payload.email;
-      state.birthday = payload.birthday;
+      if (payload.birthday === null) {
+        state.birthday = new Date(); // Устанавливаем текущую дату как базовую
+      } else {
+        state.birthday = parseISO(payload.birthday);
+      }
       state.phone = payload.phone;
       state.skype = payload.skype;
       state.userImgUrl = payload.userImgUrl;
       state.loading = false;
-      state.theme = payload.theme;
 
       document.body.classList.add(state.theme);
     },
     [fetchUserDataThunk.rejected]: (state, { payload }) => {
       state.error = payload;
       state.loading = false;
+      state.online = false;
     },
-    [updateUserDataThunk.pending]: state => {
+    [updateUserDataThunk.pending]: (state) => {
       state.loading = true;
     },
     [updateUserDataThunk.fulfilled]: (state, { payload }) => {
@@ -65,7 +70,7 @@ const userSlice = createSlice({
       state._id = payload._id;
       state.name = payload.name;
       state.email = payload.email;
-      state.birthday = payload.birthday;
+      state.birthday = parseISO(payload.birthday);
       state.phone = payload.phone;
       state.skype = payload.skype;
       state.userImgUrl = payload.userImgUrl;

@@ -5,13 +5,12 @@ import { ThemeToggler } from 'components/ThemeToggler/ThemeToggler';
 import { useMediaQuery } from 'react-responsive';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-export const Header = () => {
+
+export const Header = ({ toggleSidebar }) => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1439.98px)' });
   const location = useLocation();
   const pageTitle =
-    location.pathname.slice(1, 2).toUpperCase() + location.pathname.slice(2);
-  console.log(location);
-  console.log(typeof pageTitle);
+    location.pathname.slice(6, 7).toUpperCase() + location.pathname.slice(7);
   return (
     <Box
       component="header"
@@ -19,12 +18,11 @@ export const Header = () => {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        border: '1px solid black',
         maxWidth: { tablet: '704px', desktop: '1087px' },
       }}
     >
       {isTabletOrMobile ? (
-        <IconButton>
+        <IconButton onClick={toggleSidebar}>
           <MenuRoundedIcon
             sx={{
               width: { mobile: 24, tablet: 34 },
@@ -36,7 +34,7 @@ export const Header = () => {
         <StyledTypography component="h1">{pageTitle}</StyledTypography>
       )}
 
-      <Box sx={{ display: 'flex' }}>
+      <Box sx={{ display: 'flex', gap: { mobile: '6px', tablet: '2px' } }}>
         <ThemeToggler />
         <UserInfo />
       </Box>
@@ -45,6 +43,7 @@ export const Header = () => {
 };
 
 const StyledTypography = styled.h1`
+  /* display: block; */
   font-family: 'Inter';
   font-weight: 700;
   font-size: 32px;

@@ -15,10 +15,8 @@ export const Logo = styled.div`
   }
 `;
 export const Title = styled.h1`
-  font-family: 'Coolvetica';
-  font-style: normal;
-  font-weight: 400;
-  font-weight: 400;
+  font-family: 'Inter';
+  font-weight: 600;
   font-size: 44px;
   line-height: 48/44;
   color: #ffffff;
@@ -30,6 +28,20 @@ export const Title = styled.h1`
     font-size: 120px;
     line-height: 150/120;
   }
+`;
+export const StyledSpan = styled.span`
+  font-style: italic;
+`;
+export const H2 = styled.h2`
+  font-family: 'Inter';
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1;
+
+  color: #ffffff;
+
+  text-shadow: 0px 47px 355px rgba(0, 0, 0, 0.07),
+    0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
 `;
 export const Div = styled.div`
   background-color: #3e85f3;
@@ -44,16 +56,15 @@ export const Div = styled.div`
 `;
 export const DivButton = styled.div`
   display: flex;
-  flex-direction: column;
-  flex-direction: column-reverse;
-  gap: 208px;
+  flex-direction: ${(props) => (props.$logged ? 'column' : 'column-reverse')};
+  gap: ${(props) => (props.$logged ? '25px' : '208px')};
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
   margin-top: 40px;
   align-items: center;
   @media screen and (min-width: 768px) {
-    flex-direction: row;
+    flex-direction: ${(props) => (props.$logged ? 'column' : 'row')};
     gap: 25px;
   }
 `;
@@ -79,7 +90,7 @@ export const ButtonSign = styled.button`
   }
 `;
 export const ButtonLog = styled.button`
-  width: 131px;
+  width: ${(props) => (props.$logged ? '200px' : '131px')};
   background-color: #ffffff;
   color: #3e85f3;
   padding: 14px 22px;
