@@ -26,7 +26,7 @@ export const UserNav = ({ toggleSidebar }) => {
             isActive ? 'text-blue-1 bg-blue-2' : '',
           ].join(' ');
         }}
-        to="/account"
+        to="/main/account"
       >
         {({ isActive }) => {
           return (
@@ -62,7 +62,7 @@ export const UserNav = ({ toggleSidebar }) => {
             isActive ? 'text-blue-1 bg-blue-2' : '',
           ].join(' ');
         }}
-        to="/calendar"
+        to="/main/calendar"
       >
         {({ isActive }) => {
           return (
