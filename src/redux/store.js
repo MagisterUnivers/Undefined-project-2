@@ -12,6 +12,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import { authReducer } from './Auth/authSlice';
 import { userInfoReducer } from './UserInfo/userInfoSlice';
+import { calendarEventsReducer } from './CalendarEvents/calendarEventsSlice';
 
 const persistConfig = {
   key: 'data',
@@ -24,8 +25,9 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(persistConfig, authReducer),
     userInfo: persistReducer(persistConfig, userInfoReducer),
+    calendar: persistReducer(persistConfig, calendarEventsReducer),
   },
-  middleware: getDefaultMiddleware =>
+  middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],

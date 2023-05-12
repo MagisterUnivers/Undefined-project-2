@@ -1,4 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
+import {
+  createUserTaskThunk,
+  deleteUserTaskThunk,
+  getUserTaskThunk,
+  updateUserTaskThunk,
+} from './calendarEventsOperations';
 
 const mocks = [
   {
@@ -55,7 +61,15 @@ const mocks = [
 const initialState = {
   events: mocks,
   isLoading: false,
+  tasks: [],
 };
+//   title: '',
+//   start: '',
+//   end: '',
+//   priority: '',
+//   category: '',
+//   date: '2023-03-17',
+// };
 
 const calendarEventsSlice = createSlice({
   name: '@@calendarEvents',
@@ -65,6 +79,77 @@ const calendarEventsSlice = createSlice({
     partialUpdate: (state) => {},
     update: (state) => {},
     removeEvent: (state) => {},
+  },
+  extraReducers: {
+    [createUserTaskThunk.pending]: (state) => {
+      state.IsLoading = true;
+    },
+    [createUserTaskThunk.fulfilled]: (state, { payload }) => {
+      // state.tasks.title = payload.title;
+      // state.tasks.start = payload.start;
+      // state.tasks.end = payload.end;
+      // // if (payload.birthday === null) {
+      // //   state.birthday = new Date(); // Устанавливаем текущую дату как базовую
+      // // } else {
+      // //   state.birthday = parseISO(payload.birthday);
+      // // }
+      // state.tasks.priority = payload.priority;
+      // state.tasks.date = parseISO(payload.date);
+      // state.tasks._id = payload._id;
+      state.tasks.push(payload);
+      state.IsLoading = false;
+    },
+    [createUserTaskThunk.rejected]: (state, { payload }) => {
+      state.error = payload;
+      state.IsLoading = false;
+    },
+    [deleteUserTaskThunk.pending]: (state, { payload }) => {
+      state.IsLoading = true;
+    },
+    [deleteUserTaskThunk.fulfilled](state, action) {
+      state.IsLoading = false;
+      state.error = null;
+      const index = state.tasks.findIndex(
+        (task) => task.id === action.payload.id
+      );
+      state.tasks.splice(index, 1);
+    },
+  },
+  [deleteUserTaskThunk.rejected]: (state, { payload }) => {
+    state.IsLoading = true;
+    state.error = payload;
+  },
+  [updateUserTaskThunk.pending]: (state, { payload }) => {
+    state.IsLoading = true;
+  },
+  [updateUserTaskThunk.fulfilled](state, { payload }) {
+    state.IsLoading = false;
+    state.error = null;
+    //   const index = state.tasks.findIndex(
+    //     (task) => task.id === action.payload.id
+    //   );
+    //   state.tasks.splice(index, 1);
+  },
+  [updateUserTaskThunk.rejected]: (state, { payload }) => {
+    state.IsLoading = true;
+    state.error = payload;
+  },
+  [getUserTaskThunk.pending]: (state, { payload }) => {
+    state.IsLoading = true;
+  },
+  [getUserTaskThunk.fulfilled](state, { payload }) {
+    state.IsLoading = false;
+    state.error = null;
+    state.tasks.push(payload);
+
+    //   const index = state.tasks.findIndex(
+    //     (task) => task.id === action.payload.id
+    //   );
+    //   state.tasks.splice(index, 1);
+  },
+  [getUserTaskThunk.rejected]: (state, { payload }) => {
+    state.IsLoading = true;
+    state.error = payload;
   },
 });
 
