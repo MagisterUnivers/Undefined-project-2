@@ -16,7 +16,11 @@ export const getMonthEvents = createAsyncThunk(
 
 export const getUserTaskThunk = createAsyncThunk(
   '@@calendarEvents/getUserTask',
-  async (year, month, thunkAPI) => {
+  async ({ year, month, authToken }, thunkAPI) => {
+    const headers = {
+      Authorization: `Bearer ${authToken}`,
+    };
+
     // const savedToken = thunkAPI.getState().auth.data.accessToken;
     try {
       const res = await axios.get('task/by-month', {
@@ -24,6 +28,7 @@ export const getUserTaskThunk = createAsyncThunk(
           year: year,
           month: month,
         },
+        headers: headers,
       });
       // setToken(res.data);
       return res.data;

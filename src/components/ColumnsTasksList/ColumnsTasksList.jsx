@@ -1,5 +1,6 @@
 import { TaskColumnCard } from 'components/TaskColumnCard/TaskColumnCard';
 import { StyledLi, StyledUl } from './ColumnsTasksList.styled';
+import { nanoid } from '@reduxjs/toolkit';
 const tasksExample = [
   {
     title: 'ohohohohhohohoohohohoohdsgfdohhohoohohfdsvsdsdfvs',
@@ -29,8 +30,8 @@ const tasksExample = [
 export const ColumnsTasksList = ({ tasks }) => {
   return (
     <StyledUl>
-      {tasksExample.map((task) => (
-        <StyledLi>
+      {tasks.map((task) => (
+        <StyledLi key={nanoid()}>
           <TaskColumnCard title={task.title} priority={task.priority} />
         </StyledLi>
       ))}

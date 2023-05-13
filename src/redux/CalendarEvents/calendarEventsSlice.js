@@ -127,7 +127,7 @@ const computeTaskMap = (items) => {
 
 const initialState = {
   isLoading: false,
-  tasks: mocks,
+  tasks: [],
   taskMap: computeTaskMap(mocks),
 };
 
@@ -213,7 +213,8 @@ const calendarEventsSlice = createSlice({
   [getUserTaskThunk.fulfilled](state, { payload }) {
     state.IsLoading = false;
     state.error = null;
-    state.tasks.push(payload);
+    state.tasks = [...state.tasks, ...payload];
+    console.log('AJSJDASHDHASHDHASDHASHDHASHDAHSDHAHSDHA', payload);
 
     //   const index = state.tasks.findIndex(
     //     (task) => task.id === action.payload.id
@@ -243,5 +244,5 @@ export const useEventTasks = ({ date_key }) => {
 };
 
 export const calendarEventsReducer = calendarEventsSlice.reducer;
-export const { addEvent, partialUpdate, removeEvent, update } =
+export const { addEvent, partialUpdate, removeEvent, update} =
   calendarEventsSlice.actions;

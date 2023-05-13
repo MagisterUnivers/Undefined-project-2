@@ -1,13 +1,11 @@
 import Modal from 'components/Modal/Modal';
 import TaskForm from 'components/Forms/TaskForm/TaskForm';
-import { useState } from 'react';
 
-const TaskModal = () => {
-
+const TaskModal = ({ handleModalClose, title, currentDay }) => {
   return (
     <>
-      <Modal>
-        <TaskForm />
+      <Modal handleModalClose={handleModalClose}>
+        <TaskForm columnCategory={title} currentDay={currentDay} />
       </Modal>
     </>
   );

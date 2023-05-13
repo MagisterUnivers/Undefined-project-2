@@ -5,17 +5,30 @@ import { useParams } from 'react-router-dom';
 import { useCalendar } from 'components/ChoosedMonth/useCalendar/useCalendar';
 import moment from 'moment';
 import { useEffect } from 'react';
-import {useCurrentDate} from '../../redux'
+import {getUserTaskThunk, useCurrentDate} from '../../redux'
 import { parseDate } from '@internationalized/date';
 import {getCalendarKey} from '../../utils/calendars'
 
 // import TasksColumn from 'components/TasksColumn/TasksColumn';
 import TasksColumnsList from 'components/TasksColumnsList/TasksColumnsList';
+import { useDispatch } from 'react-redux';
+import {store} from '../../redux/store'
 
 const ChoosedDayPage = () => {
   const { currentDay: currentDayParam } = useParams();
   const [currentDate, setCurrentDate] = useCurrentDate();
-  
+  const authToken = store.getState().auth.data.accessToken;
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    const dateArr = currentDayParam.split('-')
+    const currentYear = dateArr[0]
+    const currentMonth = dateArr[1]
+
+    dispatch(getUserTaskThunk({currentYear, currentMonth, authToken}))
+  }, [currentDayParam,authToken, dispatch])
+
   useEffect(() => {
     if (!currentDayParam) return;
 
@@ -34,6 +47,7 @@ const ChoosedDayPage = () => {
   let abbreviatedDaysOfWeekLabels = daysOfWeekLabels.map((day) =>
     day.slice(0, 3)
   );
+ 
   return (
     <div>
      

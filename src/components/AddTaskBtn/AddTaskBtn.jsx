@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import styles from './AddTaskBtn.module.css';
 import { ReactComponent as Plus } from './icons/plus.svg';
-import Modal from 'components/Modal/Modal';
-import TaskForm from 'components/Forms/TaskForm/TaskForm';
+import TaskModal from 'components/TaskModal/TaskModal';
 
-export const AddTaskBtn = () => {
+export const AddTaskBtn = ({ title, currentDay }) => {
   const [isModalShown, setIsModalShown] = useState(false);
 
   const handleModalClose = () => {
@@ -22,7 +21,11 @@ export const AddTaskBtn = () => {
         Add task
       </button>
       {isModalShown && (
-        <Modal handleModalClose={handleModalClose}>{<TaskForm />}</Modal>
+        <TaskModal
+          handleModalClose={handleModalClose}
+          title={title}
+          currentDay={currentDay}
+        />
       )}
     </>
   );

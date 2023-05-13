@@ -1,6 +1,9 @@
+import React, { useState } from 'react';
 import { FormControl } from '@mui/base';
 import { Radio } from '@mui/material';
-import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import CircleIcon from '@mui/icons-material/Circle';
+import CircleTwoToneIcon from '@mui/icons-material/CircleTwoTone';
 import {
   StyledAddBtn,
   StyledButtonsWrapper,
@@ -15,25 +18,72 @@ import {
   StyledPlusIcon,
   StyledRadioGroup,
 } from './StyledTaskForm';
-import CircleIcon from '@mui/icons-material/Circle';
-import CircleTwoToneIcon from '@mui/icons-material/CircleTwoTone';
+import { createUserTaskThunk } from '../../../redux/CalendarEvents/calendarEventsOperations';
 
-const TaskForm = () => {
+const TaskForm = ({ columnCategory, currentDay }) => {
   const [isTaskCreated] = useState(false);
-  return (  
-    <StyledForm>
+  const [priority, setPriority] = useState('');
+
+  const dispatch = useDispatch();
+
+  const handleFormSubmit = (ev) => {
+    ev.preventDefault();
+    const newTitle = ev.currentTarget.title.value;
+    const newStart = ev.currentTarget.start.value;
+    const newEnd = ev.currentTarget.end.value;
+
+    let newCategory = '';
+    switch (columnCategory.toLowerCase()) {
+      case 'in progress':
+        newCategory = 'in-progress';
+        break;
+      case 'to do':
+        newCategory = 'to-do';
+        break;
+      case 'done':
+        newCategory = 'done';
+        break;
+      default:
+        break;
+    }
+
+    const credentials = {
+      title: newTitle,
+      start: newStart,
+      end: newEnd,
+      priority,
+      category: newCategory,
+      date: currentDay,
+    };
+
+    dispatch(createUserTaskThunk(credentials));
+
+  };
+
+  const handleRadioChange = (ev) => {
+    setPriority(ev.target.value);
+  };
+
+  return (
+    <StyledForm onSubmit={handleFormSubmit}>
       <StyledLabel>
         Title
-        <StyledInput type="text" placeholder="Enter text" />
+        <StyledInput
+          type="text"
+          placeholder="Enter text"
+          maxLength="250"
+          name="title"
+          required
+        />
       </StyledLabel>
       <StyledInputWrapper>
         <StyledLabel>
           Start
-          <StyledInput type="text" placeholder="9:00" />
+          <StyledInput type="text" placeholder="9:00" name="start" required />
         </StyledLabel>
         <StyledLabel>
           End
-          <StyledInput type="text" placeholder="14:00" />
+          <StyledInput type="text" placeholder="14:00" name="end" required />
         </StyledLabel>
       </StyledInputWrapper>
       <FormControl>
@@ -41,6 +91,7 @@ const TaskForm = () => {
           row
           aria-labelledby="demo-row-radio-buttons-group-label"
           name="row-radio-buttons-group"
+          onChange={handleRadioChange}
         >
           <StyledFormControlLabel
             value="low"
