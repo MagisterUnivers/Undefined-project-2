@@ -1,6 +1,5 @@
-import { createSelector, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import moment from 'moment';
-import { useMemo } from 'react';
 import { shallowCompare } from 'react-global-state-hooks';
 import { useSelector } from 'react-redux';
 

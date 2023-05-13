@@ -37,7 +37,7 @@ export const getUserTaskThunk = createAsyncThunk(
 export const createUserTaskThunk = createAsyncThunk(
   '@@calendarEvents/createUserTask',
   async (credentials, thunkAPI) => {
-    const savedToken = thunkAPI.getState().auth.data.accessToken;
+    // const savedToken = thunkAPI.getState().auth.data.accessToken;
     try {
       const res = await axios.post('task', credentials);
       console.log(axios.defaults.headers.common.Authorization);
