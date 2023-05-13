@@ -1,5 +1,5 @@
 import Modal from 'components/Modal/Modal';
-import TaskForm from 'components/TaskForm/TaskForm';
+import TaskForm from 'components/Forms/TaskForm/TaskForm';
 import { useState } from 'react';
 
 const TaskModal = () => {

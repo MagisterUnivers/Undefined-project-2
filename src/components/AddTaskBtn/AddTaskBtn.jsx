@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from './AddTaskBtn.module.css';
 import { ReactComponent as Plus } from './icons/plus.svg';
 import Modal from 'components/Modal/Modal';
-import TaskForm from 'components/TaskForm/TaskForm';
+import TaskForm from 'components/Forms/TaskForm/TaskForm';
 
 export const AddTaskBtn = () => {
   const [isModalShown, setIsModalShown] = useState(false);

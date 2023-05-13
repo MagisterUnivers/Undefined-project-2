@@ -2,6 +2,8 @@ import { useState } from 'react';
 import {
   StyledArrowRightIcon,
   StyledList,
+  StyledListBtn,
+  StyledListItem,
   StyledMenuArrowIcon,
   StyledMenuBtn,
   StyledPencilIcon,
@@ -9,7 +11,7 @@ import {
   StyledSlideMenuItem,
   StyledTrashIcon,
 } from './StyledTaskToolbar';
-import TaskForm from 'components/TaskForm/TaskForm';
+import TaskForm from 'components/Forms/TaskForm/TaskForm';
 import Modal from 'components/Modal/Modal';
 
 const TaskToolbar = () => {
@@ -24,28 +26,28 @@ const TaskToolbar = () => {
     setIsModalShown(true);
   };
 
-  const handleSlideMenuOpen = () => {
-    setIsSlideMenuShown(true);
+  const handleSlideMenuToggle = () => {
+    setIsSlideMenuShown(!isSlideMenuShown)
   };
 
   return (
     <>
       <StyledList>
-        <li>
-          <button type="button" onClick={handleSlideMenuOpen}>
+        <StyledListItem>
+          <StyledListBtn type="button" onClick={handleSlideMenuToggle}>
             <StyledArrowRightIcon />
-          </button>
-        </li>
-        <li>
-          <button type="button" onClick={handleModalOpen}>
+          </StyledListBtn>
+        </StyledListItem>
+        <StyledListItem>
+          <StyledListBtn type="button" onClick={handleModalOpen}>
             <StyledPencilIcon />
-          </button>
-        </li>
-        <li>
-          <button type="button">
+          </StyledListBtn>
+        </StyledListItem>
+        <StyledListItem>
+          <StyledListBtn type="button">
             <StyledTrashIcon />
-          </button>
-        </li>
+          </StyledListBtn>
+        </StyledListItem>
       </StyledList>
       {isSlideMenuShown && (
         <StyledSlideMenu>

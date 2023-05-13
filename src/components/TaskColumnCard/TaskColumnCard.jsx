@@ -3,13 +3,11 @@ import { selectUserInfo } from 'redux/selectors';
 import {
   Avatar,
   Box,
-  Button,
   Card,
   CardActions,
-  CardContent,
-  Typography,
 } from '@mui/material';
 import styled from 'styled-components';
+import TaskToolbar from 'components/TaskToolbar/TaskToolbar';
 
 export const TaskColumnCard = ({ title, priority }) => {
   const truncate = (input) =>
@@ -21,10 +19,11 @@ export const TaskColumnCard = ({ title, priority }) => {
       sx={{
         width: { mobile: '299px', tablet: '301px' },
         height: { mobile: '108px', tablet: '112px' },
-        padding: { mobile: '14px 14px 18px 14px' },
+        padding: { mobile: '14px 9px 13px 14px' },
         backgroundColor: '#F7F6F9',
         border: '1px solid rgba(220, 227, 229, 0.8)',
         borderRadius: '8px',
+        overflow: 'visible',
       }}
     >
       <StyledTypography>
@@ -44,6 +43,7 @@ export const TaskColumnCard = ({ title, priority }) => {
             display: 'flex',
             alignItems: 'flex-end',
             gap: '8px',
+            paddingBottom: '5px',
           }}
         >
           {' '}
@@ -76,9 +76,9 @@ export const TaskColumnCard = ({ title, priority }) => {
           )}
         </Box>
         {/* <TaskToolbar /> */}
-        <CardActions
-          sx={{ width: '68px', height: '16px', backgroundColor: 'red' }}
-        ></CardActions>
+        <CardActions sx={{ position: 'relative', padding: '0px' }}>
+          <TaskToolbar />
+        </CardActions>
       </Box>
     </Card>
   );

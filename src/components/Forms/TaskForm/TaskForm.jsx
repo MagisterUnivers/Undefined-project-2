@@ -19,8 +19,8 @@ import CircleIcon from '@mui/icons-material/Circle';
 import CircleTwoToneIcon from '@mui/icons-material/CircleTwoTone';
 
 const TaskForm = () => {
-  const [isTaskCreated, setIsTaskCreated] = useState(false);
-  return (
+  const [isTaskCreated] = useState(false);
+  return (  
     <StyledForm>
       <StyledLabel>
         Title

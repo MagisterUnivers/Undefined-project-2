@@ -1,9 +1,10 @@
 import styled from 'styled-components';
-import { Add, ControlPoint } from '@mui/icons-material';
+// import { Add, ControlPoint } from '@mui/icons-material';
+import { ControlPoint } from '@mui/icons-material';
 import { AddTaskBtn } from 'components/AddTaskBtn/AddTaskBtn';
 import { useState } from 'react';
 import Modal from 'components/Modal/Modal';
-import TaskForm from 'components/TaskForm/TaskForm';
+import TaskForm from 'components/Forms/TaskForm/TaskForm';
 
 const ColumnHeadBar = () => {
   const [isModalShown, setIsModalShown] = useState(false);
