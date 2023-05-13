@@ -62,7 +62,7 @@ export const UserNav = ({ toggleSidebar }) => {
             isActive ? 'text-blue-1 bg-blue-2' : '',
           ].join(' ');
         }}
-        to="/main/calendar"
+        to="/main/calendar/"
       >
         {({ isActive }) => {
           return (
