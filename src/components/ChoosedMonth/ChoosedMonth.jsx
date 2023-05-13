@@ -7,15 +7,18 @@ export const ChoosedMonth = ({
   headerClassName,
   dateFormatter,
   daysOfWeekLabels,
+  calendarProps,
 }) => {
   return (
-    <div>
+    <div {...calendarProps} className="calendar">
       <MonthCalendarHead
         {...{ daysOfWeekLabels, dateFormatter, className: headerClassName }}
         className=" mb-4"
       />
 
-      <CalendarTable {...{ daysOfWeekLabels, dateFormatter, state }} />
+      <CalendarTable
+        {...{ daysOfWeekLabels, dateFormatter, state, calendarProps }}
+      />
     </div>
   );
 };

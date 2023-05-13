@@ -1,11 +1,17 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { useCurrentDate } from '../../redux';
+import { getCalendarKey } from '../../utils';
+
 export const PeriodTypeSelect = () => {
+  const [currentDay] = useCurrentDate();
+  const date_key = getCalendarKey({ date: currentDay.toDate() });
+
   return (
     <>
       <ButtonGroup>
-        <Button to="calendar">Month</Button>
-        <Button to="/main/calendar/day/:currentDay">Day</Button>
+        <Button to="/main/calendar/">Month</Button>
+        <Button to={`/main/calendar/day/${date_key}`}>Day</Button>
       </ButtonGroup>
     </>
   );

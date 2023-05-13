@@ -11,6 +11,7 @@ export const CalendarTable = ({
   dateFormatter,
   daysOfWeekLabels,
   className,
+  calendarProps,
 }) => {
   const { locale } = useLocale();
 
