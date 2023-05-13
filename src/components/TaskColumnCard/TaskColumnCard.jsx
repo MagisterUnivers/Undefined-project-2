@@ -1,17 +1,10 @@
 import { useSelector } from 'react-redux';
 import { selectUserInfo } from 'redux/selectors';
-import {
-  Avatar,
-  Box,
-  Card,
-  CardActions,
-} from '@mui/material';
+import { Avatar, Box, Card, CardActions } from '@mui/material';
 import styled from 'styled-components';
 import TaskToolbar from 'components/TaskToolbar/TaskToolbar';
 
 export const TaskColumnCard = ({ title, priority }) => {
-  const truncate = (input) =>
-    input?.length > 38 ? `${input.substring(0, 35)}...` : input;
   const { userImgUrl, name } = useSelector(selectUserInfo);
   return (
     <Card
@@ -26,10 +19,7 @@ export const TaskColumnCard = ({ title, priority }) => {
         overflow: 'visible',
       }}
     >
-      <StyledTypography>
-        {/* {truncate(title)} */}
-        {truncate('Brainstorm ideas for new content or products')}
-      </StyledTypography>
+      <StyledTypography>{title}</StyledTypography>
       <Box
         sx={{
           display: 'flex',
@@ -58,25 +48,31 @@ export const TaskColumnCard = ({ title, priority }) => {
           />
           {priority === 'high' ? (
             <StyledBox $high>
-              {' '}
-              {/* {priority.slice(0, 1).toUpperCase() + priority.slice(1)} */}
-              High
+              <StyledP>
+                {priority.slice(0, 1).toUpperCase() + priority.slice(1)}
+              </StyledP>
             </StyledBox>
           ) : priority === 'medium' ? (
             <StyledBox $medium>
-              {' '}
-              {/* {priority.slice(0, 1).toUpperCase() + priority.slice(1)} */}
-              Medium
+              <StyledP>
+                {priority.slice(0, 1).toUpperCase() + priority.slice(1)}
+              </StyledP>
             </StyledBox>
           ) : (
             <StyledBox>
-              {/* <StyledP>{priority.slice(0, 1).toUpperCase() + priority.slice(1)}</StyledP> */}
-              <StyledP>Low</StyledP>
+              <StyledP>
+                {priority.slice(0, 1).toUpperCase() + priority.slice(1)}
+              </StyledP>
             </StyledBox>
           )}
         </Box>
         {/* <TaskToolbar /> */}
-        <CardActions sx={{ position: 'relative', padding: '0px' }}>
+        <CardActions
+          sx={{
+            position: 'relative',
+            padding: '0px',
+          }}
+        >
           <TaskToolbar />
         </CardActions>
       </Box>
@@ -85,9 +81,12 @@ export const TaskColumnCard = ({ title, priority }) => {
 };
 
 const StyledTypography = styled.h3`
+  width: 272px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   display: block;
   height: 16px;
-  overflow-y: hidden;
   font-family: 'Inter';
   font-weight: 500;
   font-size: 14px;
