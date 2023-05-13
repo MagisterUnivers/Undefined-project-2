@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { useCalendarCell } from 'react-aria';
 import { useEventTasks } from '../../../redux';
 import { getCalendarKey } from '../../../utils';
+import styled from 'styled-components';
 
 const LOW = 'low';
 const HIGHT = 'hight';
@@ -42,14 +43,14 @@ export const CalendarCell = ({ state, date }) => {
   //     __v: 0,[]
 
   return (
-    <td
+    <StyledTd
       {...cellProps}
       ref={ref}
       className={`w-1/7 border-r last:border-r-0  border-gray-3  dark:border-gray-4 
       ${isDisabled ? 'disabled' : ''} 
       ${isUnavailable ? 'unavailable' : ''}`}
     >
-      <button
+      <StyledButton
         className={`relative w-full h-full ${
           isOutsideVisibleRange ? 'text-gray-200 ' : ''
         }`}
@@ -67,12 +68,13 @@ export const CalendarCell = ({ state, date }) => {
           {formattedDate}
         </span>
 
-        <div className="min-h-50px flex flex-col gap-1">
+        {/* <StyledDiv className="min-h-50px flex flex-col gap-1"> */}
+        <StyledDiv>
           {monthTasks.map((tasks) => {
             const { title, priority, _id } = tasks;
 
             return (
-              <span
+              <StyledSpan
                 className={` rounded-8 font-inter text-xxs font-bold tablet:text-14 desktop:text-14 
                  overflow-ellipsis whitespace-nowrap overflow-hidden  
                  ${priority === LOW ? ' bg-blue-3 text-blue-1' : ''} 
@@ -82,11 +84,36 @@ export const CalendarCell = ({ state, date }) => {
                 key={_id}
               >
                 {title}
-              </span>
+              </StyledSpan>
             );
           })}
-        </div>
-      </button>
-    </td>
+        </StyledDiv>
+      </StyledButton>
+    </StyledTd>
   );
 };
+
+const StyledDiv = styled.ul`
+  max-height: 50px;
+  overflow: hidden;
+  @media screen and (min-width: 767.98px) {
+    max-height: 67px;
+  }
+`;
+const StyledSpan = styled.li`
+  &:not(:last-of-type) {
+    margin-bottom: 2px;
+  }
+`;
+const StyledTd = styled.td`
+  height: 94px;
+  @media screen and (min-width: 767.98px) {
+    height: 144px;
+  }
+`;
+
+const StyledButton = styled.button`
+  display: flex;
+  align-items: flex-end;
+  padding: 0px 3px 3px 3px;
+`;
