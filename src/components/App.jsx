@@ -12,6 +12,7 @@ import DemoApp from 'test/DemoApp';
 import { PrivateRoute } from 'Routes/PrivateRoute';
 import { PublicRoute } from 'Routes/PublicRoute';
 import { TaskColumnCard } from './TaskColumnCard/TaskColumnCard';
+import { ColumnsTasksList } from './ColumnsTasksList/ColumnsTasksList';
 export const App = () => {
   return (
     <>
@@ -57,7 +58,7 @@ export const App = () => {
             element={<ChoosedMonth />}
           /> */}
         </Route>{' '}
-        <Route path="/tc" element={<TaskColumnCard />} />
+        <Route path="/tc" element={<ColumnsTasksList />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
