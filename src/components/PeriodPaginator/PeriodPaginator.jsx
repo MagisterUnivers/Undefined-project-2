@@ -99,6 +99,9 @@ const DivGroup = styled.div`
   display: flex;
   flex-direction: row;
   gap: 8px;
+  @media screen and (max-width: 767px) {
+    justify-content: space-between;
+  }
 `;
 const HeaderDivGroup = styled.div`
   display: flex;
@@ -106,4 +109,9 @@ const HeaderDivGroup = styled.div`
   justify-content: space-between;
   flex-direction: row;
   margin-bottom: 32px;
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    margin-bottom: 24px;
+    gap: 18px;
+  }
 `;
