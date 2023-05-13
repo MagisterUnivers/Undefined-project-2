@@ -2,8 +2,12 @@ import styled from 'styled-components';
 import { ReactComponent as IconClose } from './x-close.svg';
 
 export const StyledBackdrop = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
+  z-index: 1000;
 `;
 
 export const StyledModal = styled.div`
@@ -18,6 +22,9 @@ export const StyledModal = styled.div`
   padding-bottom: 40px;
   background-color: #fff;
   transform: translate(-50%, -50%);
+  border: 1px solid rgba(220, 227, 229, 0.8);
+  box-shadow: 0px 4px 16px rgba(17, 17, 17, 0.1);
+  border-radius: 8px;
 
   @media screen and (min-width: 768px) {
     width: 396px;

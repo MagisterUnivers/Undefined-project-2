@@ -1,8 +1,21 @@
 import styled from 'styled-components';
 import { Add, ControlPoint } from '@mui/icons-material';
+import { AddTaskBtn } from 'components/AddTaskBtn/AddTaskBtn';
+import { useState } from 'react';
+import Modal from 'components/Modal/Modal';
+import TaskForm from 'components/TaskForm/TaskForm';
 
 const ColumnHeadBar = () => {
+  const [isModalShown, setIsModalShown] = useState(false);
   const category = ['To do', 'In progress', 'Done'];
+
+  const handleModalClose = () => {
+    setIsModalShown(false);
+  };
+
+  const handleModalOpen = () => {
+    setIsModalShown(true);
+  };
 
   return (
     <>
@@ -10,14 +23,20 @@ const ColumnHeadBar = () => {
         <ItemTask key={index}>
           <Title>
             {status}
-            <ControlPoint />
+            <button type="button" onClick={handleModalOpen}>
+              <ControlPoint />
+            </button>
           </Title>
-          <ButtonTask>
+          {/* <ButtonTask>
             <Add />
             Add task
-          </ButtonTask>
+          </ButtonTask> */}
+          <AddTaskBtn />
         </ItemTask>
       ))}
+      {isModalShown && (
+        <Modal handleModalClose={handleModalClose}>{<TaskForm />}</Modal>
+      )}
     </>
   );
 };
@@ -45,25 +64,6 @@ const Title = styled.h2`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-`;
-
-const ButtonTask = styled.button`
-  width: 304px;
-  height: 52px;
-  border: 1px dashed #3e85f3;
-  background: #e3f3ff;
-  border-radius: 8px;
-  padding: 16px 104px;
-  font-family: 'Inter';
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 18/14;
-  text-align: center;
-  color: #111111;
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-  align-items: center;
 `;
 
 /* <ItemTask>

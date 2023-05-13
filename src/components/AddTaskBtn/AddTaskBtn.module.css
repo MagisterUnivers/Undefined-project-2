@@ -1,4 +1,4 @@
-.button {
+ /* .button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,8 +22,33 @@
   .button {
     height: 52px;
   }
-}
+} */
 
 .plus_icon {
   stroke: #13151a;
+}
+
+.button {
+  width: 304px;
+  height: 48px;
+  border: 1px dashed #3e85f3;
+  background: #e3f3ff;
+  border-radius: 8px;
+  padding: 16px 104px;
+  font-family: 'Inter';
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18/14;
+  text-align: center;
+  color: #111111;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  .button {
+    height: 52px;
+  }
 }
