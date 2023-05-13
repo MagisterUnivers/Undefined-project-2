@@ -3,29 +3,54 @@ import ColumnHeadBar from '../../components/ChoosedDay/ColumnHeadBar/ColumnHeadB
 import styled from 'styled-components';
 import { CalendarToolbar } from 'components/CalendarToolbar/CalendarToolbar';
 import { useParams } from 'react-router-dom';
-import { startOfWeek, addDays, format } from 'date-fns';
 import { useCalendar } from 'components/ChoosedMonth/useCalendar/useCalendar';
-const ChoosedDayPage = ({ formattedDate }) => {
-  let { currentDay } = useParams(formattedDate);
+import moment from 'moment';
+import { useEffect } from 'react';
+import {useCurrentDate} from '../../redux'
+import { parseDate } from '@internationalized/date';
+import {getCalendarKey} from '../../utils/calendars'
+
+const ChoosedDayPage = () => {
+  const { currentDay: currentDayParam } = useParams();
+  const [currentDate, setCurrentDate] = useCurrentDate();
+  
+  useEffect(() => {
+    if (!currentDayParam) return;
+
+    const paramDate = parseDate(currentDayParam);
+
+    setCurrentDate(paramDate)
+  }, []);
+
+  const currentDateKey = getCalendarKey({ date: currentDate.toDate()  }); 
+
   let { title, prevButtonProps, nextButtonProps, daysOfWeekLabels } =
-    useCalendar(currentDay);
-  let startDate = startOfWeek(new Date(currentDay));
-  let days = Array.from({ length: 7 }, (_, i) => addDays(startDate, i));
-  let dayNumbers = days.map((day) => format(day, 'd' || 'dd'));
+    useCalendar(currentDayParam);
+  let startDate = moment(new Date(currentDayParam)).startOf('week')
+  let days = Array.from({ length: 7 }, (_, i) => moment(startDate).add(i, 'day').toDate());
+  let dayNumbers = days.map((day) => day.getDate());
   let abbreviatedDaysOfWeekLabels = daysOfWeekLabels.map((day) =>
     day.slice(0, 3)
   );
   return (
     <div>
-      <p>{currentDay}</p>
+     
       <CalendarToolbar {...{ title, prevButtonProps, nextButtonProps }} />
       <ListDay>
-        {days.map((day, index) => (
-          <ItemMonthDay key={index}>
+        {days.map((date, index) => {
+          const dateKey = getCalendarKey({ date });
+          const isSelected = currentDateKey === dateKey;
+
+          return (
+          <ItemMonthDay key={index}  >
             <MonthDay>{abbreviatedDaysOfWeekLabels[index]}</MonthDay>
-            <TextDay>{dayNumbers[index]}</TextDay>
+
+            <TextDay
+            className={`${isSelected ? `text-white bg-blue-1 rounded-8` : ''}`}
+            >{dayNumbers[index]}</TextDay>
           </ItemMonthDay>
-        ))}
+        );
+        })}
       </ListDay>
       <ListTask>
         <ColumnHeadBar />
@@ -82,7 +107,7 @@ const TextDay = styled.strong`
   font-weight: 700;
   font-size: 16px;
   line-height: 18px;
-  color: #343434;
+  
 `;
 // const BlueText = styled.strong`
 // padding: 4px 8px;
