@@ -29,8 +29,6 @@ const validationSchema = Yup.object({
 });
 export const LoginForm = () => {
   const navigate = useNavigate();
-  // const history = useHistory();
-  // const token1 = useSelector(selectAuthAccessToken);
   const dispatch = useDispatch();
   const initialValues = {
     email: '',
@@ -81,7 +79,6 @@ export const LoginForm = () => {
     );
   };
   const handleSubmit = (values) => {
-    // e.preventDefault();
     dispatch(loginThunk(values)).then(() => navigate('/main/account'));
   };
   return (
