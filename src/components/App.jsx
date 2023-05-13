@@ -1,4 +1,3 @@
-// import { RegisterForm } from './Forms/RegisterForm/RegisterForm';
 import { Route, Routes } from 'react-router';
 import { MainLayout } from './MainLayout/MainLayout';
 import LoginPage from 'pages/LoginPage/LoginPage';
@@ -6,7 +5,7 @@ import RegisterPage from 'pages/RegisterPage/RegisterPage';
 // import { UserForm } from './Forms/UserForm/UserForm';
 import AccountPage from 'pages/AccountPage/AccountPage';
 import { CalendarPage } from '../pages/CalendarPage/CalendarPage';
-
+import ChoosedDayPage from 'pages/ChoosedDayPage/ChoosedDayPage';
 import AboutPage from 'pages/AboutPage/AboutPage';
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
 import DemoApp from 'test/DemoApp';
@@ -51,8 +50,8 @@ export const App = () => {
               </PrivateRoute>
             }
           />
-          {/* <Route path="/calendar/day/:currentDay" />{' '}
-          <Route
+          <Route path="calendar/day/:currentDay" element={<ChoosedDayPage/>}/>
+          {/* <Route
             path="/calendar/month/:currentDate"
             element={<ChoosedMonth />}
           /> */}

@@ -48,6 +48,7 @@ const userSlice = createSlice({
       state.skype = payload.skype;
       state.userImgUrl = payload.userImgUrl;
       state.loading = false;
+      // state.theme = payload.theme;
 
       document.body.classList.add(state.theme);
     },

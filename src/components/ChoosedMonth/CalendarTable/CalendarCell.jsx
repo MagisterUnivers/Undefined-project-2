@@ -1,15 +1,20 @@
 import { useRef } from 'react';
 import { useCalendarCell } from 'react-aria';
 import { useEventTasks } from '../../../redux';
+import { useNavigate } from 'react-router-dom';
+import moment from 'moment';
 
 const LOW = 'low';
 const HIGHT = 'hight';
 const MEDIUM = 'medium';
+
 /**
  * Cell of the month calendar
  */
 export const CalendarCell = ({ state, date }) => {
-  const monthTasks = useEventTasks({ date: date.toDate() });
+  const date_key = moment(date.toDate()).format('yyyy-MM-DD');
+
+  const monthTasks = useEventTasks({ date_key });
 
   const ref = useRef(null);
 
@@ -23,7 +28,8 @@ export const CalendarCell = ({ state, date }) => {
     formattedDate,
   } = useCalendarCell({ date }, state, ref);
 
-  // _id: '64303c8582dc6fccdee4f8d2',
+  //     task:
+  //     _id: '64303c8582dc6fccdee4f8d2',
   //     title: 'toDo',
   //     start: '9-00',
   //     end: '14-00',
@@ -34,6 +40,11 @@ export const CalendarCell = ({ state, date }) => {
   //     createdAt: '2023-04-07T15:53:41.088Z',
   //     updatedAt: '2023-04-07T15:53:41.088Z',
   //     __v: 0,[]
+
+  const navigate = useNavigate();
+  const handelClick = () => {
+    navigate(`/main/calendar/day/${date_key}`);
+  };
 
   return (
     <td
@@ -48,6 +59,7 @@ export const CalendarCell = ({ state, date }) => {
           isOutsideVisibleRange ? 'text-gray-200 ' : ''
         }`}
         {...buttonProps}
+        onClick={handelClick}
       >
         <span
           className={`font-inter font-bold text-xs 

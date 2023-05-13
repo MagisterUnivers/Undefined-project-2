@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import moment from 'moment';
 import { shallowCompare } from 'react-global-state-hooks';
 import { useSelector } from 'react-redux';
 
@@ -218,9 +217,7 @@ const calendarEventsSlice = createSlice({
   },
 });
 
-export const useEventTasks = ({ date }) => {
-  const date_key = moment(date).format('yyyy-MM-DD');
-
+export const useEventTasks = ({ date_key }) => {
   return useSelector(({ calendar }) => {
     const tasks = calendar.taskMap[date_key] ?? [];
 
