@@ -1,5 +1,4 @@
 // import { Add, ControlPoint } from '@mui/icons-material';
-import ColumnHeadBar from '../../components/ChoosedDay/ColumnHeadBar/ColumnHeadBar';
 import styled from 'styled-components';
 import { CalendarToolbar } from 'components/CalendarToolbar/CalendarToolbar';
 import { useParams } from 'react-router-dom';
@@ -9,6 +8,8 @@ import { useEffect } from 'react';
 import {useCurrentDate} from '../../redux'
 import { parseDate } from '@internationalized/date';
 import {getCalendarKey} from '../../utils/calendars'
+
+import TasksColumn from 'components/TasksColumn/TasksColumn';
 
 const ChoosedDayPage = () => {
   const { currentDay: currentDayParam } = useParams();
@@ -53,7 +54,7 @@ const ChoosedDayPage = () => {
         })}
       </ListDay>
       <ListTask>
-        <ColumnHeadBar />
+        <TasksColumn />
         {/* <ItemTask>
           <Title>To do <ControlPoint/></Title>
           <ButtonTask><Add/>Add task</ButtonTask>

@@ -5,6 +5,7 @@ import { AddTaskBtn } from 'components/AddTaskBtn/AddTaskBtn';
 import { useState } from 'react';
 import Modal from 'components/Modal/Modal';
 import TaskForm from 'components/Forms/TaskForm/TaskForm';
+import { ColumnsTasksList } from 'components/ColumnsTasksList/ColumnsTasksList';
 
 const ColumnHeadBar = () => {
   const [isModalShown, setIsModalShown] = useState(false);
@@ -28,6 +29,7 @@ const ColumnHeadBar = () => {
               <ControlPoint />
             </button>
           </Title>
+          <ColumnsTasksList />
           {/* <ButtonTask>
             <Add />
             Add task
