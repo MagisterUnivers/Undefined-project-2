@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 // import { Add, ControlPoint } from '@mui/icons-material';
 import { ControlPoint } from '@mui/icons-material';
-import { AddTaskBtn } from 'components/AddTaskBtn/AddTaskBtn';
+// import { AddTaskBtn } from 'components/AddTaskBtn/AddTaskBtn';
 import { useState } from 'react';
 import Modal from 'components/Modal/Modal';
 import TaskForm from 'components/Forms/TaskForm/TaskForm';
-import { ColumnsTasksList } from 'components/ColumnsTasksList/ColumnsTasksList';
+// import { ColumnsTasksList } from 'components/ColumnsTasksList/ColumnsTasksList';
 
-const ColumnHeadBar = () => {
+const ColumnHeadBar = ({ title }) => {
   const [isModalShown, setIsModalShown] = useState(false);
-  const category = ['To do', 'In progress', 'Done'];
+  // const category = ['To do', 'In progress', 'Done'];
 
   const handleModalClose = () => {
     setIsModalShown(false);
@@ -21,22 +21,22 @@ const ColumnHeadBar = () => {
 
   return (
     <>
-      {category.map((status, index) => (
-        <ItemTask key={index}>
-          <Title>
-            {status}
-            <button type="button" onClick={handleModalOpen}>
-              <ControlPoint />
-            </button>
-          </Title>
-          <ColumnsTasksList />
-          {/* <ButtonTask>
+      {/* {category.map((status, index) => ( */}
+      {/* <ItemTask key={index}> */}
+      <Title>
+        {title}
+        <button type="button" onClick={handleModalOpen}>
+          <ControlPoint />
+        </button>
+      </Title>
+      {/* <ColumnsTasksList /> */}
+      {/* <ButtonTask>
             <Add />
             Add task
           </ButtonTask> */}
-          <AddTaskBtn />
-        </ItemTask>
-      ))}
+      {/* <AddTaskBtn /> */}
+      {/* </ItemTask> */}
+      {/* ))} */}
       {isModalShown && (
         <Modal handleModalClose={handleModalClose}>{<TaskForm />}</Modal>
       )}
@@ -46,15 +46,15 @@ const ColumnHeadBar = () => {
 
 export default ColumnHeadBar;
 
-const ItemTask = styled.li`
-  display: flex;
-  flex-direction: column;
-  gap: 42px;
-  padding: 20px;
-  background: #ffffff;
-  border: 1px solid rgba(220, 227, 229, 0.8);
-  border-radius: 8px;
-`;
+// const ItemTask = styled.li`
+//   display: flex;
+//   flex-direction: column;
+//   gap: 42px;
+//   padding: 20px;
+//   background: #ffffff;
+//   border: 1px solid rgba(220, 227, 229, 0.8);
+//   border-radius: 8px;
+// `;
 
 const Title = styled.h2`
   font-family: 'Inter';

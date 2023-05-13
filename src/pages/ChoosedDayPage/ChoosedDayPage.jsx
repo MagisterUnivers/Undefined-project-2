@@ -9,7 +9,8 @@ import {useCurrentDate} from '../../redux'
 import { parseDate } from '@internationalized/date';
 import {getCalendarKey} from '../../utils/calendars'
 
-import TasksColumn from 'components/TasksColumn/TasksColumn';
+// import TasksColumn from 'components/TasksColumn/TasksColumn';
+import TasksColumnsList from 'components/TasksColumnsList/TasksColumnsList';
 
 const ChoosedDayPage = () => {
   const { currentDay: currentDayParam } = useParams();
@@ -54,7 +55,7 @@ const ChoosedDayPage = () => {
         })}
       </ListDay>
       <ListTask>
-        <TasksColumn />
+        <TasksColumnsList />
         {/* <ItemTask>
           <Title>To do <ControlPoint/></Title>
           <ButtonTask><Add/>Add task</ButtonTask>
