@@ -25,7 +25,7 @@ const ListTask = styled.ul`
   @media screen and (min-width: 767.98px) {
     width: 704px;
   }
-  @media screen and (min-width: 767.98px) {
+  @media screen and (min-width: 1439.98px) {
     width: 1087px;
     gap: 27px;
   }

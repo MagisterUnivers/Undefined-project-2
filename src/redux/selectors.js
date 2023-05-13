@@ -13,7 +13,7 @@ export const selectAuthRefreshToken = (state) => state.auth.data.refreshToken;
 export const selectUserInfo = (state) => state.userInfo;
 export const selectUserInfoEmail = (state) => state.userInfo.email;
 export const selectTheme = (state) => state.userInfo.theme;
-export const selectIsTaskExist = (state) => state.calendarEvents.tasks;
+export const selectIsTaskExist = (state) => state.calendar.tasks;
 
 // export const selectUncompletedReselect = createSelector(
 //   [state => state.tasks.items],

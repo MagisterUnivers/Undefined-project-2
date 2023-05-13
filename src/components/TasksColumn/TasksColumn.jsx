@@ -34,8 +34,12 @@ const ItemTask = styled.li`
   flex-direction: column;
   width: 335px;
   gap: 42px;
-  padding: 18px 10px 10px 10px;
+  padding: 25px 10px 10px 10px;
   background: #ffffff;
   border: 1px solid rgba(220, 227, 229, 0.8);
   border-radius: 8px;
+  @media screen and (min-width: 767.98px) {
+    width: 344px;
+    padding: 25px 10px 28px 16px;
+  }
 `;
