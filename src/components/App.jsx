@@ -11,6 +11,7 @@ import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
 import DemoApp from 'test/DemoApp';
 import { PrivateRoute } from 'Routes/PrivateRoute';
 import { PublicRoute } from 'Routes/PublicRoute';
+import { TaskColumnCard } from './TaskColumnCard/TaskColumnCard';
 export const App = () => {
   return (
     <>
@@ -50,12 +51,13 @@ export const App = () => {
               </PrivateRoute>
             }
           />
-          <Route path="calendar/day/:currentDay" element={<ChoosedDayPage/>}/>
+          <Route path="calendar/day/:currentDay" element={<ChoosedDayPage />} />
           {/* <Route
             path="/calendar/month/:currentDate"
             element={<ChoosedMonth />}
           /> */}
-        </Route>
+        </Route>{' '}
+        <Route path="/tc" element={<TaskColumnCard />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
