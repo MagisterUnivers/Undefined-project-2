@@ -6,8 +6,8 @@ const categoryExample = ['To do', 'In progress', 'Done'];
 const TasksColumnsList = ({ category }) => {
   return (
     <ListTask>
-      {categoryExample.map((categorys) => {
-        return <TasksColumn title={categorys} />;
+      {categoryExample.map((categorys, index) => {
+        return <TasksColumn key={index} title={categorys} />;
       })}
     </ListTask>
   );

@@ -4,6 +4,8 @@ import { useEventTasks } from '../../../redux';
 import { getCalendarKey } from '../../../utils';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { useDateTasks } from '../../../redux';
+import { getStringFromDate } from '../../../utils';
 
 const LOW = 'low';
 const HIGHT = 'hight';
@@ -14,9 +16,9 @@ const MEDIUM = 'medium';
  */
 export const CalendarCell = ({ state, date }) => {
   // date is not a Date
-  const date_key = getCalendarKey({ date: date.toDate() }); // date_key: 2023-09-21
-  // console.log(date_key);
-  const monthTasks = useEventTasks({ date_key }); // task[]
+  const date_key = getStringFromDate(date.toDate()); // date_key: 2023-09-21
+
+  const dateTasks = useDateTasks({ date_key }); // task[]
 
   const ref = useRef(null);
   const navigate = useNavigate();
@@ -76,7 +78,7 @@ export const CalendarCell = ({ state, date }) => {
 
         {/* <StyledDiv className="min-h-50px flex flex-col gap-1"> */}
         <StyledDiv>
-          {monthTasks.map((tasks) => {
+          {dateTasks.map((tasks) => {
             const { title, priority, _id } = tasks;
 
             return (

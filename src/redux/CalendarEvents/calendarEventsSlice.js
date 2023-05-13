@@ -1,8 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { shallowCompare } from 'react-global-state-hooks';
 import { useSelector } from 'react-redux';
-import { parseDate } from '@internationalized/date';
-import { getCalendarKey } from '../../utils';
 
 import {
   createUserTaskThunk,
@@ -13,10 +11,11 @@ import {
 
 import { createGlobalStateWithDecoupledFuncs } from 'react-global-state-hooks';
 
-const current_date_key = getCalendarKey({ date: new Date() }); // ex: 2020-02-03
-
 export const [useCurrentDate, getCurrentDate, setCurrentDate] =
-  createGlobalStateWithDecoupledFuncs(parseDate(current_date_key));
+  createGlobalStateWithDecoupledFuncs(null); // type: CalendarDate
+
+export const [useCurrentMonth, getCurrentMonth, setCurrentMonth] =
+  createGlobalStateWithDecoupledFuncs(null); // type: { year: number, month: number }
 
 const mocks = [
   {
@@ -140,11 +139,9 @@ const computeTaskMap = (items) => {
 
 const initialState = {
   isLoading: false,
-  tasks: mocks,
-  taskMap: computeTaskMap(mocks),
+  tasks: [],
+  taskMap: {},
 };
-
-console.log(initialState.taskMap);
 
 const calendarEventsSlice = createSlice({
   name: '@@calendarEvents',
@@ -193,8 +190,14 @@ const calendarEventsSlice = createSlice({
       .addMatcher(
         (action) => {
           const { type } = action;
+          const isCalendarAction = type.includes('calendar');
 
-          return type.includes('calendar');
+          if (!isCalendarAction) return false;
+
+          const fulfilled = type.includes('fulfilled');
+          if (!fulfilled) return false;
+
+          return true;
         },
         (state, action) => {
           state.taskMap = computeTaskMap(state.tasks);
@@ -239,7 +242,7 @@ const calendarEventsSlice = createSlice({
   },
 });
 
-export const useEventTasks = ({ date_key }) => {
+export const useDateTasks = ({ date_key }) => {
   const fragmentOfState = useSelector(
     function selectorCallback(rootState) {
       const { calendar } = rootState;

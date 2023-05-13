@@ -1,11 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { getCurrentMonth } from './calendarEventsSlice';
 
 export const getMonthEvents = createAsyncThunk(
   '@@calendarEvents/loadMothEvents',
-  async (credentials, thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
-      const res = await axios.post('user/register', credentials);
+      const { year, month } = getCurrentMonth();
+
+      const res = await axios.get(`/task/by-month?year=${year}&month=${month}`);
+
       return res.data;
     } catch (e) {
       // const errorMessage = error.response.data.message;
@@ -21,8 +25,8 @@ export const getUserTaskThunk = createAsyncThunk(
     try {
       const res = await axios.get('task/by-month', {
         params: {
-          year: year,
-          month: month,
+          year,
+          month,
         },
       });
       // setToken(res.data);

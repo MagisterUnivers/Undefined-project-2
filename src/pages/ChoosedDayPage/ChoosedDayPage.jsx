@@ -4,31 +4,27 @@ import { CalendarToolbar } from 'components/CalendarToolbar/CalendarToolbar';
 import { useParams } from 'react-router-dom';
 import { useCalendar } from 'components/ChoosedMonth/useCalendar/useCalendar';
 import moment from 'moment';
-import { useEffect } from 'react';
 import {useCurrentDate} from '../../redux'
-import { parseDate } from '@internationalized/date';
-import {getCalendarKey} from '../../utils/calendars'
 import { useMediaQuery } from 'react-responsive';
-
+import {getStringFromDate} from '../../utils/calendars'
+import {useDateTasks} from '../../redux/CalendarEvents/calendarEventsSlice'
 import TasksColumnsList from 'components/TasksColumnsList/TasksColumnsList';
 
 const ChoosedDayPage = () => {
   const { currentDay: currentDayParam } = useParams();
-  const [currentDate, setCurrentDate] = useCurrentDate();
+  const [currentDate] = useCurrentDate();
   
 const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
-  useEffect(() => {
-    if (!currentDayParam) return;
 
-    const paramDate = parseDate(currentDayParam);
+  const currentDateKey = getStringFromDate(currentDate.toDate()); 
+  
+  const dateTasks = useDateTasks( {date_key:currentDateKey}); // task[]
+  console.log(dateTasks);
 
-    setCurrentDate(paramDate) //eslint-disable-next-line
-  }, []);
-
-  const currentDateKey = getCalendarKey({ date: currentDate.toDate()  }); 
 
   let { title, prevButtonProps, nextButtonProps, daysOfWeekLabels } =
     useCalendar(currentDayParam);
+    
   let startDate = moment(new Date(currentDayParam)).startOf('week')
   let days = Array.from({ length: 7 }, (_, i) => moment(startDate).add(i, 'day').toDate());
  
@@ -44,13 +40,20 @@ if (isMobile) {
   );
 }
 
+  if(!currentDateKey) {
+   return (
+      <div className="w-full h-full flex justify-center items-center">
+        <span>Is Loading...</span>
+      </div>
+    );
+  }
+
   return (
     <div>
-     
       <CalendarToolbar {...{ title, prevButtonProps, nextButtonProps }} />
       <ListDay>
         {days.map((date, index) => {
-          const dateKey = getCalendarKey({ date });
+          const dateKey = getStringFromDate(date);
           const isSelected = currentDateKey === dateKey;
 
           return (
@@ -65,11 +68,14 @@ if (isMobile) {
         })}
       </ListDay>
       <ListTask>
+        This day has {dateTasks.length} task!
+
         <TasksColumnsList />
       </ListTask>
     </div>
   );
 };
+
 export default ChoosedDayPage;
 
 const ListDay = styled.ul`

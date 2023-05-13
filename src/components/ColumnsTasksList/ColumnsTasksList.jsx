@@ -29,8 +29,8 @@ const tasksExample = [
 export const ColumnsTasksList = ({ tasks }) => {
   return (
     <StyledUl>
-      {tasksExample.map((task) => (
-        <StyledLi>
+      {tasksExample.map((task, index) => (
+        <StyledLi key={index}>
           <TaskColumnCard title={task.title} priority={task.priority} />
         </StyledLi>
       ))}

@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { useCurrentDate } from '../../redux';
-import { getCalendarKey } from '../../utils';
+import { getStringFromDate } from '../../utils';
 
 export const PeriodTypeSelect = () => {
   const [currentDay] = useCurrentDate();
-  const date_key = getCalendarKey({ date: currentDay.toDate() });
+  const date_key = getStringFromDate(currentDay?.toDate());
 
   return (
     <>

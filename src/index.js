@@ -8,10 +8,13 @@ import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 import GlobalStyles from 'components/GlobalStyles';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import axios from 'axios';
 import '@fontsource/inter/300.css';
 import '@fontsource/inter/400.css';
 import '@fontsource/inter/500.css';
 import '@fontsource/inter/700.css';
+
+axios.defaults.baseURL = 'https://goose-tracker-backend.p.goit.global/';
 
 const theme = createTheme({
   breakpoints: {
@@ -22,6 +25,7 @@ const theme = createTheme({
     },
   },
 });
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <PersistGate loading={null} persistor={persistor}>
     <Provider store={store}>

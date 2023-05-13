@@ -1,11 +1,58 @@
 import { useCalendarState } from 'react-stately';
 import { useCalendar as useCalendarAria, useLocale } from 'react-aria';
 import { createCalendar } from '@internationalized/date';
-import { getDaysOfWeekLabels } from '../../../utils';
-import { getCurrentDate, setCurrentDate } from '../../../redux';
+import { getDaysOfWeekLabels, getStringFromDate } from '../../../utils';
+import {
+  getCurrentDate,
+  getMonthEvents,
+  setCurrentDate,
+  useCurrentMonth,
+  selectUserLoading,
+} from '../../../redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { parseDate } from '@internationalized/date';
 
 export const useCalendar = () => {
-  let { locale } = useLocale();
+  const { locale } = useLocale();
+  const { currentDay: currentDayParam } = useParams();
+  const [currentMonth, setCurrentMonth] = useCurrentMonth();
+  const isLoading = useSelector(selectUserLoading);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (isLoading) return;
+
+    const date_key = (() => {
+      if (currentDayParam) return currentDayParam;
+
+      return getStringFromDate(new Date()); // ex: 2020-02-03
+    })();
+
+    const calendarDate = parseDate(date_key);
+
+    setCurrentDate(calendarDate);
+
+    const date = calendarDate.toDate();
+    const year = date.getFullYear();
+    const month = date.getMonth();
+
+    setCurrentMonth({
+      year,
+      month,
+    });
+  }, [isLoading]);
+
+  const { year, month } = currentMonth ?? {};
+
+  useEffect(() => {
+    if (!currentMonth) return;
+
+    debugger;
+    dispatch(getMonthEvents());
+  }, [year, month]);
 
   const state = useCalendarState({
     onChange: setCurrentDate,
