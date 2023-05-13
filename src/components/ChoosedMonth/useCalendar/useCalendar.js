@@ -41,7 +41,6 @@ export const useCalendar = () => {
     disabled: isDisabled2 === 'true',
   });
 
-  console.log(calendarProps);
   const title = calendarProps['aria-label'];
 
   return {
