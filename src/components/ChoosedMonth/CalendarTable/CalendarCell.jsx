@@ -3,6 +3,7 @@ import { useCalendarCell } from 'react-aria';
 import { useEventTasks } from '../../../redux';
 import { getCalendarKey } from '../../../utils';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const LOW = 'low';
 const HIGHT = 'hight';
@@ -14,21 +15,23 @@ const MEDIUM = 'medium';
 export const CalendarCell = ({ state, date }) => {
   // date is not a Date
   const date_key = getCalendarKey({ date: date.toDate() }); // date_key: 2023-09-21
-
+  // console.log(date_key);
   const monthTasks = useEventTasks({ date_key }); // task[]
 
   const ref = useRef(null);
-
+  const navigate = useNavigate();
   const {
     cellProps,
-    buttonProps,
     isSelected,
     isOutsideVisibleRange,
     isDisabled,
     isUnavailable,
     formattedDate,
   } = useCalendarCell({ date }, state, ref);
-
+  const onDayClick = (date) => {
+    navigate(`/main/calendar/day/${date}`);
+  };
+  // console.log(formattedDate);
   //     task:
   //     _id: '64303c8582dc6fccdee4f8d2',
   //     title: 'toDo',
@@ -51,10 +54,13 @@ export const CalendarCell = ({ state, date }) => {
       ${isUnavailable ? 'unavailable' : ''}`}
     >
       <StyledButton
+        onClick={() => onDayClick(date_key)}
+        type="button"
+        id={date_key}
         className={`relative w-full h-full ${
           isOutsideVisibleRange ? 'text-gray-200 ' : ''
         }`}
-        {...buttonProps}
+        // {...buttonProps}
       >
         <span
           className={`font-inter font-bold text-xs 
@@ -109,6 +115,9 @@ const StyledTd = styled.td`
   height: 94px;
   @media screen and (min-width: 767.98px) {
     height: 144px;
+  }
+  @media screen and (min-width: 767.98px) {
+    height: 125px;
   }
 `;
 
