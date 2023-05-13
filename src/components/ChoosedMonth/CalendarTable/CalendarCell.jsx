@@ -1,17 +1,20 @@
 import { useRef } from 'react';
 import { useCalendarCell } from 'react-aria';
 import { useEventTasks } from '../../../redux';
+import { useNavigate } from 'react-router-dom';
+import moment from 'moment';
 
 const LOW = 'low';
 const HIGHT = 'hight';
 const MEDIUM = 'medium';
-import { useNavigate } from 'react-router-dom';
 
 /**
  * Cell of the month calendar
  */
 export const CalendarCell = ({ state, date }) => {
-  const monthTasks = useEventTasks({ date: date.toDate() });
+  const date_key = moment(date.toDate()).format('yyyy-MM-DD');
+
+  const monthTasks = useEventTasks({ date_key });
 
   const ref = useRef(null);
 
@@ -40,7 +43,7 @@ export const CalendarCell = ({ state, date }) => {
 
   const navigate = useNavigate();
   const handelClick = () => {
-    navigate(`/main/calendar/day/${formattedDate}`);
+    navigate(`/main/calendar/day/${date_key}`);
   };
 
   return (
