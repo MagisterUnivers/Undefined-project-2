@@ -18,7 +18,6 @@ export const Header = ({ toggleSidebar }) => {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        maxWidth: { tablet: '704px', desktop: '1087px' },
       }}
     >
       {isTabletOrMobile ? (
