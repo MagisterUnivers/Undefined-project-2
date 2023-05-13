@@ -4,10 +4,19 @@ export const previousDate = (date) => {
   return moment(date).add(-1, 'day').toDate();
 };
 
+export const getCalendarKey = ({ date }) => {
+  const momentDate = moment(date);
+
+  const date_key = momentDate.format('yyyy-MM-DD'); // ex: 2023-06-28
+
+  return date_key;
+};
+
 /**
  * Get the days of the week starting on monday
  * {firstDay}  default 1 => Monday
  */
+
 export const getDaysOfWeekLabels = ({ dateFormatter, firstDay = 1 }) => {
   const daysOfWeekLabels = [];
 

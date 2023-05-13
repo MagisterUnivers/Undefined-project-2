@@ -2,11 +2,14 @@ import { useCalendarState } from 'react-stately';
 import { useCalendar as useCalendarAria, useLocale } from 'react-aria';
 import { createCalendar } from '@internationalized/date';
 import { getDaysOfWeekLabels } from '../../../utils';
+import { getCurrentDate, setCurrentDate } from '../../../redux';
 
 export const useCalendar = () => {
   let { locale } = useLocale();
 
   const state = useCalendarState({
+    onChange: setCurrentDate,
+    defaultValue: getCurrentDate(),
     locale,
     createCalendar,
   });

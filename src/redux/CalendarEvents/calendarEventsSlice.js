@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { shallowCompare } from 'react-global-state-hooks';
 import { useSelector } from 'react-redux';
+import { parseDate } from '@internationalized/date';
+import { getCalendarKey } from '../../utils';
 
 import {
   createUserTaskThunk,
@@ -8,6 +10,13 @@ import {
   getUserTaskThunk,
   updateUserTaskThunk,
 } from './calendarEventsOperations';
+
+import { createGlobalStateWithDecoupledFuncs } from 'react-global-state-hooks';
+
+const current_date_key = getCalendarKey({ date: new Date() }); // ex: 2020-02-03
+
+export const [useCurrentDate, getCurrentDate, setCurrentDate] =
+  createGlobalStateWithDecoupledFuncs(parseDate(current_date_key));
 
 const mocks = [
   {
@@ -218,11 +227,19 @@ const calendarEventsSlice = createSlice({
 });
 
 export const useEventTasks = ({ date_key }) => {
-  return useSelector(({ calendar }) => {
-    const tasks = calendar.taskMap[date_key] ?? [];
+  const fragmentOfState = useSelector(
+    function selectorCallback(rootState) {
+      const { calendar } = rootState;
 
-    return tasks;
-  }, shallowCompare);
+      const tasks = calendar.taskMap[date_key] ?? [];
+
+      return tasks;
+    },
+
+    shallowCompare
+  );
+
+  return fragmentOfState;
 };
 
 export const calendarEventsReducer = calendarEventsSlice.reducer;

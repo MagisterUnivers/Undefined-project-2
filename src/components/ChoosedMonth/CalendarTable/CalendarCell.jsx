@@ -1,8 +1,7 @@
 import { useRef } from 'react';
 import { useCalendarCell } from 'react-aria';
 import { useEventTasks } from '../../../redux';
-import { useNavigate } from 'react-router-dom';
-import moment from 'moment';
+import { getCalendarKey } from '../../../utils';
 
 const LOW = 'low';
 const HIGHT = 'hight';
@@ -12,9 +11,10 @@ const MEDIUM = 'medium';
  * Cell of the month calendar
  */
 export const CalendarCell = ({ state, date }) => {
-  const date_key = moment(date.toDate()).format('yyyy-MM-DD');
+  // date is not a Date
+  const date_key = getCalendarKey({ date: date.toDate() }); // date_key: 2023-09-21
 
-  const monthTasks = useEventTasks({ date_key });
+  const monthTasks = useEventTasks({ date_key }); // task[]
 
   const ref = useRef(null);
 
@@ -41,11 +41,6 @@ export const CalendarCell = ({ state, date }) => {
   //     updatedAt: '2023-04-07T15:53:41.088Z',
   //     __v: 0,[]
 
-  const navigate = useNavigate();
-  const handelClick = () => {
-    navigate(`/main/calendar/day/${date_key}`);
-  };
-
   return (
     <td
       {...cellProps}
@@ -59,7 +54,6 @@ export const CalendarCell = ({ state, date }) => {
           isOutsideVisibleRange ? 'text-gray-200 ' : ''
         }`}
         {...buttonProps}
-        onClick={handelClick}
       >
         <span
           className={`font-inter font-bold text-xs 
