@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Undefined-project-2/static/css/main.f6e4a15b.css",
-    "main.js": "/Undefined-project-2/static/js/main.cb5150cb.js",
+    "main.css": "/Undefined-project-2/static/css/main.94fe8900.css",
+    "main.js": "/Undefined-project-2/static/js/main.31890ca7.js",
     "static/media/imagetablet@2x.png": "/Undefined-project-2/static/media/imagetablet@2x.e95cd7828a8cd376c98b.png",
     "static/media/image@2x.png": "/Undefined-project-2/static/media/image@2x.e4e03c1f0d6fc8146258.png",
     "static/media/elements.svg": "/Undefined-project-2/static/media/elements.941dd82d880645f60e8be4aa1e8f7081.svg",
@@ -57,13 +57,19 @@
     "static/media/inter-vietnamese-400-normal.woff2": "/Undefined-project-2/static/media/inter-vietnamese-400-normal.789afb71d327988e2fc8.woff2",
     "static/media/Done.svg": "/Undefined-project-2/static/media/Done.a3f6f973d6a109dfe8e133995090a9a4.svg",
     "index.html": "/Undefined-project-2/index.html",
+    "static/media/PencilIcon.svg": "/Undefined-project-2/static/media/PencilIcon.f5c064366058fa8528dd0578fac32ddb.svg",
+    "static/media/ArrowRightIcon.svg": "/Undefined-project-2/static/media/ArrowRightIcon.d96babf8c272b6aa9e1dbf7b76ce65d3.svg",
+    "static/media/TrashIcon.svg": "/Undefined-project-2/static/media/TrashIcon.ac524993e4bcae024f9a703b3acba4c9.svg",
     "static/media/Error.svg": "/Undefined-project-2/static/media/Error.a1ea9b63c37f3ae5ae635a41c3270c69.svg",
     "static/media/cross_btn.svg": "/Undefined-project-2/static/media/cross_btn.3afe3dfcffdc0996abe2723903e11d27.svg",
-    "main.f6e4a15b.css.map": "/Undefined-project-2/static/css/main.f6e4a15b.css.map",
-    "main.cb5150cb.js.map": "/Undefined-project-2/static/js/main.cb5150cb.js.map"
+    "static/media/x-close.svg": "/Undefined-project-2/static/media/x-close.a73c32a814cf84a36a98059783c59a42.svg",
+    "static/media/PlusIcon.svg": "/Undefined-project-2/static/media/PlusIcon.c8d74ab206b4c159efe61dfb98d0e844.svg",
+    "static/media/plus.svg": "/Undefined-project-2/static/media/plus.c1f4cb428bdfa079a2fad6362fe893a0.svg",
+    "main.94fe8900.css.map": "/Undefined-project-2/static/css/main.94fe8900.css.map",
+    "main.31890ca7.js.map": "/Undefined-project-2/static/js/main.31890ca7.js.map"
   },
   "entrypoints": [
-    "static/css/main.f6e4a15b.css",
-    "static/js/main.cb5150cb.js"
+    "static/css/main.94fe8900.css",
+    "static/js/main.31890ca7.js"
   ]
 }
