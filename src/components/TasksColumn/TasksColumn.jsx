@@ -32,8 +32,9 @@ export default TasksColumn;
 const ItemTask = styled.li`
   display: flex;
   flex-direction: column;
+  width: 335px;
   gap: 42px;
-  padding: 20px;
+  padding: 18px 10px 10px 10px;
   background: #ffffff;
   border: 1px solid rgba(220, 227, 229, 0.8);
   border-radius: 8px;
