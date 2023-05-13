@@ -17,6 +17,16 @@ export default TasksColumnsList;
 
 const ListTask = styled.ul`
   display: flex;
-  gap: 27px;
+  width: 335px;
+
+  overflow: scroll;
+  gap: 16px;
   margin-top: 16px;
+  @media screen and (min-width: 767.98px) {
+    width: 704px;
+  }
+  @media screen and (min-width: 767.98px) {
+    width: 1087px;
+    gap: 27px;
+  }
 `;

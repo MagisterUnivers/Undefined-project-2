@@ -38,7 +38,7 @@ const ChoosedDayPage = () => {
     <div>
      
       <CalendarToolbar {...{ title, prevButtonProps, nextButtonProps }} />
-      <ListDay>
+      {/* <ListDay>
         {days.map((date, index) => {
           const dateKey = getCalendarKey({ date });
           const isSelected = currentDateKey === dateKey;
@@ -53,8 +53,7 @@ const ChoosedDayPage = () => {
           </ItemMonthDay>
         );
         })}
-      </ListDay>
-      <ListTask>
+      </ListDay> */}
         <TasksColumnsList />
         {/* <ItemTask>
           <Title>To do <ControlPoint/></Title>
@@ -68,7 +67,6 @@ const ChoosedDayPage = () => {
           <Title>Done <ControlPoint/></Title> 
           <ButtonTask><Add/> Add task</ButtonTask> 
         </ItemTask>  */}
-      </ListTask>
     </div>
   );
 };
@@ -121,11 +119,11 @@ const TextDay = styled.strong`
 // background: #3E85F3;
 // border-radius: 8px;
 // color: white;  `
-const ListTask = styled.ul`
-  display: flex;
-  gap: 27px;
-  margin-top: 16px;
-`;
+// const ListTask = styled.ul`
+//   display: flex;
+//   gap: 27px;
+//   margin-top: 16px;
+// `;
 // const ItemTask = styled.li`
 //   display: flex;
 //   flex-direction: column;
