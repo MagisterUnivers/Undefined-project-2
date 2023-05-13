@@ -2,7 +2,7 @@ import React from 'react';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import styled from 'styled-components';
-import { PeriodTypeSelect } from './PeriodTypeSelect';
+import { PeriodTypeSelect } from 'components/PeriodTypeSelect/PeriodTypeSelect';
 import { useParams } from 'react-router-dom';
 export const PeriodPaginator = ({
   title,

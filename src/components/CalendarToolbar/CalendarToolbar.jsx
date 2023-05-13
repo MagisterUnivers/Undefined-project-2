@@ -1,5 +1,5 @@
 import React from 'react';
-import { PeriodPaginator } from './PeriodPaginator';
+import { PeriodPaginator } from 'components/PeriodPaginator/PeriodPaginator';
 
 export const CalendarToolbar = ({
   title,
