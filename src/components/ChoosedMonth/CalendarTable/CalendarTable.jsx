@@ -52,10 +52,10 @@ export const CalendarTable = ({
       <tbody>
         {weeks.map((daysInWeek, weekIndex) => {
           // { monday, tuesday }
+
           const datesOfWeekByDayLabel = daysInWeek.reduce((map, item) => {
             const date = item.toDate();
             const dayLabel = dateFormatter.format(date);
-
             map.set(dayLabel, item);
 
             return map;
@@ -69,7 +69,6 @@ export const CalendarTable = ({
               {daysOfWeekLabels.map((label, index) => {
                 // get the day sorted by days the days of the week order
                 const date = datesOfWeekByDayLabel.get(label);
-
                 if (!date || date.notIncluded) {
                   return (
                     <td
@@ -81,7 +80,11 @@ export const CalendarTable = ({
                 }
 
                 return (
-                  <CalendarCell key={index} {...{ state, date, locale }} />
+                  <CalendarCell
+                    key={index}
+                    id={date}
+                    {...{ state, date, locale }}
+                  />
                 );
               })}
             </tr>
