@@ -13,6 +13,7 @@ import { PrivateRoute } from 'Routes/PrivateRoute';
 import { PublicRoute } from 'Routes/PublicRoute';
 // import { TaskColumnCard } from './TaskColumnCard/TaskColumnCard';
 import { ColumnsTasksList } from './ColumnsTasksList/ColumnsTasksList';
+
 export const App = () => {
   return (
     <>

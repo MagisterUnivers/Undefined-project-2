@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { selectIsTaskExist } from 'redux/selectors';
-import { ReactComponent as MotivatedGooseLogo } from 'components/Header/goose.svg';
+// import { ReactComponent as MotivatedGooseLogo } from 'components/Header/goose.svg';
 
 export const Header = ({ toggleSidebar }) => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1439.98px)' });
