@@ -3,22 +3,56 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import styled from 'styled-components';
 import { PeriodTypeSelect } from './PeriodTypeSelect';
+import { useParams } from 'react-router-dom';
 export const PeriodPaginator = ({
   title,
-  prevButtonProps,
-  nextButtonProps,
+  prevButtonProps: { onClick: previousClick, ...prevButtonProps },
+  nextButtonProps: { onClick: nextClick, ...nextButtonProps },
 }) => {
+  const { currentDay } = useParams();
+
+  const disablePaginator = !!currentDay;
+
+  const previousOnClick = (event) => {
+    if (disablePaginator) {
+      event.preventDefault();
+      return;
+    }
+
+    previousClick(event);
+  };
+
+  const nextOnClick = (event) => {
+    if (disablePaginator) {
+      event.preventDefault();
+
+      return;
+    }
+
+    previousClick(event);
+  };
+
   return (
     <HeaderDivGroup>
       <DivGroup>
         <Button>{title}</Button>
         <ButtonGroup>
-          <IconButton {...prevButtonProps}>
-            <ArrowBackIosNewIcon fontSize="small" />
+          <IconButton {...prevButtonProps} onClick={previousOnClick}>
+            <ArrowBackIosNewIcon
+              className={`${
+                disablePaginator ? ' text-gray-100  cursor-not-allowed' : ''
+              }`}
+              fontSize="small"
+            />
           </IconButton>
 
-          <IconButton {...nextButtonProps}>
-            <ArrowForwardIosIcon fontSize="small" />
+          <IconButton {...nextButtonProps} onClick={nextOnClick}>
+            <ArrowForwardIosIcon
+              className={`${
+                disablePaginator ? ' text-gray-100 cursor-not-allowed' : ''
+              }`}
+              fontSize="small"
+            />
           </IconButton>
         </ButtonGroup>
       </DivGroup>
