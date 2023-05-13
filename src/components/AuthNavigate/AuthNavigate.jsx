@@ -1,12 +1,13 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const AuthNavigate = ({ isLoginForm }) => {
   return (
     <div>
       {isLoginForm ? (
-        <StyledText>Sign up</StyledText>
+        <StyledLink to="/register">Sign up</StyledLink>
       ) : (
-        <StyledTextAlt>Log in</StyledTextAlt>
+        <StyledLinkAlt to="/login">Log in</StyledLinkAlt>
       )}
     </div>
   );
@@ -14,9 +15,9 @@ const AuthNavigate = ({ isLoginForm }) => {
 
 export default AuthNavigate;
 
-const StyledText = styled.p`
+const StyledLink = styled(Link)`
   position: absolute;
-  bottom: 25%;
+  bottom: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: 'Inter';
@@ -34,14 +35,17 @@ const StyledText = styled.p`
     0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
 
   @media screen and (min-width: 768px) {
-    bottom: 20%;
+    font-size: 18px;
+    line-height: calc(24 / 18);
+
+    bottom: 15%;
   }
   @media screen and (min-width: 1440px) {
-    bottom: 23%;
+    bottom: 18%;
   }
 `;
 
-const StyledTextAlt = styled.p`
+const StyledLinkAlt = styled(Link)`
   position: absolute;
   bottom: 18%;
   left: 50%;

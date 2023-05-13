@@ -5,7 +5,6 @@ import { Box } from '@mui/system';
 
 export const UserInfo = () => {
   const { name, userImgUrl } = useSelector(selectUserInfo);
-  console.log(userImgUrl);
   return (
     <Box display={'flex'} alignItems={'center'} gap={'14px'}>
       <Typography
@@ -39,6 +38,7 @@ export const UserInfo = () => {
             width: { mobile: 32, tablet: 44 },
             height: { mobile: 32, tablet: 44 },
           }}
+          alt={`${name} avatar`}
         >
           {name[0]}
         </Avatar>

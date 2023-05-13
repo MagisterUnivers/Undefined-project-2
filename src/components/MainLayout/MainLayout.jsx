@@ -1,31 +1,28 @@
-// import { Header } from 'components/Header/Header';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import { fetchUserDataThunk } from 'redux/UserInfo/userInfoOperations';
-// import { selectUser } from 'redux/selectors';
-// import { SideBar } from './SideBar/SideBar';
-// import { useState } from 'react';
 import { Header } from 'components/Header/Header';
 import { Box } from '@mui/material';
 import { SideBarTest } from 'components/SideBarTest/SideBarTest';
-// import { useMediaQuery } from 'react-responsive';
+import { refreshThunk } from 'redux/Auth/authOperations';
+// import { selectIsOnline } from 'redux/selectors';
+// import { Notify } from 'notiflix';
 
 export const MainLayout = () => {
+  // const isOnline = useSelector(selectIsOnline);
+  // const navigate = useNavigate();
   document.body.style.backgroundColor = '#F7F6F9';
-  // const { email } = useSelector(selectUser);
-  // const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1439.98px)' });
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchUserDataThunk());
+    dispatch(refreshThunk()).then(() => dispatch(fetchUserDataThunk()));
   }, [dispatch]);
 
   const [isOpenSidebarMobile, setIsOpenSidebarMobile] = useState(false);
 
   const toggleSidebar = () => {
     setIsOpenSidebarMobile(!isOpenSidebarMobile);
-    console.log('toggle!');
   };
 
   return (
@@ -33,13 +30,6 @@ export const MainLayout = () => {
       className=" bg-gray-10 dark:bg-black"
       sx={{ display: 'flex', height: '100vh' }}
     >
-      {/* <SideBar
-        toggleSidebar={toggleSidebar}
-        isOpenSidebarMobile={isOpenSidebarMobile}
-      /> */}
-      {/* {!isTabletOrMobile && (
-        <SideBarTest isOpenSidebarMobile={isOpenSidebarMobile} />
-      )} */}
       <SideBarTest
         isOpenSidebarMobile={isOpenSidebarMobile}
         toggleSidebar={toggleSidebar}
@@ -48,18 +38,16 @@ export const MainLayout = () => {
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          // border: '3px solid blue',
           width: '100%',
           padding: {
-            mobile: '24px 20px 20px 20px',
-            tablet: '24px 32px 18px 32px',
-            desktop: '40px 32px 32px 32px',
+            mobile: '16px 20px 20px 20px',
+            tablet: '18px 32px 18px 32px',
+            desktop: '36px 32px 32px 32px',
           },
         }}
       >
         <Box
           sx={{
-            // border: '1px solid teal',
             display: 'flex',
             flexDirection: 'column',
             gap: { mobile: '64px', desktop: '32px' },
@@ -70,7 +58,6 @@ export const MainLayout = () => {
           <Header toggleSidebar={toggleSidebar} />
           <main
             style={{
-              // border: '1px solid teal',
               width: '100%',
               height: '100%',
             }}

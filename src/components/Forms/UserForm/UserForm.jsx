@@ -1,103 +1,3 @@
-// import React from 'react';
-// import { Formik, Form, Field, ErrorMessage } from 'formik';
-// import * as Yup from 'yup';
-// import { loginThunk } from 'redux/Auth/authOperations';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { selectAuthAccessToken } from 'redux/selectors';
-// import styled from 'styled-components';
-// import AuthNavigate from 'components/AuthNavigate/AuthNavigate';
-// // import { useHistory } from 'react-router-dom';
-
-// const validationSchema = Yup.object().shape({
-//   email: Yup.string()
-//     .email(
-//       'enter valid email: min 6, max 63 characters, except .ru, .su, .рус, .рф,.москва etc'
-//     )
-//     .required("Обов'язкове поле"),
-//   password: Yup.string()
-//     .min(
-//       6,
-//       'the password must contain Latin letters: at least 1 lowercase, 1 uppercase, 1 number and be at least 6 and no more than 12 characters'
-//     )
-//     .required("Обов'язкове поле"),
-// });
-
-// export const UserForm = () => {
-//   // const history = useHistory();
-//   const token1 = useSelector(selectAuthAccessToken);
-
-//   const dispatch = useDispatch();
-
-//   const initialValues = {
-//     email: '',
-//     password: '',
-//   };
-
-//   const handleSubmit = values => {
-//     // e.preventDefault();
-//     console.log('user is Logged In');
-//     console.log(values);
-//     dispatch(loginThunk(values));
-//     console.log(token1);
-//   };
-
-//   return (
-//     <>
-//       {' '}
-//       <StyledWrapper>
-//         <StyledTitle>Log In</StyledTitle>
-//         <Formik
-//           initialValues={initialValues}
-//           validationSchema={validationSchema}
-//           onSubmit={handleSubmit}
-//         >
-//           <StyledForm
-//           // onSubmit={handleSubmit}
-//           >
-//             {/* <div>
-//         <label htmlFor="name">Name:</label>
-//         <Field type="text" id="name" name="name" />
-//         <ErrorMessage name="name" component="div" className="error-message" />
-//       </div> */}
-//             <StyledHolder>
-//               <StyledLabel htmlFor="email">Email</StyledLabel>
-//               <br />
-//               <StyledField
-//                 type="email"
-//                 id="email"
-//                 name="email"
-//                 placeholder="Email..."
-//               />
-//               <ErrorMessage
-//                 name="email"
-//                 component="div"
-//                 className="error-message"
-//               />
-//             </StyledHolder>
-//             <StyledHolder>
-//               <StyledLabel htmlFor="password">Password</StyledLabel>
-//               <br />
-//               <StyledField
-//                 type="password"
-//                 id="password"
-//                 name="password"
-//                 placeholder="Password..."
-//               />
-//               <ErrorMessage
-//                 name="password"
-//                 component="div"
-//                 className="error-message"
-//               />
-//             </StyledHolder>
-//             <StyledBtn type="submit">Log in</StyledBtn>
-//           </StyledForm>
-//         </Formik>
-//       </StyledWrapper>
-//       <AuthNavigate isLoginForm={true} />
-//     </>
-//   );
-// };
-
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
@@ -111,6 +11,7 @@ import { enUS } from 'date-fns/locale';
 
 export const UserForm = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 767.98px)' });
+
   const user = useSelector((state) => state.userInfo);
   const [formData, setFormData] = useState({
     _id: '',
@@ -159,15 +60,12 @@ export const UserForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isFormValid) {
-      // send
       dispatch(updateUserDataThunk(formData));
       setIsFormValid(false);
     }
   };
 
   const validateForm = () => {
-    // validation
-    // just a thing
     return (
       formData.name !== '' ||
       formData.email !== '' ||
@@ -176,21 +74,6 @@ export const UserForm = () => {
       formData.skype !== ''
     );
   };
-
-  // const validateForm = () => {
-  //   const isNameValid =
-  //     /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/.test(
-  //       formData.name
-  //     );
-  //   const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
-  //   const isDateValid = /^\d{4}-\d{2}-\d{2}$/.test(formData.birthday);
-  //   const isPhoneValid = /^[0-9()+-]+$/.test(formData.phone);
-  //   const isSkypeValid = /^[A-Za-z0-9.-_]+$/.test(formData.skype);
-
-  //   return (
-  //     isNameValid && isEmailValid && isDateValid && isPhoneValid && isSkypeValid
-  //   );
-  // };
 
   const handleBlur = () => {
     setIsFormValid(validateForm());
@@ -205,10 +88,6 @@ export const UserForm = () => {
   useEffect(() => {
     setIsFormValid(validateForm()); //eslint-disable-next-line
   }, [formData]);
-
-  // const formatWeekDay = nameOfDay => {
-  //   return nameOfDay.charAt(0);
-  // };
 
   const customLocale = {
     ...enUS,
@@ -246,14 +125,29 @@ export const UserForm = () => {
               horizontal: 'right',
             }}
           >
-            <BorderedAvatar
-              sx={{
-                width: { mobile: 72, tablet: 124 },
-                height: { mobile: 72, tablet: 124 },
-              }}
-              src={formData.userImgUrl}
-              alt={`${formData.name} avatar`}
-            />
+            {formData.userImgUrl ? (
+              <Avatar
+                src={formData.userImgUrl}
+                alt={`${formData.name} avatar`}
+                sx={{
+                  width: { mobile: 72, tablet: 124 },
+                  height: { mobile: 72, tablet: 124 },
+                  border: '2px solid #3e85f3',
+                }}
+              />
+            ) : (
+              <Avatar
+                alt={`${formData.name} avatar`}
+                sx={{
+                  fontSize: '50px',
+                  width: { mobile: 72, tablet: 124 },
+                  height: { mobile: 72, tablet: 124 },
+                  border: '2px solid #3e85f3',
+                }}
+              >
+                {formData.name[0]}
+              </Avatar>
+            )}
           </Badge>
         </StyledDiv>
         <input
@@ -281,7 +175,6 @@ export const UserForm = () => {
               >
                 User Name
               </StyledLabel>
-              <br />
               <StyledField
                 className=" text-black dark:text-white"
                 type="text"
@@ -303,7 +196,6 @@ export const UserForm = () => {
               >
                 Birthday
               </StyledLabel>
-              <br />
               <StyledDatePicker
                 type="date"
                 name="birthday"
@@ -320,8 +212,6 @@ export const UserForm = () => {
                 }
                 placeholderText="Enter your birthday"
                 dateFormat="yyyy-MM-dd"
-                // dayClassName={date => 'custom-day'}
-                // formatWeekDay={formatWeekDay}
                 required
                 locale={customLocale}
               />
@@ -333,7 +223,6 @@ export const UserForm = () => {
               >
                 Email
               </StyledLabel>
-              <br />
               <StyledField
                 className=" text-black dark:text-white"
                 type="email"
@@ -344,7 +233,6 @@ export const UserForm = () => {
                 placeholder="Enter your email"
                 pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
                 title="Please enter a valid email address. Example - john@example.com"
-                required
               />
             </StyledHolder>
             <StyledHolder>
@@ -355,7 +243,6 @@ export const UserForm = () => {
               >
                 Phone
               </StyledLabel>
-              <br />
               <StyledField
                 className=" text-black dark:text-white"
                 type="tel"
@@ -366,7 +253,6 @@ export const UserForm = () => {
                 placeholder="Enter your phone number"
                 pattern="^[0-9()+-]+$"
                 title="Please enter a valid phone number. Only numbers, parentheses, plus sign (+), and dashes are allowed. For example: +1 (123) 456-7890"
-                required
               />
             </StyledHolder>
             <StyledHolder>
@@ -377,7 +263,6 @@ export const UserForm = () => {
               >
                 Skype
               </StyledLabel>
-              <br />
               <StyledField
                 className=" text-black dark:text-white"
                 type="text"
@@ -388,7 +273,6 @@ export const UserForm = () => {
                 placeholder="Add a skype number"
                 pattern="^[A-Za-z0-9.-_]+$"
                 title="Please enter a valid Skype ID. Only letters, numbers, dots, dashes, and underscores are allowed. For example: john.doe_123"
-                required
               />
             </StyledHolder>
           </StyledTaker>
@@ -419,11 +303,11 @@ const badgeStyleTablet = {
   },
 };
 const StyledDatePicker = styled(DatePicker)`
+  display: block;
   font-weight: 600;
   font-size: 16px;
   line-height: calc(18 / 16);
   margin-top: 8px;
-  /* margin-bottom: 32px; */
   padding: 14px;
   box-sizing: border-box;
 
@@ -459,9 +343,6 @@ const StyledDiv = styled.div`
     position: static;
   }
 `;
-const BorderedAvatar = styled(Avatar)`
-  border: 2px solid #3e85f3;
-`;
 
 const StyledForm = styled.form`
   display: flex;
@@ -471,28 +352,10 @@ const StyledForm = styled.form`
   justify-content: center;
   align-items: center;
   margin-top: 40px;
-  /* margin-bottom: 40px; */
-  /* gap: 20px; */
 `;
 
-// const StyledTitle = styled.h2`
-//   text-align: center;
-//   margin-top: 40px;
-//   margin-bottom: 32px;
-
-//   font-family: 'Inter';
-//   font-style: normal;
-//   font-weight: 600;
-//   font-size: 18px;
-//   line-height: calc(24 / 18);
-
-//   color: #3e85f3;
-
-//   text-shadow: 0px 47px 355px rgba(0, 0, 0, 0.07),
-//     0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
-// `;
-
 const StyledLabel = styled.label`
+  display: block;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
@@ -505,8 +368,6 @@ const StyledLabel = styled.label`
 `;
 
 const StyledHolder = styled.div`
-  /* width: 299px;
-  height: 392px; */
   margin-bottom: 18px;
 
   &:last-of-type {
@@ -592,7 +453,6 @@ const StyledUserP1 = styled.p`
 const StyledBtn = styled.button`
   width: 195px;
   height: 46px;
-  /* margin-top: 40px; */
 
   font-family: 'Inter';
   font-style: normal;
@@ -626,17 +486,6 @@ const StyledBtn = styled.button`
 `;
 
 const StyledWrapper = styled.div`
-  /* position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 335px;
-  height: 653px;
-  transform: translate(-50%, -50%); */
-  /* margin-top: 15%;
-  margin-bottom: auto; */
-  /* margin-left: auto;
-  margin-right: auto; */
-
   background: #ffffff;
   border: 1px solid transparent;
   border-radius: 8px;
@@ -651,19 +500,16 @@ const StyledWrapper = styled.div`
     padding-bottom: 40px;
 
     width: 704px;
-    /* height: 854px; */
   }
   @media screen and (min-width: 1440px) {
     padding-bottom: 60px;
     padding-top: 60px;
     width: 1087px;
-    /* height: 752px; */
   }
 `;
 
 const StyledField = styled.input`
   margin-top: 8px;
-  /* margin-bottom: 32px; */
   padding: 14px;
   box-sizing: border-box;
   background: transparent;

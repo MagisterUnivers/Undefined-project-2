@@ -23,7 +23,7 @@ const persistConfig = {
 
 const persistConfigForTheme = {
   key: 'theme',
-  version: 1,
+  version: 2,
   storage,
   whitelist: ['theme'],
 };
@@ -31,7 +31,7 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(persistConfig, authReducer),
     userInfo: persistReducer(persistConfigForTheme, userInfoReducer),
-    calendar: persistReducer(persistConfig, calendarEventsReducer),
+    calendar: calendarEventsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

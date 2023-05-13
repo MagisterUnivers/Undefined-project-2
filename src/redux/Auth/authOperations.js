@@ -58,16 +58,30 @@ export const logoutThunk = createAsyncThunk('@@auth/logout', async (_) => {
   }
 });
 
+// export const refreshThunk = createAsyncThunk(
+//   '@@auth/refresh',
+//   async (_, thunkAPI) => {
+//     const savedToken = thunkAPI.getState().auth.data.accessToken;
+//     if (savedToken === null) {
+//       return thunkAPI.rejectWithValue('Token is not find');
+//     }
+//     try {
+//       setToken(savedToken);
+//       const res = await axios.get('/users/current');
+//       return res.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
 export const refreshThunk = createAsyncThunk(
   '@@auth/refresh',
   async (_, thunkAPI) => {
-    const savedToken = thunkAPI.getState().auth.data.accessToken;
-    if (savedToken === null) {
-      return thunkAPI.rejectWithValue('Token is not find');
-    }
+    const refreshToken = thunkAPI.getState().auth.data.refreshToken;
+    console.log(refreshToken);
     try {
-      setToken(savedToken);
-      const res = await axios.get('/users/current');
+      setToken(refreshToken);
+      const res = await axios.post('user/refresh');
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

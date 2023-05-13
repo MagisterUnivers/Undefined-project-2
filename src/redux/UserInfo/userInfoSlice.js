@@ -55,6 +55,7 @@ const userSlice = createSlice({
     [fetchUserDataThunk.rejected]: (state, { payload }) => {
       state.error = payload;
       state.loading = false;
+      state.online = false;
     },
     [updateUserDataThunk.pending]: (state) => {
       state.loading = true;

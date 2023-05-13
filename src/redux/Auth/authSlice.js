@@ -20,7 +20,7 @@ const authSlice = createSlice({
   name: '@@auth',
   initialState,
   reducers: {
-    clearError: state => {
+    clearError: (state) => {
       state.error = null;
     },
   },
@@ -74,7 +74,7 @@ const authSlice = createSlice({
     [refreshThunk.fulfilled]: (state, { payload }) => {
       state.online = true;
       state.loading = false;
-      state.user = payload;
+      state.data = payload.data;
     },
     [refreshThunk.rejected]: (state, { payload }) => {
       state.error = payload;
