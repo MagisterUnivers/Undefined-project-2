@@ -19,7 +19,7 @@ const ChoosedDayPage = () => {
 
     const paramDate = parseDate(currentDayParam);
 
-    setCurrentDate(paramDate)
+    setCurrentDate(paramDate) //eslint-disable-next-line
   }, []);
 
   const currentDateKey = getCalendarKey({ date: currentDate.toDate()  }); 
