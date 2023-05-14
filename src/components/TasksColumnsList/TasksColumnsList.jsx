@@ -76,7 +76,7 @@ const TasksColumnsList = ({ category, tasks }) => {
         tasks={inProgressTasks}
         categoryId="in-progress"
       />
-      <TasksColumn title="Done" tasks={doneTasks} categoryId="done" />
+      <TasksColumn title="Done" tasks={doneTasks} categoryId="done" currentDay={currentDay} />
     </ListTask>
   );
 };

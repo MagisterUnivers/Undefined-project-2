@@ -6,10 +6,10 @@ import styled from 'styled-components';
 // import { selectIsTaskExist } from 'redux';
 // import styled from 'styled-components';
 
-const TasksColumn = ({ title, tasks, categoryId }) => {
+const TasksColumn = ({ title, tasks, categoryId, currentDay }) => {
   return (
     <ItemTask>
-      <ColumnHeadBar title={title} categoryId={categoryId} />
+      <ColumnHeadBar title={title} categoryId={categoryId} currentDay={currentDay} />
       {tasks && <ColumnsTasksList tasks={tasks} categoryId={categoryId} />}
       <AddTaskBtn categoryId={categoryId} />
       {/* {IsTasks ? ColumnTasksList : blablaba } */}

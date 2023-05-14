@@ -7,7 +7,7 @@ import Modal from 'components/Modal/Modal';
 import TaskForm from 'components/Forms/TaskForm/TaskForm';
 // import { ColumnsTasksList } from 'components/ColumnsTasksList/ColumnsTasksList';
 
-const ColumnHeadBar = ({ title }) => {
+const ColumnHeadBar = ({ title, currentDay, categoryId }) => {
   const [isModalShown, setIsModalShown] = useState(false);
   // const category = ['To do', 'In progress', 'Done'];
 
@@ -37,7 +37,15 @@ const ColumnHeadBar = ({ title }) => {
       {/* </ItemTask> */}
       {/* ))} */}
       {isModalShown && (
-        <Modal handleModalClose={handleModalClose}>{<TaskForm />}</Modal>
+        <Modal handleModalClose={handleModalClose}>
+          {
+            <TaskForm
+              title={title}
+              currentDay={currentDay}
+              categoryId={categoryId}
+            />
+          }
+        </Modal>
       )}
     </>
   );
