@@ -81,9 +81,10 @@ const TaskForm = ({ columnCategory, currentDay, isEdit, id, categoryId }) => {
 
   return (
     <StyledForm onSubmit={handleFormSubmit}>
-      <StyledLabel>
+      <StyledLabel className="dark:text-white">
         Title
         <StyledInput
+          className="dark:bg-darktheme dark:border-bdark dark:border dark:text-white"
           type="text"
           placeholder="Enter text"
           maxLength="250"
@@ -92,13 +93,25 @@ const TaskForm = ({ columnCategory, currentDay, isEdit, id, categoryId }) => {
         />
       </StyledLabel>
       <StyledInputWrapper>
-        <StyledLabel>
+        <StyledLabel className="dark:text-white">
           Start
-          <StyledInput type="text" placeholder="9:00" name="start" required />
+          <StyledInput
+            className="dark:bg-darktheme dark:border-bdark dark:border dark:text-white"
+            type="text"
+            placeholder="9:00"
+            name="start"
+            required
+          />
         </StyledLabel>
-        <StyledLabel>
+        <StyledLabel className="dark:text-white">
           End
-          <StyledInput type="text" placeholder="14:00" name="end" required />
+          <StyledInput
+            className="dark:bg-darktheme dark:border-bdark dark:border dark:text-white"
+            type="text"
+            placeholder="14:00"
+            name="end"
+            required
+          />
         </StyledLabel>
       </StyledInputWrapper>
       <FormControl>
@@ -109,6 +122,7 @@ const TaskForm = ({ columnCategory, currentDay, isEdit, id, categoryId }) => {
           onChange={handleRadioChange}
         >
           <StyledFormControlLabel
+            className="dark:text-white"
             value="low"
             control={
               <Radio
@@ -129,6 +143,7 @@ const TaskForm = ({ columnCategory, currentDay, isEdit, id, categoryId }) => {
             label="Low"
           />
           <StyledFormControlLabel
+            className="dark:text-white"
             value="medium"
             control={
               <Radio
@@ -149,6 +164,7 @@ const TaskForm = ({ columnCategory, currentDay, isEdit, id, categoryId }) => {
             label="Medium"
           />
           <StyledFormControlLabel
+            className="dark:text-white"
             value="high"
             control={
               <Radio
