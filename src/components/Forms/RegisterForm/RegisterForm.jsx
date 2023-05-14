@@ -21,9 +21,17 @@ import {
 import { StyledIcon } from '../LoginForm/LoginForm.styled';
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string().required('Required Field'),
+  name: Yup.string()
+    .required('Required Field')
+    .min(2, 'Name should be at least 2 characters')
+    .max(50, 'Name should not exceed 50 characters')
+    .matches(
+      /^[a-zA-Z0-9\s]+$/,
+      'Name should only contain letters, numbers, and spaces'
+    ),
   email: Yup.string()
-    .email('This is an ERROR password')
+    .email('This is an ERROR email')
+    .matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, 'example@example.com')
     .required('Required Field'),
   password: Yup.string()
     .min(6, 'This is an ERROR password')

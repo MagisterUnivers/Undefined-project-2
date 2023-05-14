@@ -37,6 +37,19 @@ export const loginThunk = createAsyncThunk(
       console.log(res);
       return res.data;
     } catch (error) {
+      setTimeout(() => {
+        if (error) {
+          Notiflix.Report.warning(
+            'Loading took more than 5 seconds',
+            'Loading seems stuck, or there was a server error. Please, check your data, and then try to "Log In" again.',
+            'GOT IT',
+            () => {
+              window.location.reload();
+            }
+          );
+        }
+      }, 5000);
+
       const errorMessage = error.response.data.message;
       Notiflix.Notify.failure('Respond from server is ' + errorMessage);
       // return thunkAPI.rejectWithValue(error.message);
@@ -63,7 +76,9 @@ export const refreshThunk = createAsyncThunk(
       const res = await axios.post('user/refresh');
       return res.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      const errorMessage = error.response.data.message;
+      Notiflix.Notify.failure('Respond from server is ' + errorMessage);
+      // return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

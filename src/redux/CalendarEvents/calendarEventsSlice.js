@@ -1,6 +1,7 @@
 import { createSlice, current } from '@reduxjs/toolkit';
 import { shallowCompare } from 'react-global-state-hooks';
 import { useSelector } from 'react-redux';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
 import {
   createUserTaskThunk,
@@ -42,13 +43,16 @@ const calendarEventsSlice = createSlice({
      */
     [getMonthEvents.pending]: (state) => {
       state.isLoading = true;
+      Loading.hourglass('User events is loading...');
     },
     [getMonthEvents.rejected]: (state) => {
       state.isLoading = false;
+      Loading.remove();
     },
     [getMonthEvents.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
       state.monthDatesMap = computeMonthDatesMap(payload);
+      Loading.remove();
     },
 
     /**
@@ -56,8 +60,13 @@ const calendarEventsSlice = createSlice({
      */
     [createUserTaskThunk.pending]: (state) => {
       state.isLoading = true;
+      Loading.hourglass('We are creating the task...');
     },
     [createUserTaskThunk.fulfilled]: (state, { payload }) => {
+      // state.tasks.push({
+      //   tasks: [payload],
+      //   date: `${payload.date}`,
+      // });
       const date = payload.date.slice(0, 10);
 
       if (!state.monthDatesMap[date]) {
@@ -68,13 +77,14 @@ const calendarEventsSlice = createSlice({
         ...state.monthDatesMap,
         [date]: [...state.monthDatesMap[date], payload],
       };
-
       state.isLoading = false;
+      Loading.remove();
     },
 
     [createUserTaskThunk.rejected]: (state, { payload }) => {
       state.error = payload;
       state.isLoading = false;
+      Loading.remove();
     },
 
     /**
@@ -82,6 +92,7 @@ const calendarEventsSlice = createSlice({
      */
     [deleteUserTaskThunk.pending]: (state) => {
       state.isLoading = true;
+      Loading.arrows('We are deleting the task...');
     },
     [deleteUserTaskThunk.fulfilled]: (state, action) => {
       state.isLoading = false;
@@ -92,10 +103,12 @@ const calendarEventsSlice = createSlice({
         (task) => task._id !== action.payload._id
       );
       state.monthDatesMap = { ...state.monthDatesMap, [date]: arrTasks };
+      Loading.remove();
     },
     [deleteUserTaskThunk.rejected]: (state, { payload }) => {
       state.isLoading = true;
       state.error = payload;
+      Loading.remove();
     },
 
     /**
@@ -103,6 +116,7 @@ const calendarEventsSlice = createSlice({
      */
     [updateUserTaskThunk.pending]: (state, { payload }) => {
       state.isLoading = true;
+      Loading.hourglass('User Tasks is updating...');
     },
     [updateUserTaskThunk.fulfilled](state, { payload }) {
       state.isLoading = false;
@@ -120,10 +134,12 @@ const calendarEventsSlice = createSlice({
       console.log(filteredArr);
 
       state.monthDatesMap = { ...state.monthDatesMap, [date]: resultArray };
+      Loading.remove();
     },
     [updateUserTaskThunk.rejected]: (state, { payload }) => {
       state.isLoading = true;
       state.error = payload;
+      Loading.remove();
     },
 
     /**
@@ -131,15 +147,18 @@ const calendarEventsSlice = createSlice({
      */
     [getUserTaskThunk.pending]: (state, { payload }) => {
       state.isLoading = true;
+      Loading.hourglass('Catching user task...');
     },
     [getUserTaskThunk.fulfilled](state, { payload }) {
       state.isLoading = false;
       state.error = null;
       state.tasks.push(payload);
+      Loading.remove();
     },
     [getUserTaskThunk.rejected]: (state, { payload }) => {
       state.isLoading = true;
       state.error = payload;
+      Loading.remove();
     },
   },
 });

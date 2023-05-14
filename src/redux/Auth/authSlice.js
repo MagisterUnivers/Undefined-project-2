@@ -5,6 +5,7 @@ import {
   refreshThunk,
   registrationThunk,
 } from './authOperations';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
 const initialState = {
   user: { name: '', email: '' },
@@ -27,19 +28,28 @@ const authSlice = createSlice({
   extraReducers: {
     [registrationThunk.pending]: (state, { payload }) => {
       state.loading = true;
+      Loading.hourglass('We are validating your data...');
     },
     [registrationThunk.fulfilled]: (state, { payload }) => {
       state.user = payload.user;
       state.data = payload.data;
       state.online = true;
       state.loading = false;
+      Loading.remove();
     },
     [registrationThunk.rejected]: (state, { payload }) => {
       state.error = payload;
       // state.loading = false;
+      Loading.remove();
     },
     [loginThunk.pending]: (state, { payload }) => {
       state.loading = true;
+      Loading.hourglass('Log In...');
+    },
+    [loginThunk.rejected]: (state, { payload }) => {
+      state.error = payload;
+      // state.loading = false;
+      Loading.remove();
     },
     [loginThunk.fulfilled]: (state, { payload }) => {
       state.user = { id: payload.id, name: payload.name, email: payload.email };
@@ -48,13 +58,11 @@ const authSlice = createSlice({
       state.online = true;
       state.loading = false;
       state.error = null;
-    },
-    [loginThunk.rejected]: (state, { payload }) => {
-      state.error = payload;
-      // state.loading = false;
+      Loading.remove();
     },
     [logoutThunk.pending]: (state, { payload }) => {
       state.loading = true;
+      Loading.pulse('Log Out...');
     },
     [logoutThunk.fulfilled]: (state, { payload }) => {
       state.user = { name: '', email: '' };
@@ -62,23 +70,28 @@ const authSlice = createSlice({
       state.online = false;
       state.loading = false;
       state.error = null;
+      Loading.remove();
     },
     [logoutThunk.rejected]: (state, { payload }) => {
       state.error = payload;
       state.loading = false;
+      Loading.remove();
     },
     [refreshThunk.pending]: (state, { payload }) => {
       state.loading = true;
+      Loading.dots('User data is refreshing...');
     },
 
     [refreshThunk.fulfilled]: (state, { payload }) => {
       state.online = true;
       state.loading = false;
       state.data = payload.data;
+      Loading.remove();
     },
     [refreshThunk.rejected]: (state, { payload }) => {
       state.error = payload;
       state.loading = false;
+      Loading.remove();
     },
   },
 });

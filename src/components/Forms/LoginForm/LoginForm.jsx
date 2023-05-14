@@ -22,6 +22,10 @@ import {
 const validationSchema = Yup.object({
   email: Yup.string()
     .email('This is an ERROR email')
+    .matches(
+      /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+      'This is an ERROR email'
+    )
     .required('Required field'),
   password: Yup.string()
     .min(6, 'This is an ERROR password')
@@ -43,7 +47,7 @@ export const LoginForm = () => {
         <StyledLabel
           htmlFor={name}
           style={{
-            color: showError ? 'red' : 'green',
+            color: showError ? 'red' : 'green' || 'black',
           }}
         >
           {name.slice(0, 1).toUpperCase() + name.slice(1)}

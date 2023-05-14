@@ -1,4 +1,9 @@
 import { parseISO } from 'date-fns';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
+
+// Loading.standard('Loading...', {
+//   backgroundColor: 'rgba(0,0,0,0.8)',
+//   });
 
 const { createSlice } = require('@reduxjs/toolkit');
 const {
@@ -34,6 +39,7 @@ const userSlice = createSlice({
   extraReducers: {
     [fetchUserDataThunk.pending]: (state) => {
       state.loading = true;
+      Loading.hourglass('User data is loading...');
     },
     [fetchUserDataThunk.fulfilled]: (state, { payload }) => {
       state._id = payload._id;
@@ -51,11 +57,13 @@ const userSlice = createSlice({
       // state.theme = payload.theme;
 
       document.body.classList.add(state.theme);
+      Loading.remove();
     },
     [fetchUserDataThunk.rejected]: (state, { payload }) => {
       state.error = payload;
       state.loading = false;
       state.online = false;
+      Loading.remove();
     },
     [updateUserDataThunk.pending]: (state) => {
       state.loading = true;
@@ -80,6 +88,7 @@ const userSlice = createSlice({
     [updateUserDataThunk.rejected]: (state, { payload }) => {
       state.error = payload;
       state.loading = false;
+      Loading.remove();
     },
   },
 });

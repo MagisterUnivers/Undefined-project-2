@@ -1,6 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { getCurrentMonth } from './calendarEventsSlice';
+import Notiflix from 'notiflix';
+import { loginThunk, refreshThunk } from 'redux/Auth/authOperations';
 
 const setToken = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -15,9 +17,19 @@ export const getMonthEvents = createAsyncThunk(
       const res = await axios.get(`/task/by-month?year=${year}&month=${month}`);
 
       return res.data;
-    } catch (e) {
+    } catch (error) {
+      if (
+        error.response.data.message === 'Token is expired' ||
+        'Not Authorized'
+      ) {
+        thunkAPI
+          .dispatch(refreshThunk())
+          .then(() => thunkAPI.dispatch(loginThunk()));
+      }
+
       // const errorMessage = error.response.data.message;
-      return thunkAPI.rejectWithValue(e.message);
+      const errorMessage = error.response.data.message;
+      Notiflix.Notify.failure('Respond from server is ' + errorMessage);
     }
   }
 );
@@ -40,9 +52,18 @@ export const getUserTaskThunk = createAsyncThunk(
       });
       // setToken(res.data);
       return res.data;
-    } catch (e) {
-      // const errorMessage = error.response.data.message;
-      return thunkAPI.rejectWithValue(e.message);
+    } catch (error) {
+      if (
+        error.response.data.message === 'Token is expired' ||
+        'Not Authorized'
+      ) {
+        thunkAPI
+          .dispatch(refreshThunk())
+          .then(() => thunkAPI.dispatch(loginThunk()));
+      }
+
+      const errorMessage = error.response.data.message;
+      Notiflix.Notify.failure('Respond from server is ' + errorMessage);
     }
   }
 );
@@ -57,9 +78,19 @@ export const createUserTaskThunk = createAsyncThunk(
       console.log(axios.defaults.headers.common.Authorization);
       console.log(res.data);
       return res.data;
-    } catch (e) {
+    } catch (error) {
+      if (
+        error.response.data.message === 'Token is expired' ||
+        'Not Authorized'
+      ) {
+        thunkAPI
+          .dispatch(refreshThunk())
+          .then(() => thunkAPI.dispatch(loginThunk()));
+      }
+
       // const errorMessage = error.response.data.message;
-      return thunkAPI.rejectWithValue(e.message);
+      const errorMessage = error.response.data.message;
+      Notiflix.Notify.failure('Respond from server is ' + errorMessage);
     }
   }
 );
@@ -71,8 +102,9 @@ export const deleteUserTaskThunk = createAsyncThunk(
       const response = await axios.delete(`task/${taskId}`);
       // thunkAPI.dispatch(fetchContacts());
       return response.data;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
+    } catch (error) {
+      const errorMessage = error.response.data.message;
+      Notiflix.Notify.failure('Respond from server is ' + errorMessage);
     }
   }
 );
@@ -86,8 +118,18 @@ export const updateUserTaskThunk = createAsyncThunk(
       const response = await axios.put(`task/${id}`, credentials);
       // thunkAPI.dispatch(fetchContacts());
       return response.data;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
+    } catch (error) {
+      if (
+        error.response.data.message === 'Token is expired' ||
+        'Not Authorized'
+      ) {
+        thunkAPI
+          .dispatch(refreshThunk())
+          .then(() => thunkAPI.dispatch(loginThunk()));
+      }
+
+      const errorMessage = error.response.data.message;
+      Notiflix.Notify.failure('Respond from server is ' + errorMessage);
     }
   }
 );
