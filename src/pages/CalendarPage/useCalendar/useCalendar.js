@@ -43,7 +43,7 @@ export const useCalendar = () => {
       year,
       month,
     });
-  }, [isLoading]);
+  }, [isLoading]); //eslint-disable-line
 
   const { year, month } = currentMonth ?? {};
 
@@ -51,7 +51,7 @@ export const useCalendar = () => {
     if (!currentMonth) return;
 
     dispatch(getMonthEvents());
-  }, [year, month]);
+  }, [year, month]); //eslint-disable-line
 
   const state = useCalendarState({
     onChange: setCurrentDate,
