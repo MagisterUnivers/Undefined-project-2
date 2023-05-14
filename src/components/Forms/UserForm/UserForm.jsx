@@ -197,6 +197,7 @@ export const UserForm = () => {
                 Birthday
               </StyledLabel>
               <StyledDatePicker
+                className="dark:text-white"
                 type="date"
                 name="birthday"
                 value={formData.birthday}
@@ -490,7 +491,8 @@ const StyledWrapper = styled.div`
   border: 1px solid transparent;
   border-radius: 8px;
   padding-bottom: 40px;
-  width: 335px;
+  min-width: 335px;
+  margin: 0 auto;
   @media screen and (max-width: 767.98px) {
     position: relative;
   }
@@ -499,12 +501,12 @@ const StyledWrapper = styled.div`
     padding-top: 40px;
     padding-bottom: 40px;
 
-    width: 704px;
+    min-width: 704px;
   }
   @media screen and (min-width: 1440px) {
     padding-bottom: 60px;
     padding-top: 60px;
-    width: 1087px;
+    min-width: 1087px;
   }
 `;
 

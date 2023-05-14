@@ -19,7 +19,7 @@ export const SideBarTest = ({ isOpenSidebarMobile, toggleSidebar }) => {
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
           <Box sx={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
             <StyledGooseLogo />
-            <StyledH2>
+            <StyledH2 className="dark:text-white">
               G<StyledSpan>oo</StyledSpan>seTrack
             </StyledH2>
             <button
@@ -49,12 +49,12 @@ export const SideBarTest = ({ isOpenSidebarMobile, toggleSidebar }) => {
           justifyContent: 'space-between',
           padding: '32px 24px 24px 24px',
         }}
-        className=" bg-white dark:bg-black transition-colors delay-200"
+        className=" bg-white dark:bg-sidebardark transition-colors delay-200"
       >
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
           <Box sx={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
             <StyledGooseLogo />
-            <StyledH2>
+            <StyledH2 className="dark:text-skyblue">
               G<StyledSpan>oo</StyledSpan>seTrack
             </StyledH2>
           </Box>
