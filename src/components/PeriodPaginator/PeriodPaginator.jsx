@@ -2,7 +2,6 @@ import React from 'react';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import styled from 'styled-components';
-import { PeriodTypeSelect } from 'components/PeriodTypeSelect/PeriodTypeSelect';
 import { useParams } from 'react-router-dom';
 export const PeriodPaginator = ({
   title,
@@ -33,7 +32,7 @@ export const PeriodPaginator = ({
   };
 
   return (
-    <HeaderDivGroup>
+
       <DivGroup>
         <Button>{title}</Button>
         <ButtonGroup>
@@ -56,8 +55,7 @@ export const PeriodPaginator = ({
           </IconButton>
         </ButtonGroup>
       </DivGroup>
-      <PeriodTypeSelect />
-    </HeaderDivGroup>
+
   );
 };
 const Button = styled.button`
@@ -101,17 +99,5 @@ const DivGroup = styled.div`
   gap: 8px;
   @media screen and (max-width: 767px) {
     justify-content: space-between;
-  }
-`;
-const HeaderDivGroup = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  flex-direction: row;
-  margin-bottom: 32px;
-  @media screen and (max-width: 767px) {
-    flex-direction: column;
-    margin-bottom: 24px;
-    gap: 18px;
   }
 `;
