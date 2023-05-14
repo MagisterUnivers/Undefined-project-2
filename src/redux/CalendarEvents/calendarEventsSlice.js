@@ -62,12 +62,12 @@ const calendarEventsSlice = createSlice({
       //   tasks: [payload],
       //   date: `${payload.date}`,
       // });
+      state.isLoading = false;
       const date = payload.date.slice(0, 10);
       state.monthDatesMap = {
         ...state.monthDatesMap,
         [date]: [...state.monthDatesMap[date], payload],
       };
-      state.isLoading = false;
     },
     [createUserTaskThunk.rejected]: (state, { payload }) => {
       state.error = payload;

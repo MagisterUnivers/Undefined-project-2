@@ -2,6 +2,10 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { getCurrentMonth } from './calendarEventsSlice';
 
+const setToken = (token) => {
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
+
 export const getMonthEvents = createAsyncThunk(
   '@@calendarEvents/loadMothEvents',
   async (_, thunkAPI) => {
@@ -46,11 +50,11 @@ export const getUserTaskThunk = createAsyncThunk(
 export const createUserTaskThunk = createAsyncThunk(
   '@@calendarEvents/createUserTask',
   async (credentials, thunkAPI) => {
-    // const savedToken = thunkAPI.getState().auth.data.accessToken;
+    const savedToken = thunkAPI.getState().auth.data.accessToken;
     try {
+      setToken(savedToken);
       const res = await axios.post('task', credentials);
       console.log(axios.defaults.headers.common.Authorization);
-      // setToken(res.data);
       console.log(res.data);
       return res.data;
     } catch (e) {
@@ -76,7 +80,7 @@ export const deleteUserTaskThunk = createAsyncThunk(
 export const updateUserTaskThunk = createAsyncThunk(
   '@@calendarEvents/updateUserTask',
   async (data, thunkAPI) => {
-    const {credentials, id} = data
+    const { credentials, id } = data;
 
     try {
       const response = await axios.put(`task/${id}`, credentials);
