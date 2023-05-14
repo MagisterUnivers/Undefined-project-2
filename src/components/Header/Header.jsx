@@ -6,12 +6,12 @@ import { useMediaQuery } from 'react-responsive';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import { selectIsTaskExist } from 'redux/selectors';
+import { selectMonthDateMap } from 'redux/selectors';
 
 export const Header = ({ toggleSidebar }) => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1439.98px)' });
   const { pathname } = useLocation();
-  const monthTasks = useSelector(selectIsTaskExist);
+  const monthTasks = useSelector(selectMonthDateMap);
   const setPageTitle = () => {
     if (pathname.includes('account')) {
       return 'User Profile';
@@ -23,9 +23,7 @@ export const Header = ({ toggleSidebar }) => {
     try {
       if (pathname.includes('/day/')) {
         const currentDay = pathname.slice(-10);
-        const { tasks: dayTasks } = monthTasks.find(
-          (dayTasks) => dayTasks.date === currentDay
-        );
+        const dayTasks = monthTasks[currentDay];
         const isSomeToDo = dayTasks.find(
           (dayTask) => dayTask.category === 'to-do'
         );
