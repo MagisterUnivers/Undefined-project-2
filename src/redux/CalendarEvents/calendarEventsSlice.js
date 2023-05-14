@@ -127,7 +127,7 @@ const computeTaskMap = (items) => {
 
 const initialState = {
   isLoading: false,
-  tasks: [],
+  tasks: { tasks: [], date: '' },
   taskMap: computeTaskMap(mocks),
 };
 
