@@ -6,6 +6,7 @@ import RegisterPage from 'pages/RegisterPage/RegisterPage';
 import AccountPage from 'pages/AccountPage/AccountPage';
 import { CalendarPage } from '../pages/CalendarPage/CalendarPage';
 import ChoosedDayPage from 'pages/ChoosedDayPage/ChoosedDayPage';
+import { ChoosedMonth } from '../components';
 import AboutPage from 'pages/AboutPage/AboutPage';
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
 import DemoApp from 'test/DemoApp';
@@ -26,7 +27,7 @@ export const App = () => {
               <RegisterPage />
             </PublicRoute>
           }
-        />{' '}
+        />
         <Route
           path="/login"
           element={
@@ -45,6 +46,7 @@ export const App = () => {
               </PrivateRoute>
             }
           />
+
           <Route
             path="calendar"
             element={
@@ -52,13 +54,13 @@ export const App = () => {
                 <CalendarPage />
               </PrivateRoute>
             }
-          />
-          <Route path="calendar/day/:currentDay" element={<ChoosedDayPage />} />
-          {/* <Route
-            path="/calendar/month/:currentDate"
-            element={<ChoosedMonth />}
-          /> */}
-        </Route>{' '}
+          >
+            <Route path="" element={<ChoosedMonth />} />
+
+            <Route path="day/:currentDay" element={<ChoosedDayPage />} />
+          </Route>
+        </Route>
+
         <Route path="/tc" element={<ColumnsTasksList />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

@@ -16,7 +16,7 @@ const ChoosedDayPage = () => {
   
 const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
-  const currentDateKey = getStringFromDate(currentDate.toDate()); 
+  const currentDateKey = getStringFromDate(currentDate?.toDate()); 
   
   const dateTasks = useDateTasks(currentDateKey); // task[]
   console.log(dateTasks);
