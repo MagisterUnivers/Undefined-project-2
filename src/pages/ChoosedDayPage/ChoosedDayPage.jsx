@@ -18,7 +18,7 @@ const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
   const currentDateKey = getStringFromDate(currentDate.toDate()); 
   
-  const dateTasks = useDateTasks( {date_key:currentDateKey}); // task[]
+  const dateTasks = useDateTasks(currentDateKey); // task[]
   console.log(dateTasks);
 
 

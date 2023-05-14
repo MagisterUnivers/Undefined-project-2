@@ -1,7 +1,5 @@
 import { useRef } from 'react';
 import { useCalendarCell } from 'react-aria';
-import { useEventTasks } from '../../../redux';
-import { getCalendarKey } from '../../../utils';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useDateTasks } from '../../../redux';
@@ -18,7 +16,7 @@ export const CalendarCell = ({ state, date }) => {
   // date is not a Date
   const date_key = getStringFromDate(date.toDate()); // date_key: 2023-09-21
 
-  const dateTasks = useDateTasks({ date_key }); // task[]
+  const dateTasks = useDateTasks(date_key); // task[]
 
   const ref = useRef(null);
   const navigate = useNavigate();

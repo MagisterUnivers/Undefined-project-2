@@ -8,6 +8,7 @@ import {
   setCurrentDate,
   useCurrentMonth,
   selectUserLoading,
+  computeTaskMap,
 } from '../../../redux';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -50,7 +51,6 @@ export const useCalendar = () => {
   useEffect(() => {
     if (!currentMonth) return;
 
-    debugger;
     dispatch(getMonthEvents());
   }, [year, month]);
 
