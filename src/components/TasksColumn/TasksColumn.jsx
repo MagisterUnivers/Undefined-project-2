@@ -16,13 +16,13 @@ const TasksColumn = ({ title, currentDay }) => {
   let newCategory;
 
   switch (title.toLowerCase()) {
-    case 'in progress':
+    case 'In progress':
       newCategory = 'in-progress';
       break;
-    case 'to do':
+    case 'To do':
       newCategory = 'to-do';
       break;
-    case 'done':
+    case 'Done':
       newCategory = 'done';
       break;
     default:
@@ -31,19 +31,28 @@ const TasksColumn = ({ title, currentDay }) => {
 
   const tasks = useSelector(selectIsTaskExist);
   console.log(tasks);
-  let filteredTasks;
-  let createdTask;
-  
-    tasks.forEach(({ tasks, date }) => {
-      filteredTasks = tasks.filter((task) => {
-        return task.category === newCategory && date === currentDay;
-      });
+  // let filteredTasks;
+  // let createdTask;
+
+  const filterTasks = tasks
+    .filter(({ date }) => {
+      return date === currentDay;
+      // return tasks.filter((task) => {
+      //   console.log(task.category);
+      //   return task.category === newCategory && date === currentDay;
+      // });
+    })
+    .filter(({ category }) => {
+      return category === newCategory;
     });
-  
+
+  console.log(title);
+  console.log(filterTasks);
+
   return (
     <ItemTask>
       <ColumnHeadBar title={title} />
-      {/* <ColumnsTasksList tasks={''} /> */}
+      <ColumnsTasksList tasks={filterTasks} />
       <AddTaskBtn title={title} currentDay={currentDay} />
       {/* {IsTasks ? ColumnTasksList : blablaba } */}
     </ItemTask>

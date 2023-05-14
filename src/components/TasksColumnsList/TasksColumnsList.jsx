@@ -41,7 +41,13 @@ const TasksColumnsList = ({ category, currentDay }) => {
   return (
     <ListTask>
       {categoryExample.map((categorys) => {
-        return <TasksColumn key={nanoid()} title={categorys} currentDay={currentDay}/>;
+        return (
+          <TasksColumn
+            key={nanoid()}
+            title={categorys}
+            currentDay={currentDay}
+          />
+        );
       })}
     </ListTask>
   );
@@ -64,4 +70,3 @@ const ListTask = styled.ul`
     gap: 27px;
   }
 `;
-    

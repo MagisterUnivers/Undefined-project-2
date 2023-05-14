@@ -49,19 +49,22 @@ export const TaskColumnCard = ({ title, priority }) => {
           {priority === 'high' ? (
             <StyledBox $high>
               <StyledP>
-                {priority.slice(0, 1).toUpperCase() + priority.slice(1)}
+                {/* {priority.slice(0, 1).toUpperCase() + priority.slice(1)} */}
+                {priority}
               </StyledP>
             </StyledBox>
           ) : priority === 'medium' ? (
             <StyledBox $medium>
               <StyledP>
-                {priority.slice(0, 1).toUpperCase() + priority.slice(1)}
+                {/* {priority.slice(0, 1).toUpperCase() + priority.slice(1)} */}
+                {priority}
               </StyledP>
             </StyledBox>
           ) : (
             <StyledBox>
               <StyledP>
-                {priority.slice(0, 1).toUpperCase() + priority.slice(1)}
+                {/* {priority.slice(0, 1).toUpperCase() + priority.slice(1)} */}
+                {priority}
               </StyledP>
             </StyledBox>
           )}
