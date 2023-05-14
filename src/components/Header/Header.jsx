@@ -6,15 +6,12 @@ import { useMediaQuery } from 'react-responsive';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import { selectIsTaskExist } from 'redux/selectors';
-// import { ReactComponent as MotivatedGooseLogo } from 'components/Header/goose.svg';
+import { selectMonthDateMap } from 'redux/selectors';
 
 export const Header = ({ toggleSidebar }) => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1439.98px)' });
   const { pathname } = useLocation();
-  const monthTasks = useSelector(selectIsTaskExist);
-  // const pageTitle =
-  //   pathname.slice(6, 7).toUpperCase() + pathname.slice(7);
+  const monthTasks = useSelector(selectMonthDateMap);
   const setPageTitle = () => {
     if (pathname.includes('account')) {
       return 'User Profile';
@@ -26,9 +23,7 @@ export const Header = ({ toggleSidebar }) => {
     try {
       if (pathname.includes('/day/')) {
         const currentDay = pathname.slice(-10);
-        const { tasks: dayTasks } = monthTasks.find(
-          (dayTasks) => dayTasks.date === currentDay
-        );
+        const dayTasks = monthTasks[currentDay];
         const isSomeToDo = dayTasks.find(
           (dayTask) => dayTask.category === 'to-do'
         );
@@ -38,18 +33,6 @@ export const Header = ({ toggleSidebar }) => {
       return false;
     }
   };
-  // useEffect(() => {
-  //   if (pathname.includes('/day/')) {
-  //     const currentDay = pathname.slice(-10);
-  //     const { tasks: dayTasks } = monthTasks.find(
-  //       (dayTasks) => dayTasks.date === currentDay
-  //     );
-  //     const isSomeToDo = dayTasks.find(
-  //       (dayTask) => dayTask.category === 'to-do'
-  //     );
-  //     return isSomeToDo;
-  //   }
-  // }, []);
   return (
     <Box
       component="header"
@@ -70,12 +53,7 @@ export const Header = ({ toggleSidebar }) => {
         </IconButton>
       ) : checkToDoOnCurrentDay() ? (
         <Box sx={{ display: 'flex', gap: '8px' }}>
-          <img
-            src={require('./goose.png')}
-            width="64"
-            // height="60"
-            alt="Motivation Goose"
-          />
+          <img src={require('./goose.png')} width="64" alt="Motivation Goose" />
           <Box>
             <StyledTypography component="h1">Calendar</StyledTypography>
             <StyledP>
@@ -97,7 +75,6 @@ export const Header = ({ toggleSidebar }) => {
 };
 
 const StyledTypography = styled.h1`
-  /* display: block; */
   font-family: 'Inter';
   font-weight: 700;
   font-size: 32px;
