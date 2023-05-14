@@ -43,11 +43,14 @@ const StyledLink = styled(Link)`
   @media screen and (min-width: 1440px) {
     bottom: 18%;
   }
+  @media screen and (max-height: 870px) {
+    bottom: 12%;
+  }
 `;
 
 const StyledLinkAlt = styled(Link)`
   position: absolute;
-  bottom: 18%;
+  bottom: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: 'Inter';
@@ -65,9 +68,11 @@ const StyledLinkAlt = styled(Link)`
     0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
 
   @media screen and (min-width: 768px) {
+    font-size: 18px;
+    line-height: calc(24 / 18);
     bottom: 15%;
   }
-  @media screen and (min-width: 1440px) {
-    bottom: 18%;
+  @media screen and (max-height: 870px) {
+    bottom: 8%;
   }
 `;
