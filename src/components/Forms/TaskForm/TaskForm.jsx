@@ -24,8 +24,7 @@ import {
 } from '../../../redux/CalendarEvents/calendarEventsOperations';
 import { useLocation } from 'react-router-dom';
 
-const TaskForm = ({ columnCategory, currentDay, isEdit, id, categoryId }) => {
-  const [isTaskCreated] = useState(false);
+const TaskForm = ({ isEdit, id, categoryId, handleModalClose }) => {
   const [priority, setPriority] = useState('');
   const location = useLocation();
 
@@ -35,26 +34,11 @@ const TaskForm = ({ columnCategory, currentDay, isEdit, id, categoryId }) => {
   const handleFormSubmit = (ev) => {
     ev.preventDefault();
     const newTitle = ev.currentTarget.title.value;
-    const newStart = ev.currentTarget.start.value;
-    const newEnd = ev.currentTarget.end.value;
+    let newStart = ev.currentTarget.start.value || '9:00';
+    let newEnd = ev.currentTarget.end.value || '14:00';
 
-    // let newCategory;
-
-    // switch (columnCategory.toLowerCase()) {
-    //   case 'in progress':
-    //     newCategory = 'in-progress';
-    //     break;
-    //   case 'to do':
-    //     newCategory = 'to-do';
-    //     break;
-    //   case 'done':
-    //     newCategory = 'done';
-    //     break;
-    //   default:
-    //     break;
-    // }
-
-    console.log();
+    newStart = formatTime(newStart);
+    newEnd = formatTime(newEnd);
 
     const credentials = {
       title: newTitle,
@@ -70,9 +54,36 @@ const TaskForm = ({ columnCategory, currentDay, isEdit, id, categoryId }) => {
       id,
     };
 
-    if (isEdit) return dispatch(updateUserTaskThunk(data));
+    if (isEdit) {
+      dispatch(updateUserTaskThunk(data));
+    } else {
+      dispatch(createUserTaskThunk(credentials));
+    }
 
-    dispatch(createUserTaskThunk(credentials));
+    // handleModalClose();
+  };
+
+  const formatTime = (time) => {
+    let formattedTime = time.replace(/\D/g, ''); // Видаляємо всі нецифрові символи
+
+    if (formattedTime.length === 1 || formattedTime.length === 2) {
+      // Якщо введено одну або дві цифри, форматуємо як "години:00"
+      formattedTime = `${formattedTime.padStart(2, '0')}:00`;
+    } else if (formattedTime.length === 3) {
+      // Якщо введено три цифри, форматуємо як "години:хвилини"
+      formattedTime = `${formattedTime.slice(0, 1)}:${formattedTime.slice(
+        1,
+        3
+      )}`;
+    } else if (formattedTime.length >= 4) {
+      // Якщо введено чотири або більше цифр, форматуємо як "години:хвилини"
+      formattedTime = `${formattedTime.slice(0, 2)}:${formattedTime.slice(
+        2,
+        4
+      )}`;
+    }
+
+    return formattedTime;
   };
 
   const handleRadioChange = (ev) => {
@@ -94,11 +105,11 @@ const TaskForm = ({ columnCategory, currentDay, isEdit, id, categoryId }) => {
       <StyledInputWrapper>
         <StyledLabel>
           Start
-          <StyledInput type="text" placeholder="9:00" name="start" required />
+          <StyledInput type="text" placeholder="9:00" name="start" />
         </StyledLabel>
         <StyledLabel>
           End
-          <StyledInput type="text" placeholder="14:00" name="end" required />
+          <StyledInput type="text" placeholder="14:00" name="end" />
         </StyledLabel>
       </StyledInputWrapper>
       <FormControl>
@@ -170,7 +181,7 @@ const TaskForm = ({ columnCategory, currentDay, isEdit, id, categoryId }) => {
           />
         </StyledRadioGroup>
       </FormControl>
-      {isTaskCreated ? (
+      {isEdit ? (
         <StyledEditBtn type="submit">
           <StyledPencilIcon />
           Edit
@@ -181,7 +192,9 @@ const TaskForm = ({ columnCategory, currentDay, isEdit, id, categoryId }) => {
             <StyledPlusIcon />
             Add
           </StyledAddBtn>
-          <StyledCancelBtn type="button">Cancel</StyledCancelBtn>
+          <StyledCancelBtn type="button" onClick={handleModalClose}>
+            Cancel
+          </StyledCancelBtn>
         </StyledButtonsWrapper>
       )}
     </StyledForm>

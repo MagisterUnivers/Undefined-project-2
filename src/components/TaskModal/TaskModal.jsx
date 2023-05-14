@@ -3,7 +3,6 @@ import TaskForm from 'components/Forms/TaskForm/TaskForm';
 
 const TaskModal = ({
   handleModalClose,
-  title,
   currentDay,
   categoryId,
   isEdit,
@@ -17,6 +16,7 @@ const TaskModal = ({
           currentDay={currentDay}
           categoryId={categoryId}
           isEdit={isEdit}
+          handleModalClose={handleModalClose}
         />
       </Modal>
     </>
