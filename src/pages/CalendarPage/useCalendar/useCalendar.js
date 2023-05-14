@@ -1,5 +1,5 @@
 import { useCalendarState } from 'react-stately';
-import { useCalendar as useCalendarAria, useLocale } from 'react-aria';
+import { useCalendar as useCalendarAria } from 'react-aria';
 import { createCalendar } from '@internationalized/date';
 import { getDaysOfWeekLabels, getStringFromDate } from '../../../utils';
 import {
