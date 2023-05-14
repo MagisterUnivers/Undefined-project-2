@@ -1,23 +1,23 @@
 import styled from 'styled-components';
 
-import { useParams,useOutletContext } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
 import moment from 'moment';
 import {useCurrentDate} from '../../redux'
 import { useMediaQuery } from 'react-responsive';
 import {getStringFromDate} from '../../utils/calendars'
 import {useDateTasks} from '../../redux/CalendarEvents/calendarEventsSlice'
 import TasksColumnsList from 'components/TasksColumnsList/TasksColumnsList';
-import { useDispatch } from 'react-redux';
-import {store} from '../../redux/store'
+// import { useDispatch } from 'react-redux';
+// import {store} from '../../redux/store'
 
 const ChoosedDayPage = () => {
 
    const {
-    state,
-    headerClassName,
-    dateFormatter,
+    // state,
+    // headerClassName,
+    // dateFormatter,
     daysOfWeekLabels,
-    calendarProps,
+    // calendarProps,
   } = useOutletContext();
 
   const [currentCalendarDate] = useCurrentDate();

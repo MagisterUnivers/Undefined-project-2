@@ -11,6 +11,7 @@ export const ColumnsTasksList = ({ tasks, categoryId }) => {
             priority={task.priority}
             id={task._id}
             categoryId={categoryId}
+            object={task}
           />
         </StyledLi>
       ))}

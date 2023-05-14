@@ -37,7 +37,7 @@ export const useCalendar = () => {
     if (!currentMonth) return;
 
     dispatch(getMonthEvents());
-  }, [year, month]);
+  }, [year, month]); //eslint-disable-line
 
   useEffect(() => {
     if (isLoading || currentDate) return;
@@ -60,7 +60,7 @@ export const useCalendar = () => {
       year,
       month,
     });
-  }, [isLoading, currentDayParam, currentDate]);
+  }, [isLoading, currentDayParam, currentDate]); //eslint-disable-line
 
   const dateFormatter = new Intl.DateTimeFormat(locale, { weekday: 'long' });
   const { daysOfWeekLabels } = getDaysOfWeekLabels({ dateFormatter });

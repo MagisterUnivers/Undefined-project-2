@@ -13,10 +13,13 @@ import {
 } from './StyledTaskToolbar';
 import TaskForm from 'components/Forms/TaskForm/TaskForm';
 import Modal from 'components/Modal/Modal';
-import { deleteUserTaskThunk } from '../../redux/CalendarEvents/calendarEventsOperations';
+import {
+  deleteUserTaskThunk,
+  updateUserTaskThunk,
+} from '../../redux/CalendarEvents/calendarEventsOperations';
 import { useDispatch } from 'react-redux';
 
-const TaskToolbar = ({ id, categoryId }) => {
+const TaskToolbar = ({ id, categoryId, object }) => {
   const dispatch = useDispatch();
   const [isSlideMenuShown, setIsSlideMenuShown] = useState(false);
   const [isModalShown, setIsModalShown] = useState(false);
@@ -34,6 +37,30 @@ const TaskToolbar = ({ id, categoryId }) => {
   const handleSlideMenuToggle = () => {
     setIsSlideMenuShown(!isSlideMenuShown);
   };
+
+  // const data = {
+  //   credentials,
+  //   id,
+  // };
+
+  const handleChangleCategory = (object, categoryHard) => {
+    const credentials = {
+      title: object.title,
+      start: object.start,
+      end: object.end,
+      priority: object.priority,
+      category: categoryHard,
+      date: object.date,
+    };
+
+    const modifiedObject = {
+      id: object._id,
+      credentials,
+    };
+    dispatch(updateUserTaskThunk(modifiedObject));
+  };
+
+  console.log('Before return: ', categoryId);
 
   return (
     <>
@@ -57,19 +84,81 @@ const TaskToolbar = ({ id, categoryId }) => {
           </StyledListBtn>
         </StyledListItem>
       </StyledList>
+
+      {console.log(categoryId)}
       {isSlideMenuShown && (
-        <StyledSlideMenu>
-          <StyledSlideMenuItem>
-            <StyledMenuBtn type="button">
-              In progress <StyledMenuArrowIcon />
-            </StyledMenuBtn>
-          </StyledSlideMenuItem>
-          <StyledSlideMenuItem>
-            <StyledMenuBtn type="button">
-              Done <StyledMenuArrowIcon />
-            </StyledMenuBtn>
-          </StyledSlideMenuItem>
-        </StyledSlideMenu>
+        <>
+          {categoryId === 'to-do' ? (
+            <StyledSlideMenu>
+              <StyledSlideMenuItem>
+                <StyledMenuBtn
+                  type="button"
+                  onClick={() => {
+                    handleChangleCategory(object, 'in-progress');
+                  }}
+                >
+                  In progress <StyledMenuArrowIcon />
+                </StyledMenuBtn>
+              </StyledSlideMenuItem>
+              <StyledSlideMenuItem>
+                <StyledMenuBtn
+                  type="button"
+                  onClick={() => {
+                    handleChangleCategory(object, 'done');
+                  }}
+                >
+                  Done <StyledMenuArrowIcon />
+                </StyledMenuBtn>
+              </StyledSlideMenuItem>
+            </StyledSlideMenu>
+          ) : categoryId === 'in-progress' ? (
+            <StyledSlideMenu>
+              <StyledSlideMenuItem>
+                <StyledMenuBtn
+                  type="button"
+                  onClick={() => {
+                    handleChangleCategory(object, 'to-do');
+                  }}
+                >
+                  To do <StyledMenuArrowIcon />
+                </StyledMenuBtn>
+              </StyledSlideMenuItem>
+              <StyledSlideMenuItem>
+                <StyledMenuBtn
+                  type="button"
+                  onClick={() => {
+                    handleChangleCategory(object, 'done');
+                  }}
+                >
+                  Done <StyledMenuArrowIcon />
+                </StyledMenuBtn>
+              </StyledSlideMenuItem>
+            </StyledSlideMenu>
+          ) : (
+            <StyledSlideMenu>
+              <StyledSlideMenuItem>
+                <StyledMenuBtn
+                  type="button"
+                  onClick={() => {
+                    handleChangleCategory(object, 'to-do');
+                  }}
+                >
+                  To do <StyledMenuArrowIcon />
+                </StyledMenuBtn>
+              </StyledSlideMenuItem>
+              <StyledSlideMenuItem>
+                <StyledMenuBtn
+                  type="button"
+                  onClick={() => {
+                    handleChangleCategory(object, 'in-progress');
+                  }}
+                >
+                  In progress <StyledMenuArrowIcon />
+                </StyledMenuBtn>
+              </StyledSlideMenuItem>
+            </StyledSlideMenu>
+          )}
+        </>
       )}
       {isModalShown && (
         <Modal handleModalClose={handleModalClose}>
