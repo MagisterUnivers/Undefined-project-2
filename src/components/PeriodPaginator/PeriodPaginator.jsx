@@ -3,6 +3,8 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
+import moment from 'moment';
+import { setCurrentMonth } from '../../redux';
 
 export const PeriodPaginator = ({
   title,
@@ -15,10 +17,21 @@ export const PeriodPaginator = ({
   const previousOnClick = (event) => {
     if (disablePaginator) {
       event.preventDefault();
+
       return;
     }
 
     previousClick(event);
+
+    setCurrentMonth((current) => {
+      const currentMonth = new Date(current.year, current.month - 1, 1);
+      const newMonth = moment(currentMonth).add('month', -1).toDate();
+
+      return {
+        year: newMonth.getFullYear(),
+        month: newMonth.getMonth() + 1,
+      };
+    });
   };
 
   const nextOnClick = (event) => {
@@ -29,6 +42,17 @@ export const PeriodPaginator = ({
     }
 
     nextClick(event);
+
+    setCurrentMonth((current) => {
+      const currentMonth = new Date(current.year, current.month - 1, 1);
+
+      const newMonth = moment(currentMonth).add('month', 1).toDate();
+
+      return {
+        year: newMonth.getFullYear(),
+        month: newMonth.getMonth() + 1,
+      };
+    });
   };
 
   return (
