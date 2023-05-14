@@ -18,6 +18,7 @@ import {
   updateUserTaskThunk,
 } from '../../redux/CalendarEvents/calendarEventsOperations';
 import { useDispatch } from 'react-redux';
+import Notiflix from 'notiflix';
 
 const TaskToolbar = ({ id, categoryId, object }) => {
   const dispatch = useDispatch();
@@ -81,7 +82,15 @@ const TaskToolbar = ({ id, categoryId, object }) => {
         <StyledListItem>
           <StyledListBtn
             type="button"
-            onClick={() => dispatch(deleteUserTaskThunk(id))}
+            onClick={() =>
+              dispatch(deleteUserTaskThunk(id))
+                .then(() => {
+                  Notiflix.Notify.success('Task deleted successfully');
+                })
+                .catch((error) => {
+                  Notiflix.Notify.failure(error.message);
+                })
+            }
           >
             <StyledTrashIcon className="dark:stroke-white" />
           </StyledListBtn>
@@ -165,7 +174,13 @@ const TaskToolbar = ({ id, categoryId, object }) => {
       )}
       {isModalShown && (
         <Modal handleModalClose={handleModalClose}>
-          {<TaskForm isEdit={isEdit} id={id} />}
+          {
+            <TaskForm
+              isEdit={isEdit}
+              id={id}
+              handleModalClose={handleModalClose}
+            />
+          }
         </Modal>
       )}
     </>

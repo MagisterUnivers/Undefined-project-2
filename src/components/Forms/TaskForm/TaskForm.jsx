@@ -23,6 +23,7 @@ import {
   updateUserTaskThunk,
 } from '../../../redux/CalendarEvents/calendarEventsOperations';
 import { useLocation } from 'react-router-dom';
+import Notiflix from 'notiflix';
 
 const TaskForm = ({ isEdit, id, categoryId, handleModalClose }) => {
   const [priority, setPriority] = useState('');
@@ -55,12 +56,24 @@ const TaskForm = ({ isEdit, id, categoryId, handleModalClose }) => {
     };
 
     if (isEdit) {
-      dispatch(updateUserTaskThunk(data));
+      dispatch(updateUserTaskThunk(data))
+        .then(() => {
+          Notiflix.Notify.success('Task were updated!')
+          handleModalClose()
+        })
+        .catch((error) => {
+          Notiflix.Notify.failure(error.message);
+        });
     } else {
-      dispatch(createUserTaskThunk(credentials));
+      dispatch(createUserTaskThunk(credentials))
+        .then(() => {
+          Notiflix.Notify.success('Task were created!')
+          handleModalClose()
+        })
+        .catch((error) => {
+          Notiflix.Notify.failure(error.message);
+        });
     }
-
-    // handleModalClose();
   };
 
   const formatTime = (time) => {
@@ -111,7 +124,6 @@ const TaskForm = ({ isEdit, id, categoryId, handleModalClose }) => {
             type="text"
             placeholder="9:00"
             name="start"
-            required
           />
         </StyledLabel>
         <StyledLabel className="dark:text-white">
@@ -121,7 +133,6 @@ const TaskForm = ({ isEdit, id, categoryId, handleModalClose }) => {
             type="text"
             placeholder="14:00"
             name="end"
-            required
           />
         </StyledLabel>
       </StyledInputWrapper>
