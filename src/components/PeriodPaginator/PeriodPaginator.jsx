@@ -58,7 +58,7 @@ export const PeriodPaginator = ({
   return (
     <DivGroup>
       <Button>{title}</Button>
-      <ButtonGroup>
+      <ButtonGroup  className=" dark:bg-gray-bg">
         <IconButton {...prevButtonProps} onClick={previousOnClick}>
           <ArrowBackIosNewIcon
             className={`${
@@ -71,7 +71,7 @@ export const PeriodPaginator = ({
         <IconButton {...nextButtonProps} onClick={nextOnClick}>
           <ArrowForwardIosIcon
             className={`${
-              disablePaginator ? ' text-gray-100 cursor-not-allowed' : ''
+              disablePaginator ? 'text-gray-100 cursor-not-allowed' : ''
             }`}
             fontSize="small"
           />
@@ -114,12 +114,12 @@ const ButtonGroup = styled.div`
   width: 76px;
   height: 34px;
   overflow: hidden;
+  @media screen and (max-width: 767px) {
+    margin-left: auto;
+  }
 `;
 const DivGroup = styled.div`
   display: flex;
   flex-direction: row;
   gap: 8px;
-  @media screen and (max-width: 767px) {
-    justify-content: space-between;
-  }
 `;

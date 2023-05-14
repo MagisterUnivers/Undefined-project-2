@@ -12,8 +12,8 @@ const TasksColumn = ({ title, tasks }) => {
   // const IsTasks = useSelector(selectIsTaskExist);
 
   return (
-    <ItemTask>
-      <ColumnHeadBar title={title} />
+    <ItemTask className=" dark:bg-gray-bg  dark:border-gray-4">
+      <ColumnHeadBar title={title}/>
       <ColumnsTasksList tasks={tasks} />
       <AddTaskBtn />
       {/* {IsTasks ? ColumnTasksList : blablaba } */}
