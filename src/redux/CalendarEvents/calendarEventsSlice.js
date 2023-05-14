@@ -19,11 +19,10 @@ export const [useCurrentMonth, getCurrentMonth, setCurrentMonth] =
   createGlobalStateWithDecoupledFuncs(null); // type: { year: number, month: number }
 
 const initialState = {
-  isLoading: false,
-  taskMap: {},
+  monthDatesMap: {},
 };
 
-const computeTaskMap = (items) => {
+const computeMonthDatesMap = (items) => {
   const datesMap = items.reduce((datesMap, { tasks, date }) => {
     datesMap[date] = tasks;
 
@@ -38,6 +37,9 @@ const calendarEventsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
+    /**
+     * Reducers for getMonthEvents
+     */
     [getMonthEvents.pending]: (state) => {
       state.isLoading = true;
     },
@@ -46,56 +48,60 @@ const calendarEventsSlice = createSlice({
     },
     [getMonthEvents.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
-      state.taskMap = computeTaskMap(payload);
+      state.monthDatesMap = computeMonthDatesMap(payload);
     },
 
-    // Handle createUserTaskThunk.pending
+    /**
+     * Reducers for createUserTaskThunk
+     */
     [createUserTaskThunk.pending]: (state) => {
       state.isLoading = true;
     },
-    // Handle createUserTaskThunk.fulfilled
     [createUserTaskThunk.fulfilled]: (state, { payload }) => {
       state.tasks.push(payload);
       state.isLoading = false;
     },
-    // Handle createUserTaskThunk.rejected
     [createUserTaskThunk.rejected]: (state, { payload }) => {
       state.error = payload;
       state.isLoading = false;
     },
-    // Handle deleteUserTaskThunk.pending
+
+    /**
+     * Reducers for deleteUserTaskThunk
+     */
     [deleteUserTaskThunk.pending]: (state) => {
       state.isLoading = true;
     },
-    // Handle deleteUserTaskThunk.fulfilled
     [deleteUserTaskThunk.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.error = null;
     },
-
     [deleteUserTaskThunk.rejected]: (state, { payload }) => {
       state.IsLoading = true;
       state.error = payload;
     },
 
+    /**
+     * Reducers for updateUserTaskThunk
+     */
     [updateUserTaskThunk.pending]: (state, { payload }) => {
       state.IsLoading = true;
     },
-
     [updateUserTaskThunk.fulfilled](state, { payload }) {
       state.IsLoading = false;
       state.error = null;
     },
-
     [updateUserTaskThunk.rejected]: (state, { payload }) => {
       state.IsLoading = true;
       state.error = payload;
     },
 
+    /**
+     * Reducers for getUserTaskThunk
+     */
     [getUserTaskThunk.pending]: (state, { payload }) => {
       state.IsLoading = true;
     },
-
     [getUserTaskThunk.fulfilled](state, { payload }) {
       state.IsLoading = false;
       state.error = null;
@@ -113,7 +119,7 @@ export const useDateTasks = (date_key) => {
     function selectorCallback(rootState) {
       const { calendar } = rootState;
 
-      const tasks = calendar.taskMap[date_key] ?? [];
+      const tasks = calendar.monthDatesMap[date_key] ?? [];
 
       return tasks;
     },

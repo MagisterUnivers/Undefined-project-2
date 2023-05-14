@@ -99,6 +99,22 @@ export const CalendarCell = ({ state, date }) => {
   );
 };
 
+// axios.post(
+//   'https://goose-tracker-backend.p.goit.global/task',
+//   {
+//     title: 'Todo ' + Math.random(),
+//     start: '4-00',
+//     end: '13-00',
+//     priority: 'low',
+//     category: 'to-do',
+//     date: date_key,
+//   },
+//   {
+//     Accept: 'application/json',
+//     'Content-Type': 'application/json',
+//   }
+// );
+
 const StyledDiv = styled.ul`
   max-height: 50px;
   overflow: hidden;
