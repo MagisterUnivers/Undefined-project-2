@@ -8,11 +8,11 @@ import styled from 'styled-components';
 // import { selectIsTaskExist } from 'redux';
 // import styled from 'styled-components';
 
-const TasksColumn = ({ title, currentDay }) => {
+const TasksColumn = ({ title, tasks }) => {
   // Selector to check if Tasks is existed
 
   // const IsTasks = useSelector(selectIsTaskExist);
-  const tasks = useSelector(selectIsTaskExist);
+  // const tasks = useSelector(selectIsTaskExist);
 
   // switch (title.toLowerCase()) {
   //   case 'in progress':
@@ -28,26 +28,26 @@ const TasksColumn = ({ title, currentDay }) => {
   //     break;
   // }
 
-  const filterTasks = tasks
-    .filter(({ date }) => {
-      return date === currentDay;
-      // return tasks.filter((task) => {
-      //   console.log(task.category);
-      //   return task.category === newCategory && date === currentDay;
-      // });
-    })
-    .filter(({ tasks }, index) => {
-      console.log(tasks);
-      return tasks[index].category === title;
-    });
+  // const filterTasks = tasks
+  //   .filter(({ date }) => {
+  //     return date === currentDay;
+  //     // return tasks.filter((task) => {
+  //     //   console.log(task.category);
+  //     //   return task.category === newCategory && date === currentDay;
+  //     // });
+  //   })
+  //   .filter(({ tasks }, index) => {
+  //     console.log(tasks);
+  //     return tasks[index].category === title;
+  //   });
 
-  console.log(filterTasks);
+  // console.log(filterTasks);
 
   return (
     <ItemTask>
       <ColumnHeadBar title={title} />
-      <ColumnsTasksList tasks={filterTasks} />
-      <AddTaskBtn title={title} currentDay={currentDay} />
+      {/* <ColumnsTasksList tasks={tasks} />
+      <AddTaskBtn /> */}
       {/* {IsTasks ? ColumnTasksList : blablaba } */}
     </ItemTask>
   );
@@ -66,8 +66,12 @@ const ItemTask = styled.li`
   flex-direction: column;
   width: 335px;
   gap: 42px;
-  padding: 18px 10px 10px 10px;
+  padding: 25px 10px 10px 10px;
   background: #ffffff;
   border: 1px solid rgba(220, 227, 229, 0.8);
   border-radius: 8px;
+  @media screen and (min-width: 767.98px) {
+    width: 344px;
+    padding: 25px 10px 28px 16px;
+  }
 `;

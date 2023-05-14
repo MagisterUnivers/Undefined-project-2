@@ -33,21 +33,20 @@
 
 // import { nanoid } from '@reduxjs/toolkit';
 import TasksColumn from 'components/TasksColumn/TasksColumn';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 const categoryExample = ['to-do', 'in-progress', 'done'];
 
-const TasksColumnsList = ({ category, currentDay }) => {
+const TasksColumnsList = ({ category, tasks }) => {
+  const location = useLocation()
+
+  const currentDay = location.slice(-10)
+  console.log(currentDay);
   return (
     <ListTask>
-      {categoryExample.map((categorys) => {
-        return (
-          <TasksColumn
-            key={categorys}
-            title={categorys}
-            currentDay={currentDay}
-          />
-        );
+      {categoryExample.map((categorys, index) => {
+        return <TasksColumn key={index} tasks={tasks} title={categorys} />;
       })}
     </ListTask>
   );
@@ -65,7 +64,7 @@ const ListTask = styled.ul`
   @media screen and (min-width: 767.98px) {
     width: 704px;
   }
-  @media screen and (min-width: 767.98px) {
+  @media screen and (min-width: 1439.98px) {
     width: 1087px;
     gap: 27px;
   }

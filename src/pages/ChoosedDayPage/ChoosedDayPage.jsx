@@ -1,60 +1,64 @@
-// import { Add, ControlPoint } from '@mui/icons-material';
-import styled from 'styled-components';
-import { CalendarToolbar } from 'components/CalendarToolbar/CalendarToolbar';
-import { useParams } from 'react-router-dom';
-import { useCalendar } from 'components/ChoosedMonth/useCalendar/useCalendar';
-import moment from 'moment';
-import { useEffect } from 'react';
-import {getUserTaskThunk, useCurrentDate} from '../../redux'
-import { parseDate } from '@internationalized/date';
-import {getCalendarKey} from '../../utils/calendars'
 
-// import TasksColumn from 'components/TasksColumn/TasksColumn';
+import styled from 'styled-components';
+
+import { useParams,useOutletContext } from 'react-router-dom';
+
+import moment from 'moment';
+import {useCurrentDate} from '../../redux'
+import { useMediaQuery } from 'react-responsive';
+import {getStringFromDate} from '../../utils/calendars'
+import {useDateTasks} from '../../redux/CalendarEvents/calendarEventsSlice'
 import TasksColumnsList from 'components/TasksColumnsList/TasksColumnsList';
 import { useDispatch } from 'react-redux';
 import {store} from '../../redux/store'
 
 const ChoosedDayPage = () => {
-  const { currentDay: currentDayParam } = useParams();
-  const [currentDate, setCurrentDate] = useCurrentDate();
-  const authToken = store.getState().auth.data.accessToken;
+   const {
+    state,
+    headerClassName,
+    dateFormatter,
+    daysOfWeekLabels,
+    calendarProps,
+  } = useOutletContext();
 
-  const dispatch = useDispatch()
+  const [currentCalendarDate] = useCurrentDate();
+  const currentDate = currentCalendarDate?.toDate();
+  
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
-  useEffect(() => {
-    const dateArr = currentDayParam.split('-')
-    const currentYear = dateArr[0]
-    const currentMonth = dateArr[1]
+  const currentDateKey = getStringFromDate(currentDate); 
+  const dateTasks = useDateTasks(currentDateKey); // task[]
 
-    dispatch(getUserTaskThunk({currentYear, currentMonth, authToken}))
-  }, [currentDayParam,authToken, dispatch])
-
-  useEffect(() => {
-    if (!currentDayParam) return;
-
-    const paramDate = parseDate(currentDayParam);
-
-    setCurrentDate(paramDate) //eslint-disable-next-line
-  }, []);
-
-  const currentDateKey = getCalendarKey({ date: currentDate.toDate()  }); 
-
-  let { title, prevButtonProps, nextButtonProps, daysOfWeekLabels } =
-    useCalendar(currentDayParam);
-  let startDate = moment(new Date(currentDayParam)).startOf('week')
-  let days = Array.from({ length: 7 }, (_, i) => moment(startDate).add(i, 'day').toDate());
-  let dayNumbers = days.map((day) => day.getDate());
+  console.log(dateTasks);
+    
+  const startDate = moment(currentDate).startOf('week')
+  const days = Array.from({ length: 7 }, (_, i) => moment(startDate).add(i, 'day').toDate());
+ 
+  const dayNumbers = days.map((day) => day.getDate());
+   
   let abbreviatedDaysOfWeekLabels = daysOfWeekLabels.map((day) =>
     day.slice(0, 3)
   );
- 
+
+  if (isMobile) {
+    abbreviatedDaysOfWeekLabels = daysOfWeekLabels.map((day) =>
+      day.slice(0, 1)
+    );
+  }
+
+  if(!currentDateKey) {
+   return (
+      <div className="w-full h-full flex justify-center items-center">
+        <span>Loading...</span>
+      </div>
+    );
+  }
+
   return (
     <div>
-     
-      <CalendarToolbar {...{ title, prevButtonProps, nextButtonProps }} />
-      {/* <ListDay>
+      <ListDay>
         {days.map((date, index) => {
-          const dateKey = getCalendarKey({ date });
+          const dateKey = getStringFromDate(date);
           const isSelected = currentDateKey === dateKey;
 
           return (
@@ -67,37 +71,38 @@ const ChoosedDayPage = () => {
           </ItemMonthDay>
         );
         })}
-      </ListDay> */}
-        <TasksColumnsList currentDay={currentDayParam}/>
-        {/* <ItemTask>
-          <Title>To do <ControlPoint/></Title>
-          <ButtonTask><Add/>Add task</ButtonTask>
-        </ItemTask>
-        <ItemTask> 
-          <Title>In progress <ControlPoint/></Title> 
-          <ButtonTask><Add/> Add task</ButtonTask> 
-        </ItemTask> 
-        <ItemTask> 
-          <Title>Done <ControlPoint/></Title> 
-          <ButtonTask><Add/> Add task</ButtonTask> 
-        </ItemTask>  */}
+      </ListDay>
+      <ListTask>
+        {/* This day has {dateTasks.length} task! */}
+
+        <TasksColumnsList tasks={dateTasks} />
+      </ListTask>
     </div>
   );
 };
+
 export default ChoosedDayPage;
+
 const ListDay = styled.ul`
   display: flex;
   flex-direction: row;
-  gap: 122px;
-  width: 1087px;
+  gap: 19px;
   height: 68px;
   border-radius: 8px;
-  padding: 14px 46px;
+  padding: 14px 0px;
   border: 1px solid rgba(220, 227, 229, 0.8);
   background: white;
   align-items: center;
   justify-content: center;
   margin-right: auto;
+  @media screen and (min-width: 768px) {
+    gap: 69px;
+    padding: 10px 32px;
+  }
+  @media screen and (min-width: 1440px) {
+    gap: 122px;
+    padding: 14px 46px;
+  }
 `;
 const ItemMonthDay = styled.li`
   display: flex;
@@ -115,65 +120,29 @@ const MonthDay = styled.p`
   color: #616161;
 `;
 const TextDay = styled.strong`
-  padding: 4px 8px;
+width: 20px;
+height: 22px;
+display: flex;
+justify-content: center;
+align-items: center;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
+width: 20px;
+height: 22px;
+font-size: 12px;
+line-height: 14px;
+   @media screen and (min-width: 768px) {
+     width: 27px;
+height: 26px;
   font-size: 16px;
   line-height: 18px;
-  
+  }
+
 `;
-// const BlueText = styled.strong`
-// padding: 4px 8px;
-// font-family: 'Inter';
-// font-style: normal;
-// font-weight: 700;
-// font-size: 16px;
-// line-height: 18px;
-// background: #3E85F3;
-// border-radius: 8px;
-// color: white;  `
-// const ListTask = styled.ul`
-//   display: flex;
-//   gap: 27px;
-//   margin-top: 16px;
-// `;
-// const ItemTask = styled.li`
-//   display: flex;
-//   flex-direction: column;
-//   gap: 42px;
-//   padding: 20px;
-//   background: #ffffff;
-//   border: 1px solid rgba(220, 227, 229, 0.8);
-//   border-radius: 8px;
-// `;
-// const Title = styled.h2`
-//   font-family: 'Inter';
-//   font-style: normal;
-//   font-weight: 700;
-//   font-size: 20px;
-//   line-height: 24px;
-//   text-align: center;
-//   color: #111111;
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: space-between;
-// `;
-// const ButtonTask = styled.button`
-//   width: 304px;
-//   height: 52px;
-//   border: 1px dashed #3e85f3;
-//   background: #e3f3ff;
-//   border-radius: 8px;
-//   padding: 16px 104px;
-//   font-family: 'Inter';
-//   font-weight: 600;
-//   font-size: 14px;
-//   line-height: 18/14;
-//   text-align: center;
-//   color: #111111;
-//   display: flex;
-//   flex-direction: row;
-//   gap: 8px;
-//   align-items: center;
-// `;
+
+const ListTask = styled.ul`
+  display: flex;
+  gap: 27px;
+  margin-top: 16px;
+`;

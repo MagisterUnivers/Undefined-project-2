@@ -13,7 +13,7 @@ const initialState = {
     refreshToken: null,
   },
   online: false,
-  loading: false,
+  loading: true,
 };
 
 const authSlice = createSlice({

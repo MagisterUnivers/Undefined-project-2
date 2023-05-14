@@ -1,6 +1,8 @@
 import React from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 export const MonthCalendarHead = ({ className, daysOfWeekLabels }) => {
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   return (
     <div
       className={`grid grid-cols-7 rounded-8 border  border-gray-3 
@@ -9,8 +11,10 @@ export const MonthCalendarHead = ({ className, daysOfWeekLabels }) => {
       ${className}`}
     >
       {daysOfWeekLabels?.map((dayLabel) => {
-        const shortLabel = dayLabel.substring(0, 3).toUpperCase();
-
+        let shortLabel = dayLabel.substring(0, 3).toUpperCase();
+        if (isMobile) {
+          shortLabel = dayLabel.substring(0, 1).toUpperCase();
+        }
         return (
           <span
             className={` flex justify-center items-center

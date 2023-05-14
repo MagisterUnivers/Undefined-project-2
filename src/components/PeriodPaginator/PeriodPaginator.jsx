@@ -2,24 +2,36 @@ import React from 'react';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import styled from 'styled-components';
-import { PeriodTypeSelect } from 'components/PeriodTypeSelect/PeriodTypeSelect';
 import { useParams } from 'react-router-dom';
+import moment from 'moment';
+import { setCurrentMonth } from '../../redux';
+
 export const PeriodPaginator = ({
   title,
   prevButtonProps: { onClick: previousClick, ...prevButtonProps },
   nextButtonProps: { onClick: nextClick, ...nextButtonProps },
 }) => {
   const { currentDay } = useParams();
-
   const disablePaginator = !!currentDay;
 
   const previousOnClick = (event) => {
     if (disablePaginator) {
       event.preventDefault();
+
       return;
     }
 
     previousClick(event);
+
+    setCurrentMonth((current) => {
+      const currentMonth = new Date(current.year, current.month - 1, 1);
+      const newMonth = moment(currentMonth).add('month', -1).toDate();
+
+      return {
+        year: newMonth.getFullYear(),
+        month: newMonth.getMonth() + 1,
+      };
+    });
   };
 
   const nextOnClick = (event) => {
@@ -29,35 +41,43 @@ export const PeriodPaginator = ({
       return;
     }
 
-    previousClick(event);
+    nextClick(event);
+
+    setCurrentMonth((current) => {
+      const currentMonth = new Date(current.year, current.month - 1, 1);
+
+      const newMonth = moment(currentMonth).add('month', 1).toDate();
+
+      return {
+        year: newMonth.getFullYear(),
+        month: newMonth.getMonth() + 1,
+      };
+    });
   };
 
   return (
-    <HeaderDivGroup>
-      <DivGroup>
-        <Button>{title}</Button>
-        <ButtonGroup>
-          <IconButton {...prevButtonProps} onClick={previousOnClick}>
-            <ArrowBackIosNewIcon
-              className={`${
-                disablePaginator ? ' text-gray-100  cursor-not-allowed' : ''
-              }`}
-              fontSize="small"
-            />
-          </IconButton>
+    <DivGroup>
+      <Button>{title}</Button>
+      <ButtonGroup>
+        <IconButton {...prevButtonProps} onClick={previousOnClick}>
+          <ArrowBackIosNewIcon
+            className={`${
+              disablePaginator ? ' text-gray-100  cursor-not-allowed' : ''
+            }`}
+            fontSize="small"
+          />
+        </IconButton>
 
-          <IconButton {...nextButtonProps} onClick={nextOnClick}>
-            <ArrowForwardIosIcon
-              className={`${
-                disablePaginator ? ' text-gray-100 cursor-not-allowed' : ''
-              }`}
-              fontSize="small"
-            />
-          </IconButton>
-        </ButtonGroup>
-      </DivGroup>
-      <PeriodTypeSelect />
-    </HeaderDivGroup>
+        <IconButton {...nextButtonProps} onClick={nextOnClick}>
+          <ArrowForwardIosIcon
+            className={`${
+              disablePaginator ? ' text-gray-100 cursor-not-allowed' : ''
+            }`}
+            fontSize="small"
+          />
+        </IconButton>
+      </ButtonGroup>
+    </DivGroup>
   );
 };
 const Button = styled.button`
@@ -99,11 +119,7 @@ const DivGroup = styled.div`
   display: flex;
   flex-direction: row;
   gap: 8px;
-`;
-const HeaderDivGroup = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  flex-direction: row;
-  margin-bottom: 32px;
+  @media screen and (max-width: 767px) {
+    justify-content: space-between;
+  }
 `;

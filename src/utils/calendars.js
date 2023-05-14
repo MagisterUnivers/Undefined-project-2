@@ -4,12 +4,19 @@ export const previousDate = (date) => {
   return moment(date).add(-1, 'day').toDate();
 };
 
-export const getCalendarKey = ({ date }) => {
-  const momentDate = moment(date);
+export const getStringFromDate = (date) => {
+  const momentDate = moment(date ?? new Date());
 
-  const date_key = momentDate.format('yyyy-MM-DD'); // ex: 2023-06-28
+  return momentDate.format('yyyy-MM-DD'); // ex: 2023-06-28
+};
 
-  return date_key;
+/**
+ * Receives a dateString ex: 2023-06-28, returns a date
+ */
+export const getDateFromString = ({ date }) => {
+  const momentDate = moment(date, 'yyyy-MM-DD');
+
+  return momentDate.toDate();
 };
 
 /**

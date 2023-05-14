@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { useCurrentDate } from '../../redux';
-import { getCalendarKey } from '../../utils';
+import { getStringFromDate } from '../../utils';
 
 export const PeriodTypeSelect = () => {
   const [currentDay] = useCurrentDate();
-  const date_key = getCalendarKey({ date: currentDay.toDate() });
+  const date_key = getStringFromDate(currentDay?.toDate());
 
   return (
     <>
@@ -24,8 +24,12 @@ const ButtonGroup = styled.div`
   height: 34px;
   border-radius: 8px;
   overflow: hidden;
-  &:nth-child(2) {
+  &:nth-child(1) {
     border-left: 1px solid rgba(62, 133, 243, 0.2);
+  }
+  @media screen and (max-width: 767px) {
+    margin-right: auto;
+    margin-left: 0px;
   }
 `;
 const Button = styled(NavLink)`

@@ -16,9 +16,9 @@ export const CalendarTable = ({
   const { locale } = useLocale();
 
   // Get the number of weeks in the month so we can render the proper number of rows.
-  const weeksInMonth = !state
+  const weeksInMonth = !state?.value
     ? []
-    : getWeeksInMonth(state?.visibleRange?.start, locale);
+    : getWeeksInMonth(state?.value, locale);
 
   const { start: startDate, end: endDate } = state?.visibleRange ?? {};
 
@@ -42,6 +42,14 @@ export const CalendarTable = ({
 
   const weeks = splitArrayIntoChunks(sanitizedDays, 7);
 
+  if (!state?.value) {
+    return (
+      <div className="w-full h-screen flex justify-center items-center">
+        <span>Loading...</span>
+      </div>
+    );
+  }
+
   return (
     <table
       className={`w-full rounded-lg border border-gray-3 table-fixed  
@@ -52,10 +60,10 @@ export const CalendarTable = ({
       <tbody>
         {weeks.map((daysInWeek, weekIndex) => {
           // { monday, tuesday }
+
           const datesOfWeekByDayLabel = daysInWeek.reduce((map, item) => {
             const date = item.toDate();
             const dayLabel = dateFormatter.format(date);
-
             map.set(dayLabel, item);
 
             return map;
@@ -69,7 +77,6 @@ export const CalendarTable = ({
               {daysOfWeekLabels.map((label, index) => {
                 // get the day sorted by days the days of the week order
                 const date = datesOfWeekByDayLabel.get(label);
-
                 if (!date || date.notIncluded) {
                   return (
                     <td
@@ -81,7 +88,11 @@ export const CalendarTable = ({
                 }
 
                 return (
-                  <CalendarCell key={index} {...{ state, date, locale }} />
+                  <CalendarCell
+                    key={index}
+                    id={date}
+                    {...{ state, date, locale }}
+                  />
                 );
               })}
             </tr>

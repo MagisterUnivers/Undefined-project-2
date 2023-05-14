@@ -1,14 +1,17 @@
 import React from 'react';
 import { CalendarTable } from './CalendarTable';
 import { MonthCalendarHead } from './MonthCalendarHead';
+import { useOutletContext } from 'react-router-dom';
 
-export const ChoosedMonth = ({
-  state,
-  headerClassName,
-  dateFormatter,
-  daysOfWeekLabels,
-  calendarProps,
-}) => {
+export const ChoosedMonth = () => {
+  const {
+    state,
+    headerClassName,
+    dateFormatter,
+    daysOfWeekLabels,
+    calendarProps,
+  } = useOutletContext();
+
   return (
     <div {...calendarProps} className="calendar">
       <MonthCalendarHead

@@ -1,7 +1,9 @@
 import { useRef } from 'react';
 import { useCalendarCell } from 'react-aria';
-import { useEventTasks } from '../../../redux';
-import { getCalendarKey } from '../../../utils';
+import styled from 'styled-components';
+import { useDateTasks } from '../../../redux';
+import { getStringFromDate } from '../../../utils';
+import { useNavigate } from 'react-router-dom';
 
 const LOW = 'low';
 const HIGHT = 'hight';
@@ -12,22 +14,25 @@ const MEDIUM = 'medium';
  */
 export const CalendarCell = ({ state, date }) => {
   // date is not a Date
-  const date_key = getCalendarKey({ date: date.toDate() }); // date_key: 2023-09-21
+  const date_key = getStringFromDate(date.toDate()); // date_key: 2023-09-21
 
-  const monthTasks = useEventTasks({ date_key }); // task[]
+  const dateTasks = useDateTasks(date_key); // task[]
 
   const ref = useRef(null);
 
+  const navigate = useNavigate();
+
   const {
     cellProps,
-    buttonProps,
     isSelected,
     isOutsideVisibleRange,
     isDisabled,
     isUnavailable,
     formattedDate,
+    buttonProps: { onClick, ...buttonProps },
   } = useCalendarCell({ date }, state, ref);
 
+  // console.log(formattedDate);
   //     task:
   //     _id: '64303c8582dc6fccdee4f8d2',
   //     title: 'toDo',
@@ -41,19 +46,28 @@ export const CalendarCell = ({ state, date }) => {
   //     updatedAt: '2023-04-07T15:53:41.088Z',
   //     __v: 0,[]
 
+  const onClickHandler = (event) => {
+    onClick(event);
+
+    navigate(`/main/calendar/day/${date}`);
+  };
+
   return (
-    <td
+    <StyledTd
       {...cellProps}
       ref={ref}
       className={`w-1/7 border-r last:border-r-0  border-gray-3  dark:border-gray-4 
       ${isDisabled ? 'disabled' : ''} 
       ${isUnavailable ? 'unavailable' : ''}`}
     >
-      <button
+      <StyledButton
+        type="button"
+        id={date_key}
         className={`relative w-full h-full ${
           isOutsideVisibleRange ? 'text-gray-200 ' : ''
         }`}
         {...buttonProps}
+        onClick={onClickHandler}
       >
         <span
           className={`font-inter font-bold text-xs 
@@ -67,12 +81,13 @@ export const CalendarCell = ({ state, date }) => {
           {formattedDate}
         </span>
 
-        <div className="min-h-50px flex flex-col gap-1">
-          {monthTasks.map((tasks) => {
+        {/* <StyledDiv className="min-h-50px flex flex-col gap-1"> */}
+        <StyledDiv>
+          {dateTasks.map((tasks) => {
             const { title, priority, _id } = tasks;
 
             return (
-              <span
+              <StyledSpan
                 className={` rounded-8 font-inter text-xxs font-bold tablet:text-14 desktop:text-14 
                  overflow-ellipsis whitespace-nowrap overflow-hidden  
                  ${priority === LOW ? ' bg-blue-3 text-blue-1' : ''} 
@@ -82,11 +97,57 @@ export const CalendarCell = ({ state, date }) => {
                 key={_id}
               >
                 {title}
-              </span>
+              </StyledSpan>
             );
           })}
-        </div>
-      </button>
-    </td>
+        </StyledDiv>
+      </StyledButton>
+    </StyledTd>
   );
 };
+
+// useEffect(() => {
+//   axios.post(
+//     'https://goose-tracker-backend.p.goit.global/task',
+//     {
+//       title: 'Todo ' + Math.floor(Math.random() * 10),
+//       start: '10-00',
+//       end: '12-00',
+//       priority: 'low',
+//       category: 'to-do',
+//       date: '2023-05-' + formattedDate,
+//     },
+//     {
+//       Accept: 'application/json',
+//       'Content-Type': 'application/json',
+//     }
+//   );
+// }, []);
+
+const StyledDiv = styled.ul`
+  max-height: 50px;
+  overflow: hidden;
+  @media screen and (min-width: 767.98px) {
+    max-height: 67px;
+  }
+`;
+const StyledSpan = styled.li`
+  &:not(:last-of-type) {
+    margin-bottom: 2px;
+  }
+`;
+const StyledTd = styled.td`
+  height: 94px;
+  @media screen and (min-width: 767.98px) {
+    height: 144px;
+  }
+  @media screen and (min-width: 767.98px) {
+    height: 125px;
+  }
+`;
+
+const StyledButton = styled.button`
+  display: flex;
+  align-items: flex-end;
+  padding: 0px 3px 3px 3px;
+`;

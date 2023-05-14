@@ -1,6 +1,7 @@
 import React from 'react';
-import { CalendarToolbar, ChoosedDay, ChoosedMonth } from '../../components';
-import { useCalendar } from '../../components/ChoosedMonth';
+import { CalendarToolbar } from '../../components';
+import { useCalendar } from './useCalendar';
+import { Outlet } from 'react-router-dom';
 
 export const CalendarPage = () => {
   const {
@@ -13,16 +14,13 @@ export const CalendarPage = () => {
     dateFormatter,
   } = useCalendar();
 
-  // consume hook
-  const isMonthView = true;
   const properties = { state, calendarProps, daysOfWeekLabels, dateFormatter };
 
   return (
     <div>
       <CalendarToolbar {...{ title, prevButtonProps, nextButtonProps }} />
 
-      {isMonthView && <ChoosedMonth {...properties} />}
-      {!isMonthView && <ChoosedDay {...properties} />}
+      <Outlet context={properties} />
     </div>
   );
 };
