@@ -55,14 +55,14 @@ const TasksColumnsList = ({ category, tasks }) => {
   });
   console.log('DAY', toDoTasks);
 
-  const inProgressTasks = (toDoTasks = dayTasks.filter((task) => {
+  const inProgressTasks = dayTasks.filter((task) => {
     return task.category === 'in-progress';
-  }));
+  });
   console.log('IN-PROGRESS', inProgressTasks);
 
-  const doneTasks = (toDoTasks = dayTasks.filter((task) => {
+  const doneTasks = dayTasks.filter((task) => {
     return task.category === 'done';
-  }));
+  });
   console.log('DONE:', doneTasks);
 
   return (
@@ -70,9 +70,13 @@ const TasksColumnsList = ({ category, tasks }) => {
       {/* {categoryExample.map((categorys, index) => {
         return <TasksColumn key={index} tasks={tasks} title={categorys} />;
       })} */}
-      <TasksColumn title="To do" tasks={toDoTasks} />
-      <TasksColumn title="In progress" tasks={inProgressTasks} />
-      <TasksColumn title="Done" tasks={doneTasks} />
+      <TasksColumn title="To do" tasks={toDoTasks} id="to-do" />
+      <TasksColumn
+        title="In progress"
+        tasks={inProgressTasks}
+        id="in-progress"
+      />
+      <TasksColumn title="Done" tasks={doneTasks} id="done" />
     </ListTask>
   );
 };
