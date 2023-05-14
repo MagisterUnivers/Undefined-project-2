@@ -7,19 +7,21 @@ import { UserNav } from 'components/UserNav/UserNav';
 import LogOut from 'components/Btn/LogoutBtn/LogOut';
 import { useMediaQuery } from 'react-responsive';
 import { ReactComponent as IconClose } from './icons/cross_btn.svg';
-
 export const SideBarTest = ({ isOpenSidebarMobile, toggleSidebar }) => {
   const className = isOpenSidebarMobile
     ? styles.container_1
     : styles.container_2;
+
   const isMobileOrTablet = useMediaQuery({ query: '(max-width: 1439.98px)' });
+
   return isMobileOrTablet ? (
     <>
-      <aside className={className}>
+      <aside className={`${className}  bg-white dark:bg-sidebardark `}>
+        {' '}
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
           <Box sx={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
             <StyledGooseLogo />
-            <StyledH2 className="dark:text-white">
+            <StyledH2 className="dark:text-skyblue">
               G<StyledSpan>oo</StyledSpan>seTrack
             </StyledH2>
             <button
@@ -49,7 +51,7 @@ export const SideBarTest = ({ isOpenSidebarMobile, toggleSidebar }) => {
           justifyContent: 'space-between',
           padding: '32px 24px 24px 24px',
         }}
-        className=" bg-white dark:bg-sidebardark transition-colors delay-200"
+        className=" bg-white dark:bg-sidebardark"
       >
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
           <Box sx={{ display: 'flex', gap: '10px', alignItems: 'center' }}>

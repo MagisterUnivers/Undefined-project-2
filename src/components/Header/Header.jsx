@@ -47,6 +47,7 @@ export const Header = ({ toggleSidebar }) => {
       {isTabletOrMobile ? (
         <IconButton onClick={toggleSidebar}>
           <MenuRoundedIcon
+            className="dark:fill-white"
             sx={{
               width: { mobile: 24, tablet: 34 },
               height: { mobile: 24, tablet: 34 },
