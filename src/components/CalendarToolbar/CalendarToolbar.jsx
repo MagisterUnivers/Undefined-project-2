@@ -10,16 +10,16 @@ export const CalendarToolbar = ({
 }) => {
   return (
     <HeaderDivGroup>
-    <div className={`${className} flex justify-between`}>
-      <PeriodPaginator
-        {...{
-          title,
-          prevButtonProps,
-          nextButtonProps,
-        }}
-      />
-    </div>
-    <PeriodTypeSelect/>
+      <div className={`${className} flex justify-between`}>
+        <PeriodPaginator
+          {...{
+            title,
+            prevButtonProps,
+            nextButtonProps,
+          }}
+        />
+      </div>
+      <PeriodTypeSelect />
     </HeaderDivGroup>
   );
 };

@@ -69,7 +69,7 @@ if (isMobile) {
         })}
       </ListDay>
       <ListTask>
-        This day has {dateTasks.length} task!
+        {/* This day has {dateTasks.length} task! */}
 
         <TasksColumnsList />
       </ListTask>

@@ -1,14 +1,14 @@
 import React from 'react';
-import { CalendarToolbar } from '../../components';
+// import { CalendarToolbar } from '../../components';
 import { useCalendar } from './useCalendar';
 import { Outlet } from 'react-router-dom';
 
 export const CalendarPage = () => {
   const {
     calendarProps,
-    title,
-    prevButtonProps,
-    nextButtonProps,
+    // title,
+    // prevButtonProps,
+    // nextButtonProps,
     state,
     daysOfWeekLabels,
     dateFormatter,
@@ -18,7 +18,7 @@ export const CalendarPage = () => {
 
   return (
     <div>
-      <CalendarToolbar {...{ title, prevButtonProps, nextButtonProps }} />
+      {/* <CalendarToolbar {...{ title, prevButtonProps, nextButtonProps }} /> */}
 
       <Outlet context={properties} />
     </div>
