@@ -48,7 +48,7 @@ const TasksColumnsList = ({ category, tasks }) => {
 
   const reduxTasks = useSelector(selectTasks);
   console.log(reduxTasks[currentDay]);
-  const dayTasks = reduxTasks[currentDay];
+  const dayTasks = reduxTasks[currentDay] ?? [];
 
   const toDoTasks = dayTasks.filter((task) => {
     return task.category === 'to-do';

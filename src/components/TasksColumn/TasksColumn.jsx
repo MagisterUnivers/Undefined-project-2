@@ -10,7 +10,7 @@ const TasksColumn = ({ title, tasks, categoryId }) => {
   return (
     <ItemTask>
       <ColumnHeadBar title={title} categoryId={categoryId} />
-      <ColumnsTasksList tasks={tasks} categoryId={categoryId} />
+      {tasks && <ColumnsTasksList tasks={tasks} categoryId={categoryId} />}
       <AddTaskBtn categoryId={categoryId} />
       {/* {IsTasks ? ColumnTasksList : blablaba } */}
     </ItemTask>
