@@ -8,7 +8,7 @@ import styled from 'styled-components';
 
 const TasksColumn = ({ title, tasks, categoryId }) => {
   return (
-    <ItemTask>
+    <ItemTask className="dark:bg-gray-bg dark:border-bdark ">
       <ColumnHeadBar title={title} categoryId={categoryId} />
       {tasks && <ColumnsTasksList tasks={tasks} categoryId={categoryId} />}
       <AddTaskBtn categoryId={categoryId} />
@@ -32,7 +32,9 @@ const ItemTask = styled.li`
   gap: 42px;
   padding: 25px 10px 10px 10px;
   background: #ffffff;
-  border: 1px solid rgba(220, 227, 229, 0.8);
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(220, 227, 229, 0.8);
   border-radius: 8px;
   @media screen and (min-width: 767.98px) {
     width: 344px;

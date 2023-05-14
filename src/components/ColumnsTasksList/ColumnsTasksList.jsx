@@ -3,7 +3,7 @@ import { StyledLi, StyledUl } from './ColumnsTasksList.styled';
 
 export const ColumnsTasksList = ({ tasks, categoryId }) => {
   return (
-    <StyledUl>
+    <StyledUl className="dark:::-webkit-scrollbar-track">
       {(tasks ?? []).map((task, index) => (
         <StyledLi key={index}>
           <TaskColumnCard

@@ -1,18 +1,41 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { useCurrentDate } from '../../redux';
+import { selectTheme, useCurrentDate } from '../../redux';
 import { getStringFromDate } from '../../utils';
+import { useSelector } from 'react-redux';
 
 export const PeriodTypeSelect = () => {
   const [currentDay] = useCurrentDate();
   const date_key = getStringFromDate(currentDay?.toDate());
-
+  const theme = useSelector(selectTheme);
   return (
     <>
-      <ButtonGroup >
-        <Button to="/main/calendar/" className="dark:bg-gray-bg">Month</Button>
-        <Button to={`/main/calendar/day/${date_key}`} className="dark:bg-gray-bg">Day</Button>
-      </ButtonGroup>
+      {theme === 'light' ? (
+        <ButtonGroup>
+          <Button to="/main/calendar/" className="dark:bg-gray-bg" $light>
+            Month
+          </Button>
+          <Button
+            to={`/main/calendar/day/${date_key}`}
+            className="dark:bg-gray-bg"
+            $light
+          >
+            Day
+          </Button>
+        </ButtonGroup>
+      ) : (
+        <ButtonGroup>
+          <Button to="/main/calendar/" className="dark:bg-gray-bg">
+            Month
+          </Button>
+          <Button
+            to={`/main/calendar/day/${date_key}`}
+            className="dark:bg-gray-bg"
+          >
+            Day
+          </Button>
+        </ButtonGroup>
+      )}
     </>
   );
 };
@@ -53,6 +76,7 @@ const Button = styled(NavLink)`
     background: #cae8ff;
   }
   &.active {
-    background: #cae8ff;
+    background-color: ${(props) => (props.$light ? '#cae8ff' : '#3E85F3')};
+    color: ${(props) => (props.$light ? '#3E85F3' : '#ffffff')};
   }
 `;

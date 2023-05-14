@@ -67,12 +67,12 @@ const TaskToolbar = ({ id, categoryId, object }) => {
       <StyledList>
         <StyledListItem>
           <StyledListBtn type="button" onClick={handleSlideMenuToggle}>
-            <StyledArrowRightIcon />
+            <StyledArrowRightIcon className="dark:stroke-white" />
           </StyledListBtn>
         </StyledListItem>
         <StyledListItem>
           <StyledListBtn type="button" onClick={handleModalOpen}>
-            <StyledPencilIcon />
+            <StyledPencilIcon className="dark:stroke-white" />
           </StyledListBtn>
         </StyledListItem>
         <StyledListItem>
@@ -80,7 +80,7 @@ const TaskToolbar = ({ id, categoryId, object }) => {
             type="button"
             onClick={() => dispatch(deleteUserTaskThunk(id))}
           >
-            <StyledTrashIcon />
+            <StyledTrashIcon className="dark:stroke-white" />
           </StyledListBtn>
         </StyledListItem>
       </StyledList>

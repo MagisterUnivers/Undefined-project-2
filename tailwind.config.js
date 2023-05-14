@@ -26,6 +26,7 @@ module.exports = {
         skyblue: '#E3F3FF',
         darktheme: '#171820',
         sidebardark: '#13151A',
+        bdark: 'rgba(255, 255, 255, 0.15)',
         'blue-1': '#3e85f3',
         'blue-2': '#e3f3ff',
         'blue-3': '#CEEEFD',
