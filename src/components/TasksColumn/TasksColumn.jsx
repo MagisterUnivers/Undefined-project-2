@@ -1,14 +1,12 @@
 import { AddTaskBtn } from 'components/AddTaskBtn/AddTaskBtn';
 import ColumnHeadBar from 'components/ChoosedDay/ColumnHeadBar/ColumnHeadBar';
 import { ColumnsTasksList } from 'components/ColumnsTasksList/ColumnsTasksList';
-import { useSelector } from 'react-redux';
-import { selectIsTaskExist } from '../../redux/selectors';
 import styled from 'styled-components';
 // import { useSelector } from 'react-redux';
 // import { selectIsTaskExist } from 'redux';
 // import styled from 'styled-components';
 
-const TasksColumn = ({ title, tasks }) => {
+const TasksColumn = ({ title, tasks, id }) => {
   // Selector to check if Tasks is existed
 
   // const IsTasks = useSelector(selectIsTaskExist);
@@ -45,9 +43,9 @@ const TasksColumn = ({ title, tasks }) => {
 
   return (
     <ItemTask>
-      <ColumnHeadBar title={title} />
-      {/* <ColumnsTasksList tasks={tasks} />
-      <AddTaskBtn /> */}
+      <ColumnHeadBar title={title} id={id} />
+      <ColumnsTasksList tasks={tasks} />
+      <AddTaskBtn id={id} />
       {/* {IsTasks ? ColumnTasksList : blablaba } */}
     </ItemTask>
   );

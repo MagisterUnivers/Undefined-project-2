@@ -58,7 +58,7 @@ const TaskForm = ({ columnCategory, currentDay, isEdit, id }) => {
       start: newStart,
       end: newEnd,
       priority: priority,
-      category: columnCategory,
+      category: id,
       date: currentDay,
     };
 

@@ -1,14 +1,22 @@
 import Modal from 'components/Modal/Modal';
 import TaskForm from 'components/Forms/TaskForm/TaskForm';
 
-const TaskModal = ({ handleModalClose, title, currentDay }) => {
+const TaskModal = ({
+  handleModalClose,
+  title,
+  currentDay,
+  id,
+  isEdit,
+  category,
+}) => {
   return (
     <>
       <Modal handleModalClose={handleModalClose}>
         <TaskForm
-          columnCategory={title}
+          columnCategory={category}
           currentDay={currentDay}
-          // isEdit={isEdit}
+          id={id}
+          isEdit={isEdit}
         />
       </Modal>
     </>

@@ -6,7 +6,7 @@ export const ColumnsTasksList = ({ tasks }) => {
     <StyledUl>
       {(tasks ?? []).map((task, index) => (
         <StyledLi key={index}>
-          <TaskColumnCard title={task.title} priority={task.priority} />
+          <TaskColumnCard title={task.title} priority={task.priority} id={task._id} />
         </StyledLi>
       ))}
     </StyledUl>

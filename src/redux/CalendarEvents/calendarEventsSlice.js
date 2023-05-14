@@ -58,7 +58,15 @@ const calendarEventsSlice = createSlice({
       state.isLoading = true;
     },
     [createUserTaskThunk.fulfilled]: (state, { payload }) => {
-      state.tasks.push(payload);
+      // state.tasks.push({
+      //   tasks: [payload],
+      //   date: `${payload.date}`,
+      // });
+      const date = payload.date.slice(0, 10);
+      state.monthDatesMap = {
+        ...state.monthDatesMap,
+        [date]: [...state.monthDatesMap[date], payload],
+      };
       state.isLoading = false;
     },
     [createUserTaskThunk.rejected]: (state, { payload }) => {
@@ -75,6 +83,12 @@ const calendarEventsSlice = createSlice({
     [deleteUserTaskThunk.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.error = null;
+
+      const date = action.payload.date.slice(0, 10);
+      let arrTasks = state.monthDatesMap[date].filter(
+        (task) => task._id !== action.payload._id
+      );
+      state.monthDatesMap = { ...state.monthDatesMap, [date]: arrTasks };
     },
     [deleteUserTaskThunk.rejected]: (state, { payload }) => {
       state.IsLoading = true;
@@ -88,8 +102,25 @@ const calendarEventsSlice = createSlice({
       state.IsLoading = true;
     },
     [updateUserTaskThunk.fulfilled](state, { payload }) {
-      state.IsLoading = false;
+      state.isLoading = false;
       state.error = null;
+
+      const date = payload.date.slice(0, 10);
+
+      let arrTasks = state.monthDatesMap[date].filter((task) => {
+        if (task._id === payload._id) return payload;
+        else return task;
+      });
+
+      state.monthDatesMap = { ...state.monthDatesMap, [date]: arrTasks };
+      // let arrTasks = state.tasks.find((item) => item.date === date);
+      // console.log(arrTasks);
+      // console.log(date);
+
+      // arrTasks.tasks = arrTasks.tasks.map((item) => {
+      //   if (item._id === payload._id) return payload;
+      //   else return item;
+      // });
     },
     [updateUserTaskThunk.rejected]: (state, { payload }) => {
       state.IsLoading = true;

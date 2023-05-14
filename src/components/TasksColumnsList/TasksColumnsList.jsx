@@ -33,21 +33,46 @@
 
 // import { nanoid } from '@reduxjs/toolkit';
 import TasksColumn from 'components/TasksColumn/TasksColumn';
+import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import { selectTasks } from 'redux/selectors';
 import styled from 'styled-components';
 
-const categoryExample = ['to-do', 'in-progress', 'done'];
+// const categoryExample = ['to-do', 'in-progress', 'done'];
 
 const TasksColumnsList = ({ category, tasks }) => {
-  const location = useLocation()
+  const location = useLocation();
 
-  const currentDay = location.slice(-10)
+  const currentDay = location.pathname.slice(-10);
   console.log(currentDay);
+
+  const reduxTasks = useSelector(selectTasks);
+  console.log(reduxTasks[currentDay]);
+  const dayTasks = reduxTasks[currentDay];
+
+  const toDoTasks = dayTasks.filter((task) => {
+    return task.category === 'to-do';
+  });
+  console.log('DAY', toDoTasks);
+
+  const inProgressTasks = (toDoTasks = dayTasks.filter((task) => {
+    return task.category === 'in-progress';
+  }));
+  console.log('IN-PROGRESS', inProgressTasks);
+
+  const doneTasks = (toDoTasks = dayTasks.filter((task) => {
+    return task.category === 'done';
+  }));
+  console.log('DONE:', doneTasks);
+
   return (
     <ListTask>
-      {categoryExample.map((categorys, index) => {
+      {/* {categoryExample.map((categorys, index) => {
         return <TasksColumn key={index} tasks={tasks} title={categorys} />;
-      })}
+      })} */}
+      <TasksColumn title="To do" tasks={toDoTasks} />
+      <TasksColumn title="In progress" tasks={inProgressTasks} />
+      <TasksColumn title="Done" tasks={doneTasks} />
     </ListTask>
   );
 };

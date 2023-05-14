@@ -8,7 +8,7 @@ export const TaskColumnCard = ({ title, priority, id }) => {
   const { userImgUrl, name } = useSelector(selectUserInfo);
   return (
     <Card
-      variant="outlined"
+      variant="outlined"  
       sx={{
         width: { mobile: '299px', tablet: '301px' },
         height: { mobile: '108px', tablet: '112px' },
