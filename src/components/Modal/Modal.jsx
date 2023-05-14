@@ -34,9 +34,9 @@ const Modal = ({ children, handleModalClose }) => {
 
   return createPortal(
     <StyledBackdrop className="backdrop">
-      <StyledModal>
+      <StyledModal className="dark:bg-darktheme dark:border-0">
         <StyledBtn type="button" onClick={handleCloseBtnClick}>
-          <StyledBtnIcon />
+          <StyledBtnIcon className="dark:stroke-white" />
         </StyledBtn>
         {children}
       </StyledModal>

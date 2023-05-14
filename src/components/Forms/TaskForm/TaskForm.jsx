@@ -92,9 +92,10 @@ const TaskForm = ({ isEdit, id, categoryId, handleModalClose }) => {
 
   return (
     <StyledForm onSubmit={handleFormSubmit}>
-      <StyledLabel>
+      <StyledLabel className="dark:text-white">
         Title
         <StyledInput
+          className="dark:bg-darktheme dark:border-bdark dark:border dark:text-white"
           type="text"
           placeholder="Enter text"
           maxLength="250"
@@ -103,13 +104,25 @@ const TaskForm = ({ isEdit, id, categoryId, handleModalClose }) => {
         />
       </StyledLabel>
       <StyledInputWrapper>
-        <StyledLabel>
+        <StyledLabel className="dark:text-white">
           Start
-          <StyledInput type="text" placeholder="9:00" name="start" />
+          <StyledInput
+            className="dark:bg-darktheme dark:border-bdark dark:border dark:text-white"
+            type="text"
+            placeholder="9:00"
+            name="start"
+            required
+          />
         </StyledLabel>
-        <StyledLabel>
+        <StyledLabel className="dark:text-white">
           End
-          <StyledInput type="text" placeholder="14:00" name="end" />
+          <StyledInput
+            className="dark:bg-darktheme dark:border-bdark dark:border dark:text-white"
+            type="text"
+            placeholder="14:00"
+            name="end"
+            required
+          />
         </StyledLabel>
       </StyledInputWrapper>
       <FormControl>
@@ -120,6 +133,7 @@ const TaskForm = ({ isEdit, id, categoryId, handleModalClose }) => {
           onChange={handleRadioChange}
         >
           <StyledFormControlLabel
+            className="dark:text-white"
             value="low"
             control={
               <Radio
@@ -140,6 +154,7 @@ const TaskForm = ({ isEdit, id, categoryId, handleModalClose }) => {
             label="Low"
           />
           <StyledFormControlLabel
+            className="dark:text-white"
             value="medium"
             control={
               <Radio
@@ -160,6 +175,7 @@ const TaskForm = ({ isEdit, id, categoryId, handleModalClose }) => {
             label="Medium"
           />
           <StyledFormControlLabel
+            className="dark:text-white"
             value="high"
             control={
               <Radio

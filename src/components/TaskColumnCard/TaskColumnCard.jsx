@@ -9,6 +9,7 @@ export const TaskColumnCard = ({ title, priority, id, categoryId, object }) => {
   return (
     <Card
       variant="outlined"
+      className="dark:bg-darktheme dark:border-bdark"
       sx={{
         width: { mobile: '299px', tablet: '301px' },
         height: { mobile: '108px', tablet: '112px' },
@@ -19,7 +20,7 @@ export const TaskColumnCard = ({ title, priority, id, categoryId, object }) => {
         overflow: 'visible',
       }}
     >
-      <StyledTypography>{title}</StyledTypography>
+      <StyledTypography className="dark:text-white">{title}</StyledTypography>
       <Box
         sx={{
           display: 'flex',
