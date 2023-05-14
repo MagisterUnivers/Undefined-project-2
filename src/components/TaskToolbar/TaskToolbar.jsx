@@ -22,6 +22,8 @@ import { useDispatch } from 'react-redux';
 const TaskToolbar = ({ id, categoryId, object }) => {
   const dispatch = useDispatch();
   const [isSlideMenuShown, setIsSlideMenuShown] = useState(false);
+  const [isTransferMenuShown, setIsTransferMenuShown] = useState(false);
+
   const [isModalShown, setIsModalShown] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
 
@@ -57,6 +59,7 @@ const TaskToolbar = ({ id, categoryId, object }) => {
       id: object._id,
       credentials,
     };
+    setIsTransferMenuShown(!isTransferMenuShown);
     dispatch(updateUserTaskThunk(modifiedObject));
   };
 

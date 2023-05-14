@@ -234,6 +234,7 @@ export const UserForm = () => {
                 placeholder="Enter your email"
                 pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
                 title="Please enter a valid email address. Example - john@example.com"
+                required
               />
             </StyledHolder>
             <StyledHolder>
