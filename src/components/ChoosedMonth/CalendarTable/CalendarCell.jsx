@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { useCalendarCell } from 'react-aria';
 import styled from 'styled-components';
 import { useDateTasks } from '../../../redux';
