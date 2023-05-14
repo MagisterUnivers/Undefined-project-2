@@ -20,6 +20,7 @@ const TaskToolbar = ({ id }) => {
   const dispatch = useDispatch();
   const [isSlideMenuShown, setIsSlideMenuShown] = useState(false);
   const [isModalShown, setIsModalShown] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
 
   const handleModalClose = () => {
     setIsModalShown(false);
@@ -27,6 +28,7 @@ const TaskToolbar = ({ id }) => {
 
   const handleModalOpen = () => {
     setIsModalShown(true);
+    setIsEdit(true);
   };
 
   const handleSlideMenuToggle = () => {
@@ -70,7 +72,9 @@ const TaskToolbar = ({ id }) => {
         </StyledSlideMenu>
       )}
       {isModalShown && (
-        <Modal handleModalClose={handleModalClose}>{<TaskForm />}</Modal>
+        <Modal handleModalClose={handleModalClose}>
+          {<TaskForm isEdit={isEdit} id={id} />}
+        </Modal>
       )}
     </>
   );

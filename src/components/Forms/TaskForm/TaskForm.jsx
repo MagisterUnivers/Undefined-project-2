@@ -19,8 +19,9 @@ import {
   StyledRadioGroup,
 } from './StyledTaskForm';
 import { createUserTaskThunk } from '../../../redux/CalendarEvents/calendarEventsOperations';
+import { updateUserDataThunk } from 'redux/UserInfo/userInfoOperations';
 
-const TaskForm = ({ columnCategory, currentDay }) => {
+const TaskForm = ({ columnCategory, currentDay, isEdit, id }) => {
   const [isTaskCreated] = useState(false);
   const [priority, setPriority] = useState('');
 
@@ -55,6 +56,8 @@ const TaskForm = ({ columnCategory, currentDay }) => {
       category: newCategory,
       date: currentDay,
     };
+
+    if (isEdit) return dispatch(updateUserDataThunk(id, credentials));
 
     dispatch(createUserTaskThunk(credentials));
   };

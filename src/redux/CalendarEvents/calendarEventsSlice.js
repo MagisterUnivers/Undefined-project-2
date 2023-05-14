@@ -233,10 +233,17 @@ const calendarEventsSlice = createSlice({
   [updateUserTaskThunk.fulfilled](state, { payload }) {
     state.isLoading = false;
     state.error = null;
-    //   const index = state.tasks.findIndex(
-    //     (task) => task.id === action.payload.id
-    //   );
-    //   state.tasks.splice(index, 1);
+
+    const date = payload.date.slice(0, 10);
+    // const findData = state.tasks.find(item => )
+    let arrTasks = state.tasks.find((item) => item.date === date);
+    console.log(arrTasks);
+    console.log(date);
+
+    arrTasks.tasks = arrTasks.tasks.map((item) => {
+      if (item._id === payload._id) return payload;
+      else return item;
+    });
   },
   [updateUserTaskThunk.rejected]: (state, { payload }) => {
     state.isLoading = true;
