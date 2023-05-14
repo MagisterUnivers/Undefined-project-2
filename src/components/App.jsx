@@ -13,7 +13,6 @@ import DemoApp from 'test/DemoApp';
 import { PrivateRoute } from 'Routes/PrivateRoute';
 import { PublicRoute } from 'Routes/PublicRoute';
 // import { TaskColumnCard } from './TaskColumnCard/TaskColumnCard';
-import { ColumnsTasksList } from './ColumnsTasksList/ColumnsTasksList';
 // import FormComponent from 'redux/CalendarEvents/test123';
 
 export const App = () => {
@@ -62,7 +61,6 @@ export const App = () => {
           </Route>
         </Route>
 
-        <Route path="/tc" element={<ColumnsTasksList />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>

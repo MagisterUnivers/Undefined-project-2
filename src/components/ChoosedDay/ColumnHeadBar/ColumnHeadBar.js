@@ -29,7 +29,6 @@ const ColumnHeadBar = ({ title }) => {
           <ControlPoint />
         </button>
       </Title>
-      {/* <ColumnsTasksList /> */}
       {/* <ButtonTask>
             <Add />
             Add task

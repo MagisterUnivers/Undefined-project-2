@@ -73,7 +73,7 @@ const ChoosedDayPage = () => {
       <ListTask>
         {/* This day has {dateTasks.length} task! */}
 
-        <TasksColumnsList />
+        <TasksColumnsList tasks={dateTasks} />
       </ListTask>
     </div>
   );

@@ -6,7 +6,7 @@ import styled from 'styled-components';
 // import { selectIsTaskExist } from 'redux';
 // import styled from 'styled-components';
 
-const TasksColumn = ({ title }) => {
+const TasksColumn = ({ title, tasks }) => {
   // Selector to check if Tasks is existed
 
   // const IsTasks = useSelector(selectIsTaskExist);
@@ -14,7 +14,7 @@ const TasksColumn = ({ title }) => {
   return (
     <ItemTask>
       <ColumnHeadBar title={title} />
-      <ColumnsTasksList />
+      <ColumnsTasksList tasks={tasks} />
       <AddTaskBtn />
       {/* {IsTasks ? ColumnTasksList : blablaba } */}
     </ItemTask>

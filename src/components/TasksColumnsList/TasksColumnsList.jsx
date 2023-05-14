@@ -3,11 +3,11 @@ import styled from 'styled-components';
 
 const categoryExample = ['To do', 'In progress', 'Done'];
 
-const TasksColumnsList = ({ category }) => {
+const TasksColumnsList = ({ category, tasks }) => {
   return (
     <ListTask>
       {categoryExample.map((categorys, index) => {
-        return <TasksColumn key={index} title={categorys} />;
+        return <TasksColumn key={index} tasks={tasks} title={categorys} />;
       })}
     </ListTask>
   );
