@@ -3,7 +3,7 @@ import { CalendarToolbar } from '../../components';
 import { useCalendar } from './useCalendar';
 import { Outlet } from 'react-router-dom';
 
-export const CalendarPage = () => {
+ const CalendarPage = () => {
   const {
     calendarProps,
     title,
@@ -24,3 +24,5 @@ export const CalendarPage = () => {
     </div>
   );
 };
+
+export default CalendarPage

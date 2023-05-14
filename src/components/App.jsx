@@ -1,68 +1,77 @@
 import { Route, Routes } from 'react-router';
 import { MainLayout } from './MainLayout/MainLayout';
-import LoginPage from 'pages/LoginPage/LoginPage';
-import RegisterPage from 'pages/RegisterPage/RegisterPage';
-// import { UserForm } from './Forms/UserForm/UserForm';
-import AccountPage from 'pages/AccountPage/AccountPage';
-import { CalendarPage } from '../pages/CalendarPage/CalendarPage';
-import ChoosedDayPage from 'pages/ChoosedDayPage/ChoosedDayPage';
 import { ChoosedMonth } from '../components';
-import AboutPage from 'pages/AboutPage/AboutPage';
-import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
 import DemoApp from 'test/DemoApp';
 import { PrivateRoute } from 'Routes/PrivateRoute';
 import { PublicRoute } from 'Routes/PublicRoute';
+// import { UserForm } from './Forms/UserForm/UserForm';
+import { Suspense, lazy } from 'react';
+import Spinner from './Spinner/Spinner';
+const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
+const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
+const AccountPage = lazy(() => import('pages/AccountPage/AccountPage'));
+const CalendarPage = lazy(() => import('../pages/CalendarPage/CalendarPage'));
+const ChoosedDayPage = lazy(() =>
+  import('pages/ChoosedDayPage/ChoosedDayPage')
+);
+
+const AboutPage = lazy(() => import('pages/AboutPage/AboutPage'));
+
+const NotFoundPage = lazy(() => import('pages/NotFoundPage/NotFoundPage'));
+
 // import { TaskColumnCard } from './TaskColumnCard/TaskColumnCard';
 // import FormComponent from 'redux/CalendarEvents/test123';
 
 export const App = () => {
   return (
     <>
-      <Routes>
-        <Route path="/" element={<AboutPage />} />
-        <Route
-          path="/register"
-          element={
-            <PublicRoute>
-              <RegisterPage />
-            </PublicRoute>
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <PublicRoute>
-              <LoginPage />
-            </PublicRoute>
-          }
-        />
-        <Route path="/test" element={<DemoApp />} />
-        <Route path="/main" element={<MainLayout />}>
+      <Suspense fallback={<Spinner />}>
+        <Routes>
+          <Route path="/" element={<AboutPage />} />
           <Route
-            path="account"
+            path="/register"
             element={
-              <PrivateRoute>
-                <AccountPage />
-              </PrivateRoute>
+              <PublicRoute>
+                <RegisterPage />
+              </PublicRoute>
             }
           />
-
           <Route
-            path="calendar"
+            path="/login"
             element={
-              <PrivateRoute>
-                <CalendarPage />
-              </PrivateRoute>
+              <PublicRoute>
+                <LoginPage />
+              </PublicRoute>
             }
-          >
-            <Route path="" element={<ChoosedMonth />} />
+          />
+          <Route path="/test" element={<DemoApp />} />
+          <Route path="/main" element={<MainLayout />}>
+            <Route
+              path="account"
+              element={
+                <PrivateRoute>
+                  <AccountPage />
+                </PrivateRoute>
+              }
+            />
 
-            <Route path="day/:currentDay" element={<ChoosedDayPage />} />
+            <Route
+              path="calendar"
+              element={
+                <PrivateRoute>
+                  <CalendarPage />
+                </PrivateRoute>
+              }
+            >
+              <Route path="" element={<ChoosedMonth />} />
+
+              <Route path="day/:currentDay" element={<ChoosedDayPage />} />
+            </Route>
           </Route>
-        </Route>
 
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </Suspense>
     </>
   );
 };
