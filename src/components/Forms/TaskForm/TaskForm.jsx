@@ -55,12 +55,10 @@ const TaskForm = ({ isEdit, id, categoryId, handleModalClose }) => {
     };
 
     if (isEdit) {
-      dispatch(updateUserTaskThunk(data));
+      dispatch(updateUserTaskThunk(data)).then(() => handleModalClose());
     } else {
-      dispatch(createUserTaskThunk(credentials));
+      dispatch(createUserTaskThunk(credentials)).then(() => handleModalClose());
     }
-
-    // handleModalClose();
   };
 
   const formatTime = (time) => {
@@ -111,7 +109,6 @@ const TaskForm = ({ isEdit, id, categoryId, handleModalClose }) => {
             type="text"
             placeholder="9:00"
             name="start"
-            required
           />
         </StyledLabel>
         <StyledLabel className="dark:text-white">
@@ -121,7 +118,6 @@ const TaskForm = ({ isEdit, id, categoryId, handleModalClose }) => {
             type="text"
             placeholder="14:00"
             name="end"
-            required
           />
         </StyledLabel>
       </StyledInputWrapper>

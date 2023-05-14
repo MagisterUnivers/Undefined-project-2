@@ -43,6 +43,7 @@ const ColumnHeadBar = ({ title, currentDay, categoryId }) => {
               title={title}
               currentDay={currentDay}
               categoryId={categoryId}
+              handleModalClose={handleModalClose}
             />
           }
         </Modal>

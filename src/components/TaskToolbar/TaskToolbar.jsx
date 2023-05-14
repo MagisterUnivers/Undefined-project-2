@@ -165,7 +165,13 @@ const TaskToolbar = ({ id, categoryId, object }) => {
       )}
       {isModalShown && (
         <Modal handleModalClose={handleModalClose}>
-          {<TaskForm isEdit={isEdit} id={id} />}
+          {
+            <TaskForm
+              isEdit={isEdit}
+              id={id}
+              handleModalClose={handleModalClose}
+            />
+          }
         </Modal>
       )}
     </>
