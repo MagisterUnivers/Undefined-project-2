@@ -172,7 +172,10 @@ const calendarEventsSlice = createSlice({
         // state.tasks.priority = payload.priority;
         // state.tasks.date = parseISO(payload.date);
         // state.tasks._id = payload._id;
-        state.tasks.push({ tasks: [payload], date: `${payload.date}` });
+        state.tasks.push({
+          tasks: [payload],
+          date: `${payload.date}`,
+        });
         state.isLoading = false;
       })
       .addCase(createUserTaskThunk.rejected, (state, { payload }) => {
@@ -212,6 +215,28 @@ const calendarEventsSlice = createSlice({
         // );
         // state.tasks.splice(index, 1);
       })
+      .addCase(updateUserTaskThunk.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateUserTaskThunk.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+
+        const date = payload.date.slice(0, 10);
+        // const findData = state.tasks.find(item => )
+        let arrTasks = state.tasks.find((item) => item.date === date);
+        console.log(arrTasks);
+        console.log(date);
+
+        arrTasks.tasks = arrTasks.tasks.map((item) => {
+          if (item._id === payload._id) return payload;
+          else return item;
+        });
+      })
+      .addCase(updateUserTaskThunk.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.IsLoading = false;
+      })
       .addMatcher(
         (action) => {
           const { type } = action;
@@ -227,28 +252,28 @@ const calendarEventsSlice = createSlice({
     state.isLoading = true;
     state.error = payload;
   },
-  [updateUserTaskThunk.pending]: (state, { payload }) => {
-    state.isLoading = true;
-  },
-  [updateUserTaskThunk.fulfilled](state, { payload }) {
-    state.isLoading = false;
-    state.error = null;
+  // [updateUserTaskThunk.pending]: (state, { payload }) => {
+  //   state.isLoading = true;
+  // },
+  // [updateUserTaskThunk.fulfilled](state, { payload }) {
+  //   state.isLoading = false;
+  //   state.error = null;
 
-    const date = payload.date.slice(0, 10);
-    // const findData = state.tasks.find(item => )
-    let arrTasks = state.tasks.find((item) => item.date === date);
-    console.log(arrTasks);
-    console.log(date);
+  //   const date = payload.date.slice(0, 10);
+  //   // const findData = state.tasks.find(item => )
+  //   let arrTasks = state.tasks.find((item) => item.date === date);
+  //   console.log(arrTasks);
+  //   console.log(date);
 
-    arrTasks.tasks = arrTasks.tasks.map((item) => {
-      if (item._id === payload._id) return payload;
-      else return item;
-    });
-  },
-  [updateUserTaskThunk.rejected]: (state, { payload }) => {
-    state.isLoading = true;
-    state.error = payload;
-  },
+  //   arrTasks.tasks = arrTasks.tasks.map((item) => {
+  //     if (item._id === payload._id) return payload;
+  //     else return item;
+  //   });
+  // },
+  // [updateUserTaskThunk.rejected]: (state, { payload }) => {
+  //   state.isLoading = true;
+  //   state.error = payload;
+  // },
   // [getUserTaskThunk.pending]: (state, { payload }) => {
   //   state.IsLoading = true;
   // },

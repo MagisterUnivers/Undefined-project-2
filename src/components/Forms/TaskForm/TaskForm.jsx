@@ -18,8 +18,10 @@ import {
   StyledPlusIcon,
   StyledRadioGroup,
 } from './StyledTaskForm';
-import { createUserTaskThunk } from '../../../redux/CalendarEvents/calendarEventsOperations';
-import { updateUserDataThunk } from 'redux/UserInfo/userInfoOperations';
+import {
+  createUserTaskThunk,
+  updateUserTaskThunk,
+} from '../../../redux/CalendarEvents/calendarEventsOperations';
 
 const TaskForm = ({ columnCategory, currentDay, isEdit, id }) => {
   const [isTaskCreated] = useState(false);
@@ -33,31 +35,39 @@ const TaskForm = ({ columnCategory, currentDay, isEdit, id }) => {
     const newStart = ev.currentTarget.start.value;
     const newEnd = ev.currentTarget.end.value;
 
-    let newCategory = '';
-    switch (columnCategory.toLowerCase()) {
-      case 'In progress':
-        newCategory = 'in-progress';
-        break;
-      case 'To do':
-        newCategory = 'to-do';
-        break;
-      case 'Done':
-        newCategory = 'done';
-        break;
-      default:
-        break;
-    }
+    // let newCategory;
+
+    // switch (columnCategory.toLowerCase()) {
+    //   case 'in progress':
+    //     newCategory = 'in-progress';
+    //     break;
+    //   case 'to do':
+    //     newCategory = 'to-do';
+    //     break;
+    //   case 'done':
+    //     newCategory = 'done';
+    //     break;
+    //   default:
+    //     break;
+    // }
+
+    console.log();
 
     const credentials = {
       title: newTitle,
       start: newStart,
       end: newEnd,
-      priority,
-      category: newCategory,
+      priority: priority,
+      category: columnCategory,
       date: currentDay,
     };
 
-    if (isEdit) return dispatch(updateUserDataThunk(id, credentials));
+    const data = {
+      credentials,
+      id,
+    };
+    
+    if (isEdit) return dispatch(updateUserTaskThunk(data));
 
     dispatch(createUserTaskThunk(credentials));
   };

@@ -71,9 +71,11 @@ export const deleteUserTaskThunk = createAsyncThunk(
 
 export const updateUserTaskThunk = createAsyncThunk(
   '@@calendarEvents/updateUserTask',
-  async (credentials, taskId, thunkAPI) => {
+  async (data, thunkAPI) => {
+    const {credentials, id} = data
+
     try {
-      const response = await axios.put(`task/${taskId}`, credentials);
+      const response = await axios.put(`task/${id}`, credentials);
       // thunkAPI.dispatch(fetchContacts());
       return response.data;
     } catch (e) {

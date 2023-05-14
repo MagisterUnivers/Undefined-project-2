@@ -12,27 +12,21 @@ const TasksColumn = ({ title, currentDay }) => {
   // Selector to check if Tasks is existed
 
   // const IsTasks = useSelector(selectIsTaskExist);
-
-  let newCategory;
-
-  switch (title.toLowerCase()) {
-    case 'In progress':
-      newCategory = 'in-progress';
-      break;
-    case 'To do':
-      newCategory = 'to-do';
-      break;
-    case 'Done':
-      newCategory = 'done';
-      break;
-    default:
-      break;
-  }
-
   const tasks = useSelector(selectIsTaskExist);
-  console.log(tasks);
-  // let filteredTasks;
-  // let createdTask;
+
+  // switch (title.toLowerCase()) {
+  //   case 'in progress':
+  //     newCategory = 'in-progress';
+  //     break;
+  //   case 'to do':
+  //     newCategory = 'to-do';
+  //     break;
+  //   case 'done':
+  //     newCategory = 'done';
+  //     break;
+  //   default:
+  //     break;
+  // }
 
   const filterTasks = tasks
     .filter(({ date }) => {
@@ -42,14 +36,12 @@ const TasksColumn = ({ title, currentDay }) => {
       //   return task.category === newCategory && date === currentDay;
       // });
     })
-    .filter(({ category }) => {
-      console.log(newCategory);
-      return category === newCategory;
+    .filter(({ tasks }, index) => {
+      console.log(tasks);
+      return tasks[index].category === title;
     });
 
-  console.log(title);
   console.log(filterTasks);
-  console.log(newCategory);
 
   return (
     <ItemTask>
