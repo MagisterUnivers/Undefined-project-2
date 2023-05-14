@@ -127,7 +127,8 @@ const computeTaskMap = (items) => {
 
 const initialState = {
   isLoading: false,
-  tasks: { tasks: [], date: '' },
+  // tasks: {},
+  tasks: [],
   taskMap: computeTaskMap(mocks),
 };
 
@@ -171,7 +172,7 @@ const calendarEventsSlice = createSlice({
         // state.tasks.priority = payload.priority;
         // state.tasks.date = parseISO(payload.date);
         // state.tasks._id = payload._id;
-        state.tasks.push(payload);
+        state.tasks.push({ tasks: [payload], date: `${payload.date}` });
         state.isLoading = false;
       })
       .addCase(createUserTaskThunk.rejected, (state, { payload }) => {
