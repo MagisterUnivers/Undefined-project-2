@@ -31,11 +31,11 @@
 //   }
 // `;
 
-import { nanoid } from '@reduxjs/toolkit';
+// import { nanoid } from '@reduxjs/toolkit';
 import TasksColumn from 'components/TasksColumn/TasksColumn';
 import styled from 'styled-components';
 
-const categoryExample = ['To do', 'In progress', 'Done'];
+const categoryExample = ['to-do', 'in-progress', 'done'];
 
 const TasksColumnsList = ({ category, currentDay }) => {
   return (
@@ -43,7 +43,7 @@ const TasksColumnsList = ({ category, currentDay }) => {
       {categoryExample.map((categorys) => {
         return (
           <TasksColumn
-            key={nanoid()}
+            key={categorys}
             title={categorys}
             currentDay={currentDay}
           />

@@ -13,8 +13,11 @@ import {
 } from './StyledTaskToolbar';
 import TaskForm from 'components/Forms/TaskForm/TaskForm';
 import Modal from 'components/Modal/Modal';
+import { deleteUserTaskThunk } from '../../redux/CalendarEvents/calendarEventsOperations';
+import { useDispatch } from 'react-redux';
 
-const TaskToolbar = () => {
+const TaskToolbar = ({ id }) => {
+  const dispatch = useDispatch();
   const [isSlideMenuShown, setIsSlideMenuShown] = useState(false);
   const [isModalShown, setIsModalShown] = useState(false);
 
@@ -27,7 +30,7 @@ const TaskToolbar = () => {
   };
 
   const handleSlideMenuToggle = () => {
-    setIsSlideMenuShown(!isSlideMenuShown)
+    setIsSlideMenuShown(!isSlideMenuShown);
   };
 
   return (
@@ -44,7 +47,10 @@ const TaskToolbar = () => {
           </StyledListBtn>
         </StyledListItem>
         <StyledListItem>
-          <StyledListBtn type="button">
+          <StyledListBtn
+            type="button"
+            onClick={() => dispatch(deleteUserTaskThunk(id))}
+          >
             <StyledTrashIcon />
           </StyledListBtn>
         </StyledListItem>

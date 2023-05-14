@@ -34,13 +34,13 @@ const TaskForm = ({ columnCategory, currentDay }) => {
 
     let newCategory = '';
     switch (columnCategory.toLowerCase()) {
-      case 'in progress':
+      case 'In progress':
         newCategory = 'in-progress';
         break;
-      case 'to do':
+      case 'To do':
         newCategory = 'to-do';
         break;
-      case 'done':
+      case 'Done':
         newCategory = 'done';
         break;
       default:
@@ -57,7 +57,6 @@ const TaskForm = ({ columnCategory, currentDay }) => {
     };
 
     dispatch(createUserTaskThunk(credentials));
-
   };
 
   const handleRadioChange = (ev) => {

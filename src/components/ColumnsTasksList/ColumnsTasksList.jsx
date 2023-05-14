@@ -35,7 +35,11 @@ export const ColumnsTasksList = ({ tasks }) => {
         return task.tasks.map((item) => {
           return (
             <StyledLi key={item._id}>
-              <TaskColumnCard title={item.title} priority={item.priority} />
+              <TaskColumnCard
+                title={item.title}
+                priority={item.priority}
+                id={item._id}
+              />
             </StyledLi>
           );
         });

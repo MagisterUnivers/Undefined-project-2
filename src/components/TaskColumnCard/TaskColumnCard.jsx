@@ -4,7 +4,7 @@ import { Avatar, Box, Card, CardActions } from '@mui/material';
 import styled from 'styled-components';
 import TaskToolbar from 'components/TaskToolbar/TaskToolbar';
 
-export const TaskColumnCard = ({ title, priority }) => {
+export const TaskColumnCard = ({ title, priority, id }) => {
   const { userImgUrl, name } = useSelector(selectUserInfo);
   return (
     <Card
@@ -76,7 +76,7 @@ export const TaskColumnCard = ({ title, priority }) => {
             padding: '0px',
           }}
         >
-          <TaskToolbar />
+          <TaskToolbar id={id} />
         </CardActions>
       </Box>
     </Card>

@@ -43,11 +43,13 @@ const TasksColumn = ({ title, currentDay }) => {
       // });
     })
     .filter(({ category }) => {
+      console.log(newCategory);
       return category === newCategory;
     });
 
   console.log(title);
   console.log(filterTasks);
+  console.log(newCategory);
 
   return (
     <ItemTask>

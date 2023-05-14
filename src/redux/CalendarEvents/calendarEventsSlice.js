@@ -185,10 +185,32 @@ const calendarEventsSlice = createSlice({
       .addCase(deleteUserTaskThunk.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        const index = state.tasks.findIndex(
-          (task) => task.id === action.payload.id
+        console.log(action.payload);
+
+        const date = action.payload.date.slice(0, 10);
+        // const findData = state.tasks.find(item => )
+        let arrTasks = state.tasks.find((item) => item.date === date);
+        console.log(arrTasks);
+        console.log(date);
+
+        arrTasks.tasks = arrTasks.tasks.filter(
+          (item) => item._id !== action.payload._id
         );
-        state.tasks.splice(index, 1);
+        // const filteredArr = arrTasks.tasks.filter(
+        //   (item) => item._id !== action.payload._id
+        // );
+
+        // const arrTasks = state.tasks
+        //   .map((item) => {
+        //     return item.tasks;
+        //   })
+        //   .map((item) => {
+        //     return item;
+        //   });
+        // const index = arrTasks.findIndex(
+        //   (task) => task._id === action.payload._id
+        // );
+        // state.tasks.splice(index, 1);
       })
       .addMatcher(
         (action) => {
