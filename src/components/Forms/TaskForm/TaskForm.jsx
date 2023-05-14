@@ -23,7 +23,6 @@ import {
   updateUserTaskThunk,
 } from '../../../redux/CalendarEvents/calendarEventsOperations';
 import { useLocation } from 'react-router-dom';
-import Notiflix from 'notiflix';
 
 const TaskForm = ({ isEdit, id, categoryId, handleModalClose }) => {
   const [priority, setPriority] = useState('');
@@ -56,23 +55,9 @@ const TaskForm = ({ isEdit, id, categoryId, handleModalClose }) => {
     };
 
     if (isEdit) {
-      dispatch(updateUserTaskThunk(data))
-        .then(() => {
-          Notiflix.Notify.success('Task were updated!')
-          handleModalClose()
-        })
-        .catch((error) => {
-          Notiflix.Notify.failure(error.message);
-        });
+      dispatch(updateUserTaskThunk(data)).then(() => handleModalClose());
     } else {
-      dispatch(createUserTaskThunk(credentials))
-        .then(() => {
-          Notiflix.Notify.success('Task were created!')
-          handleModalClose()
-        })
-        .catch((error) => {
-          Notiflix.Notify.failure(error.message);
-        });
+      dispatch(createUserTaskThunk(credentials)).then(() => handleModalClose());
     }
   };
 
