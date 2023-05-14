@@ -256,6 +256,13 @@ b {
 
   background: #3e85f3;
   border-radius: 16px;
+    
+}
+@media screen and (max-width: 767px) {
+  .react-datepicker{
+    width: 280px;
+    height: 340px;
+  }
 }
 
 

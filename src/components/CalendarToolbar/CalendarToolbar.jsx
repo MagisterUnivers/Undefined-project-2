@@ -2,12 +2,22 @@ import React from 'react';
 import styled from 'styled-components';
 import { PeriodPaginator } from 'components/PeriodPaginator/PeriodPaginator';
 import { PeriodTypeSelect } from 'components/PeriodTypeSelect/PeriodTypeSelect';
+import { useLocation } from 'react-router-dom';
 export const CalendarToolbar = ({
   title,
   prevButtonProps,
   nextButtonProps,
   className,
 }) => {
+  let widthFixed = true;
+  const location = useLocation();
+  if (location.pathname === '/main/calendar') {
+
+    widthFixed = false;
+  } 
+  else if (location.pathname === '/main/calendar/day') {
+    widthFixed = true;
+  }
   return (
     <HeaderDivGroup>
       <div className={`${className} flex justify-between`}>
@@ -25,20 +35,20 @@ export const CalendarToolbar = ({
 };
 const HeaderDivGroup = styled.div`
   display: flex;
-  width: 100%;
   justify-content: space-between;
   flex-direction: row;
   margin-bottom: 32px;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
-  width: 704px;
   @media screen and (max-width: 767px) {
     flex-direction: column;
     margin-bottom: 24px;
     gap: 18px;
-    width: 335px;
+    width: ${({ widthFixed }) => (widthFixed && '335px')};
   }
+  
   @media screen and (min-width: 1440px) { 
-    width: 1087px;
-  } 
+    width: ${({ widthFixed }) => (widthFixed && '1087px')};
+  }
 `;

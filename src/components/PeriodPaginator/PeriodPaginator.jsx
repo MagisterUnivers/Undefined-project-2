@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
 import { setCurrentMonth } from '../../redux';
-
+import { useLocation } from 'react-router-dom';
 export const PeriodPaginator = ({
   title,
   prevButtonProps: { onClick: previousClick, ...prevButtonProps },
@@ -13,7 +13,9 @@ export const PeriodPaginator = ({
 }) => {
   const { currentDay } = useParams();
   const disablePaginator = !!currentDay;
-
+  const date = new Date(currentDay);
+  const day = date.getDate();
+  const location = useLocation();
   const previousOnClick = (event) => {
     if (disablePaginator) {
       event.preventDefault();
@@ -57,7 +59,7 @@ export const PeriodPaginator = ({
 
   return (
     <DivGroup>
-      <Button>{title}</Button>
+      {location.pathname === `/main/calendar/day/${currentDay}` ? ( <Button>{day} {title}</Button>) : ( <Button>{title}</Button>)}
       <ButtonGroup  className=" dark:bg-gray-bg">
         <IconButton {...prevButtonProps} onClick={previousOnClick}>
           <ArrowBackIosNewIcon
