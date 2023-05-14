@@ -23,7 +23,7 @@ const ColumnHeadBar = ({ title }) => {
     <>
       {/* {category.map((status, index) => ( */}
       {/* <ItemTask key={index}> */}
-      <Title>
+      <Title className="dark:text-white">
         {title}
         <button type="button" onClick={handleModalOpen}>
           <ControlPoint />

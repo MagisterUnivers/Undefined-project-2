@@ -29,9 +29,16 @@ const HeaderDivGroup = styled.div`
   justify-content: space-between;
   flex-direction: row;
   margin-bottom: 32px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 704px;
   @media screen and (max-width: 767px) {
     flex-direction: column;
     margin-bottom: 24px;
     gap: 18px;
+    width: 335px;
   }
+  @media screen and (min-width: 1440px) { 
+    width: 1087px;
+  } 
 `;
