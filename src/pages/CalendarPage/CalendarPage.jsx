@@ -1,6 +1,6 @@
 import React from 'react';
 import { CalendarToolbar } from '../../components';
-import { useCalendar } from '../../components/ChoosedMonth';
+import { useCalendar } from './useCalendar';
 import { Outlet } from 'react-router-dom';
 
 export const CalendarPage = () => {

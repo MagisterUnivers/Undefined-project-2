@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 import { CalendarToolbar } from 'components/CalendarToolbar/CalendarToolbar';
 import { useParams } from 'react-router-dom';
-import { useCalendar } from 'components/ChoosedMonth/useCalendar/useCalendar';
+import { useCalendar } from 'pages/CalendarPage/useCalendar/useCalendar';
 import moment from 'moment';
 import {useCurrentDate} from '../../redux'
 import { useMediaQuery } from 'react-responsive';
@@ -11,6 +11,7 @@ import {useDateTasks} from '../../redux/CalendarEvents/calendarEventsSlice'
 import TasksColumnsList from 'components/TasksColumnsList/TasksColumnsList';
 
 const ChoosedDayPage = () => {
+
   const { currentDay: currentDayParam } = useParams();
   const [currentDate] = useCurrentDate();
   
