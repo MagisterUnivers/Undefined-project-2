@@ -7,14 +7,11 @@ import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { selectIsTaskExist } from 'redux/selectors';
-// import { ReactComponent as MotivatedGooseLogo } from 'components/Header/goose.svg';
 
 export const Header = ({ toggleSidebar }) => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1439.98px)' });
   const { pathname } = useLocation();
   const monthTasks = useSelector(selectIsTaskExist);
-  // const pageTitle =
-  //   pathname.slice(6, 7).toUpperCase() + pathname.slice(7);
   const setPageTitle = () => {
     if (pathname.includes('account')) {
       return 'User Profile';
@@ -38,18 +35,6 @@ export const Header = ({ toggleSidebar }) => {
       return false;
     }
   };
-  // useEffect(() => {
-  //   if (pathname.includes('/day/')) {
-  //     const currentDay = pathname.slice(-10);
-  //     const { tasks: dayTasks } = monthTasks.find(
-  //       (dayTasks) => dayTasks.date === currentDay
-  //     );
-  //     const isSomeToDo = dayTasks.find(
-  //       (dayTask) => dayTask.category === 'to-do'
-  //     );
-  //     return isSomeToDo;
-  //   }
-  // }, []);
   return (
     <Box
       component="header"
@@ -62,6 +47,7 @@ export const Header = ({ toggleSidebar }) => {
       {isTabletOrMobile ? (
         <IconButton onClick={toggleSidebar}>
           <MenuRoundedIcon
+            className="dark:fill-white"
             sx={{
               width: { mobile: 24, tablet: 34 },
               height: { mobile: 24, tablet: 34 },
@@ -70,22 +56,21 @@ export const Header = ({ toggleSidebar }) => {
         </IconButton>
       ) : checkToDoOnCurrentDay() ? (
         <Box sx={{ display: 'flex', gap: '8px' }}>
-          <img
-            src={require('./goose.png')}
-            width="64"
-            // height="60"
-            alt="Motivation Goose"
-          />
+          <img src={require('./goose.png')} width="64" alt="Motivation Goose" />
           <Box>
-            <StyledTypography component="h1">Calendar</StyledTypography>
-            <StyledP>
+            <StyledTypography className="dark:text-white" component="h1">
+              Calendar
+            </StyledTypography>
+            <StyledP className="dark:text-white">
               <StyledSpan>Let go</StyledSpan> of the past and focus on the
               present!
             </StyledP>
           </Box>{' '}
         </Box>
       ) : (
-        <StyledTypography component="h1">{setPageTitle()}</StyledTypography>
+        <StyledTypography component="h1" className="dark:text-white">
+          {setPageTitle()}
+        </StyledTypography>
       )}
 
       <Box sx={{ display: 'flex', gap: { mobile: '6px', tablet: '2px' } }}>
@@ -97,7 +82,6 @@ export const Header = ({ toggleSidebar }) => {
 };
 
 const StyledTypography = styled.h1`
-  /* display: block; */
   font-family: 'Inter';
   font-weight: 700;
   font-size: 32px;
