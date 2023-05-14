@@ -22,12 +22,15 @@ import {
   createUserTaskThunk,
   updateUserTaskThunk,
 } from '../../../redux/CalendarEvents/calendarEventsOperations';
+import { useLocation } from 'react-router-dom';
 
 const TaskForm = ({ columnCategory, currentDay, isEdit, id, categoryId }) => {
   const [isTaskCreated] = useState(false);
   const [priority, setPriority] = useState('');
+  const location = useLocation();
 
   const dispatch = useDispatch();
+  const actualDay = location.pathname.slice(-10);
 
   const handleFormSubmit = (ev) => {
     ev.preventDefault();
@@ -59,7 +62,7 @@ const TaskForm = ({ columnCategory, currentDay, isEdit, id, categoryId }) => {
       end: newEnd,
       priority: priority,
       category: categoryId,
-      date: currentDay,
+      date: actualDay,
     };
 
     const data = {
