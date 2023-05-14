@@ -3,9 +3,8 @@ import { useCalendar as useCalendarAria, useLocale } from 'react-aria';
 import { createCalendar } from '@internationalized/date';
 import { getDaysOfWeekLabels, getStringFromDate } from '../../../utils';
 import {
-  getCurrentDate,
+  useCurrentDate,
   getMonthEvents,
-  setCurrentDate,
   useCurrentMonth,
   selectUserLoading,
 } from '../../../redux';
@@ -17,14 +16,31 @@ import { parseDate } from '@internationalized/date';
 export const useCalendar = () => {
   const { locale } = useLocale();
   const { currentDay: currentDayParam } = useParams();
+
+  const [currentDate, setCurrentDate] = useCurrentDate();
   const [currentMonth, setCurrentMonth] = useCurrentMonth();
   const isLoading = useSelector(selectUserLoading);
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (isLoading) return;
+  const { year, month } = currentMonth ?? {};
 
+  const state = useCalendarState({
+    onChange: setCurrentDate,
+    value: currentDate,
+    locale,
+    createCalendar,
+    // visibleDuration
+  });
+
+  useEffect(() => {
+    if (!currentMonth) return;
+
+    dispatch(getMonthEvents());
+  }, [year, month]);
+
+  useEffect(() => {
+    if (isLoading || currentDate) return;
     const date_key = (() => {
       if (currentDayParam) return currentDayParam;
 
@@ -34,6 +50,7 @@ export const useCalendar = () => {
     const calendarDate = parseDate(date_key);
 
     setCurrentDate(calendarDate);
+    state.selectDate(calendarDate);
 
     const date = calendarDate.toDate();
     const year = date.getFullYear();
@@ -43,22 +60,7 @@ export const useCalendar = () => {
       year,
       month,
     });
-  }, [isLoading]); //eslint-disable-line
-
-  const { year, month } = currentMonth ?? {};
-
-  useEffect(() => {
-    if (!currentMonth) return;
-
-    dispatch(getMonthEvents());
-  }, [year, month]); //eslint-disable-line
-
-  const state = useCalendarState({
-    onChange: setCurrentDate,
-    defaultValue: getCurrentDate(),
-    locale,
-    createCalendar,
-  });
+  }, [isLoading, currentDayParam, currentDate]);
 
   const dateFormatter = new Intl.DateTimeFormat(locale, { weekday: 'long' });
   const { daysOfWeekLabels } = getDaysOfWeekLabels({ dateFormatter });
@@ -86,6 +88,12 @@ export const useCalendar = () => {
     onClick: nextOnClick,
     disabled: isDisabled2 === 'true',
   });
+
+  // const { year, month } = selectedMonth ?? {};
+
+  // const title = !selectedMonth
+  //   ? ''
+  //   : `${moment().set('month', month).format('MMM')} ${year}`;
 
   const title = calendarProps['aria-label'];
 

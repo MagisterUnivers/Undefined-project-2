@@ -1,8 +1,8 @@
 
 import styled from 'styled-components';
-import { CalendarToolbar } from 'components/CalendarToolbar/CalendarToolbar';
-import { useParams } from 'react-router-dom';
-import { useCalendar } from 'pages/CalendarPage/useCalendar/useCalendar';
+
+import { useParams,useOutletContext } from 'react-router-dom';
+
 import moment from 'moment';
 import {useCurrentDate} from '../../redux'
 import { useMediaQuery } from 'react-responsive';
@@ -11,47 +11,49 @@ import {useDateTasks} from '../../redux/CalendarEvents/calendarEventsSlice'
 import TasksColumnsList from 'components/TasksColumnsList/TasksColumnsList';
 
 const ChoosedDayPage = () => {
+   const {
+    state,
+    headerClassName,
+    dateFormatter,
+    daysOfWeekLabels,
+    calendarProps,
+  } = useOutletContext();
 
-  const { currentDay: currentDayParam } = useParams();
-  const [currentDate] = useCurrentDate();
+  const [currentCalendarDate] = useCurrentDate();
+  const currentDate = currentCalendarDate?.toDate();
   
-const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
-  const currentDateKey = getStringFromDate(currentDate?.toDate()); 
-  
+  const currentDateKey = getStringFromDate(currentDate); 
   const dateTasks = useDateTasks(currentDateKey); // task[]
+
   console.log(dateTasks);
-
-
-  let { title, prevButtonProps, nextButtonProps, daysOfWeekLabels } =
-    useCalendar(currentDayParam);
     
-  let startDate = moment(new Date(currentDayParam)).startOf('week')
-  let days = Array.from({ length: 7 }, (_, i) => moment(startDate).add(i, 'day').toDate());
+  const startDate = moment(currentDate).startOf('week')
+  const days = Array.from({ length: 7 }, (_, i) => moment(startDate).add(i, 'day').toDate());
  
-  let dayNumbers = days.map((day) => day.getDate());
+  const dayNumbers = days.map((day) => day.getDate());
    
   let abbreviatedDaysOfWeekLabels = daysOfWeekLabels.map((day) =>
-  day.slice(0, 3)
-);
-
-if (isMobile) {
-  abbreviatedDaysOfWeekLabels = daysOfWeekLabels.map((day) =>
-    day.slice(0, 1)
+    day.slice(0, 3)
   );
-}
+
+  if (isMobile) {
+    abbreviatedDaysOfWeekLabels = daysOfWeekLabels.map((day) =>
+      day.slice(0, 1)
+    );
+  }
 
   if(!currentDateKey) {
    return (
       <div className="w-full h-full flex justify-center items-center">
-        <span>Is Loading...</span>
+        <span>Loading...</span>
       </div>
     );
   }
 
   return (
     <div>
-      <CalendarToolbar {...{ title, prevButtonProps, nextButtonProps }} />
       <ListDay>
         {days.map((date, index) => {
           const dateKey = getStringFromDate(date);

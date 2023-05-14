@@ -3,13 +3,13 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
+
 export const PeriodPaginator = ({
   title,
   prevButtonProps: { onClick: previousClick, ...prevButtonProps },
   nextButtonProps: { onClick: nextClick, ...nextButtonProps },
 }) => {
   const { currentDay } = useParams();
-
   const disablePaginator = !!currentDay;
 
   const previousOnClick = (event) => {
@@ -28,34 +28,32 @@ export const PeriodPaginator = ({
       return;
     }
 
-    previousClick(event);
+    nextClick(event);
   };
 
   return (
+    <DivGroup>
+      <Button>{title}</Button>
+      <ButtonGroup>
+        <IconButton {...prevButtonProps} onClick={previousOnClick}>
+          <ArrowBackIosNewIcon
+            className={`${
+              disablePaginator ? ' text-gray-100  cursor-not-allowed' : ''
+            }`}
+            fontSize="small"
+          />
+        </IconButton>
 
-      <DivGroup>
-        <Button>{title}</Button>
-        <ButtonGroup>
-          <IconButton {...prevButtonProps} onClick={previousOnClick}>
-            <ArrowBackIosNewIcon
-              className={`${
-                disablePaginator ? ' text-gray-100  cursor-not-allowed' : ''
-              }`}
-              fontSize="small"
-            />
-          </IconButton>
-
-          <IconButton {...nextButtonProps} onClick={nextOnClick}>
-            <ArrowForwardIosIcon
-              className={`${
-                disablePaginator ? ' text-gray-100 cursor-not-allowed' : ''
-              }`}
-              fontSize="small"
-            />
-          </IconButton>
-        </ButtonGroup>
-      </DivGroup>
-
+        <IconButton {...nextButtonProps} onClick={nextOnClick}>
+          <ArrowForwardIosIcon
+            className={`${
+              disablePaginator ? ' text-gray-100 cursor-not-allowed' : ''
+            }`}
+            fontSize="small"
+          />
+        </IconButton>
+      </ButtonGroup>
+    </DivGroup>
   );
 };
 const Button = styled.button`

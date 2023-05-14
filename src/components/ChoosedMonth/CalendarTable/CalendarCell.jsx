@@ -1,10 +1,9 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useCalendarCell } from 'react-aria';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
 import { useDateTasks } from '../../../redux';
 import { getStringFromDate } from '../../../utils';
-
+import axios from 'axios';
 const LOW = 'low';
 const HIGHT = 'hight';
 const MEDIUM = 'medium';
@@ -19,7 +18,7 @@ export const CalendarCell = ({ state, date }) => {
   const dateTasks = useDateTasks(date_key); // task[]
 
   const ref = useRef(null);
-  const navigate = useNavigate();
+
   const {
     cellProps,
     isSelected,
@@ -27,10 +26,9 @@ export const CalendarCell = ({ state, date }) => {
     isDisabled,
     isUnavailable,
     formattedDate,
+    buttonProps,
   } = useCalendarCell({ date }, state, ref);
-  const onDayClick = (date) => {
-    navigate(`/main/calendar/day/${date}`);
-  };
+
   // console.log(formattedDate);
   //     task:
   //     _id: '64303c8582dc6fccdee4f8d2',
@@ -54,13 +52,12 @@ export const CalendarCell = ({ state, date }) => {
       ${isUnavailable ? 'unavailable' : ''}`}
     >
       <StyledButton
-        onClick={() => onDayClick(date_key)}
         type="button"
         id={date_key}
         className={`relative w-full h-full ${
           isOutsideVisibleRange ? 'text-gray-200 ' : ''
         }`}
-        // {...buttonProps}
+        {...buttonProps}
       >
         <span
           className={`font-inter font-bold text-xs 
@@ -99,21 +96,23 @@ export const CalendarCell = ({ state, date }) => {
   );
 };
 
-// axios.post(
-//   'https://goose-tracker-backend.p.goit.global/task',
-//   {
-//     title: 'Todo ' + Math.random(),
-//     start: '4-00',
-//     end: '13-00',
-//     priority: 'low',
-//     category: 'to-do',
-//     date: date_key,
-//   },
-//   {
-//     Accept: 'application/json',
-//     'Content-Type': 'application/json',
-//   }
-// );
+// useEffect(() => {
+//   axios.post(
+//     'https://goose-tracker-backend.p.goit.global/task',
+//     {
+//       title: 'Todo ' + Math.floor(Math.random() * 10),
+//       start: '10-00',
+//       end: '12-00',
+//       priority: 'low',
+//       category: 'to-do',
+//       date: '2023-05-' + formattedDate,
+//     },
+//     {
+//       Accept: 'application/json',
+//       'Content-Type': 'application/json',
+//     }
+//   );
+// }, []);
 
 const StyledDiv = styled.ul`
   max-height: 50px;
