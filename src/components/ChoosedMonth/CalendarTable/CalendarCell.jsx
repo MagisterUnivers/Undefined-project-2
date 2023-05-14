@@ -3,7 +3,8 @@ import { useCalendarCell } from 'react-aria';
 import styled from 'styled-components';
 import { useDateTasks } from '../../../redux';
 import { getStringFromDate } from '../../../utils';
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 const LOW = 'low';
 const HIGHT = 'hight';
 const MEDIUM = 'medium';
@@ -19,6 +20,8 @@ export const CalendarCell = ({ state, date }) => {
 
   const ref = useRef(null);
 
+  const navigate = useNavigate();
+
   const {
     cellProps,
     isSelected,
@@ -26,7 +29,7 @@ export const CalendarCell = ({ state, date }) => {
     isDisabled,
     isUnavailable,
     formattedDate,
-    buttonProps,
+    buttonProps: { onClick, ...buttonProps },
   } = useCalendarCell({ date }, state, ref);
 
   // console.log(formattedDate);
@@ -43,6 +46,12 @@ export const CalendarCell = ({ state, date }) => {
   //     updatedAt: '2023-04-07T15:53:41.088Z',
   //     __v: 0,[]
 
+  const onClickHandler = (event) => {
+    onClick(event);
+
+    navigate(`/main/calendar/day/${date}`);
+  };
+
   return (
     <StyledTd
       {...cellProps}
@@ -58,6 +67,7 @@ export const CalendarCell = ({ state, date }) => {
           isOutsideVisibleRange ? 'text-gray-200 ' : ''
         }`}
         {...buttonProps}
+        onClick={onClickHandler}
       >
         <span
           className={`font-inter font-bold text-xs 
