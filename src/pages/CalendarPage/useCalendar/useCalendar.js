@@ -14,7 +14,8 @@ import { useParams } from 'react-router-dom';
 import { parseDate } from '@internationalized/date';
 
 export const useCalendar = () => {
-  const { locale } = useLocale();
+  // const { locale } = useLocale();
+  const locale = 'en-US';
   const { currentDay: currentDayParam } = useParams();
 
   const [currentDate, setCurrentDate] = useCurrentDate();
