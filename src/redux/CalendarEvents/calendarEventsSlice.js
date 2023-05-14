@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 import { shallowCompare } from 'react-global-state-hooks';
 import { useSelector } from 'react-redux';
 
@@ -91,7 +91,7 @@ const calendarEventsSlice = createSlice({
       state.monthDatesMap = { ...state.monthDatesMap, [date]: arrTasks };
     },
     [deleteUserTaskThunk.rejected]: (state, { payload }) => {
-      state.IsLoading = true;
+      state.isLoading = true;
       state.error = payload;
     },
 
@@ -99,31 +99,27 @@ const calendarEventsSlice = createSlice({
      * Reducers for updateUserTaskThunk
      */
     [updateUserTaskThunk.pending]: (state, { payload }) => {
-      state.IsLoading = true;
+      state.isLoading = true;
     },
     [updateUserTaskThunk.fulfilled](state, { payload }) {
       state.isLoading = false;
       state.error = null;
 
-      const date = payload.date.slice(0, 10);
+      const date = payload.task.date.slice(0, 10);
 
-      let arrTasks = state.monthDatesMap[date].filter((task) => {
-        if (task._id === payload._id) return payload;
-        else return task;
+      const filteredArr = state.monthDatesMap[date].filter((item) => {
+        return item._id !== payload.task._id;
       });
 
-      state.monthDatesMap = { ...state.monthDatesMap, [date]: arrTasks };
-      // let arrTasks = state.tasks.find((item) => item.date === date);
-      // console.log(arrTasks);
-      // console.log(date);
+      const resultArray = [...filteredArr, payload.task];
 
-      // arrTasks.tasks = arrTasks.tasks.map((item) => {
-      //   if (item._id === payload._id) return payload;
-      //   else return item;
-      // });
+      console.log(current(state.monthDatesMap));
+      console.log(filteredArr);
+
+      state.monthDatesMap = { ...state.monthDatesMap, [date]: resultArray };
     },
     [updateUserTaskThunk.rejected]: (state, { payload }) => {
-      state.IsLoading = true;
+      state.isLoading = true;
       state.error = payload;
     },
 
@@ -131,15 +127,15 @@ const calendarEventsSlice = createSlice({
      * Reducers for getUserTaskThunk
      */
     [getUserTaskThunk.pending]: (state, { payload }) => {
-      state.IsLoading = true;
+      state.isLoading = true;
     },
     [getUserTaskThunk.fulfilled](state, { payload }) {
-      state.IsLoading = false;
+      state.isLoading = false;
       state.error = null;
       state.tasks.push(payload);
     },
     [getUserTaskThunk.rejected]: (state, { payload }) => {
-      state.IsLoading = true;
+      state.isLoading = true;
       state.error = payload;
     },
   },

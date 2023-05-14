@@ -3,7 +3,7 @@ import styles from './AddTaskBtn.module.css';
 import { ReactComponent as Plus } from './icons/plus.svg';
 import TaskModal from 'components/TaskModal/TaskModal';
 
-export const AddTaskBtn = ({ category, title, currentDay, id }) => {
+export const AddTaskBtn = ({ category, title, currentDay, categoryId }) => {
   const [isModalShown, setIsModalShown] = useState(false);
 
   const handleModalClose = () => {
@@ -25,7 +25,7 @@ export const AddTaskBtn = ({ category, title, currentDay, id }) => {
           handleModalClose={handleModalClose}
           title={title}
           currentDay={currentDay}
-          id={id}
+          categoryId={categoryId}
         />
       )}
     </>

@@ -23,7 +23,7 @@ import {
   updateUserTaskThunk,
 } from '../../../redux/CalendarEvents/calendarEventsOperations';
 
-const TaskForm = ({ columnCategory, currentDay, isEdit, id }) => {
+const TaskForm = ({ columnCategory, currentDay, isEdit, id, categoryId }) => {
   const [isTaskCreated] = useState(false);
   const [priority, setPriority] = useState('');
 
@@ -58,7 +58,7 @@ const TaskForm = ({ columnCategory, currentDay, isEdit, id }) => {
       start: newStart,
       end: newEnd,
       priority: priority,
-      category: id,
+      category: categoryId,
       date: currentDay,
     };
 
@@ -66,7 +66,7 @@ const TaskForm = ({ columnCategory, currentDay, isEdit, id }) => {
       credentials,
       id,
     };
-    
+
     if (isEdit) return dispatch(updateUserTaskThunk(data));
 
     dispatch(createUserTaskThunk(credentials));

@@ -5,7 +5,7 @@ const TaskModal = ({
   handleModalClose,
   title,
   currentDay,
-  id,
+  categoryId,
   isEdit,
   category,
 }) => {
@@ -15,7 +15,7 @@ const TaskModal = ({
         <TaskForm
           columnCategory={category}
           currentDay={currentDay}
-          id={id}
+          categoryId={categoryId}
           isEdit={isEdit}
         />
       </Modal>

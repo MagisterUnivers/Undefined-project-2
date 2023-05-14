@@ -70,13 +70,13 @@ const TasksColumnsList = ({ category, tasks }) => {
       {/* {categoryExample.map((categorys, index) => {
         return <TasksColumn key={index} tasks={tasks} title={categorys} />;
       })} */}
-      <TasksColumn title="To do" tasks={toDoTasks} id="to-do" />
+      <TasksColumn title="To do" tasks={toDoTasks} categoryId="to-do" />
       <TasksColumn
         title="In progress"
         tasks={inProgressTasks}
-        id="in-progress"
+        categoryId="in-progress"
       />
-      <TasksColumn title="Done" tasks={doneTasks} id="done" />
+      <TasksColumn title="Done" tasks={doneTasks} categoryId="done" />
     </ListTask>
   );
 };
@@ -87,12 +87,11 @@ const ListTask = styled.ul`
   display: flex;
   width: 335px;
 
-
   gap: 16px;
-  margin-right: auto; 
-  margin-left: auto; 
+  margin-right: auto;
+  margin-left: auto;
   margin-top: 16px;
-  @media screen and (max-width:1439px) {
+  @media screen and (max-width: 1439px) {
     overflow: scroll;
   }
   @media screen and (min-width: 767.98px) {

@@ -16,7 +16,7 @@ import Modal from 'components/Modal/Modal';
 import { deleteUserTaskThunk } from '../../redux/CalendarEvents/calendarEventsOperations';
 import { useDispatch } from 'react-redux';
 
-const TaskToolbar = ({ id }) => {
+const TaskToolbar = ({ id, categoryId }) => {
   const dispatch = useDispatch();
   const [isSlideMenuShown, setIsSlideMenuShown] = useState(false);
   const [isModalShown, setIsModalShown] = useState(false);

@@ -6,46 +6,12 @@ import styled from 'styled-components';
 // import { selectIsTaskExist } from 'redux';
 // import styled from 'styled-components';
 
-const TasksColumn = ({ title, tasks, id }) => {
-  // Selector to check if Tasks is existed
-
-  // const IsTasks = useSelector(selectIsTaskExist);
-  // const tasks = useSelector(selectIsTaskExist);
-
-  // switch (title.toLowerCase()) {
-  //   case 'in progress':
-  //     newCategory = 'in-progress';
-  //     break;
-  //   case 'to do':
-  //     newCategory = 'to-do';
-  //     break;
-  //   case 'done':
-  //     newCategory = 'done';
-  //     break;
-  //   default:
-  //     break;
-  // }
-
-  // const filterTasks = tasks
-  //   .filter(({ date }) => {
-  //     return date === currentDay;
-  //     // return tasks.filter((task) => {
-  //     //   console.log(task.category);
-  //     //   return task.category === newCategory && date === currentDay;
-  //     // });
-  //   })
-  //   .filter(({ tasks }, index) => {
-  //     console.log(tasks);
-  //     return tasks[index].category === title;
-  //   });
-
-  // console.log(filterTasks);
-
+const TasksColumn = ({ title, tasks, categoryId }) => {
   return (
     <ItemTask>
-      <ColumnHeadBar title={title} id={id} />
-      <ColumnsTasksList tasks={tasks} />
-      <AddTaskBtn id={id} />
+      <ColumnHeadBar title={title} categoryId={categoryId} />
+      <ColumnsTasksList tasks={tasks} categoryId={categoryId} />
+      <AddTaskBtn categoryId={categoryId} />
       {/* {IsTasks ? ColumnTasksList : blablaba } */}
     </ItemTask>
   );
