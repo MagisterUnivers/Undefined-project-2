@@ -6,7 +6,7 @@ import { getStringFromDate } from '../../../utils';
 import { useNavigate } from 'react-router-dom';
 
 const LOW = 'low';
-const HIGHT = 'hight';
+const HIGHT = 'high';
 const MEDIUM = 'medium';
 
 /**

@@ -9,9 +9,9 @@ export const PeriodTypeSelect = () => {
 
   return (
     <>
-      <ButtonGroup>
-        <Button to="/main/calendar/">Month</Button>
-        <Button to={`/main/calendar/day/${date_key}`}>Day</Button>
+      <ButtonGroup >
+        <Button to="/main/calendar/" className="dark:bg-gray-bg">Month</Button>
+        <Button to={`/main/calendar/day/${date_key}`} className="dark:bg-gray-bg">Day</Button>
       </ButtonGroup>
     </>
   );

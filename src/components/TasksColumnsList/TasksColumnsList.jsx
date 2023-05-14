@@ -87,9 +87,14 @@ const ListTask = styled.ul`
   display: flex;
   width: 335px;
 
-  overflow: scroll;
+
   gap: 16px;
+  margin-right: auto; 
+  margin-left: auto; 
   margin-top: 16px;
+  @media screen and (max-width:1439px) {
+    overflow: scroll;
+  }
   @media screen and (min-width: 767.98px) {
     width: 704px;
   }

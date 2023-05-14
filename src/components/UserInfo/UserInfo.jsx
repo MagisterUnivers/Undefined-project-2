@@ -8,6 +8,7 @@ export const UserInfo = () => {
   return (
     <Box display={'flex'} alignItems={'center'} gap={'14px'}>
       <Typography
+        className="dark:text-white"
         sx={{
           fontFamily: 'Inter',
           fontWeight: 700,

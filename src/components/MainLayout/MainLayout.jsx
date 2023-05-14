@@ -31,7 +31,7 @@ export const MainLayout = () => {
 
   return (
     <Box
-      className=" bg-gray-10 dark:bg-black"
+      className=" bg-gray-10 dark:bg-darktheme"
       sx={{ display: 'flex', height: '100vh' }}
     >
       <SideBarTest

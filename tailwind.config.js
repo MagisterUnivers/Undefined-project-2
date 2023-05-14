@@ -23,7 +23,9 @@ module.exports = {
         'gray-bg': ' #21222C',
         'black-text': '#343434',
         'gray-10': '#EAEAEA',
-
+        skyblue: '#E3F3FF',
+        darktheme: '#171820',
+        sidebardark: '#13151A',
         'blue-1': '#3e85f3',
         'blue-2': '#e3f3ff',
         'blue-3': '#CEEEFD',
