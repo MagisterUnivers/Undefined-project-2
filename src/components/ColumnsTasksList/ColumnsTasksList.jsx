@@ -30,11 +30,13 @@ const tasksExample = [
 export const ColumnsTasksList = ({ tasks }) => {
   return (
     <StyledUl>
-      {tasks.map((task) => (
-        <StyledLi key={nanoid()}>
-          <TaskColumnCard title={task.title} priority={task.priority} />
-        </StyledLi>
-      ))}
+      {tasks.map((task) => {
+        return (
+          <StyledLi key={task._id}>
+            <TaskColumnCard title={task.title} priority={task.priority} />
+          </StyledLi>
+        );
+      })}
     </StyledUl>
   );
 };

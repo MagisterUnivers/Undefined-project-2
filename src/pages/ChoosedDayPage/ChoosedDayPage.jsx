@@ -68,7 +68,7 @@ const ChoosedDayPage = () => {
         );
         })}
       </ListDay> */}
-        <TasksColumnsList />
+        <TasksColumnsList currentDay={currentDayParam}/>
         {/* <ItemTask>
           <Title>To do <ControlPoint/></Title>
           <ButtonTask><Add/>Add task</ButtonTask>

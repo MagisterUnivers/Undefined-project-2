@@ -31,14 +31,19 @@ const TasksColumn = ({ title, currentDay }) => {
 
   const tasks = useSelector(selectIsTaskExist);
   console.log(tasks);
-  const filteredTasks = tasks.filter((task) => {
-    return task.category === newCategory;
-  });
-
+  let filteredTasks;
+  let createdTask;
+  
+    tasks.forEach(({ tasks, date }) => {
+      filteredTasks = tasks.filter((task) => {
+        return task.category === newCategory && date === currentDay;
+      });
+    });
+  
   return (
     <ItemTask>
       <ColumnHeadBar title={title} />
-      <ColumnsTasksList tasks={filteredTasks} />
+      {/* <ColumnsTasksList tasks={''} /> */}
       <AddTaskBtn title={title} currentDay={currentDay} />
       {/* {IsTasks ? ColumnTasksList : blablaba } */}
     </ItemTask>

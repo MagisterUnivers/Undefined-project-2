@@ -37,11 +37,11 @@ import styled from 'styled-components';
 
 const categoryExample = ['To do', 'In progress', 'Done'];
 
-const TasksColumnsList = ({ category }) => {
+const TasksColumnsList = ({ category, currentDay }) => {
   return (
     <ListTask>
       {categoryExample.map((categorys) => {
-        return <TasksColumn key={nanoid()} title={categorys} />;
+        return <TasksColumn key={nanoid()} title={categorys} currentDay={currentDay}/>;
       })}
     </ListTask>
   );

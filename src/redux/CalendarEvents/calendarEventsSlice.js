@@ -144,8 +144,20 @@ const calendarEventsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(getUserTaskThunk.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getUserTaskThunk.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.tasks = [...state.tasks, ...payload];
+      })
+      .addCase(getUserTaskThunk.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
       .addCase(createUserTaskThunk.pending, (state) => {
-        state.IsLoading = true;
+        state.isLoading = true;
       })
       .addCase(createUserTaskThunk.fulfilled, (state, { payload }) => {
         // state.tasks.title = payload.title;
@@ -160,17 +172,17 @@ const calendarEventsSlice = createSlice({
         // state.tasks.date = parseISO(payload.date);
         // state.tasks._id = payload._id;
         state.tasks.push(payload);
-        state.IsLoading = false;
+        state.isLoading = false;
       })
       .addCase(createUserTaskThunk.rejected, (state, { payload }) => {
         state.error = payload;
         state.IsLoading = false;
       })
       .addCase(deleteUserTaskThunk.pending, (state) => {
-        state.IsLoading = true;
+        state.isLoading = true;
       })
       .addCase(deleteUserTaskThunk.fulfilled, (state, action) => {
-        state.IsLoading = false;
+        state.isLoading = false;
         state.error = null;
         const index = state.tasks.findIndex(
           (task) => task.id === action.payload.id
@@ -189,14 +201,14 @@ const calendarEventsSlice = createSlice({
       );
   },
   [deleteUserTaskThunk.rejected]: (state, { payload }) => {
-    state.IsLoading = true;
+    state.isLoading = true;
     state.error = payload;
   },
   [updateUserTaskThunk.pending]: (state, { payload }) => {
-    state.IsLoading = true;
+    state.isLoading = true;
   },
   [updateUserTaskThunk.fulfilled](state, { payload }) {
-    state.IsLoading = false;
+    state.isLoading = false;
     state.error = null;
     //   const index = state.tasks.findIndex(
     //     (task) => task.id === action.payload.id
@@ -204,27 +216,27 @@ const calendarEventsSlice = createSlice({
     //   state.tasks.splice(index, 1);
   },
   [updateUserTaskThunk.rejected]: (state, { payload }) => {
-    state.IsLoading = true;
+    state.isLoading = true;
     state.error = payload;
   },
-  [getUserTaskThunk.pending]: (state, { payload }) => {
-    state.IsLoading = true;
-  },
-  [getUserTaskThunk.fulfilled](state, { payload }) {
-    state.IsLoading = false;
-    state.error = null;
-    state.tasks = [...state.tasks, ...payload];
-    console.log('AJSJDASHDHASHDHASDHASHDHASHDAHSDHAHSDHA', payload);
+  // [getUserTaskThunk.pending]: (state, { payload }) => {
+  //   state.IsLoading = true;
+  // },
+  // [getUserTaskThunk.fulfilled](state, { payload }) {
+  //   state.IsLoading = false;
+  //   state.error = null;
+  //   state.tasks = [...state.tasks, ...payload];
+  //   console.log('AJSJDASHDHASHDHASDHASHDHASHDAHSDHAHSDHA', payload);
 
-    //   const index = state.tasks.findIndex(
-    //     (task) => task.id === action.payload.id
-    //   );
-    //   state.tasks.splice(index, 1);
-  },
-  [getUserTaskThunk.rejected]: (state, { payload }) => {
-    state.IsLoading = true;
-    state.error = payload;
-  },
+  //   //   const index = state.tasks.findIndex(
+  //   //     (task) => task.id === action.payload.id
+  //   //   );
+  //   //   state.tasks.splice(index, 1);
+  // },
+  // [getUserTaskThunk.rejected]: (state, { payload }) => {
+  //   state.IsLoading = true;
+  //   state.error = payload;
+  // },
 });
 
 export const useEventTasks = ({ date_key }) => {
@@ -244,5 +256,5 @@ export const useEventTasks = ({ date_key }) => {
 };
 
 export const calendarEventsReducer = calendarEventsSlice.reducer;
-export const { addEvent, partialUpdate, removeEvent, update} =
+export const { addEvent, partialUpdate, removeEvent, update } =
   calendarEventsSlice.actions;
