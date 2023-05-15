@@ -100,7 +100,11 @@ const AboutPage = () => {
         <Item>
           <BlockDiv>
             <TitleBlock>1.</TitleBlock>
-            <ButtonLink>Calendar</ButtonLink>
+            <ButtonLink
+              onClick={() => navigate(isOnline ? `/main/calendar` : `/login`)}
+            >
+              Calendar
+            </ButtonLink>
             <UpperTitle>view</UpperTitle>
             <Text>
               GooseTrack's Calendar view provides a comprehensive overview
@@ -187,7 +191,11 @@ const AboutPage = () => {
         <Item>
           <BlockDiv>
             <TitleBlock>3.</TitleBlock>
-            <ButtonLink>all in</ButtonLink>
+            <ButtonLink
+              onClick={() => navigate(isOnline ? `/main/calendar` : `/login`)}
+            >
+              all in
+            </ButtonLink>
             <UpperTitle>one</UpperTitle>
             <Text>
               GooseTrack is an all-in-one productivity tool that helps you stay
