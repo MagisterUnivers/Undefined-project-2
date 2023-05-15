@@ -34,11 +34,11 @@ export const useCalendar = () => {
     // visibleDuration
   });
 
-  // useEffect(() => {
-  //   if (!currentMonth) return;
+  useEffect(() => {
+    if (!currentMonth) return;
 
-  //   dispatch(getMonthEvents());
-  // }, [year, month]); //eslint-disable-line
+    dispatch(getMonthEvents());
+  }, [year, month]); //eslint-disable-line
 
   useEffect(() => {
     if (isLoading || currentDate) return;
