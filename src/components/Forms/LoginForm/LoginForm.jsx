@@ -83,7 +83,7 @@ export const LoginForm = () => {
     );
   };
   const handleSubmit = (values) => {
-    dispatch(loginThunk(values)).then(() => navigate('/main/account'));
+    dispatch(loginThunk(values)).then(() => navigate('/main/calendar'));
   };
   return (
     <div>

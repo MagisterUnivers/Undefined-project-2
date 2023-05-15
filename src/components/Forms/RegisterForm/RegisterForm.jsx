@@ -53,7 +53,7 @@ export const RegisterForm = () => {
   const handleSubmit = (values) => {
     console.log('user is Registered');
     console.log(values);
-    dispatch(registrationThunk(values)).then(() => navigate('/main/account'));
+    dispatch(registrationThunk(values)).then(() => navigate('/main/calendar'));
     console.log(token1);
   };
 
