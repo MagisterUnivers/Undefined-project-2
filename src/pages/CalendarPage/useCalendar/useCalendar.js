@@ -93,7 +93,9 @@ export const useCalendar = () => {
 
   const title = !currentMonth
     ? ''
-    : `${moment().set('month', month).format('MMM')} ${year}`;
+    : `${moment()
+        .set('month', month - 1)
+        .format('MMM')} ${year}`;
 
   return {
     title,
