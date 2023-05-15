@@ -195,70 +195,70 @@ b {
 */
 
 .react-datepicker__header {
-  background-color: transparent;
+  background-color: transparent !important;
 }
 
 .react-datepicker__current-month,
 .react-datepicker-time__header,
 .react-datepicker-year-header {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 24px;
-  line-height: calc(28 / 24);
-  margin-bottom: 4px;
+  font-family: 'Inter' !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+  font-size: 24px !important;
+  line-height: calc(28 / 24) !important;
+  margin-bottom: 4px !important;
 
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 .react-datepicker__day-name,
 .react-datepicker__day {
-  width: 1.7em;
-  line-height: 1.7em;
-  margin: 0.2em;
-  border-radius: 24px;
+  width: 1.7em !important;
+  line-height: 1.7em !important;
+  margin: 0.2em !important;
+  border-radius: 24px !important;
 
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 .react-datepicker__day:hover {
-  background: #ffffff;
-  border-radius: 24px;
+  background: #ffffff !important;
+  border-radius: 24px !important;
 }
 
 /* Стилизация выбранного дня */
 .react-datepicker__day--selected {
-  background-color: #007bff;
+  background-color: #007bff !important;
   /* Синий цвет */
-  color: #ffffff;
+  color: #ffffff !important;
   /* Белый цвет текста */
 }
 
 /* Стилизация ховера над днем */
 .react-datepicker__day:hover {
-  background-color: #e9ecef;
+  background-color: #e9ecef !important;
   /* Серый цвет при ховере */
-  color: #000000;
+  color: #000000 !important;
   /* Черный цвет текста при ховере */
 }
 
 .react-datepicker {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 9px 18px;
-  font-size: 18px;
-  line-height: calc(24 / 18);
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 9px 18px !important;
+  font-size: 18px !important;
+  line-height: calc(24 / 18) !important;
 
-  width: 373px;
-  height: 354px;
+  width: 373px !important;
+  height: 354px !important;
 
-  background: #3e85f3;
-  border-radius: 16px;
+  background: #3e85f3 !important;
+  border-radius: 16px !important;
 }
 
 
 .react-datepicker__navigation {
-  top: 42px;
+  top: 42px !important;
 }
