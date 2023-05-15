@@ -305,10 +305,18 @@ const AboutPage = () => {
       )}
 
       <ButtonIconDiv>
-        <IconButton type="button" className="swiper-prev">
+        <IconButton
+          type="button"
+          className="swiper-prev"
+          aria-label="previous review"
+        >
           <East />
         </IconButton>
-        <IconButton type="button" className="swiper-next">
+        <IconButton
+          type="button"
+          className="swiper-next"
+          aria-label="next review"
+        >
           <East />
         </IconButton>
       </ButtonIconDiv>
