@@ -12,11 +12,9 @@ export const CalendarToolbar = ({
   let widthFixed = true;
   const location = useLocation();
   if (location.pathname === '/main/calendar') {
-
     widthFixed = false;
-  } 
-  else if (location.pathname === '/main/calendar/day') {
-    widthFixed = true;
+  } else if (location.pathname === '/main/calendar/day') {
+    widthFixed = true; //eslint-disable-line
   }
   return (
     <HeaderDivGroup>
@@ -45,10 +43,10 @@ const HeaderDivGroup = styled.div`
     flex-direction: column;
     margin-bottom: 24px;
     gap: 18px;
-    width: ${({ widthFixed }) => (widthFixed && '335px')};
+    width: ${({ widthFixed }) => widthFixed && '335px'};
   }
-  
-  @media screen and (min-width: 1440px) { 
-    width: ${({ widthFixed }) => (widthFixed && '1087px')};
+
+  @media screen and (min-width: 1440px) {
+    width: ${({ widthFixed }) => widthFixed && '1087px'};
   }
 `;
