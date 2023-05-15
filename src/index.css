@@ -262,3 +262,14 @@ b {
 .react-datepicker__navigation {
   top: 42px !important;
 }
+
+/**
+  |============================
+  | Loading...
+  |============================
+*/
+
+[id^=NotiflixLoadingWrap]>div[class*="-icon"] img,
+[id^=NotiflixLoadingWrap]>div[class*="-icon"] svg {
+  fill: #03c6fc;
+}
