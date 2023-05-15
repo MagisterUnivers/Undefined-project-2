@@ -29,7 +29,7 @@ const ChoosedDayPage = () => {
   const dateTasks = useDateTasks(currentDateKey); // task[]
 
     
-  const startDate = moment(currentDate).startOf('week')
+  const startDate = moment(currentDate).startOf('week').day('Monday');
   const days = Array.from({ length: 7 }, (_, i) => moment(startDate).add(i, 'day').toDate());
  
   const dayNumbers = days.map((day) => day.getDate());

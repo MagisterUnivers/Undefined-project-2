@@ -12,6 +12,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { parseDate } from '@internationalized/date';
+import * as moment from 'moment';
 
 export const useCalendar = () => {
   // const { locale } = useLocale();
@@ -90,13 +91,9 @@ export const useCalendar = () => {
     disabled: isDisabled2 === 'true',
   });
 
-  // const { year, month } = selectedMonth ?? {};
-
-  // const title = !selectedMonth
-  //   ? ''
-  //   : `${moment().set('month', month).format('MMM')} ${year}`;
-
-  const title = calendarProps['aria-label'];
+  const title = !currentMonth
+    ? ''
+    : `${moment().set('month', month).format('MMM')} ${year}`;
 
   return {
     title,
