@@ -69,13 +69,6 @@ const userSlice = createSlice({
       state.loading = true;
     },
     [updateUserDataThunk.fulfilled]: (state, { payload }) => {
-      // payload._id = state._id;
-      // payload.name = state.name;
-      // payload.email = state.email;
-      // payload.birthday = state.birthday;
-      // payload.phone = state.phone;
-      // payload.skype = state.skype;
-      // payload.userImgUrl = state.userImgUrl;
       state._id = payload._id;
       state.name = payload.name;
       state.email = payload.email;
