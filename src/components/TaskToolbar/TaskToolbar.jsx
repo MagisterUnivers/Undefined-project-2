@@ -68,7 +68,7 @@ const TaskToolbar = ({ id, categoryId, object, tasks }) => {
       <StyledList>
         <StyledListItem>
           <StyledListBtn type="button" onClick={handleSlideMenuToggle}>
-            <StyledArrowRightIcon className="dark:stroke-white" />
+            <StyledArrowRightIcon className="dark:stroke-white " />
           </StyledListBtn>
         </StyledListItem>
         <StyledListItem>
@@ -89,71 +89,83 @@ const TaskToolbar = ({ id, categoryId, object, tasks }) => {
       {isSlideMenuShown && (
         <>
           {categoryId === 'to-do' ? (
-            <StyledSlideMenu object={object} tasks={tasks}>
+            <StyledSlideMenu
+              className=" dark:bg-darktheme"
+              object={object}
+              tasks={tasks}
+            >
               <StyledSlideMenuItem>
                 <StyledMenuBtn
+                  className=" dark:text-white"
                   type="button"
                   onClick={() => {
                     handleChangleCategory(object, 'in-progress');
                   }}
                 >
-                  In progress <StyledMenuArrowIcon />
+                  In progress{' '}
+                  <StyledMenuArrowIcon className=" dark:stroke-white" />
                 </StyledMenuBtn>
               </StyledSlideMenuItem>
               <StyledSlideMenuItem>
                 <StyledMenuBtn
+                  className=" dark:text-white"
                   type="button"
                   onClick={() => {
                     handleChangleCategory(object, 'done');
                   }}
                 >
-                  Done <StyledMenuArrowIcon />
+                  Done <StyledMenuArrowIcon className=" dark:stroke-white" />
                 </StyledMenuBtn>
               </StyledSlideMenuItem>
             </StyledSlideMenu>
           ) : categoryId === 'in-progress' ? (
-            <StyledSlideMenu tasks={tasks}>
+            <StyledSlideMenu className=" dark:bg-darktheme" tasks={tasks}>
               <StyledSlideMenuItem>
                 <StyledMenuBtn
+                  className=" dark:text-white"
                   type="button"
                   onClick={() => {
                     handleChangleCategory(object, 'to-do');
                   }}
                 >
-                  To do <StyledMenuArrowIcon />
+                  To do <StyledMenuArrowIcon className=" dark:stroke-white" />
                 </StyledMenuBtn>
               </StyledSlideMenuItem>
               <StyledSlideMenuItem>
                 <StyledMenuBtn
+                  className=" dark:text-white"
                   type="button"
                   onClick={() => {
                     handleChangleCategory(object, 'done');
                   }}
                 >
-                  Done <StyledMenuArrowIcon />
+                  Done <StyledMenuArrowIcon className=" dark:stroke-white" />
                 </StyledMenuBtn>
               </StyledSlideMenuItem>
             </StyledSlideMenu>
           ) : (
-            <StyledSlideMenu tasks={tasks}>
+            <StyledSlideMenu className=" dark:bg-darktheme" tasks={tasks}>
               <StyledSlideMenuItem>
                 <StyledMenuBtn
+                  className=" dark:text-white"
                   type="button"
                   onClick={() => {
                     handleChangleCategory(object, 'to-do');
                   }}
                 >
-                  To do <StyledMenuArrowIcon />
+                  To do <StyledMenuArrowIcon className=" dark:stroke-white" />
                 </StyledMenuBtn>
               </StyledSlideMenuItem>
               <StyledSlideMenuItem>
                 <StyledMenuBtn
+                  className=" dark:text-white"
                   type="button"
                   onClick={() => {
                     handleChangleCategory(object, 'in-progress');
                   }}
                 >
-                  In progress <StyledMenuArrowIcon />
+                  In progress{' '}
+                  <StyledMenuArrowIcon className=" dark:stroke-white" />
                 </StyledMenuBtn>
               </StyledSlideMenuItem>
             </StyledSlideMenu>
