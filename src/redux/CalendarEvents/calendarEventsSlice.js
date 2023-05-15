@@ -1,4 +1,4 @@
-import { createSlice, current } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { shallowCompare } from 'react-global-state-hooks';
 import { useSelector } from 'react-redux';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
@@ -129,9 +129,6 @@ const calendarEventsSlice = createSlice({
       });
 
       const resultArray = [...filteredArr, payload.task];
-
-      console.log(current(state.monthDatesMap));
-      console.log(filteredArr);
 
       state.monthDatesMap = { ...state.monthDatesMap, [date]: resultArray };
       Loading.remove();

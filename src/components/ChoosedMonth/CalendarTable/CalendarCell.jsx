@@ -32,20 +32,6 @@ export const CalendarCell = ({ state, date }) => {
     buttonProps: { onClick, ...buttonProps },
   } = useCalendarCell({ date }, state, ref);
 
-  // console.log(formattedDate);
-  //     task:
-  //     _id: '64303c8582dc6fccdee4f8d2',
-  //     title: 'toDo',
-  //     start: '9-00',
-  //     end: '14-00',
-  //     priority: 'medium',
-  //     category: 'to-do',
-  //     owner: '64303c5f82dc6fccdee4f8dc',
-  //     date: '2023-03-17T00:00:00.000Z',
-  //     createdAt: '2023-04-07T15:53:41.088Z',
-  //     updatedAt: '2023-04-07T15:53:41.088Z',
-  //     __v: 0,[]
-
   const onClickHandler = (event) => {
     onClick(event);
 

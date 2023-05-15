@@ -4,7 +4,7 @@ import { StyledSpinner, StyledSpinnerWrapper } from './StyledSpinner';
 const Spinner = () => {
   return (
     <StyledSpinnerWrapper>
-      <StyledSpinner size={200} thickness={5} variant="plain" value={25} disableShrink />
+      <StyledSpinner size={200} thickness={5} value={25} />
     </StyledSpinnerWrapper>
   );
 };

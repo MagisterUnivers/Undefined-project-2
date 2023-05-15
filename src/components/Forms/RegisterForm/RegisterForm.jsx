@@ -2,8 +2,7 @@ import React from 'react';
 import { Formik, ErrorMessage, useField } from 'formik';
 import * as Yup from 'yup';
 import { registrationThunk } from 'redux/Auth/authOperations';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectAuthAccessToken } from 'redux/selectors';
+import { useDispatch } from 'react-redux';
 import AuthNavigate from 'components/AuthNavigate/AuthNavigate';
 import { useNavigate } from 'react-router';
 import {
@@ -40,7 +39,6 @@ const validationSchema = Yup.object().shape({
 
 export const RegisterForm = () => {
   const navigate = useNavigate();
-  const token1 = useSelector(selectAuthAccessToken);
 
   const dispatch = useDispatch();
 
@@ -51,10 +49,7 @@ export const RegisterForm = () => {
   };
 
   const handleSubmit = (values) => {
-    console.log('user is Registered');
-    console.log(values);
     dispatch(registrationThunk(values)).then(() => navigate('/main/calendar'));
-    console.log(token1);
   };
 
   const InputField = ({ name, placeholder }) => {

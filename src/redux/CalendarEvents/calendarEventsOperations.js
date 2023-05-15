@@ -75,8 +75,6 @@ export const createUserTaskThunk = createAsyncThunk(
     try {
       setToken(savedToken);
       const res = await axios.post('task', credentials);
-      console.log(axios.defaults.headers.common.Authorization);
-      console.log(res.data);
       return res.data;
     } catch (error) {
       if (

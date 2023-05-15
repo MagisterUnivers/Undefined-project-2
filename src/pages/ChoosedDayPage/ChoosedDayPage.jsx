@@ -28,7 +28,6 @@ const ChoosedDayPage = () => {
   const currentDateKey = getStringFromDate(currentDate); 
   const dateTasks = useDateTasks(currentDateKey); // task[]
 
-  console.log(dateTasks);
     
   const startDate = moment(currentDate).startOf('week')
   const days = Array.from({ length: 7 }, (_, i) => moment(startDate).add(i, 'day').toDate());

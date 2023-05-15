@@ -63,8 +63,6 @@ const TaskToolbar = ({ id, categoryId, object, tasks }) => {
     dispatch(updateUserTaskThunk(modifiedObject));
   };
 
-  console.log('Before return: ', categoryId);
-
   return (
     <>
       <StyledList>
@@ -88,7 +86,6 @@ const TaskToolbar = ({ id, categoryId, object, tasks }) => {
         </StyledListItem>
       </StyledList>
 
-      {console.log(categoryId)}
       {isSlideMenuShown && (
         <>
           {categoryId === 'to-do' ? (

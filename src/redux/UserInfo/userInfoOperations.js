@@ -22,7 +22,6 @@ export const fetchUserDataThunk = createAsyncThunk(
       // };
       return res.data;
     } catch (error) {
-      // console.log(error.response.data.message);
       if (
         error.response.data.message === 'Token is expired' ||
         'Not Authorized'
@@ -46,7 +45,6 @@ export const updateUserDataThunk = createAsyncThunk(
       //   birthday: parseISO(credentials.birthday),
       // };
 
-      console.log(axios.defaults.headers.common.Authorization);
       const res = await axios.patch('user/update', credentials);
       thunkAPI.dispatch(fetchUserDataThunk());
       return res.data;

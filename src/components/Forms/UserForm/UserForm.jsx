@@ -38,7 +38,6 @@ export const UserForm = () => {
       ...prevFormData,
       [name]: value,
     }));
-    console.log(formData);
   };
 
   const handleImageUpload = (e) => {

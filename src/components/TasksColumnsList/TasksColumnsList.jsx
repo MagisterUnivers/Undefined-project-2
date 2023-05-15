@@ -44,26 +44,21 @@ const TasksColumnsList = ({ category, tasks }) => {
   const location = useLocation();
 
   const currentDay = location.pathname.slice(-10);
-  console.log(currentDay);
 
   const reduxTasks = useSelector(selectTasks);
-  console.log(reduxTasks[currentDay]);
   const dayTasks = reduxTasks[currentDay] ?? [];
 
   const toDoTasks = dayTasks.filter((task) => {
     return task.category === 'to-do';
   });
-  console.log('DAY', toDoTasks);
 
   const inProgressTasks = dayTasks.filter((task) => {
     return task.category === 'in-progress';
   });
-  console.log('IN-PROGRESS', inProgressTasks);
 
   const doneTasks = dayTasks.filter((task) => {
     return task.category === 'done';
   });
-  console.log('DONE:', doneTasks);
 
   return (
     <ListTask>
@@ -76,7 +71,12 @@ const TasksColumnsList = ({ category, tasks }) => {
         tasks={inProgressTasks}
         categoryId="in-progress"
       />
-      <TasksColumn title="Done" tasks={doneTasks} categoryId="done" currentDay={currentDay} />
+      <TasksColumn
+        title="Done"
+        tasks={doneTasks}
+        categoryId="done"
+        currentDay={currentDay}
+      />
     </ListTask>
   );
 };

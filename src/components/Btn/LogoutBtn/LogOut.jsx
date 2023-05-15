@@ -12,7 +12,6 @@ const LogOut = () => {
 
   const handleLogout = () => {
     dispatch(logoutThunk()).then(() => navigate('/'));
-    console.log('User is Logged Out');
   };
 
   // if (!isLoggedIn) {
