@@ -19,7 +19,7 @@ import {
 } from '../../redux/CalendarEvents/calendarEventsOperations';
 import { useDispatch } from 'react-redux';
 
-const TaskToolbar = ({ id, categoryId, object }) => {
+const TaskToolbar = ({ id, categoryId, object, tasks }) => {
   const dispatch = useDispatch();
   const [isSlideMenuShown, setIsSlideMenuShown] = useState(false);
   const [isTransferMenuShown, setIsTransferMenuShown] = useState(false);
@@ -92,7 +92,7 @@ const TaskToolbar = ({ id, categoryId, object }) => {
       {isSlideMenuShown && (
         <>
           {categoryId === 'to-do' ? (
-            <StyledSlideMenu>
+            <StyledSlideMenu object={object} tasks={tasks}>
               <StyledSlideMenuItem>
                 <StyledMenuBtn
                   type="button"
@@ -115,7 +115,7 @@ const TaskToolbar = ({ id, categoryId, object }) => {
               </StyledSlideMenuItem>
             </StyledSlideMenu>
           ) : categoryId === 'in-progress' ? (
-            <StyledSlideMenu>
+            <StyledSlideMenu tasks={tasks}>
               <StyledSlideMenuItem>
                 <StyledMenuBtn
                   type="button"
@@ -138,7 +138,7 @@ const TaskToolbar = ({ id, categoryId, object }) => {
               </StyledSlideMenuItem>
             </StyledSlideMenu>
           ) : (
-            <StyledSlideMenu>
+            <StyledSlideMenu tasks={tasks}>
               <StyledSlideMenuItem>
                 <StyledMenuBtn
                   type="button"

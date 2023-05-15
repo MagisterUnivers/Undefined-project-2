@@ -71,7 +71,8 @@ export const StyledTrashIcon = styled(TrashIcon)`
 
 export const StyledSlideMenu = styled.ul`
   position: absolute;
-  top: 26px;
+  top: ${({ tasks }) => (tasks.length !== 1 ? '34px' : 'auto')};
+  bottom: ${({ tasks }) => (tasks.length === 1 ? '26px' : 'auto')};
   left: -70px;
   display: flex;
   flex-direction: column;
