@@ -29,7 +29,7 @@ export const SideBarTest = ({ isOpenSidebarMobile, toggleSidebar }) => {
               type="button"
               onClick={toggleSidebar}
             >
-              <IconClose className={styles.close} />
+              <IconClose className="stroke-black-text dark:stroke-white " />
             </button>
           </Box>
           <Box>
