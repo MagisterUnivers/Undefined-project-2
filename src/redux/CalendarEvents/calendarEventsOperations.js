@@ -18,10 +18,7 @@ export const getMonthEvents = createAsyncThunk(
 
       return res.data;
     } catch (error) {
-      if (
-        error.response.data.message === 'Token is expired' ||
-        'Not Authorized'
-      ) {
+      if (error.response.data.message === 'Token is expired') {
         thunkAPI
           .dispatch(refreshThunk())
           .then(() => thunkAPI.dispatch(loginThunk()));

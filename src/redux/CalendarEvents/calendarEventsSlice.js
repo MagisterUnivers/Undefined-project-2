@@ -52,6 +52,7 @@ const calendarEventsSlice = createSlice({
     [getMonthEvents.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
       state.monthDatesMap = computeMonthDatesMap(payload);
+
       Loading.remove();
     },
 

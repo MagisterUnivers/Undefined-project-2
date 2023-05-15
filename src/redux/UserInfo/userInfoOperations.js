@@ -2,6 +2,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import Notiflix from 'notiflix';
 import { loginThunk, refreshThunk } from 'redux/Auth/authOperations';
+import { getMonthEvents } from 'redux/CalendarEvents';
+import clearConsoleOnError from 'utils/ClearConsole';
 
 const setToken = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -20,6 +22,9 @@ export const fetchUserDataThunk = createAsyncThunk(
       //   ...res.data,
       //   birthday: format(parseISO(res.data.birthday), 'yyyy-MM-dd'),
       // };
+      clearConsoleOnError();
+      thunkAPI.dispatch(getMonthEvents());
+
       return res.data;
     } catch (error) {
       if (

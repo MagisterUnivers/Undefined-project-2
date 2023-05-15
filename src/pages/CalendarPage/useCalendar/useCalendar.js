@@ -4,7 +4,7 @@ import { createCalendar } from '@internationalized/date';
 import { getDaysOfWeekLabels, getStringFromDate } from '../../../utils';
 import {
   useCurrentDate,
-  getMonthEvents,
+  getMonthEvents, //eslint-disable-line
   useCurrentMonth,
   selectUserLoading,
 } from '../../../redux';
@@ -22,9 +22,9 @@ export const useCalendar = () => {
   const [currentMonth, setCurrentMonth] = useCurrentMonth();
   const isLoading = useSelector(selectUserLoading);
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); //eslint-disable-line
 
-  const { year, month } = currentMonth ?? {};
+  const { year, month } = currentMonth ?? {}; //eslint-disable-line
 
   const state = useCalendarState({
     onChange: setCurrentDate,
@@ -34,11 +34,11 @@ export const useCalendar = () => {
     // visibleDuration
   });
 
-  useEffect(() => {
-    if (!currentMonth) return;
+  // useEffect(() => {
+  //   if (!currentMonth) return;
 
-    dispatch(getMonthEvents());
-  }, [year, month]); //eslint-disable-line
+  //   dispatch(getMonthEvents());
+  // }, [year, month]); //eslint-disable-line
 
   useEffect(() => {
     if (isLoading || currentDate) return;
