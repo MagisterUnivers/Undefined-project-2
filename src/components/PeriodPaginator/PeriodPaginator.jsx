@@ -124,4 +124,5 @@ const DivGroup = styled.div`
   display: flex;
   flex-direction: row;
   gap: 8px;
+  width: 100%;
 `;
