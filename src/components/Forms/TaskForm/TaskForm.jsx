@@ -44,7 +44,7 @@ const TaskForm = ({ isEdit, id, categoryId, handleModalClose }) => {
       title: newTitle,
       start: newStart,
       end: newEnd,
-      priority: priority,
+      priority: priority ? priority : 'low',
       category: categoryId,
       date: actualDay,
     };
