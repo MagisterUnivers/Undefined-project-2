@@ -9,6 +9,7 @@ import { ReactComponent as GooseLogo } from './icons/logo.svg';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+
 import {
   Section,
   Div,
@@ -39,18 +40,22 @@ import {
 } from './AboutPage.styled.js';
 import { useSelector } from 'react-redux';
 import { selectIsOnline, selectUser } from 'redux/selectors';
+import Aos from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from 'react';
 const AboutPage = () => {
   const navigate = useNavigate();
   const isOnline = useSelector(selectIsOnline);
   const { name } = useSelector(selectUser);
-
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const isMobileorTable = useMediaQuery({ query: '(max-width: 1439px)' });
   const isTablet = useMediaQuery({
     query: '(min-width: 767px) and (max-width: 1439px)',
   });
   const isDesktop = useMediaQuery({ query: '(min-width: 1440px)' });
-
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
   return (
     <Section>
       <Div>
@@ -65,16 +70,16 @@ const AboutPage = () => {
           </Logo>
         )}
         {isDesktop && (
-          <Logo>
+          <Logo data-aos="slide-right" data-aos-delay="500">
             <GooseLogo width={150} height={149} />
           </Logo>
         )}
-        <Title>
+        <Title data-aos="fade" data-aos-delay="700">
           G<StyledSpan>oo</StyledSpan>seTrack
         </Title>
 
         {isOnline ? (
-          <DivButton $logged>
+          <DivButton $logged data-aos="fade" data-aos-delay="800">
             <H2>Welcome back, {name}</H2>
             <ButtonLog
               $logged
@@ -85,7 +90,7 @@ const AboutPage = () => {
             </ButtonLog>
           </DivButton>
         ) : (
-          <DivButton>
+          <DivButton data-aos="fade" data-aos-delay="800">
             {' '}
             <ButtonSign type="button" onClick={() => navigate(`/register`)}>
               Sign up
@@ -97,7 +102,7 @@ const AboutPage = () => {
         )}
       </Div>
       <List>
-        <Item>
+        <Item data-aos="fade-left">
           <BlockDiv>
             <TitleBlock>1.</TitleBlock>
             <ButtonLink
@@ -146,7 +151,7 @@ const AboutPage = () => {
             />
           )}
         </Item>
-        <Item>
+        <Item data-aos="fade-right">
           <BlockDiv>
             <TitleBlock>2.</TitleBlock>
             <UpperTitle>SIDEBAR</UpperTitle>
@@ -188,7 +193,7 @@ const AboutPage = () => {
             />
           )}
         </Item>
-        <Item>
+        <Item data-aos="fade-left">
           <BlockDiv>
             <TitleBlock>3.</TitleBlock>
             <ButtonLink
@@ -236,7 +241,7 @@ const AboutPage = () => {
           )}
         </Item>
       </List>
-      <ReviewsTitle>Reviews</ReviewsTitle>
+      <ReviewsTitle data-aos="fade">Reviews</ReviewsTitle>
       {isMobileorTable && (
         <Swiper
           initialSlide={1}
@@ -275,6 +280,7 @@ const AboutPage = () => {
       )}
       {isDesktop && (
         <Swiper
+          data-aos="fade"
           initialSlide={1}
           slidesPerView={2}
           spaceBetween={-140}
@@ -312,7 +318,7 @@ const AboutPage = () => {
         </Swiper>
       )}
 
-      <ButtonIconDiv>
+      <ButtonIconDiv data-aos="fade">
         <IconButton
           type="button"
           className="swiper-prev"
