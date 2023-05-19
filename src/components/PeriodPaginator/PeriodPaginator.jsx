@@ -59,8 +59,14 @@ export const PeriodPaginator = ({
 
   return (
     <DivGroup>
-      {location.pathname === `/main/calendar/day/${currentDay}` ? ( <Button>{day} {title}</Button>) : ( <Button>{title}</Button>)}
-      <ButtonGroup  className=" dark:bg-gray-bg">
+      {location.pathname === `/main/calendar/day/${currentDay}` ? (
+        <Button>
+          {day} {title}
+        </Button>
+      ) : (
+        <Button>{title}</Button>
+      )}
+      <ButtonGroup className=" dark:bg-gray-bg dark:border-bdark">
         <IconButton {...prevButtonProps} onClick={previousOnClick}>
           <ArrowBackIosNewIcon
             className={`${
