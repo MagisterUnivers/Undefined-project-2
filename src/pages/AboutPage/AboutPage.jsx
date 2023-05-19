@@ -343,7 +343,7 @@ const reviews = [
   {
     id: 1,
     name: 'Olena Doe',
-    value: 2,
+    value: 4,
     text: 'GooseTrack is impressive, the calendar view and filter options make it easy to stay organized and focused. Highly recommended.',
   },
   {
